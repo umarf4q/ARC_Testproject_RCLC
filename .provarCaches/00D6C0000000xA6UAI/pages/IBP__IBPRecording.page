@@ -1,0 +1,31 @@
+<apex:page standardController="IBP__Ifbyphone_Call__c" extensions="IBP.IBPRecordingController">
+
+    <apex:pageBlock >
+        <p>
+            Call Recording
+        </p>
+        
+        <apex:pageBlockSection rendered="{!IF(isValid == true, true, false)}" columns="1">
+            
+            <apex:pageBlockSectionItem rendered="{!IF(enhancedMinutes > 0, true, false)}">
+                <audio controls="true">
+                    <source src="{!recordingUrl}" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            </apex:pageBlockSectionItem>
+        
+            <apex:pageBlockSectionItem rendered="{!IF(enhancedMinutes < 0.1, true, false)}">
+                <p>
+                    <i>There is no recording for this call.</i>
+                </p>
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockSection rendered="{!IF(isValid == false, true, false)}" columns="1">
+            <p>
+                <i>Your access key is invalid.</i>
+            </p>
+        </apex:pageBlockSection>
+            
+    </apex:pageBlock>
+</apex:page>

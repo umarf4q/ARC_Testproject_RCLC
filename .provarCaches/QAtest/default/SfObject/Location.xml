@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" keyPrefix="131" label="Location" labelPlural="Locations" layoutable="true" n="Location" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Location (131)" updatable="true" urlDetail="https://arc-phss--test.my.salesforce.com/{ID}" urlEdit="https://arc-phss--test.my.salesforce.com/{ID}/e" urlNew="https://arc-phss--test.my.salesforce.com/131/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Location ID" type="id" updateable="false"/>
+    <sfField length="18" n="OwnerId" relationshipName="Owner" t="Owner Name" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField length="255" n="Name" nameField="true" required="true" t="Location Name"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField length="40" n="LocationType" required="true" t="Location Type" type="picklist"/>
+    <sfField editPermission="false" n="IsMobile" t="Mobile Location" type="_boolean"/>
+    <sfField editPermission="false" n="IsInventoryLocation" t="Inventory Location" type="_boolean"/>
+    <sfField createable="false" length="18" n="RootLocationId" relationshipName="RootLocation" t="Root Location" type="reference" updateable="false">
+      <referenceTos>
+        <string>Location</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="255" n="ExternalReference" t="External Reference"/>
+    <sfField length="18" n="LogoId" relationshipName="Logo" t="Logo" type="reference">
+      <referenceTos>
+        <string>ContentAsset</string>
+      </referenceTos>
+    </sfField>
+    <sfField filterable="false" n="CloseDate" notVisibleToMetadataUser="true" t="Close Date"/>
+    <sfField filterable="false" n="ConstructionEndDate" notVisibleToMetadataUser="true" t="Construction End Date"/>
+    <sfField filterable="false" n="ConstructionStartDate" notVisibleToMetadataUser="true" t="Construction Start Date"/>
+    <sfField filterable="false" n="Description" notVisibleToMetadataUser="true"/>
+    <sfField filterable="false" n="DrivingDirections" notVisibleToMetadataUser="true" t="Driving Directions"/>
+    <sfField filterable="false" n="Location" notVisibleToMetadataUser="true"/>
+    <sfField filterable="false" n="LocationLevel" notVisibleToMetadataUser="true" t="Location Level"/>
+    <sfField filterable="false" n="OpenDate" notVisibleToMetadataUser="true" t="Open Date"/>
+    <sfField filterable="false" n="ParentLocationId" notVisibleToMetadataUser="true" t="Parent Location"/>
+    <sfField filterable="false" n="PossessionDate" notVisibleToMetadataUser="true" t="Possession Date"/>
+    <sfField filterable="false" n="RemodelEndDate" notVisibleToMetadataUser="true" t="Remodel End Date"/>
+    <sfField filterable="false" n="RemodelStartDate" notVisibleToMetadataUser="true" t="Remodel Start Date"/>
+    <sfField filterable="false" n="TimeZone" notVisibleToMetadataUser="true" t="Time Zone"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="AssociatedLocation" field="LocationId" n="AssociatedLocations" relationshipName="AssociatedLocations" s="2-" t="AssociatedLocation"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="LocationFeed" field="ParentId" n="Feeds" relationshipName="Feeds" s="2-" t="LocationFeed"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="LocationHistory" field="LocationId" n="Histories" relationshipName="Histories" s="2-" t="LocationHistory"/>
+    <sfObjectRelationship childName="LocationShare" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="LocationShare"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="Shipment" field="DestinationLocationId" n="DestinationLocationShipments" relationshipName="DestinationLocationShipments" s="2-" t="Shipment"/>
+    <sfObjectRelationship childName="Shipment" field="SourceLocationId" n="SourceLocationShipments" relationshipName="SourceLocationShipments" s="2-" t="Shipment"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink modes="View" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink modes="View" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="ObjectHome List" n="New"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink n="Tab" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>LOCATION.NAME</string>
+    <string>LocationType</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>LOCATION.NAME</string>
+    <string>LocationType</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>LOCATION.NAME</string>
+    <string>LocationType</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>NAME</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

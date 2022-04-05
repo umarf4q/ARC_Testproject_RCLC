@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><QuickAction xmlns="http://soap.sforce.com/2006/04/metadata"
+   >
+ <fullName>redwing__Training_Plan__c.ltui__Assign</fullName>
+     <height>630</height>
+  <isProtected>false</isProtected>
+ <label>Assign</label>
+ <lightningComponent>ltui__ManageAssignmentsCmp</lightningComponent>
+  <optionsCreateFeedItem>false</optionsCreateFeedItem>
+         <type>LightningComponent</type>
+ <width>-100</width>
+</QuickAction>

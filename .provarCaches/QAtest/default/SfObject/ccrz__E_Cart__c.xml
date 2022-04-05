@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="ccrz__E_Cart__c.SYSTEM" defaultFlexipageId="CC_Cart_Record_Page" deleteable="true" keyPrefix="a3q" label="CC Cart" labelPlural="CC Carts" layoutable="true" metadataLabel="CC Cart" n="ccrz__E_Cart__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="CC Cart (a3q)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a3q/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="CC Cart ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="Cart Auto Number" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">ccrz__E_Cart__c.CreatedDate</key>
+          <value valueClass="string">Created Date</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">ccrz__E_Cart__c.LastModifiedDate</key>
+          <value valueClass="string">Last Modified</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField editPermission="false" length="18" n="ccrz__Account__c" relationshipLabel="Carts" relationshipName="ccrz__Account__r" t="Account" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" n="ccrz__ActiveCart__c" t="Active Cart" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__AdjustmentAmount__c" precision="18" scale="2" t="Adjustment Amount" type="currency"/>
+    <sfField editPermission="false" length="255" n="ccrz__AdjustmentReason__c" t="Adjustment Reason"/>
+    <sfField editPermission="false" n="ccrz__AnonymousId__c" t="Anonymous Id" type="_boolean"/>
+    <sfField editPermission="false" length="18" n="ccrz__BillTo__c" relationshipLabel="Carts (BillToID)" relationshipName="ccrz__BillTo__r" t="Bill To" type="reference">
+      <referenceTos>
+        <string>ccrz__E_ContactAddr__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="80" n="ccrz__BuyerCompanyName__c" t="Company Name"/>
+    <sfField editPermission="false" length="80" n="ccrz__BuyerEmail__c" t="Email" type="email"/>
+    <sfField editPermission="false" length="40" n="ccrz__BuyerFirstName__c" t="First Name"/>
+    <sfField editPermission="false" length="80" n="ccrz__BuyerLastName__c" t="Last Name"/>
+    <sfField editPermission="false" length="40" n="ccrz__BuyerMobilePhone__c" t="Mobile Phone" type="phone"/>
+    <sfField editPermission="false" length="40" n="ccrz__BuyerPhone__c" t="Phone" type="phone"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="32768" n="ccrz__CCEmailAddress__c" t="CCEmailAddress" type="textarea"/>
+    <sfField editPermission="false" length="128" n="ccrz__CartId__c" t="Cart Id"/>
+    <sfField editPermission="false" length="255" n="ccrz__CartStatus__c" t="Cart Status" type="picklist">
+      <picklistEntryIds>1,2,3</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Abandoned" s=""/>
+        <sfPLE id="2" n="Closed" s=""/>
+        <sfPLE id="3" n="Open" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="ccrz__CartType__c" t="Cart Type" type="picklist">
+      <picklistEntryIds>4,5,6</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="4" n="Read-Only WishList" s=""/>
+        <sfPLE id="5" n="WishList" s=""/>
+        <sfPLE id="6" n="Cart" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="18" n="ccrz__Contact__c" relationshipLabel="CC Carts" relationshipName="ccrz__Contact__r" t="Contact" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="50" n="ccrz__ContractId__c" t="Contract ID"/>
+    <sfField editPermission="false" length="10" n="ccrz__CurrencyISOCode__c" t="Currency ISO Code"/>
+    <sfField editPermission="false" length="20" n="ccrz__EffectiveAccountID__c" t="Effective Account ID"/>
+    <sfField editPermission="false" length="250" n="ccrz__EncryptedId__c" t="Encrypted Id"/>
+    <sfField editPermission="false" length="255" n="ccrz__Name__c" readPermission="false" t="Name"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="1000" n="ccrz__Note__c" t="Note" type="textarea"/>
+    <sfField editPermission="false" length="50" n="ccrz__PONumber__c" t="PO Number"/>
+    <sfField editPermission="false" length="50" n="ccrz__PaymentMethod__c" t="Payment Method"/>
+    <sfField editPermission="false" n="ccrz__RequestDate__c" t="Request Date" type="date"/>
+    <sfField editPermission="false" length="255" n="ccrz__SessionId__c" t="Session Id"/>
+    <sfField editPermission="false" n="ccrz__ShipAmount__c" precision="18" scale="2" t="Ship Amount" type="currency"/>
+    <sfField editPermission="false" n="ccrz__ShipComplete__c" t="Ship Complete" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__ShipDiscountAmount__c" precision="18" scale="2" t="Ship Discount Amount" type="currency"/>
+    <sfField editPermission="false" length="50" n="ccrz__ShipMethod__c" t="Ship Method"/>
+    <sfField editPermission="false" length="128" n="ccrz__ShipStructure__c" t="Ship Structure"/>
+    <sfField editPermission="false" length="18" n="ccrz__ShipTo__c" relationshipLabel="Carts (ShipToID)" relationshipName="ccrz__ShipTo__r" t="Ship To" type="reference">
+      <referenceTos>
+        <string>ccrz__E_ContactAddr__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="255" n="ccrz__Storefront__c" t="Storefront"/>
+    <sfField editPermission="false" n="ccrz__TaxAmount__c" precision="18" scale="2" t="Tax Amount" type="currency"/>
+    <sfField editPermission="false" n="ccrz__TaxExemptFlag__c" t="TaxExemptFlag" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__ShipAmount__c + ccrz__SubtotalAmount__c + ccrz__TaxAmount__c +  ccrz__ShipDiscountAmount__c  +  ccrz__AdjustmentAmount__c + ccrz__TotalSurcharge__c" formulaTreatBlanksAs="BlankAsZero" n="ccrz__TotalAmount__c" precision="18" scale="2" t="Total Amount" type="currency" updateable="false"/>
+    <sfField editPermission="false" n="ccrz__TotalDiscount__c" precision="18" scale="2" t="Total Discount" type="currency"/>
+    <sfField editPermission="false" n="ccrz__TotalSurcharge__c" precision="18" scale="2" t="Total Surcharge" type="currency"/>
+    <sfField editPermission="false" length="18" n="ccrz__User__c" relationshipName="ccrz__User__r" t="User" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="75" n="ccrz__ValidationStatus__c" t="Validation Status"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="ccrz__SubtotalAmount__c" precision="18" scale="2" summarizedField="ccrz__E_CartItem__c.ccrz__ItemTotal__c" summaryForeignKey="ccrz__E_CartItem__c.ccrz__Cart__c" summaryOperation="sum" t="Subtotal Amount" type="currency" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="ccrz__TaxSubTotalAmount__c" precision="18" scale="2" summarizedField="ccrz__E_CartItem__c.ccrz__ItemTotal__c" summaryForeignKey="ccrz__E_CartItem__c.ccrz__Cart__c" summaryOperation="sum" t="Tax SubTotal Amount" type="currency" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="ccrz__TotalQuantity__c" precision="18" summarizedField="ccrz__E_CartItem__c.ccrz__Quantity__c" summaryForeignKey="ccrz__E_CartItem__c.ccrz__Cart__c" summaryOperation="sum" t="Total Quantity" type="_double" updateable="false"/>
+    <sfField editPermission="false" length="18" n="Opportunity__c" relationshipLabel="CC Carts" relationshipName="Opportunity__r" t="Opportunity" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" n="Highest_Cart_Discount__c" precision="7" scale="4" summarizedField="ccrz__E_CartItem__c.ccrz__PercentDiscount__c" summaryForeignKey="ccrz__E_CartItem__c.ccrz__Cart__c" summaryOperation="max" t="Highest Cart Discount" type="percent" updateable="false"/>
+    <sfField length="10" n="Payment_Postal_Code__c" t="Payment Postal Code"/>
+    <sfField editPermission="false" globalPickListName="States" length="255" n="Credit_Card_State__c" readPermission="false" restrictedPicklist="true" t="Credit Card State" type="picklist">
+      <picklistEntryIds>7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="7" n="AK" s=""/>
+        <sfPLE id="8" n="AL" s=""/>
+        <sfPLE id="9" n="AR" s=""/>
+        <sfPLE id="10" n="AZ" s=""/>
+        <sfPLE id="11" n="CA" s=""/>
+        <sfPLE id="12" n="CO" s=""/>
+        <sfPLE id="13" n="CT" s=""/>
+        <sfPLE id="14" n="DE" s=""/>
+        <sfPLE id="15" n="FL" s=""/>
+        <sfPLE id="16" n="GA" s=""/>
+        <sfPLE id="17" n="HI" s=""/>
+        <sfPLE id="18" n="IA" s=""/>
+        <sfPLE id="19" n="ID" s=""/>
+        <sfPLE id="20" n="IL" s=""/>
+        <sfPLE id="21" n="IN" s=""/>
+        <sfPLE id="22" n="KS" s=""/>
+        <sfPLE id="23" n="KY" s=""/>
+        <sfPLE id="24" n="LA" s=""/>
+        <sfPLE id="25" n="MA" s=""/>
+        <sfPLE id="26" n="MD" s=""/>
+        <sfPLE id="27" n="ME" s=""/>
+        <sfPLE id="28" n="MI" s=""/>
+        <sfPLE id="29" n="MN" s=""/>
+        <sfPLE id="30" n="MO" s=""/>
+        <sfPLE id="31" n="MS" s=""/>
+        <sfPLE id="32" n="MT" s=""/>
+        <sfPLE id="33" n="NC" s=""/>
+        <sfPLE id="34" n="ND" s=""/>
+        <sfPLE id="35" n="NE" s=""/>
+        <sfPLE id="36" n="NH" s=""/>
+        <sfPLE id="37" n="NJ" s=""/>
+        <sfPLE id="38" n="NM" s=""/>
+        <sfPLE id="39" n="NV" s=""/>
+        <sfPLE id="40" n="NY" s=""/>
+        <sfPLE id="41" n="OH" s=""/>
+        <sfPLE id="42" n="OK" s=""/>
+        <sfPLE id="43" n="OR" s=""/>
+        <sfPLE id="44" n="PA" s=""/>
+        <sfPLE id="45" n="RI" s=""/>
+        <sfPLE id="46" n="SC" s=""/>
+        <sfPLE id="47" n="SD" s=""/>
+        <sfPLE id="48" n="TN" s=""/>
+        <sfPLE id="49" n="TX" s=""/>
+        <sfPLE id="50" n="UT" s=""/>
+        <sfPLE id="51" n="VA" s=""/>
+        <sfPLE id="52" n="VT" s=""/>
+        <sfPLE id="53" n="WA" s=""/>
+        <sfPLE id="54" n="WI" s=""/>
+        <sfPLE id="55" n="WV" s=""/>
+        <sfPLE id="56" n="WY" s=""/>
+        <sfPLE id="57" n="DC" s=""/>
+        <sfPLE id="58" n="PR" s=""/>
+        <sfPLE id="59" n="VI" s=""/>
+        <sfPLE id="60" n="AA" s=""/>
+        <sfPLE id="61" n="AE" s=""/>
+        <sfPLE id="62" n="AP" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="5" n="Credit_Card_Zip__c" readPermission="false" t="Credit Card Zip"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="Cart_Tax_Amount__c" precision="18" readPermission="false" scale="2" summarizedField="ccrz__E_CartItem__c.Tax_Amount__c" summaryForeignKey="ccrz__E_CartItem__c.ccrz__Cart__c" summaryOperation="sum" t="Cart Tax Amount" type="currency" updateable="false"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship childName="ccrz__E_Cart__Share" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="01I0V000002N5N5.Share"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="ccrz__E_Cart__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002N5N5.History"/>
+    <sfObjectRelationship childName="ccrz__E_CartCoupon__c" field="ccrz__Cart__c" n="ccrz__E_CartCoupons__r" relationshipName="ccrz__E_CartCoupons__r" s="2-" t="01I0V000002N5N1"/>
+    <sfObjectRelationship childName="ccrz__E_CartItemGroup__c" field="ccrz__Cart__c" n="ccrz__E_CartItemGroups__r" relationshipName="ccrz__E_CartItemGroups__r" s="2-" t="01I0V000002N5N2"/>
+    <sfObjectRelationship childName="ccrz__E_CartItem__c" field="ccrz__Cart__c" n="ccrz__E_CartItems__r" relationshipName="ccrz__E_CartItems__r" s="2-" t="01I0V000002N5N4"/>
+    <sfObjectRelationship childName="ccrz__E_Order__c" field="ccrz__OriginatedCart__c" n="ccrz__E_Orders__r" relationshipName="ccrz__E_Orders__r" s="2-" t="01I0V000002N5Nc"/>
+    <sfObjectRelationship childName="ccrz__E_PaymentDetail__c" field="ccrz__Cart__c" n="ccrz__CC_Payment_Details__r" relationshipName="ccrz__CC_Payment_Details__r" s="2-" t="01I0V000002N5Ni"/>
+    <sfObjectRelationship childName="ccrz__E_RequestForQuote__c" field="ccrz__Cart__c" n="ccrz__Requests_For_Quote__r" relationshipName="ccrz__Requests_For_Quote__r" s="2-" t="01I0V000002N5OD"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome ccrz__E_Carts__r ccrz__CC_Carts__r List ccrz__E_Carts1__r" n="New"/>
+    <sfActionLink modes="View ccrz__E_Carts__r ccrz__CC_Carts__r ccrz__E_Carts1__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View ccrz__E_Carts__r ccrz__CC_Carts__r ccrz__E_Carts1__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View ccrz__E_Carts__r ccrz__CC_Carts__r ccrz__E_Carts1__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ccrz__E_Carts__r ccrz__CC_Carts__r ccrz__E_Carts1__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="CC Carts Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink buttonName="Appendix_B" n="Appendix_B" s="" t="Appendix B"/>
+    <sfActionLink buttonName="ccrz__View_in_Storefront" n="ccrz__View_in_Storefront" s="" t="View in Storefront"/>
+    <sfActionLink buttonName="Send_Quote" n="Send_Quote" s="" t="Quote"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>CCRZ__E_CART__C.NAME</string>
+    <string>OWNER.ALIAS</string>
+    <string>ccrz__CartStatus__c</string>
+    <string>ccrz__ActiveCart__c</string>
+    <string>LAST_UPDATE</string>
+    <string>ccrz__TotalDiscount__c</string>
+    <string>CREATED_DATE</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CCRZ__E_CART__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>CCRZ__E_CART__C.NAME</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

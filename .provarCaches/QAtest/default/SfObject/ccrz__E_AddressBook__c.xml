@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" keyPrefix="a3g" label="CC Address Book" labelPlural="CC Address Books" layoutable="true" n="ccrz__E_AddressBook__c" queryable="true" readPermission="false" retrieveable="true" s="" t="CC Address Book (a3g)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome ccrz__E_AddressBooks__r ccrz__CC_Address_Books__r ccrz__E_Address_Books__r" n="New"/>
+    <sfActionLink modes="View ccrz__E_AddressBooks__r ccrz__CC_Address_Books__r ccrz__E_Address_Books__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View ccrz__E_AddressBooks__r ccrz__CC_Address_Books__r ccrz__E_Address_Books__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View ccrz__E_AddressBooks__r ccrz__CC_Address_Books__r ccrz__E_Address_Books__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ccrz__E_AddressBooks__r ccrz__CC_Address_Books__r ccrz__E_Address_Books__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

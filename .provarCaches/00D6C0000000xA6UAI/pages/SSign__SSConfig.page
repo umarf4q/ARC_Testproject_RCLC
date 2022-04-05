@@ -1,0 +1,350 @@
+<apex:page controller="SSign.SSConfig" lightningStylesheets="true" action="{!init}">
+  <style>
+    .infoIcon {
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    #loading-div {
+      top: 0;
+      left: 0;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 2000;
+      background-color: rgb(255, 255, 255, 0.5);
+    }
+    .loading-div-content {
+      position: fixed;
+      text-align: center;
+      width: 100%;
+      bottom: 50%;
+      z-index: 2001;
+    }
+    .message {
+      position: sticky !important;
+      z-index: 10;
+      top: 10px;
+    }
+    .mouseOverInfo {
+      bottom: 0px !important;
+      background: rgb(22, 50, 92);
+      color: rgb(255, 255, 255);
+    }
+    .mouseOverInfo label {
+      color: white !important;
+    }
+    .bPageBlock .detailList .labelCol {
+      min-width: fit-content !important;
+      width: 30% !important;
+    }
+    .font-item:hover{
+      background: #ACCEF7!important;
+    }
+  </style>
+  <head>
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE" />
+    <!-- <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet'></link> -->
+    <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Petit+Formal+Script|Dynalight|Great+Vibes|Cedarville+Cursive|Playball|Mr+Dafoe|Parisienne|Pinyon+Script|Rochester|Cedarville+Cursive|Homemade+Apple|La+Belle+Aurore|Allura|Felipa|Qwigley|Arizonia|Aguafina+Script|Meddon|&display=swap" rel="stylesheet"></link>
+  </head>
+  <apex:form >
+    <apex:outputPanel >
+      <apex:actionStatus id="configStatus">
+        <apex:facet name="start">
+          <div id="loading-div">
+            <div class="loading-div-content">
+              <img width="80" src="{!URLFOR($Resource.SSign_Images,'lightning_spinner.gif')}" class="undraggable" unselectable="on" />
+            </div>
+          </div>
+        </apex:facet>
+      </apex:actionStatus>
+      <apex:pageMessages id="message" />
+      <apex:pageBlock title="S-Sign Licensing">
+        <apex:commandButton action="{!redirectToSSignLicensePage}"
+          value="Go To S-Sign License Page 🡢"
+          status="configStatus"
+          reRender=""
+          oncomplete=""
+        />
+      </apex:pageBlock>
+      <apex:actionFunction action="{!setPermission}" name="setPermission" reRender="message,siteInfoPageBlock" />
+      <apex:actionFunction name="setPermissionPageMessage" action="{!setPermissionPageMessage}" rerender="message" status="configStatus"/>
+      <apex:pageBlock title="S-Sign Configurations" id="siteInfoPageBlock">
+        <apex:pageBlockSection columns="1">
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="S-Sign Site Label" />
+            <apex:inputText value="{!siteGuestName}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="S-Sign Site URL" />
+            <apex:inputTextarea value="{!siteURL}" style="width: 40%;" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel >
+              <c:HelpIcon helpText="By clicking this, S-Sign will record your site label and site URL, and assign the S-Sign Site Guest User permssion set."/>
+            </apex:outputLabel>
+            <apex:commandButton value="Set Site Info & Assign Permissions"
+              action="{!setSiteInfoPageMessage}"
+              status="configStatus"
+              oncomplete="setPermissionPageMessage();"
+              reRender="message"
+            />
+          </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+        <apex:outputPanel id="ssign-configuration-actions">
+          <apex:pageBlockSection columns="1">
+            <apex:pageBlockSectionItem />
+            <apex:pageBlockSectionItem rendered="{!NOT(jobFoundMap[SCHD_JOB_LBL_NOTIFICATIONS])}">
+              <apex:outputLabel >
+                <c:HelpIcon helpText="Enable email expiration and reminder notifications on S-Sign requests."/>
+              </apex:outputLabel>
+              <apex:commandButton value="Enable Notifications"
+                action="{!startExpirationJob}"
+                status="configStatus"
+                oncomplete=""
+                reRender="message,ssign-configuration-actions"
+              />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem rendered="{!jobFoundMap[SCHD_JOB_LBL_NOTIFICATIONS]}">
+              <apex:outputLabel >
+                <c:HelpIcon helpText="Disable email expiration and reminder notifications on S-Sign requests."/>
+              </apex:outputLabel>
+              <apex:commandButton value="Disable Notifications"
+                action="{!stopExpirationJob}"
+                status="configStatus"
+                oncomplete=""
+                reRender="message,ssign-configuration-actions"
+              />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem rendered="{!AND(showBounceManagement,NOT(jobFoundMap[SCHD_JOB_LBL_BOUNCE_MANAGEMENT]))}">
+              <apex:outputLabel >
+                <c:HelpIcon helpText="Enable email bounce management on S-Sign requests."/>
+              </apex:outputLabel>
+              <apex:commandButton value="Enable Bounce Management"
+                action="{!startBounceManagementJob}"
+                status="configStatus"
+                oncomplete=""
+                reRender="message,ssign-configuration-actions"
+              />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem rendered="{!AND(showBounceManagement,jobFoundMap[SCHD_JOB_LBL_BOUNCE_MANAGEMENT])}">
+              <apex:outputLabel >
+                <c:HelpIcon helpText="Disable email bounce management on S-Sign requests."/>
+              </apex:outputLabel>
+              <apex:commandButton value="Disable Bounce Management"
+                action="{!stopBounceManagementJob}"
+                status="configStatus"
+                oncomplete=""
+                reRender="message,ssign-configuration-actions"
+              />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem rendered="{!NOT(ISBLANK(ssignInternalUserName))}">
+              <apex:outputLabel >
+                <c:HelpIcon helpText="Assigns the S-Sign Site Internal User an S-Docs License if not already assigned."/>
+              </apex:outputLabel>
+              <apex:commandButton value="Assign S-Docs License"
+                action="{!assignSDocsLicense}"
+                status="configStatus"
+                reRender="message"
+                oncomplete=""
+              />
+            </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+        </apex:outputPanel>
+      </apex:pageBlock>
+
+      <apex:actionFunction name="selectOption" action="{!setClickedTextToSigFont}" oncomplete="reRenderFontMenu();">
+        <apex:param name="clickedFont" value=""/>
+      </apex:actionFunction>
+      <apex:actionFunction action="{!doNothing}" name="reRenderFontMenu" reRender="customSettings" oncomplete="console.log('{!publicSettings.SSign__Text_To_Signature_Font__c}');highlightSelectedFont();" />
+
+
+      <apex:pageBlock id="customSettings" title="S-Sign Custom Settings">
+        <script>
+          function highlightSelectedFont(){
+            var fontOpts = document.querySelectorAll(".font-item");
+            for(var i = 0; i < fontOpts.length; i++){
+              if(fontOpts[i].textContent.trimStart().trimEnd() === '{!JSENCODE(publicSettings.SSign__Text_To_Signature_Font__c)}'){
+                var fontId = fontOpts[i].getAttribute("id");
+                document.getElementById(fontId).style.background = "#4189e0";
+              }
+            }
+          }
+          window.onload = function() {
+            highlightSelectedFont();
+          }
+        </script>
+        <apex:pageBlockSection columns="1">
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Show audit trail during signing process" />
+            <apex:inputCheckbox value="{!publicSettings.SSign__Show_Audit_Trail_During_Signing_Process__c}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Open in-person requests in new tab for communities" />
+            <apex:inputCheckbox value="{!publicSettings.SSign__Open_Community_Sign_In_Person_In_New_Tab__c}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="From address for notification emails" />
+            <apex:selectList value="{!publicSettings.SSign__Notification_Email_From_Address__c}" size="1">
+              <apex:selectOptions value="{!orgWideAddresses}"/>
+            </apex:selectList>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Insert Audit Document as Attachment on base record">
+              <c:HelpIcon helpText="When creating the Audit Document, S-Sign will insert an Attachment on the base record instead of a ContentDocumentLink."/>
+            </apex:outputLabel>
+            <apex:inputCheckbox value="{!publicSettings.SSign__Dont_Insert_Audit_Doc_CDL__c}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Disable Text-To-Signature" />
+            <apex:inputCheckbox value="{!publicSettings.SSign__Disable_Text_To_Signature__c}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem rendered="{!showContactTrigger}">
+            <apex:outputLabel value="Enable Insert Contact Trigger">
+              <c:HelpIcon helpText="Creates a contact for each signer email that does not have an associated Contact record."/>
+            </apex:outputLabel>
+            <apex:inputCheckbox value="{!publicSettings.SSign__Enable_Insert_Contact_Trigger__c}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Custom Logo URL" />
+            <apex:inputText value="{!publicSettings.SSign__Custom_Logo_URL__c}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Reply To Address">
+              <c:HelpIcon helpText="This address will used as the Reply To address for all S-Sign emails."/>
+            </apex:outputLabel>
+            <apex:inputText disabled="{!publicSettings.SSign__Use_Requester_Email_For_Reply_To__c}" id="replyToTextField" value="{!publicSettings.SSign__Reply_To_Email__c}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Use Requester Email for Reply To" />
+            <apex:inputCheckbox value="{!publicSettings.SSign__Use_Requester_Email_For_Reply_To__c}"> 
+              <apex:actionSupport event="onchange" reRender="replyToTextField" />
+            </apex:inputCheckbox>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Show Timestamp and Signer Name on Signature Images" />
+            <apex:inputCheckbox value="{!publicSettings.SSign__Show_Timestamp_and_Signer_Name__c}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Use custom S-Sign Site Guest User permission set" />
+            <apex:inputCheckbox value="{!publicSettings.SSign__Use_Custom_Guest_Permission_Set__c}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem id="font-selection-menu">
+            <apex:outputLabel value="Default Text-To-Signature font"/>
+            <apex:outputPanel >
+              <apex:variable var="counter" value="{!1}"/>
+              <div id="font-selection" style=" margin-top: 5px; margin-bottom: 10px;">
+                <div role="combobox" style="width:320px;border: 1px solid #d8dde6; border-radius: 0.25rem;">
+                  <div role="listbox" style="overflow:auto; height: 150px; max-width:320px; padding-top: 0px;">
+                    <div role="presentation" style="overflow-x: scroll;font-size:28px;">
+                      <apex:repeat value="{!textToSigFontOpts}" var="font">
+                        <div class="font-item" id="font{!counter}" onclick="selectOption('{!font}');" role="option" style="padding-left:10px; font-family:'{!font}';">
+                          {!font}
+                        </div>
+                        <apex:variable var="counter" value="{!counter + 1}"/>
+                      </apex:repeat>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="" />
+            <apex:commandButton value="Save Settings"
+              action="{!savePublicSettings}"
+              status="configStatus"
+              oncomplete=""
+              reRender="message"
+            />
+          </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+      </apex:pageBlock>
+
+      <apex:pageBlock title="S-Sign Advanced Settings" rendered="{!showAdvancedSSignSettings}">
+        <apex:pageBlockSection columns="1">
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="AWS endpoint for PDF/A conversion" />
+            <apex:inputText value="{!pdfAEndpoint}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Send Audit Document for PDF/A conversion" />
+            <apex:inputCheckbox value="{!sendAuditTrailForConversion}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Client certificate name for AWS requests" />
+            <apex:inputText value="{!clientCertificateName}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Enable Pre-Configured S-Sign Tags" />
+            <apex:inputCheckbox value="{!allowForPreConfiguredTagUsage}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Enable Topaz" />
+            <apex:inputCheckbox value="{!allowForTopazFeatureUsage}" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="" />
+            <apex:commandButton value="Save Settings"
+              action="{!savePrivateSettings}"
+              status="configStatus"
+              oncomplete=""
+              reRender="message"
+            />
+          </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+      </apex:pageBlock>
+    </apex:outputPanel>
+
+    <apex:outputPanel id="supportOverride" rendered="{!HTMLENCODE($CurrentPage.parameters.settingsOverride) == 'true'}" layout="none">
+      <apex:pageBlock title="S-Sign Settings Override">
+        <apex:pageBlockSection columns="1">
+          <apex:pageBlockSectionItem >
+            <apex:inputText value="{!overrideStringEncrypted}" />
+            <apex:commandButton value="Update Override Settings"
+              action="{!updateOverride}"
+              status="configStatus"
+              oncomplete=""
+              reRender="message"
+            />
+          </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+      </apex:pageBlock>
+    </apex:outputPanel>
+
+    <apex:outputPanel >
+      <apex:pageBlock title="Assign S-Docs License To Site Guest User" id="assignSDocsLicenseBlock">
+        <apex:outputPanel rendered="{!NOT(clickedAssignSDocsLicense)}">
+          The S-Sign Site Guest User requires an S-Docs license in order to generate documents
+          <br />using custom S-Sign email notification templates. You can assign a license here.
+          <br />
+          <br />
+          <apex:commandButton value="Assign License" action="{!assignSDocsLicense}" reRender="assignSDocsLicenseBlock" />
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!clickedAssignSDocsLicense}">
+          {!clickedAssignSDocsLicenseMsg}
+        </apex:outputPanel>
+      </apex:pageBlock>
+    </apex:outputPanel>
+    <apex:outputPanel >
+      <apex:pageBlock title="S-Sign Requests Page Customization" id="requestPageCustomization" rendered="{!showSSRequestsPageCustomization}">
+        <apex:pageBlockButtons >
+          <apex:commandButton value="Save Customizations" action="{!ssRequestsConfig.saveSSRequestsConfig}" oncomplete="alert('Saved Customizations');" />
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection >
+          <apex:inputText value="{!ssRequestsConfig.settings.numResultsPerPage}" label="Number of requests to display per page: Must be between 1-99 (inclusive)." />
+        </apex:pageBlockSection>
+        <apex:pageBlockSection >
+          <apex:inputCheckbox value="{!ssRequestsConfig.settings.envelopeDefaultView}" label="Make envelope documents the default request view" />
+        </apex:pageBlockSection>
+        <apex:pageBlockSection >
+          <apex:inputTextarea value="{!ssRequestsConfig.settings.customizedEnvelopeColumns}" style="width: 100%; height: 100px;"
+          label="Envelope View columns (newline-delimited): Custom columns must take the form of the API name of a field on SSEnvelope__c." />
+        </apex:pageBlockSection>
+        <apex:pageBlockSection >
+          <apex:inputTextarea value="{!ssRequestsConfig.settings.customizedEnvelopeDocumentColumns}" style="width: 100%; height: 100px;"
+          label="Envelope Document View columns (newline-delimited): Custom columns must take the form of the API name of a field on SSEnvelope_Document__c."/>
+        </apex:pageBlockSection>
+      </apex:pageBlock>
+    </apex:outputPanel>
+  </apex:form>
+</apex:page>

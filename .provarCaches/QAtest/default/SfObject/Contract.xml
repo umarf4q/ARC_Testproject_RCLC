@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="Contract.SYSTEM" defaultFlexipageId="Contract_Record_Page" deleteable="true" keyPrefix="800" label="Contract" labelPlural="Contracts" layoutable="true" metadataLabel="Contract" n="Contract" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Contract (800)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/800/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Contract ID" type="id" updateable="false"/>
+    <sfField internalLabel="Account ID" length="18" n="AccountId" relationshipName="Account" required="true" t="Account Name" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="18" n="Pricebook2Id" readPermission="false" relationshipName="Pricebook2" t="Price Book" type="reference" updateable="false">
+      <referenceTos>
+        <string>Pricebook2</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="40" n="OwnerExpirationNotice" restrictedPicklist="true" standardPickListName="Contract.OwnerExpirationNotice" t="Owner Expiration Notice" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="15" s="" t="15 Days"/>
+        <sfPLE id="2" n="30" s="" t="30 Days"/>
+        <sfPLE id="3" n="45" s="" t="45 Days"/>
+        <sfPLE id="4" n="60" s="" t="60 Days"/>
+        <sfPLE id="5" n="90" s="" t="90 Days"/>
+        <sfPLE id="6" n="120" s="" t="120 Days"/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="StartDate" t="Contract Start Date" type="date">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Contract.StartDate</key>
+          <value valueClass="string">Contract Start Date</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="EndDate" t="Contract End Date" type="date" updateable="false">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Contract.EndDate</key>
+          <value valueClass="string">Contract End Date</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" length="255" n="BillingStreet" readPermission="false" t="Billing Street" type="textarea"/>
+    <sfField editPermission="false" length="40" n="BillingCity" readPermission="false" t="Billing City"/>
+    <sfField editPermission="false" length="80" n="BillingState" readPermission="false" t="Billing State/Province"/>
+    <sfField editPermission="false" length="20" n="BillingPostalCode" readPermission="false" t="Billing Zip/Postal Code"/>
+    <sfField editPermission="false" length="80" n="BillingCountry" readPermission="false" t="Billing Country"/>
+    <sfField editPermission="false" n="BillingLatitude" precision="18" readPermission="false" scale="15" t="Billing Latitude" type="_double"/>
+    <sfField editPermission="false" n="BillingLongitude" precision="18" readPermission="false" scale="15" t="Billing Longitude" type="_double"/>
+    <sfField editPermission="false" length="40" n="BillingGeocodeAccuracy" readPermission="false" restrictedPicklist="true" standardPickListName="GeocodeAccuracy" t="Billing Geocode Accuracy" type="picklist">
+      <picklistEntryIds>7,8,9,10,11,12,13,14,15,16,17</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="7" n="Address" s=""/>
+        <sfPLE id="8" n="NearAddress" s=""/>
+        <sfPLE id="9" n="Block" s=""/>
+        <sfPLE id="10" n="Street" s=""/>
+        <sfPLE id="11" n="ExtendedZip" s=""/>
+        <sfPLE id="12" n="Zip" s=""/>
+        <sfPLE id="13" n="Neighborhood" s=""/>
+        <sfPLE id="14" n="City" s=""/>
+        <sfPLE id="15" n="County" s=""/>
+        <sfPLE id="16" n="State" s=""/>
+        <sfPLE id="17" n="Unknown" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="BillingAddress" t="Billing Address" type="address" updateable="false"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" length="255" n="ShippingStreet" readPermission="false" t="Shipping Street" type="textarea"/>
+    <sfField editPermission="false" length="40" n="ShippingCity" readPermission="false" t="Shipping City"/>
+    <sfField editPermission="false" length="80" n="ShippingState" readPermission="false" t="Shipping State/Province"/>
+    <sfField editPermission="false" length="20" n="ShippingPostalCode" readPermission="false" t="Shipping Zip/Postal Code"/>
+    <sfField editPermission="false" length="80" n="ShippingCountry" readPermission="false" t="Shipping Country"/>
+    <sfField editPermission="false" n="ShippingLatitude" precision="18" readPermission="false" scale="15" t="Shipping Latitude" type="_double"/>
+    <sfField editPermission="false" n="ShippingLongitude" precision="18" readPermission="false" scale="15" t="Shipping Longitude" type="_double"/>
+    <sfField editPermission="false" length="40" n="ShippingGeocodeAccuracy" readPermission="false" restrictedPicklist="true" standardPickListName="GeocodeAccuracy" t="Shipping Geocode Accuracy" type="picklist">
+      <picklistEntryIds>7,8,9,10,11,12,13,14,15,16,17</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="7" n="Address" s=""/>
+        <sfPLE id="8" n="NearAddress" s=""/>
+        <sfPLE id="9" n="Block" s=""/>
+        <sfPLE id="10" n="Street" s=""/>
+        <sfPLE id="11" n="ExtendedZip" s=""/>
+        <sfPLE id="12" n="Zip" s=""/>
+        <sfPLE id="13" n="Neighborhood" s=""/>
+        <sfPLE id="14" n="City" s=""/>
+        <sfPLE id="15" n="County" s=""/>
+        <sfPLE id="16" n="State" s=""/>
+        <sfPLE id="17" n="Unknown" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" n="ShippingAddress" t="Shipping Address" type="address" updateable="false"/>
+    <sfField digits="9" n="ContractTerm" t="Contract Term (months)" type="_int"/>
+    <sfField length="18" n="OwnerId" relationshipName="Owner" t="Contract Owner" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="100" n="Status" restrictedPicklist="true" standardPickListName="Contract.Status" type="picklist">
+      <picklistEntryIds>18,19,20</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="18" n="In Approval Process" s=""/>
+        <sfPLE id="19" n="Activated" s=""/>
+        <sfPLE id="20" n="Draft" s=""/>
+      </picklistEntries>
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Contract.Status</key>
+          <value valueClass="string">Status</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField length="18" n="CompanySignedId" relationshipName="CompanySigned" t="Company Signed By" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="CompanySignedDate" t="Company Signed Date" type="date"/>
+    <sfField length="18" n="CustomerSignedId" relationshipName="CustomerSigned" t="Customer Signed By" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="40" n="CustomerSignedTitle" t="Customer Signed Title"/>
+    <sfField n="CustomerSignedDate" t="Customer Signed Date" type="date"/>
+    <sfField extraTypeInfo="plaintextarea" length="4000" n="SpecialTerms" t="Special Terms" type="textarea"/>
+    <sfField createable="false" editPermission="false" length="18" n="ActivatedById" relationshipName="ActivatedBy" t="Activated By" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="ActivatedDate" t="Activated Date" type="datetime"/>
+    <sfField createable="false" length="40" n="StatusCode" required="true" restrictedPicklist="true" standardPickListName="Contract.StatusCode" t="Status Category" type="picklist" updateable="false">
+      <picklistEntryIds>21,22,23,24,25</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="21" n="Draft" s=""/>
+        <sfPLE id="22" n="InApproval" s="" t="In Approval Process"/>
+        <sfPLE id="23" n="Activated" s=""/>
+        <sfPLE id="24" n="Terminated" s=""/>
+        <sfPLE id="25" n="Expired" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="32000" n="Description" type="textarea" updateable="false"/>
+    <sfField length="18" n="RecordTypeId" relationshipName="RecordType" t="Contract Record Type" type="reference">
+      <referenceTos>
+        <string>RecordType</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="80" n="Name" readPermission="false" t="Contract Name">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Contract.Name</key>
+          <value valueClass="string">Contract Name</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="30" n="ContractNumber" nameField="true" t="Contract Number" updateable="false">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Contract.ContractNumber</key>
+          <value valueClass="string">Contract Number</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField createable="false" n="LastApprovedDate" t="Last Approved Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="OwnerExpirationNoticeDate" readPermission="false" t="Owner Expiration Notice Date" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField length="18" n="Account__c" relationshipLabel="Contracts" relationshipName="Account__r" t="Account" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_1_Opportunity__r.Course_Name__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Addendum_1_Course_Name__c" t="Addendum 1 Course Name" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_1_Opportunity__r.Training_Location__c" length="1300" n="Addendum_1_Location__c" t="Addendum 1 Training Location" updateable="false"/>
+    <sfField length="18" n="Addendum_1_Opportunity__c" relationshipLabel="Contracts" relationshipName="Addendum_1_Opportunity__r" t="Opportunity" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_1_Opportunity__r.Amount" formulaTreatBlanksAs="BlankAsZero" n="Addendum_1_Total__c" precision="18" scale="2" t="Addendum 1 Total" type="currency" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_1_Opportunity__r.Start_Date__c" n="Addendum_1_start_date__c" t="Addendum 1 Start Date" type="date" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_2_Opportunity__r.Course_Name__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Addendum_2_Course_Name__c" readPermission="false" t="Addendum 2 Course  Name" updateable="false"/>
+    <sfField length="18" n="Addendum_2_Opportunity__c" relationshipLabel="Contracts (Addendum 2 Opportunity)" relationshipName="Addendum_2_Opportunity__r" t="Addendum 2 Opportunity" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_2_Opportunity__r.Amount" formulaTreatBlanksAs="BlankAsZero" n="Addendum_2_Total__c" precision="18" scale="2" t="Addendum 2 Total" type="currency" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_2_Opportunity__r.Training_Location__c" length="1300" n="Addendum_2_Training_Location__c" t="Addendum 2 Training Location" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_2_Opportunity__r.Start_Date__c" n="Addendum_2_start_date__c" t="Addendum 2 Start Date" type="date" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_3_Opportunity__r.Course_Name__c" length="1300" n="Addendum_3_Course_Name__c" t="Addendum 3 Course Name" updateable="false"/>
+    <sfField length="18" n="Addendum_3_Opportunity__c" relationshipLabel="Contracts (Addendum #3 Opportunity)" relationshipName="Addendum_3_Opportunity__r" t="Addendum 3 Opportunity" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_3_Opportunity__r.Start_Date__c" n="Addendum_3_Start_Date__c" t="Addendum 3 Start Date" type="date" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_3_Opportunity__r.Amount" formulaTreatBlanksAs="BlankAsZero" n="Addendum_3_Total__c" precision="18" scale="2" t="Addendum 3 Total" type="currency" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_3_Opportunity__r.Training_Location__c" length="1300" n="Addendum_3_Training_Location__c" t="Addendum 3 Training Location" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_4_Opportunity__r.Course_Name__c" length="1300" n="Addendum_4_Course_Name__c" t="Addendum 4 Course Name" updateable="false"/>
+    <sfField length="18" n="Addendum_4_Opportunity__c" relationshipLabel="Contracts (Addendum 4 Opportunity)" relationshipName="Addendum_4_Opportunity__r" t="Addendum 4 Opportunity" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_4_Opportunity__r.Start_Date__c" n="Addendum_4_Start_Date__c" t="Addendum 4 Start Date" type="date" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_4_Opportunity__r.Amount" formulaTreatBlanksAs="BlankAsZero" n="Addendum_4_Total__c" precision="18" scale="2" t="Addendum 4 Total" type="currency" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Addendum_4_Opportunity__r.Training_Location__c" length="1300" n="Addendum_4_Training_Location__c" t="Addendum 4 Training Location" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account.Billing_Contact__r.FirstName   &amp; &quot; &quot; &amp;   Account.Billing_Contact__r.LastName" length="1300" n="Billing_Contact_Name__c" t="Billing Contact Name" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account.Billing_Contact_phone__c" length="1300" n="Billing_Contact_Phone__c" t="Billing Contact Phone" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account.Billing_Contact_email__c" length="1300" n="Billing_Contact_email__c" t="Billing Contact email" updateable="false"/>
+    <sfField n="Break_Time__c" precision="18" t="Break Time" type="_double"/>
+    <sfField editPermission="false" length="18" n="Training_Event__c" readPermission="false" relationshipLabel="Contracts" relationshipName="Training_Event__r" t="Training Event 1" type="reference">
+      <referenceTos>
+        <string>Training_Events__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Contract_Total__c" precision="18" scale="2" t="Contract Total" type="currency"/>
+    <sfField editPermission="false" length="18" n="Opportunity__c" readPermission="false" relationshipLabel="Contracts (Opportunity)" relationshipName="Opportunity__r" t="Opportunity" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Customer_Contact__r.Phone" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Customer_Contact_Phone__c" t="Customer Contact Phone" updateable="false"/>
+    <sfField length="18" n="Customer_Contact__c" relationshipLabel="Contracts" relationshipName="Customer_Contact__r" t="Customer Contact" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Customer_Contact__r.Email" length="1300" n="Customer_Contact_email__c" t="Customer Contact email" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account.Fax" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Customer_Fax__c" t="Customer Fax" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account.SABA_LMS_Code__c" length="1300" n="LMS_ORG_ID__c" t="LMS ORG ID" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT (  Account.Preferred_Payment_type__c  )" length="1300" n="Payment_Method__c" t="Payment Method" updateable="false"/>
+    <sfField editPermission="false" length="18" n="Quote__c" readPermission="false" relationshipLabel="Contracts" relationshipName="Quote__r" t="Quote" type="reference">
+      <referenceTos>
+        <string>Quote</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account.Red_Cross_PO__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Red_Cross_issued_PO__c" t="Red Cross issued PO#" updateable="false"/>
+    <sfField editPermission="false" length="18" n="Training_Event_2__c" readPermission="false" relationshipLabel="Contracts (Training Event 2)" relationshipName="Training_Event_2__r" t="Training Event 2" type="reference">
+      <referenceTos>
+        <string>Training_Events__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="18" n="Training_Event_3__c" readPermission="false" relationshipLabel="Contracts (Training Event 3)" relationshipName="Training_Event_3__r" t="Training Event 3" type="reference">
+      <referenceTos>
+        <string>Training_Events__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Training_Event_4__c" relationshipLabel="Contracts (Training Event 4)" relationshipName="Training_Event_4__r" t="Training Event 4" type="reference">
+      <referenceTos>
+        <string>Training_Events__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Training_Event_5__c" relationshipLabel="Contracts (Training Event 5)" relationshipName="Training_Event_5__r" t="Training Event 5" type="reference">
+      <referenceTos>
+        <string>Training_Events__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Training_Event_6__c" relationshipLabel="Contracts (Training Event 6)" relationshipName="Training_Event_6__r" t="Training Event 6" type="reference">
+      <referenceTos>
+        <string>Training_Events__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(\nEndDate  &lt;=  TODAY(),\nTrue,\nFalse\n)" formulaTreatBlanksAs="BlankAsZero" n="Expired_Contract__c" readPermission="false" t="Expired Contract" type="_boolean" updateable="false"/>
+    <sfField n="Non_Binding_Contract__c" t="Non Binding Contract" type="_boolean"/>
+    <sfField length="18" n="CC_Price_Group_Account__c" relationshipLabel="Contracts" relationshipName="CC_Price_Group_Account__r" t="Price Group Account" type="reference">
+      <referenceTos>
+        <string>ccrz__E_PriceGroupAccount__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="CC_Price_Group__c" relationshipLabel="Contracts" relationshipName="CC_Price_Group__r" t="CC Price Group" type="reference">
+      <referenceTos>
+        <string>ccrz__E_PriceGroup__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="4099" n="Addendum__c" precision="4" t="Addendum" type="multipicklist">
+      <picklistEntryIds>26,27,28,29,30,31,32,33,34</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="26" n="Enhanced Support" s=""/>
+        <sfPLE id="27" n="Community Training" s=""/>
+        <sfPLE id="28" n="Site Specific Certifications" s=""/>
+        <sfPLE id="29" n="Copyright (Course Licensing)" s=""/>
+        <sfPLE id="30" n="Additional Insured" s=""/>
+        <sfPLE id="31" n="Centennial" s=""/>
+        <sfPLE id="32" n="Non-Disclosure Agreement" s=""/>
+        <sfPLE id="33" n="FS Virtual Skills" s=""/>
+        <sfPLE id="34" n="Other*" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="4099" n="Approved_Non_Standard_Terms__c" precision="4" t="Approved Non-Standard Terms" type="multipicklist">
+      <picklistEntryIds>35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="35" n="Length of Contract" s=""/>
+        <sfPLE id="36" n="Fixed Price" s=""/>
+        <sfPLE id="37" n="Flat Fee Pricing" s=""/>
+        <sfPLE id="38" n="Other Price Change Limits*" s=""/>
+        <sfPLE id="39" n="Notification of Changes over 30 days in advance*" s=""/>
+        <sfPLE id="40" n="Notification of changes to alternate/multiple address(es)*" s=""/>
+        <sfPLE id="41" n="Payment Terms not Net30" s=""/>
+        <sfPLE id="42" n="Alternate cancellation fees for FS/AES*" s=""/>
+        <sfPLE id="43" n="Non-standard minimums/ratios for FS*" s=""/>
+        <sfPLE id="44" n="Red Cross staff Instructors only" s=""/>
+        <sfPLE id="45" n="SLTP Instructors with client-specific Addendum only" s=""/>
+        <sfPLE id="46" n="COI with Additional Insured required" s=""/>
+        <sfPLE id="47" n="COI/Waiver of Subrogation on Workers Comp Insurance*" s=""/>
+        <sfPLE id="48" n="Governing Law" s=""/>
+        <sfPLE id="49" n="Indemnification added/changed/removed*" s=""/>
+        <sfPLE id="50" n="Other*" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="4099" n="Approved_Special_Handling_SCC_Support__c" precision="4" t="Approved Special Handling/SCC Support" type="multipicklist">
+      <picklistEntryIds>51,52,53,54,55,56,57,58,59,60,61,62,63</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="51" n="Invoicing: frequency" s=""/>
+        <sfPLE id="52" n="Invoicing: attachments" s=""/>
+        <sfPLE id="53" n="Invoicing: supplemental information" s=""/>
+        <sfPLE id="54" n="Invoicing: deconsolidated" s=""/>
+        <sfPLE id="55" n="Invoicing: flat-fee pricing" s=""/>
+        <sfPLE id="56" n="Invoicing: multiple email addresses" s=""/>
+        <sfPLE id="57" n="Invoicing: portal" s=""/>
+        <sfPLE id="58" n="Invoicing: Community Training" s=""/>
+        <sfPLE id="59" n="Invoicing: other" s=""/>
+        <sfPLE id="60" n="PO Management" s=""/>
+        <sfPLE id="61" n="Single ARC Point of Contact" s=""/>
+        <sfPLE id="62" n="Reports" s=""/>
+        <sfPLE id="63" n="Other*" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Approver__c" t="Contracts Team Approver" type="picklist">
+      <picklistEntryIds>64,65,66,67</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="64" n="M. Mullins" s=""/>
+        <sfPLE id="65" n="M. Slater" s=""/>
+        <sfPLE id="66" n="R. Klaus" s=""/>
+        <sfPLE id="67" n="Other" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="Date_Approved__c" t="Date Approved" type="date"/>
+    <sfField editPermission="false" length="255" n="Non_Standard_Contract_Type__c" t="Non-Standard Contract Type" type="picklist">
+      <picklistEntryIds>68,69,70,71</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="68" n="Modified ARC Agreement" s=""/>
+        <sfPLE id="69" n="Client Contract" s=""/>
+        <sfPLE id="70" n="PO in lieu of Contract" s=""/>
+        <sfPLE id="71" n="Hybrid" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Non_Standard_Contract__c" t="Non-Standard Contract" type="picklist">
+      <picklistEntryIds>72,73,74</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="72" n="In Negotiation" s=""/>
+        <sfPLE id="73" n="Final Draft Approved for Signature" s=""/>
+        <sfPLE id="74" n="Negotiation Terminated" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" length="255" n="S_H_Approver__c" t="S.H. Approver" type="textarea"/>
+    <sfField editPermission="false" n="S_H_Date_Approved__c" t="S.H. Date Approved" type="date"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="32768" n="Special_Handling_Details__c" t="Special Handling Details" type="textarea"/>
+    <sfField editPermission="false" length="255" n="Where_Documented__c" t="Where Documented" type="picklist">
+      <picklistEntryIds>75,76</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="75" n="ES Addendum" s=""/>
+        <sfPLE id="76" n="Custom Contract" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="4099" n="Approval_Granted_by__c" precision="4" t="Approval Granted by" type="multipicklist">
+      <picklistEntryIds>77,78,79,80,81,82</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="77" n="Contracts Team" s=""/>
+        <sfPLE id="78" n="OGC" s=""/>
+        <sfPLE id="79" n="Risk Management" s=""/>
+        <sfPLE id="80" n="Sales/SD Leadership" s=""/>
+        <sfPLE id="81" n="H.R." s=""/>
+        <sfPLE id="82" n="Other" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="LastModifiedBy.Profile.Name" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Last_Modified_By_User_Profile__c" t="Last Modified By User Profile" updateable="false"/>
+    <sfField length="255" n="Agreement_Type__c" t="Agreement Type" type="picklist">
+      <picklistEntryIds>83,84,85,86,87,88,89,90,91</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="83" n="Full Service Agreement" s=""/>
+        <sfPLE id="84" n="Full Service Training Agreement" s=""/>
+        <sfPLE id="85" n="Licensed Training Provider" s=""/>
+        <sfPLE id="86" n="Nurse Assistant Training LTP" s=""/>
+        <sfPLE id="87" n="Aquatics Examiner Service" s=""/>
+        <sfPLE id="88" n="Primary LTP" s=""/>
+        <sfPLE id="89" n="Associate LTP" s=""/>
+        <sfPLE id="90" n="Competency Evaluation Program" s=""/>
+        <sfPLE id="91" n="Other" s=""/>
+      </picklistEntries>
+    </sfField>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedOrderList" childName="Order" field="ContractId" n="Orders" relationshipName="Orders" s="2-" t="Order"/>
+    <sfObjectRelationship childName="Approval" field="ParentId" n="Approvals" relationshipName="Approvals" s="2-" t="Approval"/>
+    <sfObjectRelationship alias="RelatedContractContactRoleList" childName="ContractContactRole" field="ContractId" n="ContractContactRoles" relationshipName="ContractContactRoles" s="2-" t="ContractContactRole"/>
+    <sfObjectRelationship alias="RelatedOpportunityList" childName="Opportunity" field="ContractId" n="Opportunities" relationshipName="Opportunities" s="2-" t="Opportunity"/>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedQuoteList" childName="Quote" field="ContractId" n="Quotes" relationshipName="Quotes" s="2-" t="Quote"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="ContractHistory" field="ContractId" n="Histories" relationshipName="Histories" s="2-" t="ContractHistory"/>
+    <sfObjectRelationship childName="ContractFeed" field="ParentId" n="Feeds" relationshipName="Feeds" s="2-" t="ContractFeed"/>
+    <sfObjectRelationship childName="SSign__SSEnvelope__c" field="SSign__Contract__c" n="SSign__S_Sign_Envelopes__r" relationshipName="SSign__S_Sign_Envelopes__r" s="2-" t="01I0V000002Eh3w"/>
+    <sfObjectRelationship childName="SSign__SSEnvelope__c" field="Contract__c" n="S_Sign_Envelopes__r" relationshipName="S_Sign_Envelopes__r" s="2-" t="01I0V000002Eh3w"/>
+    <sfObjectRelationship childName="SDOC__SDRelationship__c" field="SDOC__Contract__c" n="SDOC__SDoc_Relationships__r" relationshipName="SDOC__SDoc_Relationships__r" s="2-" t="01I0V000002N5Mh"/>
+    <sfObjectRelationship childName="ccrz__E_TransactionPayment__c" field="cclxrep__Contract__c" n="cclxrep__TransactionPayments__r" relationshipName="cclxrep__TransactionPayments__r" s="2-" t="01I0V000002N5Og"/>
+    <sfObjectRelationship childName="dsfs__DocuSign_Status__c" field="dsfs__Contract__c" n="dsfs__R00N80000002vvynEAA__r" relationshipName="dsfs__R00N80000002vvynEAA__r" s="2-" t="01Id00000005kAy"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType defaultRecordType="false" fromToolingApi="true" fullName="Authorized_Provider" layoutsLoaded="false" n="Authorized Provider" recordTypeId="012d000000096qPAAQ" s="3-"/>
+    <sfRecordType fromToolingApi="true" fullName="Full_Service" layoutsLoaded="false" n="Full Service" recordTypeId="012d000000096qKAAQ" s="3-"/>
+    <sfRecordType defaultRecordType="false" fromToolingApi="true" fullName="Licensed_Training_Provider" layoutsLoaded="false" n="Licensed Training Provider" recordTypeId="012d000000096qUAAQ" s="3-"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome Contracts Contracts__r ContractsSigned List Contracts1__r Contracts2__r Contracts3__r Contracts4__r Contracts5__r" n="New"/>
+    <sfActionLink modes="View Contracts Contracts__r ContractsSigned Contracts1__r Contracts2__r Contracts3__r Contracts4__r Contracts5__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Contracts Contracts__r ContractsSigned Contracts1__r Contracts2__r Contracts3__r Contracts4__r Contracts5__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Contracts Contracts__r ContractsSigned Contracts1__r Contracts2__r Contracts3__r Contracts4__r Contracts5__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Contracts Contracts__r ContractsSigned Contracts1__r Contracts2__r Contracts3__r Contracts4__r Contracts5__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="Contracts Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink n="Activate" s=""/>
+    <sfActionLink buttonName="SDOC__S_Docs" n="SDOC__S_Docs" s="" t="S-Docs"/>
+    <sfActionLink buttonName="dsfs__Send_with_DocuSign" n="dsfs__Send_with_DocuSign" s="" t="Send with DocuSign"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+    <sfActionLink modes="Contracts List" n="newCtrc" newAction="true" t="New Contract"/>
+    <sfActionLink n="ChangeStatus"/>
+    <sfActionLink n="Terminate" s=""/>
+  </standardActions>
+  <homeListColumns>
+    <string>CONTRACT.CONTRACT_NUMBER</string>
+    <string>CONTRACT.NAME</string>
+    <string>SALES.ACCOUNT.NAME</string>
+    <string>CONTRACT.STATUS</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CONTRACT.CONTRACT_NUMBER</string>
+    <string>CONTRACT.NAME</string>
+    <string>CORE.USERS.ALIAS</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>CONTRACT.CONTRACT_NUMBER</string>
+    <string>CONTRACT.NAME</string>
+    <string>SALES.ACCOUNT.NAME</string>
+    <string>CONTRACT.STATUS</string>
+    <string>CONTRACT.START_DATE</string>
+    <string>CONTRACT.END_DATE</string>
+    <string>CONTRACT_TERM</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>ContractNumber</string>
+    <string>AccountId</string>
+    <string>Status</string>
+    <string>StartDate</string>
+    <string>EndDate</string>
+    <string>ContractTerm</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

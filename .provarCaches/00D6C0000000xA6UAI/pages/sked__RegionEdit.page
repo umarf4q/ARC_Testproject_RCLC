@@ -1,0 +1,108 @@
+<apex:page standardController="sked__Region__c">
+
+    <apex:stylesheet value="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css"/>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js"></script>
+    <apex:includeScript value="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"/>       
+    <apex:includeScript value="{!$Resource.sked__MomentTimezoneData}"/> 
+          
+    <script>
+        $(function() {
+            var timezones = []
+            $.each(moment.tz.names(), function(index, item) {
+                // We only support timezones in "Country/Region" format
+                if( item.indexOf("/") > -1 )
+                    timezones.push({id: item, text: item }); 
+            });
+            
+            
+            $('input[id$=":timeZoneSelect"]').select2({
+                placeholder: "Select a Timezone",
+                //minimumInputLength: 1,
+                width: 200,
+                data: timezones
+            });
+
+            //$('select[id$=":countrySelect"]').select2();
+        });
+    </script>
+    
+    <apex:sectionHeader title="Region" subtitle="{!sked__Region__c.name}"></apex:sectionHeader>
+
+    <apex:form >
+        
+        <apex:pageBlock title="Region Edit">     
+        
+            <apex:pageMessages />
+    
+            <apex:pageBlockSection >
+            
+                <apex:pageBlockSectionItem >
+                
+                    <apex:outputLabel >Name</apex:outputLabel>
+                    <apex:inputField value="{!sked__Region__c.Name}" required="true" />
+                    
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    
+                    <apex:outputLabel >Description</apex:outputLabel>
+                    <apex:inputField value="{!sked__Region__c.sked__Description__c}"/>
+                    
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    
+                    <apex:outputLabel >Location (Latitude)</apex:outputLabel>
+                    <apex:inputField value="{!sked__Region__c.sked__Location__Latitude__s}"/>
+                    
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    
+                    <apex:outputLabel >Location (Longitude)</apex:outputLabel>
+                    <apex:inputField value="{!sked__Region__c.sked__Location__Longitude__s}"/>
+                    
+                </apex:pageBlockSectionItem> 
+                
+                <apex:pageBlockSectionItem >  
+                    
+                    <apex:outputLabel for="select2">Timezone</apex:outputLabel>
+                    
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:inputHidden value="{!sked__Region__c.sked__Timezone__c}" id="timeZoneSelect" required="true" />
+                    </apex:outputPanel>
+                    
+                </apex:pageBlockSectionItem>
+                                              
+                <apex:pageBlockSectionItem >
+                    
+                    <apex:outputLabel >Radius</apex:outputLabel>
+                    <apex:inputField value="{!sked__Region__c.sked__Radius__c}"/>
+                    
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    
+                    <apex:outputLabel >Country Code</apex:outputLabel>  
+                    <apex:inputField value="{!sked__Region__c.sked__Country_Code__c}" id="countrySelect" style="width:200px;"/>
+                    
+                </apex:pageBlockSectionItem>         
+            
+            </apex:pageBlockSection>
+        
+            <apex:pageBlockButtons id="editButtons" location="both" rendered="true">
+    
+                <apex:commandButton id="saveBtn" value="Save" action="{!save}" />
+    
+                <apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
+    
+            </apex:pageBlockButtons>
+    
+        </apex:pageBlock>    
+    
+    </apex:form>
+
+</apex:page>

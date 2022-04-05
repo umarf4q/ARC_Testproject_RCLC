@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject detailsLoaded="false" editPermission="false" keyPrefix="806" label="Approval" labelPlural="Approval" n="Approval" queryable="true" readPermission="false" retrieveable="true" s="" t="Approval (806)">
+  <standardActions>
+    <sfActionLink modes="ObjectHome Approvals" n="New"/>
+    <sfActionLink modes="View Approvals" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Approvals" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Approvals" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Approvals" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

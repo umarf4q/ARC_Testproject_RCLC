@@ -1,0 +1,222 @@
+<n1:CustomObjectTranslation n2:type="n1:CustomObjectTranslation" xmlns:n1="http://soap.sforce.com/2006/04/metadata"
+   xmlns:n2="http://www.w3.org/2001/XMLSchema-instance">
+ <n1:fullName>SFDC_Budget__c-en_US</n1:fullName>
+ <n1:caseValues>
+  <n1:article n2:nil="true" />
+  <n1:caseType n2:nil="true" />
+  <n1:plural>false</n1:plural>
+  <n1:possessive n2:nil="true" />
+  <n1:value>Budget</n1:value>
+ </n1:caseValues>
+ <n1:caseValues>
+  <n1:article n2:nil="true" />
+  <n1:caseType n2:nil="true" />
+  <n1:plural>true</n1:plural>
+  <n1:possessive n2:nil="true" />
+  <n1:value>Budgets</n1:value>
+ </n1:caseValues>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Account__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Active__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Approved_Claims__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Approved_Requests__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Available_Budget__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Courses__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>End_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Fees__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Grant_Notes__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Last_Refresh_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Program_Area__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Aquatics</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>FA/CPR</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>???????NAT</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Start_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Total_Active_Budget__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Unclaimed_Budget__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Unclaimed__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:gender n2:nil="true" />
+ <n1:layouts>
+  <n1:layout>Budget Layout</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Co-op</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Financial Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Grant Conditions</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Standard Budget</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Financial Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Grant Conditions</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:nameFieldLabel n2:nil="true" />
+ <n1:recordTypes>
+  <n1:description></n1:description>
+  <n1:label></n1:label>
+  <n1:name>Coop</n1:name>
+ </n1:recordTypes>
+ <n1:recordTypes>
+  <n1:description></n1:description>
+  <n1:label></n1:label>
+  <n1:name>MDF</n1:name>
+ </n1:recordTypes>
+ <n1:startsWith>Consonant</n1:startsWith>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>No_Account_For_MDF_Budget</n1:name>
+ </n1:validationRules>
+</n1:CustomObjectTranslation>

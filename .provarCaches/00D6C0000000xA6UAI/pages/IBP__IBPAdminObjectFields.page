@@ -1,0 +1,62 @@
+<apex:page controller="IBP.IBPAdminObjectFieldsController" tabStyle="IBPAdmin__tab" title="DialogTech Admin">
+    
+    <!-- <style>
+        #logoContainer {
+        margin-top: 15px;
+        margin-left: 5px;
+        height: 60px;
+        width: 70%;
+        float: left;
+        }
+        .ibpLogo {
+        float: left;
+        margin-right: 8px;
+        }
+        .ibpTitle {
+        margin: 0px;
+        font-size: 2em;
+        line-height: 2.5em;
+        }
+        .ibpSubtitle {
+        margin: 0px;
+        font-weight: bold;
+        font-size: 1em;
+        }
+        .clear {
+        clear: both;
+        }
+    </style>
+    
+    <div id="logoContainer">
+        <apex:image styleClass="ibpLogo" url="{!URLFOR($Resource.IBP_Assets, 'IBP_Assets/images/dialogtechLogo.png')}" width="165" height="67"/>
+        <p class="ibpSubtitle">DialogTech Admin</p>
+        <p class="ibpTitle"> - Step 3 of 3</p>
+    </div>
+    
+    <br class="clear" />
+    
+    <apex:pageMessages />
+    
+    <apex:form >
+        <apex:pageBlock title="Select Fields to Search">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Back" action="{!backMethod}"/>
+                <apex:commandButton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+            <p>Select which phone fields from the object below you witch to match your call records to.</p>
+            <br/>
+            <apex:repeat value="{!objectList}" var="object">
+            <apex:pageBlockSection columns="1" collapsible="false" title="Select {!object.Name} Fields">
+                <p>
+                    <apex:selectCheckboxes value="{!checkboxSelections[object.Name]}" layout="pageDirection">
+                        <apex:selectOptions value="{!fieldListArray[object.Name]}">
+                        </apex:selectOptions>
+                    </apex:selectCheckboxes>
+                    <apex:outputText rendered="{!hasFields[object.Name] == FALSE}" value="There are no searchable Phone type fields on this object"></apex:outputText>
+                </p>
+            </apex:pageBlockSection>
+            </apex:repeat>
+        </apex:pageBlock>
+    </apex:form> -->
+    
+</apex:page>

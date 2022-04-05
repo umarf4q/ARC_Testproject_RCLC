@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SfFlexiPage n="CC_Order_Record_Page1" s="" sobjectType="ccrz__E_Order__c" t="CC Order Record Page" template="flexipage:recordHomeTemplateDesktop" type="RecordPage">
+  <regions>
+    <SfFlexiPageRegion n="header" s="" t="" type="Region">
+      <children>
+        <SfFlexiPageComponentInstance n="force:highlightsPanel" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">collapsed</key>
+              <value valueClass="string">false</value>
+            </entry>
+            <entry>
+              <key valueClass="string">numVisibleActions</key>
+              <value valueClass="string">3</value>
+            </entry>
+            <entry>
+              <key valueClass="string">hideChatterActions</key>
+              <value valueClass="string">false</value>
+            </entry>
+            <entry>
+              <key valueClass="string">enableActionsConfiguration</key>
+              <value valueClass="string">false</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="main" s="" t="" type="Region">
+      <children>
+        <SfFlexiPageComponentInstance content="maintabs" n="flexipage__tabset" s="0" t=""/>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="sidebar" s="" t="" type="Region">
+      <children>
+        <SfFlexiPageComponentInstance n="flexipage:richText" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">decorate</key>
+              <value valueClass="string">true</value>
+            </entry>
+            <entry>
+              <key valueClass="string">richTextValue</key>
+              <value valueClass="string">&lt;p style="text-align: center;"&gt;&lt;b style="color: rgb(247, 10, 10); font-size: 18px;"&gt;This is a Return or Replace Order&lt;/b&gt;&lt;/p&gt;</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="1" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">ccrz__E_Orders__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">GRID</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance content="sidebartabs" n="flexipage__tabset" s="2" t=""/>
+      </children>
+    </SfFlexiPageRegion>
+  </regions>
+  <facets>
+    <SfFlexiPageRegion n="detailTabContent" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="force:detailPanel" s="0" t=""/>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="relatedTabContent" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">ccrz__E_OrderItems__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="Facet-b1c123c8-edc9-4add-9eb4-1fca04a9350b" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">Voucher__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="1" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">Training_Event__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="2" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">ILT_Classes__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="3" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">CPS_Class__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">showActionBar</key>
+              <value valueClass="string">true</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+            <entry>
+              <key valueClass="string">rowsToDisplay</key>
+              <value valueClass="string">10</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="Facet-47e722ef-ccd5-4068-85cb-d37507f585b4" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">ccrz__TransactionPayments__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="1" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">ccrz__OrderTerms__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="Facet-z0iytlgbz1b" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">Fulfillments__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="1" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">ccrz__E_Orders__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="2" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">Associated_Orders__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="3" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">ProcessSteps</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="4" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">Histories</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="maintabs" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance content="detailTabContent" n="flexipage__tab" s="0" t="Standard.Tab.detail">
+          <properties>
+            <entry>
+              <key valueClass="string">active</key>
+              <value valueClass="string">true</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance content="relatedTabContent" n="flexipage__tab" s="1" t="Order Items"/>
+        <SfFlexiPageComponentInstance content="Facet-b1c123c8-edc9-4add-9eb4-1fca04a9350b" n="flexipage__tab" s="2" t="Course Details"/>
+        <SfFlexiPageComponentInstance content="Facet-47e722ef-ccd5-4068-85cb-d37507f585b4" n="flexipage__tab" s="3" t="Payment"/>
+        <SfFlexiPageComponentInstance content="Facet-z0iytlgbz1b" n="flexipage__tab" s="4" t="History"/>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="activityTabContent" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="runtime_sales_activities:activityPanel" s="0" t=""/>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="Facet-89ee49ea-e82a-407d-ace5-9460b471a622" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">Cases__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="1" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">Cases1__r</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">showActionBar</key>
+              <value valueClass="string">true</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+            <entry>
+              <key valueClass="string">rowsToDisplay</key>
+              <value valueClass="string">10</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="Facet-28913e16-bfb5-49a5-b3ee-a586627f84ae" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="force:relatedListSingleContainer" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">relatedListApiName</key>
+              <value valueClass="string">CombinedAttachments</value>
+            </entry>
+            <entry>
+              <key valueClass="string">parentFieldApiName</key>
+              <value valueClass="string">ccrz__E_Order__c.Id</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="sidebartabs" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance content="activityTabContent" n="flexipage__tab" s="0" t="Standard.Tab.activity">
+          <properties>
+            <entry>
+              <key valueClass="string">active</key>
+              <value valueClass="string">true</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance content="Facet-89ee49ea-e82a-407d-ace5-9460b471a622" n="flexipage__tab" s="1" t="Cases"/>
+        <SfFlexiPageComponentInstance content="Facet-28913e16-bfb5-49a5-b3ee-a586627f84ae" n="flexipage__tab" s="2" t="Attachments"/>
+      </children>
+    </SfFlexiPageRegion>
+  </facets>
+</SfFlexiPage>

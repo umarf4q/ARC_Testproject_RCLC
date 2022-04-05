@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="OmniSupervisor" IsAvailableInAloha="true" Label="Omni Supervisor - Salesforce Classic" Name="standard-OmniSupervisor" SobjectName="OmniSupervisor" Url="https://arc-phss--test.my.salesforce.com/ui/support/omni/OmniSupervisorPage"/>
+</toolingTabInfo>

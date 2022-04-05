@@ -1,0 +1,2 @@
+<apex:page controller="ViewOrderReceiptController"  showHeader="false" applyHtmlTag="false" renderAs="pdf" standardStylesheets="false">
+</apex:page>

@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Resource_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>Backup_Address__c</fullName>
+        <externalId>false</externalId>
+        <label>Backup Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Backup_Geolocation__c</fullName>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <label>Backup Geolocation</label>
+        <required>false</required>
+        <scale>6</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>Employee_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employment_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Employment Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>FT</fullName>
+                    <default>false</default>
+                    <label>FT</label>
+                </value>
+                <value>
+                    <fullName>PT</fullName>
+                    <default>false</default>
+                    <label>PT</label>
+                </value>
+                <value>
+                    <fullName>PTOC</fullName>
+                    <default>false</default>
+                    <label>PTOC</label>
+                </value>
+                <value>
+                    <fullName>Volunteer</fullName>
+                    <default>false</default>
+                    <label>Volunteer</label>
+                </value>
+                <value>
+                    <fullName>Partner</fullName>
+                    <default>false</default>
+                    <label>Partner</label>
+                </value>
+                <value>
+                    <fullName>Vacancy</fullName>
+                    <default>false</default>
+                    <label>Vacancy</label>
+                </value>
+                <value>
+                    <fullName>Subcontractor</fullName>
+                    <default>false</default>
+                    <label>Subcontractor</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Inactive_From__c</fullName>
+        <externalId>false</externalId>
+        <label>Inactive From</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Market_List__c</fullName>
+        <externalId>false</externalId>
+        <label>Market List</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CMW - Chicago, IL/Northwest IN</fullName>
+                    <default>false</default>
+                    <label>CMW - Chicago, IL/Northwest IN</label>
+                </value>
+                <value>
+                    <fullName>CMW - Detroit-Ann Arbor, MI/Toledo, OH</fullName>
+                    <default>false</default>
+                    <label>CMW - Detroit-Ann Arbor, MI/Toledo, OH</label>
+                </value>
+                <value>
+                    <fullName>CMW - Flint, MI</fullName>
+                    <default>false</default>
+                    <label>CMW - Flint, MI</label>
+                </value>
+                <value>
+                    <fullName>CMW - Grand Rapids/Kalamazoo, MI</fullName>
+                    <default>false</default>
+                    <label>CMW - Grand Rapids/Kalamazoo, MI</label>
+                </value>
+                <value>
+                    <fullName>CMW - Lansing, MI</fullName>
+                    <default>false</default>
+                    <label>CMW - Lansing, MI</label>
+                </value>
+                <value>
+                    <fullName>CMW - Milwaukee, WI</fullName>
+                    <default>false</default>
+                    <label>CMW - Milwaukee, WI</label>
+                </value>
+                <value>
+                    <fullName>CMW - Partner Delivery</fullName>
+                    <default>false</default>
+                    <label>CMW - Partner Delivery</label>
+                </value>
+                <value>
+                    <fullName>CMW - Peoria-Champaign, IL</fullName>
+                    <default>false</default>
+                    <label>CMW - Peoria-Champaign, IL</label>
+                </value>
+                <value>
+                    <fullName>MA - Cincinnati-Dayton, OH</fullName>
+                    <default>false</default>
+                    <label>MA - Cincinnati-Dayton, OH</label>
+                </value>
+                <value>
+                    <fullName>MA - Coastal VA</fullName>
+                    <default>false</default>
+                    <label>MA - Coastal VA</label>
+                </value>
+                <value>
+                    <fullName>MA - Evansville, IN/Henderson, KY</fullName>
+                    <default>false</default>
+                    <label>MA - Evansville, IN/Henderson, KY</label>
+                </value>
+                <value>
+                    <fullName>MA - Greater Baltimore, MD</fullName>
+                    <default>false</default>
+                    <label>MA - Greater Baltimore, MD</label>
+                </value>
+                <value>
+                    <fullName>MA - Indianapolis, IN/Central IN</fullName>
+                    <default>false</default>
+                    <label>MA - Indianapolis, IN/Central IN</label>
+                </value>
+                <value>
+                    <fullName>MA - Louisville-Lexington, KY</fullName>
+                    <default>false</default>
+                    <label>MA - Louisville-Lexington, KY</label>
+                </value>
+                <value>
+                    <fullName>MA - Northern VA/Washington, DC</fullName>
+                    <default>false</default>
+                    <label>MA - Northern VA/Washington, DC</label>
+                </value>
+                <value>
+                    <fullName>MA - Partner Delivery</fullName>
+                    <default>false</default>
+                    <label>MA - Partner Delivery</label>
+                </value>
+                <value>
+                    <fullName>MA - Richmond, VA</fullName>
+                    <default>false</default>
+                    <label>MA - Richmond, VA</label>
+                </value>
+                <value>
+                    <fullName>NE - Albany, NY</fullName>
+                    <default>false</default>
+                    <label>NE - Albany, NY</label>
+                </value>
+                <value>
+                    <fullName>NE - Buffalo, NY</fullName>
+                    <default>false</default>
+                    <label>NE - Buffalo, NY</label>
+                </value>
+                <value>
+                    <fullName>NE - Central PA</fullName>
+                    <default>false</default>
+                    <label>NE - Central PA</label>
+                </value>
+                <value>
+                    <fullName>NE - Cleveland-Akron, OH</fullName>
+                    <default>false</default>
+                    <label>NE - Cleveland-Akron, OH</label>
+                </value>
+                <value>
+                    <fullName>NE - Columbus, OH</fullName>
+                    <default>false</default>
+                    <label>NE - Columbus, OH</label>
+                </value>
+                <value>
+                    <fullName>NE - Partner Delivery</fullName>
+                    <default>false</default>
+                    <label>NE - Partner Delivery</label>
+                </value>
+                <value>
+                    <fullName>NE - Rochester, NY</fullName>
+                    <default>false</default>
+                    <label>NE - Rochester, NY</label>
+                </value>
+                <value>
+                    <fullName>NE - Syracuse, NY</fullName>
+                    <default>false</default>
+                    <label>NE - Syracuse, NY</label>
+                </value>
+                <value>
+                    <fullName>NE - Western PA</fullName>
+                    <default>false</default>
+                    <label>NE - Western PA</label>
+                </value>
+                <value>
+                    <fullName>NEW - Cambridge, MA</fullName>
+                    <default>false</default>
+                    <label>NEW - Cambridge, MA</label>
+                </value>
+                <value>
+                    <fullName>NEW - Connecticut</fullName>
+                    <default>false</default>
+                    <label>NEW - Connecticut</label>
+                </value>
+                <value>
+                    <fullName>NEW - Manchester, NH</fullName>
+                    <default>false</default>
+                    <label>NEW - Manchester, NH</label>
+                </value>
+                <value>
+                    <fullName>NEW - Partner Delivery</fullName>
+                    <default>false</default>
+                    <label>NEW - Partner Delivery</label>
+                </value>
+                <value>
+                    <fullName>NEW - Portland, ME</fullName>
+                    <default>false</default>
+                    <label>NEW - Portland, ME</label>
+                </value>
+                <value>
+                    <fullName>NEW - Worchester, MA</fullName>
+                    <default>false</default>
+                    <label>NEW - Worchester, MA</label>
+                </value>
+                <value>
+                    <fullName>NW - Central Valley CA</fullName>
+                    <default>false</default>
+                    <label>NW - Central Valley CA</label>
+                </value>
+                <value>
+                    <fullName>NW - Partner Delivery</fullName>
+                    <default>false</default>
+                    <label>NW - Partner Delivery</label>
+                </value>
+                <value>
+                    <fullName>NW - Portland-Salem, OR</fullName>
+                    <default>false</default>
+                    <label>NW - Portland-Salem, OR</label>
+                </value>
+                <value>
+                    <fullName>NW - Sacramento, CA</fullName>
+                    <default>false</default>
+                    <label>NW - Sacramento, CA</label>
+                </value>
+                <value>
+                    <fullName>NW - Seattle-Tacoma, WA</fullName>
+                    <default>false</default>
+                    <label>NW - Seattle-Tacoma, WA</label>
+                </value>
+                <value>
+                    <fullName>NW - Twin Cities MN</fullName>
+                    <default>false</default>
+                    <label>NW - Twin Cities MN</label>
+                </value>
+                <value>
+                    <fullName>NYM - Central &amp; Southern NJ</fullName>
+                    <default>false</default>
+                    <label>NYM - Central &amp; Southern NJ</label>
+                </value>
+                <value>
+                    <fullName>NYM - Eastern PA</fullName>
+                    <default>false</default>
+                    <label>NYM - Eastern PA</label>
+                </value>
+                <value>
+                    <fullName>NYM - Northern NJ</fullName>
+                    <default>false</default>
+                    <label>NYM - Northern NJ</label>
+                </value>
+                <value>
+                    <fullName>NYM - NYC/Long Island, NY</fullName>
+                    <default>false</default>
+                    <label>NYM - NYC/Long Island, NY</label>
+                </value>
+                <value>
+                    <fullName>NYM - Partner Delivery</fullName>
+                    <default>false</default>
+                    <label>NYM - Partner Delivery</label>
+                </value>
+                <value>
+                    <fullName>NYM - Philadelphia, PA/Delaware</fullName>
+                    <default>false</default>
+                    <label>NYM - Philadelphia, PA/Delaware</label>
+                </value>
+                <value>
+                    <fullName>PS - Honolulu, HI</fullName>
+                    <default>false</default>
+                    <label>PS - Honolulu, HI</label>
+                </value>
+                <value>
+                    <fullName>PS - Las Vegas, NV</fullName>
+                    <default>false</default>
+                    <label>PS - Las Vegas, NV</label>
+                </value>
+                <value>
+                    <fullName>PS - Los Angeles-Orange County, CA</fullName>
+                    <default>false</default>
+                    <label>PS - Los Angeles-Orange County, CA</label>
+                </value>
+                <value>
+                    <fullName>PS - Oakland-East Bay, CA</fullName>
+                    <default>false</default>
+                    <label>PS - Oakland-East Bay, CA</label>
+                </value>
+                <value>
+                    <fullName>PS - Partner Delivery</fullName>
+                    <default>false</default>
+                    <label>PS - Partner Delivery</label>
+                </value>
+                <value>
+                    <fullName>PS - Salt Lake City, UT</fullName>
+                    <default>false</default>
+                    <label>PS - Salt Lake City, UT</label>
+                </value>
+                <value>
+                    <fullName>PS - San Bernardino-Riverside, CA</fullName>
+                    <default>false</default>
+                    <label>PS - San Bernardino-Riverside, CA</label>
+                </value>
+                <value>
+                    <fullName>PS - San Diego, CA</fullName>
+                    <default>false</default>
+                    <label>PS - San Diego, CA</label>
+                </value>
+                <value>
+                    <fullName>PS - San Francisco, CA</fullName>
+                    <default>false</default>
+                    <label>PS - San Francisco, CA</label>
+                </value>
+                <value>
+                    <fullName>PS - Silicon Valley, CA</fullName>
+                    <default>false</default>
+                    <label>PS - Silicon Valley, CA</label>
+                </value>
+                <value>
+                    <fullName>PS - Ventura, CA</fullName>
+                    <default>false</default>
+                    <label>PS - Ventura, CA</label>
+                </value>
+                <value>
+                    <fullName>SE - Asheville, NC</fullName>
+                    <default>false</default>
+                    <label>SE - Asheville, NC</label>
+                </value>
+                <value>
+                    <fullName>SE - Atlanta, GA</fullName>
+                    <default>false</default>
+                    <label>SE - Atlanta, GA</label>
+                </value>
+                <value>
+                    <fullName>SE - Birmingham, AL</fullName>
+                    <default>false</default>
+                    <label>SE - Birmingham, AL</label>
+                </value>
+                <value>
+                    <fullName>SE - Charlotte, NC/Rock Hill, SC</fullName>
+                    <default>false</default>
+                    <label>SE - Charlotte, NC/Rock Hill, SC</label>
+                </value>
+                <value>
+                    <fullName>SE - Columbia, SC</fullName>
+                    <default>false</default>
+                    <label>SE - Columbia, SC</label>
+                </value>
+                <value>
+                    <fullName>SE - Durham-Raleigh, NC</fullName>
+                    <default>false</default>
+                    <label>SE - Durham-Raleigh, NC</label>
+                </value>
+                <value>
+                    <fullName>SE - Greensboro, NC</fullName>
+                    <default>false</default>
+                    <label>SE - Greensboro, NC</label>
+                </value>
+                <value>
+                    <fullName>SE - Greenville, SC</fullName>
+                    <default>false</default>
+                    <label>SE - Greenville, SC</label>
+                </value>
+                <value>
+                    <fullName>SE - Knoxville, TN</fullName>
+                    <default>false</default>
+                    <label>SE - Knoxville, TN</label>
+                </value>
+                <value>
+                    <fullName>SE - Memphis, TN</fullName>
+                    <default>false</default>
+                    <label>SE - Memphis, TN</label>
+                </value>
+                <value>
+                    <fullName>SE - Nashville, TN</fullName>
+                    <default>false</default>
+                    <label>SE - Nashville, TN</label>
+                </value>
+                <value>
+                    <fullName>SE - Partner Delivery</fullName>
+                    <default>false</default>
+                    <label>SE - Partner Delivery</label>
+                </value>
+                <value>
+                    <fullName>SE - Tampa-Clearwater, FL</fullName>
+                    <default>false</default>
+                    <label>SE - Tampa-Clearwater, FL</label>
+                </value>
+                <value>
+                    <fullName>SE - Wilmington, NC</fullName>
+                    <default>false</default>
+                    <label>SE - Wilmington, NC</label>
+                </value>
+                <value>
+                    <fullName>SW - Austin, TX</fullName>
+                    <default>false</default>
+                    <label>SW - Austin, TX</label>
+                </value>
+                <value>
+                    <fullName>SW - Dallas-Fort Worth, TX</fullName>
+                    <default>false</default>
+                    <label>SW - Dallas-Fort Worth, TX</label>
+                </value>
+                <value>
+                    <fullName>SW - Denver, CO</fullName>
+                    <default>false</default>
+                    <label>SW - Denver, CO</label>
+                </value>
+                <value>
+                    <fullName>SW - Houston, TX</fullName>
+                    <default>false</default>
+                    <label>SW - Houston, TX</label>
+                </value>
+                <value>
+                    <fullName>SW - Kansas City, KS/MO</fullName>
+                    <default>false</default>
+                    <label>SW - Kansas City, KS/MO</label>
+                </value>
+                <value>
+                    <fullName>SW - Omaha, NE</fullName>
+                    <default>false</default>
+                    <label>SW - Omaha, NE</label>
+                </value>
+                <value>
+                    <fullName>SW - Partner Delivery</fullName>
+                    <default>false</default>
+                    <label>SW - Partner Delivery</label>
+                </value>
+                <value>
+                    <fullName>SW - San Antonio, TX</fullName>
+                    <default>false</default>
+                    <label>SW - San Antonio, TX</label>
+                </value>
+                <value>
+                    <fullName>SW - St. Louis, MO</fullName>
+                    <default>false</default>
+                    <label>SW - St. Louis, MO</label>
+                </value>
+                <value>
+                    <fullName>SW - Wichita, KS</fullName>
+                    <default>false</default>
+                    <label>SW - Wichita, KS</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Supervisor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Supervisor</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Resources</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Weekly_Scheduled_Hours__c</fullName>
+        <externalId>false</externalId>
+        <label>Weekly Scheduled Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sked__Alias__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Alias</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sked__Auto_Schedule__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Auto Schedule</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>sked__Category__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Instructor</fullName>
+                    <default>false</default>
+                    <label>Instructor</label>
+                </value>
+                <value>
+                    <fullName>Nurse Instructor</fullName>
+                    <default>false</default>
+                    <label>Nurse Instructor</label>
+                </value>
+                <value>
+                    <fullName>Evaluator</fullName>
+                    <default>false</default>
+                    <label>Evaluator</label>
+                </value>
+                <value>
+                    <fullName>Charge Nurse</fullName>
+                    <default>false</default>
+                    <label>Charge Nurse</label>
+                </value>
+                <value>
+                    <fullName>Proctor</fullName>
+                    <default>false</default>
+                    <label>Proctor</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>sked__Country_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Country Code the Resource is situated (used for phone number validation / processing)</description>
+        <externalId>false</externalId>
+        <label>Country Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>AU</fullName>
+                    <default>false</default>
+                    <label>AU</label>
+                </value>
+                <value>
+                    <fullName>NZ</fullName>
+                    <default>false</default>
+                    <label>NZ</label>
+                </value>
+                <value>
+                    <fullName>UK</fullName>
+                    <default>false</default>
+                    <label>UK</label>
+                </value>
+                <value>
+                    <fullName>US</fullName>
+                    <default>false</default>
+                    <label>US</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>sked__Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sked__Employment_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Employment Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Full-time</fullName>
+                    <default>false</default>
+                    <label>Full-time</label>
+                </value>
+                <value>
+                    <fullName>Part-time</fullName>
+                    <default>false</default>
+                    <label>Part-time</label>
+                </value>
+                <value>
+                    <fullName>Casual</fullName>
+                    <default>false</default>
+                    <label>Casual</label>
+                </value>
+                <value>
+                    <fullName>Agency</fullName>
+                    <default>false</default>
+                    <label>Agency</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>sked__GeoLocation__c</fullName>
+        <deprecated>false</deprecated>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <label>GeoLocation</label>
+        <required>false</required>
+        <scale>6</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>sked__Home_Address__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Home Address</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>sked__Hourly_Rate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Hourly Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>sked__Is_Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Is Active</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>sked__Mobile_Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Mobile Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>sked__Notes__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>sked__Notification_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Notification Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>sms</fullName>
+                    <default>false</default>
+                    <label>sms</label>
+                </value>
+                <value>
+                    <fullName>push</fullName>
+                    <default>false</default>
+                    <label>push</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>sked__Primary_Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Primary Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>sked__Primary_Region__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Primary Region</label>
+        <referenceTo>sked__Region__c</referenceTo>
+        <relationshipLabel>Resources</relationshipLabel>
+        <relationshipName>Resources</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>sked__Rating__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Rating</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>sked__Resource_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Is the resource a human or otherwise</description>
+        <externalId>false</externalId>
+        <label>Resource Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Person</fullName>
+                    <default>false</default>
+                    <label>Person</label>
+                </value>
+                <value>
+                    <fullName>Asset</fullName>
+                    <default>false</default>
+                    <label>Asset</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>sked__UniqueKey__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>A copy of UserId, populated by a trigger. This is to ensure that each user will have at most one associated resource.</description>
+        <externalId>false</externalId>
+        <label>UniqueKey</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>sked__User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Resources</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>sked__Weekly_Hours__c</fullName>
+        <defaultValue>40</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The default hours per week that a human resource works</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The default hours per week that a human resource works</inlineHelpText>
+        <label>Weekly Hours</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sked__Working_Hour_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Working Hour Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Availability</fullName>
+                    <default>false</default>
+                    <label>Availability</label>
+                </value>
+                <value>
+                    <fullName>Shift</fullName>
+                    <default>false</default>
+                    <label>Shift</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Resource</label>
+    <listViews>
+        <fullName>Active_Resources</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Employment_Type__c</columns>
+        <columns>sked__Primary_Region__c</columns>
+        <columns>Supervisor__c</columns>
+        <columns>Market_List__c</columns>
+        <columns>sked__Rating__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>sked__Category__c</field>
+            <operation>equals</operation>
+            <value>Instructor</value>
+        </filters>
+        <filters>
+            <field>sked__Is_Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Active Resources</label>
+    </listViews>
+    <listViews>
+        <fullName>Active_TP_Resources</fullName>
+        <columns>NAME</columns>
+        <columns>Supervisor__c</columns>
+        <columns>Employment_Type__c</columns>
+        <columns>sked__Rating__c</columns>
+        <columns>sked__Notes__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>sked__Category__c</field>
+            <operation>equals</operation>
+            <value>Instructor</value>
+        </filters>
+        <filters>
+            <field>sked__Is_Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Employment_Type__c</field>
+            <operation>equals</operation>
+            <value>Partner</value>
+        </filters>
+        <label>Active TP Resources</label>
+    </listViews>
+    <listViews>
+        <fullName>Subcontractors2</fullName>
+        <columns>NAME</columns>
+        <columns>sked__Resource_Type__c</columns>
+        <columns>sked__User__c</columns>
+        <columns>sked__Category__c</columns>
+        <columns>sked__Primary_Region__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Employment_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Employment_Type__c</field>
+            <operation>equals</operation>
+            <value>Subcontractor</value>
+        </filters>
+        <label>Subcontractors</label>
+    </listViews>
+    <listViews>
+        <fullName>sked__All</fullName>
+        <columns>NAME</columns>
+        <columns>sked__Resource_Type__c</columns>
+        <columns>sked__Category__c</columns>
+        <columns>sked__Primary_Region__c</columns>
+        <columns>sked__Is_Active__c</columns>
+        <columns>Supervisor__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Employment_Type__c</field>
+            <operation>equals</operation>
+            <value>FT,PT,PTOC,Volunteer,Vacancy</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Resource Name</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Resources</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Inactive_from_cannot_be_blank</fullName>
+        <active>true</active>
+        <errorConditionFormula>sked__Is_Active__c  = FALSE &amp;&amp;  ISBLANK( Inactive_From__c )</errorConditionFormula>
+        <errorMessage>Inactive From cannot be blank when Is Active is unchecked.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Inactive_from_cannot_be_in_future</fullName>
+        <active>true</active>
+        <errorConditionFormula>sked__Is_Active__c = FALSE &amp;&amp;  Inactive_From__c &gt;  TODAY()</errorConditionFormula>
+        <errorMessage>Inactive From must be less than or equal today.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Manage_Availability</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Manage Availability</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.open(&apos;https://arc.my.skedulo.com/availability/calendar&apos;);</url>
+    </webLinks>
+</CustomObject>

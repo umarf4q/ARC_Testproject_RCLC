@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SfFlexiPage n="Account_Record_Page5" s="" sobjectType="Account" t="Account Record Page" template="flexipage:recordHomeTemplateDesktop" type="RecordPage">
+  <regions>
+    <SfFlexiPageRegion n="header" s="" t="" type="Region">
+      <children>
+        <SfFlexiPageComponentInstance n="force:highlightsPanel" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">collapsed</key>
+              <value valueClass="string">false</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="main" s="" t="" type="Region">
+      <children>
+        <SfFlexiPageComponentInstance n="force:relatedListQuickLinksContainer" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">hideHeader</key>
+              <value valueClass="string">false</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance content="maintabs" n="flexipage__tabset" s="1" t=""/>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="sidebar" s="" t="" type="Region">
+      <children>
+        <SfFlexiPageComponentInstance n="runtime_sales_merge__mergeCandidatesPreviewCard" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">displayOption</key>
+              <value valueClass="string">BOTH</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance n="flexipage:richText" s="1" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">decorate</key>
+              <value valueClass="string">true</value>
+            </entry>
+            <entry>
+              <key valueClass="string">richTextValue</key>
+              <value valueClass="string">&lt;span style="color:#FF0000;"&gt;&lt;b&gt;Account is Inactive&lt;/b&gt;&lt;/span&gt;</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance content="sidebartabs" n="flexipage__tabset" s="2" t=""/>
+      </children>
+    </SfFlexiPageRegion>
+  </regions>
+  <facets>
+    <SfFlexiPageRegion n="detailTabContent" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="force:detailPanel" s="0" t=""/>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="relatedTabContent" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="runtime_sales_activities:activityPanel" s="0" t=""/>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="maintabs" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance content="detailTabContent" n="flexipage__tab" s="0" t="Standard.Tab.detail">
+          <properties>
+            <entry>
+              <key valueClass="string">active</key>
+              <value valueClass="string">true</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance content="relatedTabContent" n="flexipage__tab" s="1" t="Standard.Tab.activity">
+          <properties>
+            <entry>
+              <key valueClass="string">active</key>
+              <value valueClass="string">false</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="activityTabContent" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="force:relatedListContainer" s="0" t="">
+          <properties>
+            <entry>
+              <key valueClass="string">showActionBar</key>
+              <value valueClass="string">true</value>
+            </entry>
+            <entry>
+              <key valueClass="string">relatedListComponentOverride</key>
+              <value valueClass="string">NONE</value>
+            </entry>
+            <entry>
+              <key valueClass="string">rowsToDisplay</key>
+              <value valueClass="string">10</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="feedTabContent" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance n="forceChatter:recordFeedContainer" s="0" t=""/>
+      </children>
+    </SfFlexiPageRegion>
+    <SfFlexiPageRegion n="sidebartabs" s="" t="" type="Facet">
+      <children>
+        <SfFlexiPageComponentInstance content="activityTabContent" n="flexipage__tab" s="0" t="Standard.Tab.relatedLists">
+          <properties>
+            <entry>
+              <key valueClass="string">active</key>
+              <value valueClass="string">true</value>
+            </entry>
+          </properties>
+        </SfFlexiPageComponentInstance>
+        <SfFlexiPageComponentInstance content="feedTabContent" n="flexipage__tab" s="1" t="Standard.Tab.collaborate"/>
+      </children>
+    </SfFlexiPageRegion>
+  </facets>
+</SfFlexiPage>

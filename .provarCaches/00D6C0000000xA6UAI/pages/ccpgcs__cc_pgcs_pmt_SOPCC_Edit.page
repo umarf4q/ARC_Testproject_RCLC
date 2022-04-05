@@ -1,0 +1,436 @@
+<apex:page id="cc_pgcs_pmt_SOPCC_Edit" controller="ccpgcs.cc_pgcs_ctrl_pmt_SOPCC_Edit" applyHtmlTag="false" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+<!-- LEGACY BLOCK BEGIN -->
+<c:ifConfig config="ui.tmplver" value="classic" default="true">
+  <style type="text/css">
+    #sopccFrame { visibility: hidden; border: 0; width: 0; height: 0; }
+    #sopccAddress { height: 0; }
+  </style>
+  <script id="MyAccount-MyWalletSOPCC-Both" type="text/template">
+    <div class="myWalletSOPCCOuterContainer">
+      <h2 class="title">{{pageLabelMap 'MyWallet_{!mode}PymtMtd'}}</h2>
+      <div class="main_content_large_right_container">
+        <div class="alert alert-error error_messages_section ccpgcs-messagingSection-Error" style="display:none;"></div>
+        <form id="sopccEdit" action="#">
+          <fieldset>
+            <legend>{{pageLabelMap 'MyWallet_{!mode}CreditCard_sopcc'}}</legend>
+            <input type="hidden" name="accountType" value="sopcc"/>
+            <!-- display name-->
+            <div class="displayName">
+              <label>
+                <span class="saveDisplay Name fieldLabel">{{pageLabelMap 'MyWallet_Name'}}</span>
+                <input type="text" name="displayName" id="displayName" class="displayName" maxlength="50" value="{{this.displayName}}" />
+              </label>
+            </div>
+            <div>
+              <!-- billing name-->
+              <label for="firstName"><span class="firstNameLabel fieldLabel">{{pageLabelMap 'MyWallet_FirstName_sopcc'}}</span></label>
+              <input type="text" name="firstName" class="firstName" value="{{this.firstName}}"/>
+              <label for="lastName"><span class="lastNameLabel fieldLabel">{{pageLabelMap 'MyWallet_LastName_sopcc'}}</span></label>
+              <input type="text" name="lastName" class="lastName" value="{{this.lastName}}"/>
+            </div>
+            <div class="clear"></div>
+            <div>
+              <!-- card type -->
+              <label for="card_type"><span class="cardTypeLabel fieldLabel">{{pageLabelMap 'MyWallet_CardType_sopcc'}}</span></label>
+              <select name="card_type" class="cardType">
+                <option value="">{{pageLabelMap 'MyWallet_CardType_Select_sopcc'}}</option>
+              </select>
+            </div>
+            <div>
+              <!-- card number -->
+              <label for="card_number"><span class="cardNumberLabel fieldLabel">{{pageLabelMap 'MyWallet_CardNumber_sopcc'}}</span></label>
+              <input type="tel" name="card_number" class="cardNumber" value="{{this.accountNumber}}"/>
+            </div>
+            <div>
+              <!-- expiration -->
+              <label for="card_expirationM"><span class="cardExpirationLabel fieldLabel">{{pageLabelMap 'MyWallet_CardExpiration_sopcc'}}</span></label>
+              <input type="tel" name="card_expirationMM" maxlength="2" class="cardExpirationMM" placeholder="{{pageLabelMap 'MyWallet_CardExpirationMM_sopcc'}}" value="{{this.expMonth}}"/>
+              <input type="tel" name="card_expirationYYYY" maxlength="4" class="cardExpirationYYYY" placeholder="{{pageLabelMap 'MyWallet_CardExpirationYYYY_sopcc'}}" value="{{this.expYear}}"/>
+            </div>
+            <div>
+              <!-- cvn -->
+              <label for="card_cvn"><span class="cardCvnLabel fieldLabel">{{pageLabelMap 'MyWallet_CardCVN_sopcc'}}</span></label>
+              <input type="tel" name="card_cvn" maxlength="4" class="cardCvn" disabled="disabled"/>
+            </div>
+            <!-- address -->
+            <div class="addressBlock" />
+          </fieldset>
+          <p class="two_buttons">
+          <div class="right">
+            <input type="button" class="button sopccCancel" id="sopccCancel" value="{{pageLabelMap 'MyWallet_Cancel'}}" />
+            <input type="button" class="button sopccSave " name="sopccSave" id="sopccSave" data-id="sopccEdit" value="{{pageLabelMap 'MyWallet_SaveToWall'}}" />
+          </div>
+          </p>
+        </form>
+        <iframe id="sopccFrame" src="{!URLFOR(iframe)}?{!iframeParameters}" border="0"></iframe>
+      </div>
+    </div>
+    <div id="sopccAddress"></div>
+  </script>
+</c:ifConfig>
+<!-- END LEGACY BLOCK -->
+<!-- BEGIN BOOTSTRAP3 BLOCK -->
+<c:ifConfig config="ui.tmplver" value="boot3">
+	<style type="text/css">
+    #sopccFrame { visibility: hidden; border: 0; width: 0; height: 0; }
+    #sopccAddress { height: 0; }
+  </style>
+	<script id="MyAccount-MyWalletSOPCC-Both" type="text/template">
+		<div class="panel panel-default cc_panel cc_payment_sopcc">
+			<div class="panel-heading cc_heading">
+				<h3 class="panel-title cc_title">{{pageLabelMap 'MyWallet_{!mode}PymtMtd'}}</h3>
+			</div>
+			<div class="panel-body cc_body">
+				<div class="error_messages_section ccpgcs-messagingSection-Error" style="display:none;"></div>
+				<form id="sopccEdit" action="#">
+          <legend>{{pageLabelMap 'MyWallet_{!mode}CreditCard_sopcc'}}</legend>
+          <input type="hidden" name="accountType" value="sopcc"/>
+          <!-- display name-->
+          <div class="form-group displayName">
+              <label for="displayName" class="control-label saveDisplay Name fieldLabel">{{pageLabelMap 'MyWallet_Name'}}</label>
+              <input type="text" name="displayName" id="displayName" class="form-control displayName" maxlength="50" value="{{this.displayName}}" />
+          </div>
+          <div class="form-group">
+            <!-- billing name-->
+            <label for="firstName" class="control-label firstNameLabel fieldLabel">{{pageLabelMap 'MyWallet_FirstName_sopcc'}}</label>
+            <input type="text" name="firstName" class="form-control firstName" value="{{this.firstName}}"/>
+            <label for="lastName"><span class="lastNameLabel fieldLabel">{{pageLabelMap 'MyWallet_LastName_sopcc'}}</span></label>
+            <input type="text" name="lastName" class="form-control lastName" value="{{this.lastName}}"/>
+          </div>
+          <div class="clear"></div>
+          <div class="form-group">
+            <!-- card type -->
+            <label for="card_type" class="control-label cardTypeLabel fieldLabel">{{pageLabelMap 'MyWallet_CardType_sopcc'}}</label>
+            <select name="card_type" class="form-control cardType">
+              <option value="">{{pageLabelMap 'MyWallet_CardType_Select_sopcc'}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <!-- card number -->
+            <label for="card_number" class="control-label cardNumberLabel fieldLabel">{{pageLabelMap 'MyWallet_CardNumber_sopcc'}}</label>
+            <input type="tel" name="card_number" class="form-control cardNumber" value="{{this.accountNumber}}"/>
+          </div>
+          <div class="form-group">
+            <!-- expiration -->
+            <div class="form-inline row">
+              <div class="col-sm-6">
+                <label for="card_expirationM" class="control-label cardExpirationLabel fieldLabel">{{pageLabelMap 'MyWallet_CardExpiration_sopcc'}}</label>
+                <input type="tel" name="card_expirationMM" maxlength="2" class="form-control cardExpirationMM" placeholder="{{pageLabelMap 'MyWallet_CardExpirationMM_sopcc'}}" value="{{this.expMonth}}"/>
+                <input type="tel" name="card_expirationYYYY" maxlength="4" class="form-control cardExpirationYYYY" placeholder="{{pageLabelMap 'MyWallet_CardExpirationYYYY_sopcc'}}" value="{{this.expYear}}"/>
+							</div>
+							<div class="col-sm-6">
+								<!-- cvn -->
+								<label for="card_cvn" class="control-label cardCvnLabel fieldLabel">{{pageLabelMap 'MyWallet_CardCVN_sopcc'}}</label>
+								<input type="tel" name="card_cvn" maxlength="4" class="form-control cardCvn" disabled="disabled"/>
+              </div>
+            </div>
+          </div>
+          <!-- address -->
+          <div class="addressBlock"></div>
+					<div class="form-group">
+						<input type="button" class="btn btn-default btn-sm button sopccCancel" id="sopccCancel" value="{{pageLabelMap 'MyWallet_Cancel'}}" />
+						<input type="button" class="btn btn-default btn-sm button sopccSave " name="sopccSave" id="sopccSave" data-id="sopccEdit" value="{{pageLabelMap 'MyWallet_SaveToWall'}}" />
+					</div>
+				</form>
+				<iframe id="sopccFrame" src="{!URLFOR(iframe)}?{!iframeParameters}" border="0"></iframe>
+			</div>
+		</div>
+		<div id="sopccAddress"></div>
+	</script>
+</c:ifConfig>
+	<!-- END BOOTSTRAP3 BLOCK -->
+<c:cc_pgcs_pmt_SOPCC_Address />
+<script>
+var storedPaymentId = '{!JSENCODE(storedPaymentId)}';
+jQuery(function($) {
+  CCRZ.models.StoredPaymentsSOPCCModel = CCRZ.CloudCrazeModel.extend({
+    className : 'cc_pgcs_ctrl_pmt_SOPCC_Edit',
+    frameSet : function(_frame, _sel, _val) {
+      this.set(_sel, _val);
+      if (_frame && _frame.contentWindow && _frame.contentWindow.document) {
+        var el = _frame.contentWindow.document.getElementById(_sel);
+        if (el) {
+           el.value = _val;
+           return _val;
+        }
+      }
+      return null;
+    },
+    frameGet : function(_frame, _sel) {
+      if (_frame && _frame.contentWindow && _frame.contentWindow.document) {
+        var el = _frame.contentWindow.document.getElementById(_sel);
+        if (el) return el.value;
+      }
+      return null;
+    },
+    fetch: function(callback) {
+      var _this = this;
+      Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.cc_pgcs_ctrl_pmt_SOPCC_Edit.getStoredPayment}',
+        CCRZ.pagevars.remoteContext,
+        JSON.stringify({'merchant_defined_data2':storedPaymentId}),
+        function(r) {
+          if (r.data) {
+            _this.set(_this.parse(r.data));
+          }
+          if (callback) callback(r);
+        },{buffer:false,escape:false});
+    }
+  });
+  CCRZ.views.StoredPaymentsSOPCCView = CCRZ.CloudCrazeView.extend({
+    viewName : 'StoredPaymentsSOPCCView',
+    templateDesktop : CCRZ.util.template('MyAccount-MyWalletSOPCC-Both'),
+    templatePhone : CCRZ.util.template('MyAccount-MyWalletSOPCC-Both'),
+    init : function(){
+      var _this = this;
+      _this.addressView = new CCRZ.views.AddressSOPCCView();
+      _this.model.fetch(function() {
+        _this.render();
+        _this.addressView.render(function() {
+          _this.addressView.renderStates('', _this.addressView.model.get('defaultCountry'));
+          _this.addressView.model.set('address', _this.model.get('address'));
+          $('form#sopccEdit .addressBlock').append($('#sopccAddress div.addressBlock').detach());
+        });
+      });
+
+    },
+    iframe: function() {
+      return document.getElementById('sopccFrame');
+    },
+    payContext: function() {
+      return 'wlt';
+    },
+    validateInfo: function(formSel, fieldData) {
+      $(formSel).validate({
+        invalidHandler: function(event, validator) {
+          CCRZ.handleValidationErrors(event, validator, 'ccpgcs-messagingSection-Error', false);
+        },
+        rules: {
+          firstName : { required: true },
+          lastName : { required: true },
+          address : { required: true, minlength: 1 },
+          card_type : { required: true, minlength: 1 },
+          card_number : { required: true, digits: true },
+          card_expirationMM : { required: true, digits: true },
+          card_expirationYYYY : { required: true, digits: true },
+          card_cvn : { required: ('true' == $('form#sopccEdit select[name=card_type] option:selected').attr('data-required')), digits: true }
+        },
+        messages: {
+          firstName : { required: CCRZ.pagevars.pageLabels['MyWallet_FirstName_Required_sopcc'] },
+          lastName : { required: CCRZ.pagevars.pageLabels['MyWallet_LastName_Required_sopcc'] },
+          address : { required: CCRZ.pagevars.pageLabels['MyWallet_Address_Required_sopcc'] },
+          card_type : { required: CCRZ.pagevars.pageLabels['MyWallet_CardType_Required_sopcc'], minlength: CCRZ.pagevars.pageLabels['MyWallet_CardType_Required_sopcc'] },
+          card_number : { required: CCRZ.pagevars.pageLabels['MyWallet_CardNumber_Required_sopcc'] },
+          card_expirationMM : { required: CCRZ.pagevars.pageLabels['MyWallet_CardExpirationMM_Required_sopcc'] },
+          card_expirationYYYY : { required: CCRZ.pagevars.pageLabels['MyWallet_CardExpirationYYYY_Required_sopcc'] },
+          card_cvn : { required: CCRZ.pagevars.pageLabels['MyWallet_CardCvn_Required_sopcc'] }
+        },
+        errorPlacement: function(error, element) { }
+      });
+      return $(formSel).valid();
+    },
+    renderDesktop: function() {
+      var _this = this;
+      _this.setElement($('.paymentContainer'));
+      _this.$el.html(_this.templateDesktop(_this.model.toJSON()));
+    },
+    renderPhone: function() {
+      var _this = this;
+      _this.setElement($('.phone_center_column'));
+      _this.$el.html(_this.templatePhone(_this.model.toJSON()));
+    },
+    postRender: function() {
+      var _this = this;
+      _this.updateCardTypes();
+      _this.updateFields();
+    },
+    updateFields: function(callback) {
+      var _this = this;
+      _this.updateFirstName();
+      _this.updateLastName();
+      _this.updateAddress();
+      _this.updateCardType();
+      _this.updateCardExpiration();
+      _this.updateDisplayName();
+      _this.model.frameSet(this.iframe(), 'merchant_defined_data4', _this.payContext());
+      if (storedPaymentId) {
+      _this.model.frameSet(this.iframe(), 'merchant_defined_data2', storedPaymentId);
+      }
+      if (_this.payContext() === 'inv') {
+        var $$inv = $('input.invoicePayAmount');
+        _this.model.frameSet(_this.iframe(), 'merchant_defined_data20', $$inv.data('id'));
+        _this.model.frameSet(_this.iframe(), 'amount', $$inv.val());
+      }
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data10', CCRZ.pagevars.remoteContext.storefront);
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data11', CCRZ.pagevars.remoteContext.portalUserId);
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data12', CCRZ.pagevars.remoteContext.effAccountId);
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data13', CCRZ.pagevars.remoteContext.currentCartId);
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data14', CCRZ.pagevars.remoteContext.priceGroupId);
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data15', CCRZ.pagevars.remoteContext.userIsoCode);
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data16', CCRZ.pagevars.remoteContext.userLocale);
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data17', CCRZ.pagevars.remoteContext.currentPageName);
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data18', window.location.pathname);
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data22', 'true');
+      //_this.model.frameSet(_this.iframe(), 'merchant_defined_data23', $('form#sopccEdit input[name=displayName]').val());
+      _this.model.frameSet(_this.iframe(), 'merchant_defined_data24', (CCRZ.currentUser && CCRZ.currentUser.Email && {!NOT(ISPICKVAL($User.UserType, 'Guest'))})?CCRZ.currentUser.Email:'');
+      var qs = window.location.search.substring(1).split('&');
+      for(var i=0;i < qs.length;i++) _this.model.frameSet(_this.iframe(), 'merchant_defined_data3'+i, decodeURIComponent(qs[i]));
+      Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.cc_pgcs_ctrl_pmt_SOPCC_Edit.getFormData}',
+        CCRZ.pagevars.remoteContext,
+        JSON.stringify($(_this.iframe()).contents().find('input').serializeObject()),
+        function(r) {
+          if (r && r.success && r.data) {
+            $.each(r.data, function(k,v) {
+              _this.model.frameSet(_this.iframe(), k, v);
+            });
+          }
+          if (callback) callback(_this);
+        },{buffer:false,escape:false});
+      return _this;
+    },
+    updateAddress: function(event) {
+      var _this = this;
+      $$selected = $('form#sopccEdit select[name=address] option:selected');
+      if ($$selected.val()) {
+        _this.model.set('address', $$selected.val());
+        _this.addressView.model.set('address', $$selected.val());
+        _this.model.frameSet(_this.iframe(), 'merchant_defined_data3', $$selected.val());
+      }
+      return _this;
+    },
+    updateCardTypes: function() {
+      var _this = this;
+      Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.cc_pgcs_ctrl_pmt_SOPCC_Edit.getPaymentTypes}',
+        CCRZ.pagevars.remoteContext,'',
+        function(r) {
+          if (r && r.success && r.data) {
+            $$select = $('form#sopccEdit select[name=card_type]');
+            $$select.find('option[data-default]').remove();
+            $$select.find('option').attr('selected','selected');
+            $.each(r.data, function(i,v) {
+              $$select.append('<option '+
+                'data-sfid=\"'+v['sfid']+'\" '+'data-verification=\"'+v['verification']+'\" '+ 'value=\"'+v['type']+'\">' +
+                CCRZ.pagevars.pageLabels['PaymentType_'+ v['type']+'_sopcc'] +
+                '</option>');
+            });
+            payType = _this.model.get('paymentType');
+            if (payType) {
+              $$select.find('option[value='+payType+']').attr('selected','selected');
+            }
+            _this.updateCardType();
+          }
+        },{buffer:false,escape:false});
+        return _this;
+    },
+    updateCardType: function(event) {
+      var _this = this;
+      $$selected = $('form#sopccEdit select[name=card_type] option:selected');
+      _this.model.frameSet(_this.iframe(), 'card_type', '');
+      $('form#sopccEdit input[name=card_type] option:selected').attr('data-required' ,$$selected.attr('data-verification'));
+      if ('true' == $$selected.attr('data-verification')) {
+        $('form#sopccEdit input[name=card_cvn]').prop('disabled',false);
+        _this.model.frameSet(_this.iframe(), 'card_type', $$selected.val());
+      } else {
+        $('form#sopccEdit input[name=card_cvn]').prop('disabled',true);
+      }
+      return _this;
+    },
+    updateCardExpiration: function(event) {
+      var _this = this;
+      var mm = $('form#sopccEdit input[name=card_expirationMM]').val();
+      var yyyy = $('form#sopccEdit input[name=card_expirationYYYY]').val();
+      if (mm && yyyy) {
+        if (mm.length < 2) mm = "0" + mm;
+        _this.model.frameSet(_this.iframe(), 'card_expiry_date', mm + "-" + yyyy);
+      }
+      return _this;
+    },
+    updateFirstName: function(event) {
+      var _this = this;
+      _this.model.frameSet(_this.iframe(), 'bill_to_forename', $('form#sopccEdit input[name=firstName]').val());
+      return _this;
+    },
+    updateLastName: function(event) {
+      var _this = this;
+      _this.model.frameSet(_this.iframe(), 'bill_to_surname', $('form#sopccEdit input[name=lastName]').val());
+      return _this;
+    },
+    updateDisplayName: function(event) {
+      var _this = this;
+      if ($('form#sopccEdit input[name=displayName]').val()) {
+        _this.model.frameSet(_this.iframe(), 'merchant_defined_data23', $('form#sopccEdit input[name=displayName]').val());
+      }
+      return _this;
+    },
+    sopccCancel: function(event) {
+      myWallet();
+    },
+    sopccSave: function(event) {
+      var _this = this;
+      _this.updateFields(function(_this) {
+        if (_this.validateInfo('#sopccEdit')) {
+          $('input.sopccSave').prop('disabled', true).addClass('disabled');
+          Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.cc_pgcs_ctrl_pmt_SOPCC_Edit.getSignature}',
+              CCRZ.pagevars.remoteContext,
+              JSON.stringify($(_this.iframe()).contents().find('input[data-signed=true]').serializeObject()),
+              function(r) {
+                if (r && r.success && r.data) {
+                  $.each(r.data,
+                    function(k,v) { _this.model.frameSet(_this.iframe(), k, v); });
+                  _this.model.frameSet(_this.iframe(), 'card_number', $('form#sopccEdit input[name=card_number]').val());
+                  _this.model.frameSet(_this.iframe(), 'card_cvn', $('form#sopccEdit input[name=card_cvn]').val());
+                  var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+                  var eventerAdd = window[eventMethod];
+                  var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+                  eventerAdd(messageEvent, _this.handleSaveResponse, false);
+                  $$form = $(_this.iframe()).contents().find('form');
+                  $$form.submit();
+                } else if (r && r.messages
+                  && _.isArray(r.messages)
+                  && (r.messages.length > 0)) {
+                  CCRZ.pubSub.trigger('pageMessage', r);
+                  $('input.sopccSave').prop('disabled', false).removeClass('disabled');
+                  _this.iframe().src = _this.iframe().src;
+                }
+              }, {buffer:false,escape:false});
+        } // /validateInfo
+      });
+    },
+    handleSaveResponse: function(event) {
+      var _this = this;
+      var iframe = document.getElementById('sopccFrame');
+      var eventMethod = window.addEventListener ? "removeEventListener" : "detachEvent";
+      var eventerRemove = window[eventMethod];
+      var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+      eventerRemove(messageEvent, this, false);
+      $('input.sopccSave').prop('disabled', false).removeClass('disabled');
+      if (event.origin !== window.location.origin) return;
+      var response = JSON.parse(event.data);
+      if (response && response.success) {
+        myWallet();
+      } else if (response && response.messages
+        && _.isArray(response.messages)
+        && (response.messages.length > 0)) {
+        CCRZ.pubSub.trigger('pageMessage', response);
+        iframe.src = iframe.src;
+      }
+    },
+    events: {
+      'click .sopccCancel' : 'sopccCancel',
+      'click .sopccSave':'sopccSave',
+      'blur .firstName':'updateFirstName',
+      'blur .lastName':'updateLastName',
+      'change .address':'updateAddress',
+      'change .cardType':'updateCardType',
+      'blur .cardExpirationMM':'updateCardExpiration',
+      'blur .cardExpirationYYYY':'updateCardExpiration',
+      'blur .displayName':'updateDisplayName',
+    }
+  });
+
+  CCRZ.paymentViews = CCRZ.paymentViews || {};
+  CCRZ.paymentViews.sopcc = new CCRZ.views.StoredPaymentsSOPCCView({
+    model : new CCRZ.models.StoredPaymentsSOPCCModel()
+  });
+});
+</script>
+</apex:page>

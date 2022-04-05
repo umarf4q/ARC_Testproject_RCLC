@@ -1,0 +1,406 @@
+<n1:CustomObjectTranslation n2:type="n1:CustomObjectTranslation" xmlns:n1="http://soap.sforce.com/2006/04/metadata"
+   xmlns:n2="http://www.w3.org/2001/XMLSchema-instance">
+ <n1:fullName>Centennial_Campaign__c-en_US</n1:fullName>
+ <n1:caseValues>
+  <n1:article n2:nil="true" />
+  <n1:caseType n2:nil="true" />
+  <n1:plural>false</n1:plural>
+  <n1:possessive n2:nil="true" />
+  <n1:value>Centennial Campaign</n1:value>
+ </n1:caseValues>
+ <n1:caseValues>
+  <n1:article n2:nil="true" />
+  <n1:caseType n2:nil="true" />
+  <n1:plural>true</n1:plural>
+  <n1:possessive n2:nil="true" />
+  <n1:value>Centennial Campaigns</n1:value>
+ </n1:caseValues>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Adult_Swim_Improving_Skills_and_Swimming__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Adult_Swim_Learning_the_Basics__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Basic_Swim_Instructor__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Centennial_Campaign_Reporting__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Comments__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Facility_Name__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Junior_Lifeguarding__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Learn_to_Swim_Level_1__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Learn_to_Swim_Level_2__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Learn_to_Swim_Level_3__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Learn_to_Swim__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Lifeguarding_Instructor_Trainer__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Lifeguarding_Instructor__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Lifeguarding_Management__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Lifeguarding__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Month__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>April</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>August</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>December</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>February</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>January</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>July</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>June</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>March</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>May</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>November</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>October</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>September</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Name__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Organization_Name__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Parent_and_Child_Aquatics__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Parents_Caregivers_Pediatric_CPR_AED__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Parents_Caregivers_Water_Safety_Educat__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Preschool_Level_1__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Preschool_Level_2__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Preschool_Level_3__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Reporting_of_Total_Participation__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Total_Students_Taught__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Water_Safety_Instructor_Trainer__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Water_Safety_Instructor__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Year__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>2016</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>2017</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>2018</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>2019</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>2020</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>2021</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>2022</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>2023</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:gender n2:nil="true" />
+ <n1:layouts>
+  <n1:layout>Centennial Campaign Layout</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>IT</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Junior Lifegaurd</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>LGI</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Learn to Swim</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Lifegaurd</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>New Section</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Other</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Parent Education</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>WSI/BSI</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:nameFieldLabel n2:nil="true" />
+ <n1:startsWith>Consonant</n1:startsWith>
+</n1:CustomObjectTranslation>

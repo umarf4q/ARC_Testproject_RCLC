@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" keyPrefix="811" label="Contract Line Item" labelPlural="Contract Line Items" layoutable="true" n="ContractLineItem" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Contract Line Item (811)" updatable="true" urlDetail="https://arc-phss--test.my.salesforce.com/{ID}" urlEdit="https://arc-phss--test.my.salesforce.com/{ID}/e" urlNew="https://arc-phss--test.my.salesforce.com/811/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Contract Line Item ID" type="id" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="255" n="LineItemNumber" nameField="true" t="Line Item Number" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField isMasterDetail="true" length="18" n="ServiceContractId" relationshipName="ServiceContract" required="true" t="Service Contract" type="reference" updateable="false">
+      <referenceTos>
+        <string>ServiceContract</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" length="18" n="Product2Id" relationshipName="Product2" t="Product" type="reference" updateable="false">
+      <referenceTos>
+        <string>Product2</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="AssetId" relationshipName="Asset" t="Asset Name" type="reference">
+      <referenceTos>
+        <string>Asset</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="StartDate" t="Start Date" type="date"/>
+    <sfField n="EndDate" t="End Date" type="date"/>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32000" n="Description" type="textarea"/>
+    <sfField length="18" n="PricebookEntryId" relationshipName="PricebookEntry" required="true" t="Price Book Entry" type="reference">
+      <referenceTos>
+        <string>PricebookEntry</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Quantity" precision="12" required="true" scale="2" type="_double"/>
+    <sfField n="UnitPrice" precision="18" required="true" scale="2" t="Sales Price" type="currency"/>
+    <sfField n="Discount" precision="5" scale="2" type="percent"/>
+    <sfField createable="false" n="ListPrice" precision="18" scale="2" t="List Price" type="currency" updateable="false"/>
+    <sfField createable="false" n="Subtotal" precision="18" scale="2" type="currency" updateable="false"/>
+    <sfField createable="false" n="TotalPrice" precision="18" scale="2" t="Total Price" type="currency" updateable="false"/>
+    <sfField createable="false" length="255" n="Status" restrictedPicklist="true" type="picklist" updateable="false">
+      <picklistEntryIds>1,2,3</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Inactive" s=""/>
+        <sfPLE id="2" n="Active" s=""/>
+        <sfPLE id="3" n="Expired" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="ParentContractLineItemId" relationshipName="ParentContractLineItem" t="Parent Contract Line Item" type="reference">
+      <referenceTos>
+        <string>ContractLineItem</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" length="18" n="RootContractLineItemId" relationshipName="RootContractLineItem" t="Root Contract Line Item" type="reference" updateable="false">
+      <referenceTos>
+        <string>ContractLineItem</string>
+      </referenceTos>
+    </sfField>
+    <sfField filterable="false" n="LocationId" notVisibleToMetadataUser="true" t="Location"/>
+    <sfField filterable="false" n="StatusIndicator" notVisibleToMetadataUser="true"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship childName="ContractLineItem" field="ParentContractLineItemId" n="ChildContractLineItems" relationshipName="ChildContractLineItems" s="2-" t="ContractLineItem"/>
+    <sfObjectRelationship childName="ContractLineItem" field="RootContractLineItemId" n="DescendantContractLineItems" relationshipName="DescendantContractLineItems" s="2-" t="ContractLineItem"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="ContractLineItemHistory" field="ContractLineItemId" n="Histories" relationshipName="Histories" s="2-" t="ContractLineItemHistory"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedEntitlementList" childName="Entitlement" field="ContractLineItemId" n="Entitlements" relationshipName="Entitlements" s="2-" t="Entitlement"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome ContractLineItems List ChildContractLineItems DescendantContractLineItems" n="New"/>
+    <sfActionLink modes="View ContractLineItems ChildContractLineItems DescendantContractLineItems" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View ContractLineItems ChildContractLineItems DescendantContractLineItems" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View ContractLineItems ChildContractLineItems DescendantContractLineItems" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ContractLineItems ChildContractLineItems DescendantContractLineItems" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink lightningActionName="MultiAdd" modes="ContractLineItems" n="AddContractLine" newAction="true" t="New Line Items"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>CONTRACTLINEITEM.NAME</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CONTRACTLINEITEM.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>LINEITEM.NAME</string>
+    <string>PRODUCT.NAME</string>
+    <string>LINEITEM.STARTDATE</string>
+    <string>LINEITEM.ENDDATE</string>
+    <string>LINEITEM.STATUS</string>
+    <string>ASSET.NAME</string>
+  </searchResultColumns>
+  <listViewActions/>
+</sfObject>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><QuickAction xmlns="http://soap.sforce.com/2006/04/metadata"
+   >
+ <fullName>Opportunity.dsfs__OpportunityDocuSignAction</fullName>
+     <height>24</height>
+ <icon>dsfs__m_DocuSign_Logo</icon>
+ <isProtected>false</isProtected>
+ <label>DocuSign</label>
+   <optionsCreateFeedItem>false</optionsCreateFeedItem>
+ <page>dsfs__OpportunityDocuSignActionLandingPage</page>
+        <type>VisualforcePage</type>
+ <width>-100</width>
+</QuickAction>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" keyPrefix="a7C" label="Learning Media Item" labelPlural="Learning Media Items" layoutable="true" n="rwscorm__Learning_Course_Item__c" queryable="true" readPermission="false" retrieveable="true" s="" t="Learning Media Item (a7C)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome rwscorm__Learning_Course_Items__r" n="New"/>
+    <sfActionLink modes="View rwscorm__Learning_Course_Items__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View rwscorm__Learning_Course_Items__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View rwscorm__Learning_Course_Items__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View rwscorm__Learning_Course_Items__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

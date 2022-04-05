@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" keyPrefix="a7W" label="Grant Claim" labelPlural="Grant Claims" layoutable="true" n="SFDC_MDF_Claim__c" queryable="true" readPermission="false" retrieveable="true" s="" t="Grant Claim (a7W)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome R00N30000002DjDKEA0__r R00N30000002DjDeEAK__r Grant_Claims__r" n="New"/>
+    <sfActionLink modes="View R00N30000002DjDKEA0__r R00N30000002DjDeEAK__r Grant_Claims__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View R00N30000002DjDKEA0__r R00N30000002DjDeEAK__r Grant_Claims__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View R00N30000002DjDKEA0__r R00N30000002DjDeEAK__r Grant_Claims__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View R00N30000002DjDKEA0__r R00N30000002DjDeEAK__r Grant_Claims__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

@@ -1,0 +1,54 @@
+<apex:page controller="IBP.IBPAdminMatchObjectsController" tabStyle="IbpAdmin__tab" title="DialogTech Admin">
+    
+    <!-- <style>
+        #logoContainer {
+        margin-top: 15px;
+        margin-left: 5px;
+        height: 60px;
+        width: 70%;
+        float: left;
+        }
+        .ibpLogo {
+        float: left;
+        margin-right: 8px;
+        }
+        .ibpTitle {
+        margin: 0px;
+        font-size: 2em;
+        line-height: 2.5em;
+        }
+        .ibpSubtitle {
+        margin: 0px;
+        font-weight: bold;
+        font-size: 1em;
+        }
+        .clear {
+        clear: both;
+        }
+    </style>
+    
+    <div id="logoContainer">
+        <apex:image styleClass="ibpLogo" url="{!URLFOR($Resource.IBP_Assets, 'IBP_Assets/images/dialogtechLogo.png')}" width="165" height="67"/>
+        <p class="ibpSubtitle">DialogTech Admin</p>
+        <p class="ibpTitle"> - Step 2 of 2</p>
+    </div>
+    
+    <br class="clear" />
+    
+    <apex:form >
+        <apex:pageBlock title="Select Match Objects">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Back" action="{!backMethod}"/>
+                <apex:commandButton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="1" collapsible="false" title="Select Objects">
+                <p>Select which type of integration you wish to configure the application for.</p>
+                <apex:selectCheckboxes value="{!checkboxSelections}" layout="pageDirection">
+                    <apex:selectOptions value="{!objectList}">
+                    </apex:selectOptions>
+                </apex:selectCheckboxes>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form> -->
+    
+</apex:page>

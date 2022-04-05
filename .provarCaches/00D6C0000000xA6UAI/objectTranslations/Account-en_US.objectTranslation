@@ -1,0 +1,3622 @@
+<n1:CustomObjectTranslation n2:type="n1:CustomObjectTranslation" xmlns:n1="http://soap.sforce.com/2006/04/metadata"
+   xmlns:n2="http://www.w3.org/2001/XMLSchema-instance">
+ <n1:fullName>Account-en_US</n1:fullName>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AP_Territory_Owner__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AP_Territory__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AQ_Territory_Owner__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AQ_Territory__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_0_30_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_121_150_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_121_180_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_151_180_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_180_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_31_60_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_61_90_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_91_120_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_Current__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_Last_Report__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>AR_Status__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Account_Auto_Number__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Account_ID_18_Digit_Char__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Account_Source_API__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Quick Create CDI</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Smart Account Search</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>User</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Account_Status__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Active_Contract_Exception_Status__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Approved</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Rejected</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Requested</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Submitted</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Active_Contract_Exception__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Add_Roster__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Agreement_Coverage_Flag__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Agreement_Coverage__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Hybrid Training Contract</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Memorandum of Understanding (MOU)</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>National Training Contract</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Regional Training Contract</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Agreement_Covers__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>All Domestic Locations</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>MOU</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Other, please describe</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Single Location</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Agreement_Flag__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Approval_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Approved_Learn_to_Swim_Facility__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Approved_Virtual_Skills__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Approved_to_Post_HAVE_A_FEE_courses__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Approved_to_Post_NO_FEE_courses_RCO_LTP__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Approver_Name__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Assigned_SCC__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BGST_Employee_Count__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>1-10</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>1000+</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>101-250</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>11-25</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>251-500</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>26-50</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>501-1000</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>51-100</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BGST_Industry__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Accommodation and Food Services</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Administrative and Support and Waste Management and Remediation Services</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Arts, Entertainment, and Recreation</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Construction</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Educational Services</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Finance and Insurance</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Forestry, Fishing and Hunting</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Health Care and Social Assistance</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Information</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Management of Companies and Enterprises</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Manufacturing</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Mining, Quarrying, and Oil and Gas Extraction</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Other Services, except Public Administration</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Professional, Scientific and Technical Services</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Real Estate and Rental and Leasing</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Retail Trade</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Transportation and Warehousing</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Unclassified</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Utilities</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Wholesale Trade</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>ublic Administration</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BGST_Lead_Source__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Accommodation and Food Services</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Administrative and Support and Waste Management and Remediation Services</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Arts, Entertainment, and Recreation</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Construction</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Educational Services</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Finance and Insurance</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Forestry, Fishing and Hunting</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Health Care and Social Assistance</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Information</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Management of Companies and Enterprises</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Manufacturing</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Mining, Quarrying, and Oil and Gas Extraction</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Other Services, except Public Administration</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Professional, Scientific and Technical Services</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Real Estate and Rental and Leasing</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Retail Trade</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Transportation and Warehousing</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Unclassified</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Utilities</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Wholesale Trade</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>ublic Administration</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BGST_Rating__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Cold</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Hot</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Warm</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BI_City__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BI_Phone__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BI_Postal_Code_Plus_4__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BI_Postal_Code__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BI_State__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>BI_Street_Address__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Bankruptcy_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Bankruptcy_Type__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Chapter 11 (restructure)</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Chapter 7 (new Acct. required)</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Chapter 9 (municipal)</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Billing_Contact__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Billing_Contact_email__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Billing_Contact_extension__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Billing_Contact_phone__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Billing_Street_Custom__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Block_Certificate_Export_to_AWS__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>CFS_Account_Number_1__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>CFS_Account_Number__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>CFS_Modified_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Collections_Termination_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Consolidate_Period_Fulfillments__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Copy_Billing_to_Shipping__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>County__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Coupon_1_Expiration__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Coupon_2_Expiration__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Coupon_3_Expiration__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Coupon_Code_1__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Coupon_Code_2__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Coupon_Code_3__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Credit_Available__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Credit_Limit__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Customer_PO_Expiration_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Customer_PO_Required_on_Invoice__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Customer_PO__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Customer_has_AEDs__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>DM_External_Id__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>DM_Legacy_Owner_Name__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>DUNS_Number__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Date_of_Most_Recent_Write_Off__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Delta_Data_Migration__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Details_of_Agreement_Coverage__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Dormant_Account__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ED_VP_Invoicing_Approver__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Angie Channel</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Bruce Goemaat</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Hope Brown</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Jennifer Deibert</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Lainey Hayward</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Sue Franson</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Timothy Archuleta-Perkins</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Email__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Estimated_Annual_Enrollees__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>0-75</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>1000+</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>501-999</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>76-500</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Extension__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>External_ID__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>FN__Find_Nearby__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>FN__Lat__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>FN__Lon__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>FN__Mapping_Status__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Bad Google Key</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Google Exhausted</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Located</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Not Located Yet</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Problem with Address</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>FN__Which_Address__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Billing</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Do Not Map</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Shipping</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>FS_Territory_Owner__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>FS_Territory__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>FY17Assigned__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Fiscal_Cycle__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Flagged_For_Deletion__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Force_Approve__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>HQ_Account__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Has_Only_Attachments_Or_Notes__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Have_A_Fee_Expiration_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>IBP__IfbyphoneCallId__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Include_Roster__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Inherit_Parent_Terms__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Inv_Del_Assign_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Invoice_Delivery_Frequency__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>4x/Monthly</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Monthly</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Invoice_Delivery_Type__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Email</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Portal Billing</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Postal Mail</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Invoice_Exception_Category__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Government (Local, State, Federal, Tribal)</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Hospital</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Military</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Nonprofit</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>School (K-12, College, University)</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Scouts</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Invoice_Justification__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Exception Category</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Full Service/AES</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Not Exempt</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Special Approval</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>System Limit</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Invoice_Template__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Detailed</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Simple</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Invoice_delivery_Email__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Is_Pricing_Agreement__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>No</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Yes</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>LTP_Territory_Owner__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>LTP_Territory__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Last_Payment_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Last_day_of_Month__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Log_In_Email__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>MALatitude__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>MALongitude__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Mobile__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>NAICS_Code__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>NAICS_Index_Name__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Name_Series__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>New_TSC_Contact__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>No_Auto_Collections_Email__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>No_Fee_Expiration_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Number_of_Locations__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Number_of_Related_Cases__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Number_of_Related_Contacts__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Number_of_Related_Opportunitites__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Number_of_Subsidiaries__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Number_of_Times_Terminated__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>1</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>2</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Open_Order_Amount__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Opportunity_Count__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Original_SABA_LMS_Code__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>PHSS_Channel__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>AED</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Authorized Provider</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Business Client</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>CEP Agency</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Full Service</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Licensed Training Provider</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NAT AP/LTP</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NAT Agency</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>National Account Network</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>RCS Distributor</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>RCS Retail</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Payment_Status__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Denied</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Eligible if Qualified</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Granted</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Suspended</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Terminated</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Payment_Terms__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>NET 30</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NET 45</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NET 60</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NET 75</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NET 90</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Preferred_Payment_type__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Credit/Debit Card</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Invoice</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Pricing_Agreement__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Pricing_Agreement_in_Place__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Primary_Associate_LTP__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Associate LTP</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Primary LTP</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Processing_Notes__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Prodid__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_AR_0_30_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_AR_121_150_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_AR_121_180_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_AR_151_180_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_AR_180_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_AR_31_60_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_AR_61_90_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_AR_91_120_Days__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_AR_Last_Report__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_Collections_Termination_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_Last_Payment_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>REPORT_Total_AR__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Red_Cross_PO__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Red_Cross_PO_expiration_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Restrict_Order_Confirmation_Email__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_BillingCity__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_BillingCountry__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_BillingPostalCode__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_BillingState__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_BillingStreet__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Billing_Contact_Email__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Billing_Contact_Name__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Billing_Contact_Phone__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Company_affiliation__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Createdby__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Createddate__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_LMS_Code__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Lastmodifiedby__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Lastmodifieddate__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Name__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_ORG_KEY__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_ORG_Match_Type__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>1-1</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>M-1</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NetNew</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SABA_Org_Type__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>AP</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>AP NAN</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>AP/BC</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>AP/BC/FS</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>AP/FS</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>AQ</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>AQ NAN</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>BC</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>BC/FS</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Blood Region</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>CEPA</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>CEPFS</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>COM</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Community Branch</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Community Chapter</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Division</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>FS</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>FS NAN</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>FS/APNAN</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>House AP</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>House AQ</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>House FS</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>House LTP</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>LTP</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NATA</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NATAP/LTP</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NATFS</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NATI</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>NHQ</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Red Cross - Other</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Region</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Regional Branch</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Regional Chapter</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>SAF AP</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>SAF Station</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Station Branch</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Unknown</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SFMC_invalid__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SFSSDupeCatcher__Override_DupeCatcher__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SF_Account_Number_Text__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SF_Account_Number__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SIC_Code__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>SIC_Description__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Saba_Id__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Salesforce_Auto_Number__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Scheduling_Notes__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Send_AR_Email__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Separate_Invoice_For_Products__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Shipping_Address__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Source_System__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Special_Invoicing__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>DO NOT MAIL</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>SHAREPOINT INVOICING</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Spots_Taken__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Status__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Active</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Inactive</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Strategic_Account_Type__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>Enhanced Support</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>SCC Scheduling</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Special Handling - Field</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Special Handling - SCC</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Strategic_Account__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>System_Limit_Type__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>API</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Hidden Pricing</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Tax_Exempt_Cert_Expiry_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Tax_Exempt__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>No</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Yes</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Tax_ID_Number__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Terminate_Reinstate_Date__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Termination_Reason__c</n1:name>
+  <n1:picklistValues>
+   <n1:masterLabel>AR Written Off</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Bankruptcy</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Exception Granted</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Invoice Paid in Full</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Non Payment</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Non Payment; Sent to Collections</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:picklistValues>
+   <n1:masterLabel>Non Payment; Sent to Collections Agency</n1:masterLabel>
+   <n1:translation></n1:translation>
+  </n1:picklistValues>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Territory_Owner__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Territory__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>This_is_HQ__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Total_AR__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Total_Written_Off__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Training_Contact_Email__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Training_Contact_Phone__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Training_Contact__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Waterpark__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Zip_Code_Length__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__CustomField1__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__CustomField2__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__DataId__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__E_AccountGroup__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__PreventAddrBookSave__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__PreventNewAddrCheckout__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__PreventNewBillAddrCO__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__SourceSystem__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__TaxExemptAccount__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>ccrz__UsedByCloudcraze__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>nk_billto_org_id__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>sked__Rank__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>sked__Requires_Whitelist__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:gender n2:nil="true" />
+ <n1:layouts>
+  <n1:layout>Account Layout BI</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>3rd Party Data</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Additional Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Business Intelligence</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Pricing Agreement</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Relationship Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Account Layout BI FIN</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Business Intelligence</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>System Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Territory Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Account Layout SDoc</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Account Layout with SABA Fields</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>3rd Party Data</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Additional Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Business Intelligence</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Pricing Agreement</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Relationship Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>SABA Fields</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Account_Admin layout</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>3rd Party Data</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Additional Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Territory Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Account_Admin layout JZ Dev 20170221</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>3rd Party Data</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Additional Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Territory Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>BGST Organization Account</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>System Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Territory Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Bucket Account Page Layout</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Additional information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>System Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Household Account</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Additional information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>System Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Individual Account</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Additional information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>System Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Instructor Community Account</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Learner Community Account</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Organization Account</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Invoice Features</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>System Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Territory Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>Partner Community Account</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>SB Account Layout BI</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>3rd Party Data</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Additional Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Business Intelligence</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Invoice Features</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Pricing Agreement</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Relationship Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>SB Account_Admin layout</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>3rd Party Data</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Additional Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Business Intelligence</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Invoice Features</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Territory Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>SB BGST Organization Account</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Business Intelligence</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Invoice Features</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>System Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Territory Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>SB Org w del. Admin Only</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Business Intelligence</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Invoice Features</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>System Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Territory Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:layouts>
+  <n1:layout>SB Organization Account</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Address Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Business Intelligence</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Fields</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Invoice Features</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Payment Details</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>System Information</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Territory Information</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:nameFieldLabel n2:nil="true" />
+ <n1:quickActions>
+  <n1:aspect n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:name>Invoicing_Case</n1:name>
+ </n1:quickActions>
+ <n1:quickActions>
+  <n1:aspect n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:name>Sales_Case</n1:name>
+ </n1:quickActions>
+ <n1:quickActions>
+  <n1:aspect n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:name>Sales_Tax_Exemption_Request</n1:name>
+ </n1:quickActions>
+ <n1:quickActions>
+  <n1:aspect n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:name>Service_Case</n1:name>
+ </n1:quickActions>
+ <n1:quickActions>
+  <n1:aspect n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:name>Service_Cases</n1:name>
+ </n1:quickActions>
+ <n1:quickActions>
+  <n1:aspect n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:name>Sharing</n1:name>
+ </n1:quickActions>
+ <n1:quickActions>
+  <n1:aspect n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:name>Standard_Order</n1:name>
+ </n1:quickActions>
+ <n1:quickActions>
+  <n1:aspect n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:name>dsfs__AccountDocuSignAction</n1:name>
+ </n1:quickActions>
+ <n1:recordTypes>
+  <n1:description></n1:description>
+  <n1:label></n1:label>
+  <n1:name>Bucket_Account</n1:name>
+ </n1:recordTypes>
+ <n1:recordTypes>
+  <n1:description n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:name>Bucket_Archive</n1:name>
+ </n1:recordTypes>
+ <n1:recordTypes>
+  <n1:description></n1:description>
+  <n1:label></n1:label>
+  <n1:name>Facility_Billing_Accounts_in_Account_Hierarchy</n1:name>
+ </n1:recordTypes>
+ <n1:recordTypes>
+  <n1:description></n1:description>
+  <n1:label></n1:label>
+  <n1:name>Household_Account</n1:name>
+ </n1:recordTypes>
+ <n1:recordTypes>
+  <n1:description></n1:description>
+  <n1:label></n1:label>
+  <n1:name>Individual_Account</n1:name>
+ </n1:recordTypes>
+ <n1:recordTypes>
+  <n1:description></n1:description>
+  <n1:label></n1:label>
+  <n1:name>Organization_Account</n1:name>
+ </n1:recordTypes>
+ <n1:recordTypes>
+  <n1:description></n1:description>
+  <n1:label></n1:label>
+  <n1:name>SB_Household_Account</n1:name>
+ </n1:recordTypes>
+ <n1:recordTypes>
+  <n1:description></n1:description>
+  <n1:label></n1:label>
+  <n1:name>SB_Organization_Account</n1:name>
+ </n1:recordTypes>
+ <n1:startsWith n2:nil="true" />
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Account_Number_Length</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Account_Number_is_Numeric</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Annual_Revenue_Range</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Approval_Date_ED_VP_Invoicing_Approver</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Approval_Date_Required</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Approver_Name</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Bankruptcy_Date_Approval</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Bankruptcy_Type_Approval</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Billing_Contact_Required_for_Invoicing</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Check_for_RCS_channel_Billing_Contacts</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Customer_PO_Expiration_Date_Required</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Customer_PO_Required</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Fax_Number_with_10_Digits</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Fill_billing_Details_before_Saving_Acc</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Inherit_Parent_Terms</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Initial_Bucket_Account_Creation</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Insert_Restriction_on_Invoice_del_Fields</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Invoice_Delivery_Email_required</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Invoice_Delivery_Method_required_for_RCS</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Invoice_Exception_Category</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Invoice_Justification_Special_Approval</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Invoice_Justification_and_Approval_Date</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Invoice_delivery_Email_Restriction</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Login_Email_check_for_RCS_Channels</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Payment_Status_Granted</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Payment_Status_Invoicing_Privileges_Appr</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Payment_Status_Invoicing_Privileges_New</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Payment_Status_Terminated</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Payment_Status_Terminated_CD_Prepayment</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Payment_Status_Terminated_to_Granted</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Postal_Mail_cannot_include_Roster</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Preferred_Payment_Type</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Preferred_Payment_check_for_RCS_Channels</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Prevent_Bucket_Account_Name_Change</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>RCS_PO_Account_Channel_Restriction</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Require_Details_of_Agreement_Coverage</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>SABA_LMS_Code_field_Value_Validation</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Shipping_Zip_Code</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Spots_Taken_Is_Valid_For_Normal_Accounts</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Spots_Taken_Not_Null_For_Bucket_Accounts</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>System_Limit_Invoice_Justification</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Term_or_Reins_date_based_on_User_New</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Terminate_Reinstate_Date_Time_Limit_New</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Territory_Approval</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>US_Billing_Zip_Code</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>US_Phone_Number_with_10_Digits</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Update_Restriction_on_Invoice_del_Fields</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>VR_on_Create_Account_Inherit_Parent_Term</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Valid_Billing_Country</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Valid_Billing_State_in_US</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Valid_Shipping_State</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Validation_Rule_on_Permission</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Validation_on_CFS_Account_number</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Validation_rule_on_Account_Status</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Validation_rule_on_Inherit_Parent_Terms</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>Validation_rule_on_Red_cross_Email</n1:name>
+ </n1:validationRules>
+ <n1:validationRules>
+  <n1:errorMessage></n1:errorMessage>
+  <n1:name>block_RecordTypeId_change</n1:name>
+ </n1:validationRules>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>Account_Revenue</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>Account_Revenue_LEX</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>Add_New_PO</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>AltavistaNews</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>BLND_FormFactoryAccountLink</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>FN__Map_Accounts</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>GoogleMaps</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>GoogleNews</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>GoogleSearch</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>HooversProfile</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>MA_MapIt_a0Rd00000006eWgEAI</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>SDOC__Email_Docs</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>SDOC__S_Docs</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>SFDC_TEST</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>YahooMaps</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>dsfs__Send_with_DocuSign</n1:name>
+ </n1:webLinks>
+ <n1:webLinks>
+  <n1:label></n1:label>
+  <n1:name>dsfs__Verify_with_DNB</n1:name>
+ </n1:webLinks>
+</n1:CustomObjectTranslation>

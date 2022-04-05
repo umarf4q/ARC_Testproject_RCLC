@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><QuickAction xmlns="http://soap.sforce.com/2006/04/metadata"
+   >
+ <fullName>Snapins_Case_PrechatQuickAction_08h3o000000Kyju_1615693187208</fullName>
+   <description>Snapins_Case_PrechatQuickAction_08h3o000000Kyju_1615693187208</description>
+ <fieldOverrides>
+  <field>Origin</field>
+    <literalValue>Chat</literalValue>
+ </fieldOverrides>
+ <fieldOverrides>
+  <field>Status</field>
+    <literalValue>New</literalValue>
+ </fieldOverrides>
+  <height>0</height>
+  <isProtected>false</isProtected>
+ <label>Snapins_Case_PrechatQuickAction_08h3o000000Kyju_1615693187208</label>
+   <optionsCreateFeedItem>false</optionsCreateFeedItem>
+  <quickActionLayout>
+  <layoutSectionStyle>TwoColumnsTopToBottom</layoutSectionStyle>
+  <quickActionLayoutColumns>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>Verify_Email__c</field>
+    <uiBehavior>Required</uiBehavior>
+   </quickActionLayoutItems>
+  </quickActionLayoutColumns>
+  <quickActionLayoutColumns />
+ </quickActionLayout>
+    <targetObject>Case</targetObject>
+  <targetRecordType>Case.Service_Cases</targetRecordType>
+ <type>Create</type>
+ <width>0</width>
+</QuickAction>

@@ -1,0 +1,168 @@
+<n1:CustomObjectTranslation n2:type="n1:CustomObjectTranslation" xmlns:n1="http://soap.sforce.com/2006/04/metadata"
+   xmlns:n2="http://www.w3.org/2001/XMLSchema-instance">
+ <n1:fullName>Case_Owner_History__c-en_US</n1:fullName>
+ <n1:caseValues>
+  <n1:article n2:nil="true" />
+  <n1:caseType n2:nil="true" />
+  <n1:plural>false</n1:plural>
+  <n1:possessive n2:nil="true" />
+  <n1:value>Case Owner History</n1:value>
+ </n1:caseValues>
+ <n1:caseValues>
+  <n1:article n2:nil="true" />
+  <n1:caseType n2:nil="true" />
+  <n1:plural>true</n1:plural>
+  <n1:possessive n2:nil="true" />
+  <n1:value>Case Owner History</n1:value>
+ </n1:caseValues>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>COH_Role__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Case_Closed_Date_Time__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Case_Owner_Duration_Seconds__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Case_Owner_Duration__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Case_Owner_Role__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Case_Status__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Case__c</n1:name>
+  <n1:relationshipLabel></n1:relationshipLabel>
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Duration__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Hand_Off_Status__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Handed_Off__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Owner_Duration__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Owner_Id__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Owner_Name__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help n2:nil="true" />
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Received__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:fields>
+  <n1:gender n2:nil="true" />
+  <n1:help></n1:help>
+  <n1:label></n1:label>
+  <n1:lookupFilter n2:nil="true" />
+  <n1:name>Recieved_Case_status__c</n1:name>
+  <n1:relationshipLabel n2:nil="true" />
+  <n1:startsWith n2:nil="true" />
+ </n1:fields>
+ <n1:gender n2:nil="true" />
+ <n1:layouts>
+  <n1:layout>Case Owner History Layout</n1:layout>
+  <n1:layoutType n2:nil="true" />
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Custom Links</n1:section>
+  </n1:sections>
+  <n1:sections>
+   <n1:label></n1:label>
+   <n1:section>Owner Info</n1:section>
+  </n1:sections>
+ </n1:layouts>
+ <n1:nameFieldLabel n2:nil="true" />
+ <n1:startsWith>Consonant</n1:startsWith>
+</n1:CustomObjectTranslation>

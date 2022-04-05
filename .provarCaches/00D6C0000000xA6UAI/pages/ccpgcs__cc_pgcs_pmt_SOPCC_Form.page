@@ -1,0 +1,13 @@
+<apex:page id="cc_pgcs_pmt_SOPCC_Form" controller="ccpgcs.cc_pgcs_ctrl_pmt_SOPCC_Form" applyHtmlTag="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" cache="false" contentType="text/html">
+<body>
+  <form id="{!selector}" action="{!action}" method="post" target="_self" forceSSL="true">
+    <apex:repeat value="{!signedFields}" var="k">
+      <input type="hidden" name="{!k}" id="{!k}" value="{!IF(k = 'signed_field_names', signed, IF(k = 'unsigned_field_names', unsigned, IF(k = 'override_custom_receipt_page', URLFOR(postback), '')))}" data-signed="true" />
+    </apex:repeat>
+    <apex:repeat value="{!unsignedFields}" var="k">
+      <input type="hidden" name="{!k}" id="{!k}" value="" data-signed="false" />
+    </apex:repeat>
+    <input type="hidden" name="signature" id="signature" value=""/>
+  </form>
+</body>
+</apex:page>

@@ -1,0 +1,266 @@
+<apex:page controller="SDOC.SDUtil" docType="html-5.0" sidebar="false" showHeader="true" lightningStylesheets="true">
+<apex:stylesheet value="{!URLFOR($Resource.SDOC__jQueryUI, '/jquery-ui-1.12.1/jquery-ui.css')}" />
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Petit+Formal+Script|Dynalight|Great+Vibes|Cedarville+Cursive|Playball|Mr+Dafoe|Parisienne|Pinyon+Script|Rochester|Cedarville+Cursive|Homemade+Apple|La+Belle+Aurore|Allura|Felipa|Qwigley|Arizonia|Aguafina+Script|Meddon|&display=swap" rel="stylesheet"></link>
+  </head>
+  <apex:includeScript value="{!URLFOR($Resource.SDOC__SDoc, 'jquery-1.8.3.min.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.SDOC__SDoc,'/resources/js/pdf.js')}" />
+  <apex:includeScript value="{!URLFOR($Resource.SDOC__SDoc,'/resources/js/pdf.worker.js')}" />
+  <apex:includeScript value="{!URLFOR($Resource.SDOC__SDoc,'/resources/js/jspdf.js')}" />
+  <apex:includeScript value="{!URLFOR($Resource.SDOC__jQueryUI, '/jquery-ui-1.12.1/jquery-ui.js')}" />
+
+<style>
+  td,tr,th{
+ border-collapse: collapse;
+ cursor:all-scroll;
+}
+table{
+ width: 100%;
+ border-collapse: collapse;
+ -webkit-user-select: none; /* Safari */
+ -ms-user-select: none; /* IE 10+ and Edge */
+ user-select: none; /* Standard syntax */
+}
+</style>
+
+  <script>
+
+    /*
+    PDFStitch can be called within an iframe where all necessary parameters will be passed in via URL from the parent.
+    Parameters:
+      attIds     (required)  : An ordered comma separated list of IDs that reference either attachments or files that are 
+                                to be stitched together
+      resolution (optional)  : A number that determines the resolution of the PDF. 1 is the standard resolution, whereas 2 
+                                would be twice as sharp. If no resolution is specified, it is set to 1.5. If the resolution 
+                                is too high and there are too many pages, the code might timeout. In this case, try decreasing 
+                                the resolution and try again.
+      redirectURL (optional) : A URL to redirect the page to once the PDF has been stitched and saved.
+
+    Example iframe URL: /apex/SDPDFStitch?attIds=00P5w00001RuJ7M,00P5w00001RuJ6s&resolution=1&redirectURL=https://www.salesforce.com/
+    
+    Once PDFStitch has ran, it will post a message that includes a status and the ID of the inserted attachment.  
+    Below is an example of what some code could look like on the parent page's end. The resulting blob can be accessed 
+
+      function addEvent(element, event, fn) {
+        if (element.addEventListener) element.addEventListener(event, fn, false);
+        else if (element.attachEvent) element.attachEvent('on' + event, fn);
+      }
+      addEvent(window, 'message', receiveMessage);
+      function receiveMessage(msg) {
+        if (msg.data.status === 'PDF_MERGE_COMPLETE') {
+          console.log('PDF Merge Complete! pdfBlob: ' + msg.data.pdfBlob);
+        } else if (msg.data !== '{"cmd":"sfdcsession::ready","msgtype":"SfdcSession"}') {
+          console.log('Something went wrong in receiveMessage(). Message data was:');
+          console.log(msg.data);
+        }
+      }
+      */
+
+    j$ = jQuery.noConflict();
+
+    window.onload = function(){
+      validateParams();
+      generatePreview();
+    }
+
+    var remotingConfig = { buffer: false, escape: true, timeout: 120000 }
+
+    var files = [];
+
+    var queryString = window.location.search;
+
+    var urlParams = new URLSearchParams(queryString);
+
+    var attIds = urlParams.get('attIds');
+
+    var pageRes = urlParams.get('resolution');
+
+    var redirectURL = urlParams.get('redirectURL');
+
+    function validateParams(){
+      try{
+        //Validate Attachment IDs
+        var attList = attIds.split(',');
+        if (attList.length === 1){
+          throw new Error('Received: ' + attIds + '\n' + 
+                'attIds must be a comma separated list and contain at least 2 IDs. Example: attIds=1234567890ABCDE,FGHIJKLMNOPQRST');
+        }
+        //Validate page resolution
+        if(pageRes !== null && isNaN(parseFloat(pageRes))){
+          throw new Error('Received: ' + pageRes + '\n' +
+                'resolution must be a valid number. Example: resolution=1.75');
+        }
+      }catch(e){
+        console.error(e);
+      }
+    }
+
+    function generatePreview(){
+      console.log(pageRes);
+      if (pageRes != null && pageRes !=''){
+        pageRes = parseFloat(pageRes);
+      }else{
+        pageRes = 1.2;
+      }
+      var attachmentIds = attIds.split(',');
+      for (var i = 0; i < attachmentIds.length; i++) {
+          getPDFBase64(attachmentIds[i], i, attachmentIds.length);
+      }
+    }
+
+    //Called after backend query for PDFs is done running
+    function generatePreviewHelper(){
+      getPDFDocs().then(function(docPromises){
+        getPDFPagesAllDocs(docPromises).then((pages) => {
+          renderPages(pages);
+        })
+      });
+    }
+
+    function getPDFDocs(){
+      var docs = {};
+      return new Promise((resolve, reject) => {
+        for(var i = 0; i < files.length; i++){
+          getPDFDoc(files[i], i).then(function(docPromise){
+            docs[Object.keys(docPromise)[0]] = docPromise[Object.keys(docPromise)[0]];
+            if (Object.keys(docs).length == files.length){
+              resolve(Object.keys(docs).sort().reduce(function (result, key) {
+                result[key] = docs[key];
+                return result;
+              }, {}));
+            }
+          });
+        }
+      });
+    }
+
+    function getPDFDoc(file, index){
+      return new Promise((resolve, reject) => {
+        var docPromise = {};
+        fileReader = new FileReader();
+        fileReader.readAsArrayBuffer(dataURLtoFile(file));
+        fileReader.onload = function() {
+          var doc = new Uint8Array(this.result);
+          PDFJS.getDocument(doc).then((d) => {
+            var docObj = {}
+            docObj[index] = d;
+            resolve(docObj);
+          });
+        };
+      });
+    }
+
+    //Converts base64 pdf string to Blob
+    function dataURLtoFile(dataurl) {
+      var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+      while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new File([u8arr], 'Stitched PDF', {type:mime});
+    }
+
+    function getPDFPagesAllDocs(docPromises){
+      return new Promise((resolve) => {
+        var pageOffset = 0;
+        for(var i = 0; i < Object.keys(docPromises).length; i++){
+          var compiledPages = {};
+          var docCtr = 0;
+          getPDFPagesSingleDoc(docPromises[i], pageOffset).then((pages) => {
+            docCtr++;
+            var startIndex = Object.keys(pages)[0];
+            var endIndex = parseInt(startIndex) + parseInt(Object.keys(pages).length);
+            for(var j = startIndex; j < parseInt(startIndex) + parseInt(Object.keys(pages).length); j++){
+              compiledPages[j] = pages[j];
+            }
+            if (docCtr == Object.keys(docPromises).length){
+              resolve(Object.keys(compiledPages).sort().reduce(function (result, key) {
+                result[key] = compiledPages[key];
+                return result;
+              }, {}));
+            }
+          });
+          pageOffset += docPromises[i].numPages;
+        }
+      });
+    }
+
+    function getPDFPagesSingleDoc(pdf, pageOffset){
+      var pages = {};
+      //gather one promise of page information per page
+      return new Promise((resolve, reject) => {
+        var pgCtr = 0;
+        for(var pageNum = 1; pageNum <= pdf.numPages; pageNum++){
+          pdf.getPage(pageNum).then(function(p) {
+            pgCtr++;
+            pages[pageOffset + pgCtr] = p;
+            if (Object.keys(pages).length == pdf.numPages){
+              resolve(pages);
+            }
+          });
+        }
+      });
+    }
+
+    var pagePromises = [];
+
+    function renderPages(pages){
+      var canvasId = 0;
+      var startIndex = Object.keys(pages)[0];
+      var endIndex = parseInt(startIndex) + parseInt(Object.keys(pages).length);
+      for(var j = startIndex; j < parseInt(startIndex) + parseInt(Object.keys(pages).length); j++){
+        renderPage(pages[j], canvasId, Object.keys(pages).length);
+        canvasId++;
+      }
+      Promise.all(pagePromises).then(function() {
+        downloadPDF();
+      });
+    }
+
+    function renderPage(page, num, numPages) {
+      var canvasId = 'pdf-viewer-' + num;
+      j$('#pdf-viewer').append(j$('<canvas/>', {'id': canvasId, 'style': 'width:100%;'}));
+      var canvas = document.getElementById(canvasId);
+      var viewport = page.getViewport(pageRes);
+      var context = canvas.getContext('2d');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      pagePromises.push(page.render({canvasContext: context, viewport: viewport}));
+    }
+
+    function downloadPDF() {
+      var canvases = document.querySelectorAll('[id^="pdf-viewer-"]');
+      var pdf = new jsPDF("p", "mm", "a4");
+      var width = pdf.internal.pageSize.width;
+      var height = pdf.internal.pageSize.height;
+      for(var i = 0; i < canvases.length; i++){
+        if (i > 0){
+          pdf.addPage();
+        }
+        var imgData = canvases[i].toDataURL("image/jpeg", 1.0);
+        pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+      }
+      var PDFBlob = pdf.output('blob');
+      parent.postMessage({ "status" : "PDF_MERGE_COMPLETE", "pdfBlob" : PDFBlob}, '*');
+    }
+
+
+    function getPDFBase64(fileOrAttachmentId, index, fileCount) {
+      Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.SDUtil.SDPDFMerge_loadFiles}',
+        fileOrAttachmentId || '',
+        function(result, event) {
+          if(!!result && event.status) {
+            files[index] = result;
+            if(files.length == fileCount){
+              generatePreviewHelper();
+            }
+          } else {
+            alert('Error in retrieving PDF base64: ' + event.message);
+          } 
+        },{escape: false}
+      );
+    }    
+  </script>
+  <div style="visibility:hidden;" id="pdf-viewer"></div>
+</apex:page>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Loglevels for SCC Connector Logger functions</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>NSSCCConnector__Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NSSCCConnector__Loglevel__c</fullName>
+        <defaultValue>&quot;OFF&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Loglevel for function</description>
+        <externalId>false</externalId>
+        <inlineHelpText>OFF
+MONITOR
+FATAL
+ERROR
+INFO
+ALL</inlineHelpText>
+        <label>Loglevel</label>
+        <length>10</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>SCC LogLevels</label>
+    <visibility>Public</visibility>
+</CustomObject>

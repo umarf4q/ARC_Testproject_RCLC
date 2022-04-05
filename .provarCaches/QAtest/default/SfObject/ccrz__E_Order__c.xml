@@ -1,0 +1,1653 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="ccrz__E_Order__c.SYSTEM" defaultFlexipageId="CC_Order_Record_Page1" deleteable="true" keyPrefix="a4N" label="CC Order" labelPlural="CC Orders" layoutable="true" metadataLabel="CC Order" n="ccrz__E_Order__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="CC Order (a4N)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a4N/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="CC Order ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">ccrz__E_Order__c.CreatedDate</key>
+          <value valueClass="string">Created Date</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField length="18" n="ccrz__Account__c" relationshipName="ccrz__Account__r" t="Account" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="ccrz__AdjustmentAmount__c" precision="18" scale="2" t="Adjustment Amount" type="currency"/>
+    <sfField length="255" n="ccrz__AdjustmentReason__c" t="Adjustment Reason"/>
+    <sfField length="18" n="ccrz__BillTo__c" relationshipName="ccrz__BillTo__r" t="Bill To" type="reference">
+      <referenceTos>
+        <string>ccrz__E_ContactAddr__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="80" n="ccrz__BuyerCompanyName__c" t="Company Name"/>
+    <sfField length="80" n="ccrz__BuyerEmail__c" t="Email" type="email"/>
+    <sfField length="40" n="ccrz__BuyerFirstName__c" t="First Name"/>
+    <sfField length="80" n="ccrz__BuyerLastName__c" t="Last Name"/>
+    <sfField length="40" n="ccrz__BuyerMobilePhone__c" t="Mobile Phone" type="phone"/>
+    <sfField length="40" n="ccrz__BuyerPhone__c" t="Phone" type="phone"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="32768" n="ccrz__CCEmailAddress__c" t="CCEmailAddress" type="textarea"/>
+    <sfField editPermission="false" length="18" n="ccrz__CCSubscription__c" relationshipLabel="CC Orders" relationshipName="ccrz__CCSubscription__r" t="CCSubscription" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Subscription__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="ccrz__Contact__c" relationshipLabel="CC Orders" relationshipName="ccrz__Contact__r" t="Contact" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="50" n="ccrz__ContractId__c" t="Contract ID"/>
+    <sfField length="10" n="ccrz__CurrencyISOCode__c" t="Currency ISO Code"/>
+    <sfField length="20" n="ccrz__EffectiveAccountID__c" t="Effective Account ID"/>
+    <sfField editPermission="false" length="250" n="ccrz__EncryptedId__c" t="Encrypted Id"/>
+    <sfField length="50" n="ccrz__ExtCarrier__c" t="Ext Carrier"/>
+    <sfField length="18" n="ccrz__ExtShipTo__c" relationshipName="ccrz__ExtShipTo__r" t="Ext ShipTo" type="reference">
+      <referenceTos>
+        <string>ccrz__E_ContactAddr__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="250" n="ccrz__ExtShipTrackNo__c" t="Ext ShipTrack No"/>
+    <sfField editPermission="false" n="ccrz__IsAnonymous__c" t="Is Anonymous" type="_boolean"/>
+    <sfField length="255" n="ccrz__Name__c" t="Order Name"/>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="1000" n="ccrz__Note__c" t="Note" type="textarea"/>
+    <sfField n="ccrz__OrderDate__c" t="Order Date" type="date"/>
+    <sfField editPermission="false" length="128" n="ccrz__OrderId__c" t="Order Id"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Name" formulaTreatBlanksAs="BlankAsZero" length="1300" n="ccrz__OrderName__c" t="Order Name (Duplicated)" updateable="false"/>
+    <sfField n="ccrz__OrderNumber__c" precision="18" t="Order Number" type="_double"/>
+    <sfField editPermission="false" length="18" n="ccrz__OrderSeller__c" readPermission="false" relationshipLabel="Seller Orders" relationshipName="ccrz__OrderSeller__r" t="Order Seller" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Seller__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="255" n="ccrz__OrderStatus__c" t="Order Status" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9,10,11,12</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Open" s=""/>
+        <sfPLE id="2" n="Order Submitted" s=""/>
+        <sfPLE id="3" n="Cancel Submitted" s=""/>
+        <sfPLE id="4" n="Cancelled" s=""/>
+        <sfPLE id="5" n="Completed" s=""/>
+        <sfPLE id="6" n="Shipped" s=""/>
+        <sfPLE id="7" n="Return Submitted" s=""/>
+        <sfPLE id="8" n="Returned" s=""/>
+        <sfPLE id="9" n="In Process" s=""/>
+        <sfPLE id="10" n="Partial Shipped" s=""/>
+        <sfPLE id="11" n="Bill Of Material" s=""/>
+        <sfPLE id="12" n="On Hold" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="ccrz__Order__c" relationshipLabel="Children Orders" relationshipName="ccrz__Order__r" t="Order" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Order__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="ccrz__OriginatedCart__c" relationshipName="ccrz__OriginatedCart__r" t="Originated Cart" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Cart__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="30" n="ccrz__PONumber__c" readPermission="false" t="PO Number"/>
+    <sfField editPermission="false" length="50" n="ccrz__PaymentMethod__c" t="PaymentMethod"/>
+    <sfField n="ccrz__RequestDate__c" t="Request Date" type="date"/>
+    <sfField n="ccrz__ShipAmount__c" precision="18" scale="2" t="Ship Amount" type="currency"/>
+    <sfField n="ccrz__ShipComplete__c" t="Ship Complete" type="_boolean"/>
+    <sfField n="ccrz__ShipDiscountAmount__c" precision="18" scale="2" t="Ship Discount Amount" type="currency"/>
+    <sfField length="50" n="ccrz__ShipMethod__c" t="Ship Method"/>
+    <sfField length="128" n="ccrz__ShipStructure__c" t="Ship Structure"/>
+    <sfField length="18" n="ccrz__ShipTo__c" relationshipName="ccrz__ShipTo__r" t="Ship To" type="reference">
+      <referenceTos>
+        <string>ccrz__E_ContactAddr__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="ccrz__SkipTax__c" t="Skip Tax Calculation" type="_boolean"/>
+    <sfField editPermission="false" length="18" n="ccrz__SplitParentOrder__c" readPermission="false" relationshipLabel="CC Orders (Split Parent Order)" relationshipName="ccrz__SplitParentOrder__r" t="Split Parent Order" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Order__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" n="ccrz__SplitProcessed__c" readPermission="false" t="Split Processed" type="_boolean"/>
+    <sfField length="255" n="ccrz__Storefront__c" t="Storefront"/>
+    <sfField n="ccrz__TaxAmount__c" precision="18" scale="2" t="Tax Amount" type="currency"/>
+    <sfField n="ccrz__TaxExemptFlag__c" t="Tax Exempt Flag" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__ShipAmount__c + ccrz__SubtotalAmount__c + ccrz__TaxAmount__c +  ccrz__AdjustmentAmount__c  +  ccrz__ShipDiscountAmount__c + ccrz__TotalSurcharge__c" formulaTreatBlanksAs="BlankAsZero" n="ccrz__TotalAmount__c" precision="18" scale="2" t="Total Amount" type="currency" updateable="false"/>
+    <sfField n="ccrz__TotalDiscount__c" precision="18" scale="2" t="Total Discount" type="currency"/>
+    <sfField n="ccrz__TotalSurcharge__c" precision="18" scale="2" t="Total Surcharge" type="currency"/>
+    <sfField length="18" n="ccrz__User__c" relationshipName="ccrz__User__r" t="User" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="ccrz__VerifyExemptionFlag__c" t="VerifyExemptionFlag" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="ccrz__SubtotalAmount__c" precision="18" scale="2" summarizedField="ccrz__E_OrderItem__c.ccrz__ItemTotal__c" summaryForeignKey="ccrz__E_OrderItem__c.ccrz__Order__c" summaryOperation="sum" t="Subtotal Amount" type="currency" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="ccrz__TaxSubTotalAmount__c" precision="18" scale="2" summarizedField="ccrz__E_OrderItem__c.ccrz__ItemTotal__c" summaryForeignKey="ccrz__E_OrderItem__c.ccrz__Order__c" summaryOperation="sum" t="Tax SubTotal Amount" type="currency" updateable="false"/>
+    <sfField editPermission="false" n="Auto_Approval__c" t="Auto Approval" type="_boolean"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Error_Message__c" t="Error Message" type="textarea"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF( ccrz__Storefront__c = 'CREStore', '43', \n    IF( ccrz__Storefront__c = 'CPS', '45',  \n        IF( ccrz__Storefront__c = 'GeneralStore', \n            IF( NSSCCConnector_from_SFCC__c=TRUE, '46',  \n                IF( Opportunity_Order__r.Override_Channel__c = false, '42',  \n                    IF( Opportunity_Order__r.Override_Channel__c = true, '47',  \n                        IF( AND( NOT(ISBLANK(Opportunity_Order__c)),Opportunity_Order__r.RecordType.Name != 'Sales Opportunity',Opportunity_Order__r.RecordType.Name != 'Order Opportunity'), '48', \n'46') ) ) ), '') ) )" length="1300" n="FOCIS_Category__c" t="FOCIS Category" updateable="false"/>
+    <sfField length="18" n="NSSCCConnector_Order_Contact__c" relationshipLabel="CC Orders (Order Contact)" relationshipName="NSSCCConnector_Order_Contact__r" t="Order Contact" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="255" n="NSSCCConnector_Order_SCCSync_Status__c" restrictedPicklist="true" t="Order SCC Sync Status" type="picklist">
+      <picklistEntryIds>13,14,15</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="13" n="Created" s=""/>
+        <sfPLE id="14" n="Updated" s=""/>
+        <sfPLE id="15" n="Synchronised" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="NSSCCConnector_SFCC_Order_Number__c" t="B2C Order Number"/>
+    <sfField n="NSSCCConnector_SFCC_Order_Total__c" precision="18" scale="2" t="Order Total" type="currency"/>
+    <sfField editPermission="false" n="NSSCCConnector_from_SFCC__c" t="from SFCC" type="_boolean"/>
+    <sfField editPermission="false" n="NSSCCConnector_isContactIdExist__c" t="isContactIdExist" type="_boolean"/>
+    <sfField length="18" n="Opportunity_Order__c" relationshipLabel="CC Orders" relationshipName="Opportunity_Order__r" t="Opportunity Order" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__OriginatedCart__r.Opportunity__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Opportunity__c" t="Opportunity" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Text(ccrz__OrderNumber__c)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Order_Number_Text__c" t="Order Number" updateable="false"/>
+    <sfField editPermission="false" n="Override_Credit_Limit__c" t="Override Credit Limit" type="_boolean"/>
+    <sfField n="Resend_Receipt__c" t="Resend Receipt" type="_boolean"/>
+    <sfField length="50" n="Supplemental_Information__c" t="Supplemental Information"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="Highest_Item_Discount__c" precision="7" scale="4" summarizedField="ccrz__E_OrderItem__c.ccrz__PercentDiscount__c" summaryForeignKey="ccrz__E_OrderItem__c.ccrz__Order__c" summaryOperation="max" t="Highest Item Discount" type="percent" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(ccrz__Account__r.Name!=NULL, ccrz__Account__r.Name, 'Redcross')" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Account_Name__c" t="Account Name" updateable="false"/>
+    <sfField n="Is_Return_Order__c" t="Is Return Order" type="_boolean"/>
+    <sfField n="Is_Submitted__c" t="Is Submitted" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__User__r.ContactId" formulaTreatBlanksAs="BlankAsZero" length="1300" n="User_Contact__c" readPermission="false" t="User Contact" updateable="false"/>
+    <sfField n="CRE_Request_Processed__c" t="CRE Request Processed" type="_boolean"/>
+    <sfField editPermission="false" n="CC_Transaction_Payment_Date__c" readPermission="false" t="CC Transaction Payment Date" type="date"/>
+    <sfField length="255" n="Coupon_Codes__c" t="Coupon Codes"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Refund_Notes__c" t="Refund Notes" type="textarea"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="LastModifiedBy.Profile.Name" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Last_Modified_By_User_Profile__c" t="Last Modified By User Profile" updateable="false"/>
+    <sfField editPermission="false" n="Online_Vouchers_Sent__c" t="Online Vouchers Sent" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(NOT(ISBLANK(ccrz__Account__r.ShippingState)),\n  ccrz__Account__r.ShippingState,\n  ccrz__Account__r.BillingState\n)" length="1300" n="Tax_State__c" readPermission="false" t="Tax State" updateable="false"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship childName="ccrz__E_Order__Share" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="01I0V000002N5Nc.Share"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="ccrz__E_Order__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002N5Nc.History"/>
+    <sfObjectRelationship childName="Associated_Orders__c" field="Order__c" n="Associated_Orders__r" relationshipName="Associated_Orders__r" s="2-" t="01I0V000002Ef5Z"/>
+    <sfObjectRelationship childName="Fulfillment_Item__c" field="Order__c" n="Fulfillment_Items__r" relationshipName="Fulfillment_Items__r" s="2-" t="01I0V000002Ef5d"/>
+    <sfObjectRelationship childName="Fulfillment__c" field="Order__c" n="Fulfillments__r" relationshipName="Fulfillments__r" s="2-" t="01I0V000002Ef5e"/>
+    <sfObjectRelationship childName="SFDC_MDF_Claim__c" field="CC_Order__c" n="Grant_Claims__r" relationshipName="Grant_Claims__r" s="2-" t="01I0V000002Ef5n"/>
+    <sfObjectRelationship childName="Voucher__c" field="CC_Order__c" n="Voucher__r" relationshipName="Voucher__r" s="2-" t="01I0V000002Ef5r"/>
+    <sfObjectRelationship childName="SDOC__SDRelationship__c" field="CC_Order__c" n="S_Docs_Relationships__r" relationshipName="S_Docs_Relationships__r" s="2-" t="01I0V000002N5Mh"/>
+    <sfObjectRelationship childName="ccrz__E_InvoiceItem__c" field="ccrz__CCOrder__c" n="ccrz__CCInvoiceItems__r" relationshipName="ccrz__CCInvoiceItems__r" s="2-" t="01I0V000002N5NN"/>
+    <sfObjectRelationship childName="ccrz__E_Invoice__c" field="ccrz__CCOrder__c" n="ccrz__CCInvoices__r" relationshipName="ccrz__CCInvoices__r" s="2-" t="01I0V000002N5NO"/>
+    <sfObjectRelationship childName="ccrz__E_OrderItemGroup__c" field="ccrz__Order__c" n="ccrz__E_OrderItemGroups__r" relationshipName="ccrz__E_OrderItemGroups__r" s="2-" t="01I0V000002N5NW"/>
+    <sfObjectRelationship childName="ccrz__E_OrderItem__c" field="ccrz__Order__c" n="ccrz__E_OrderItems__r" relationshipName="ccrz__E_OrderItems__r" s="2-" t="01I0V000002N5NY"/>
+    <sfObjectRelationship childName="ccrz__E_OrderShipment__c" field="ccrz__Order__c" n="ccrz__E_OrderShipments__r" relationshipName="ccrz__E_OrderShipments__r" s="2-" t="01I0V000002N5Na"/>
+    <sfObjectRelationship childName="ccrz__E_OrderTerm__c" field="ccrz__Order__c" n="ccrz__OrderTerms__r" relationshipName="ccrz__OrderTerms__r" s="2-" t="01I0V000002N5Nb"/>
+    <sfObjectRelationship childName="ccrz__E_Order__c" field="ccrz__Order__c" n="ccrz__E_Orders__r" relationshipName="ccrz__E_Orders__r" s="2-" t="01I0V000002N5Nc"/>
+    <sfObjectRelationship childName="ccrz__E_Order__c" field="ccrz__SplitParentOrder__c" n="ccrz__OrderSplits__r" relationshipName="ccrz__OrderSplits__r" s="2-" t="01I0V000002N5Nc"/>
+    <sfObjectRelationship childName="ccrz__E_PaymentDetail__c" field="ccrz__CC_Order__c" n="ccrz__E_PaymentDetails__r" relationshipName="ccrz__E_PaymentDetails__r" s="2-" t="01I0V000002N5Ni"/>
+    <sfObjectRelationship childName="ccrz__E_Subscription__c" field="ccrz__CCOrder__c" n="ccrz__CCSubscriptions__r" relationshipName="ccrz__CCSubscriptions__r" s="2-" t="01I0V000002N5Od"/>
+    <sfObjectRelationship childName="ccrz__E_TransactionPayment__c" field="ccrz__CCOrder__c" n="ccrz__TransactionPayments__r" relationshipName="ccrz__TransactionPayments__r" s="2-" t="01I0V000002N5Og"/>
+    <sfObjectRelationship childName="redwing__ILT_Class__c" field="CC_Order_Number__c" n="ILT_Classes__r" relationshipName="ILT_Classes__r" s="2-" t="01I0V000002N5PQ"/>
+    <sfObjectRelationship childName="redwing__ILT_Class__c" field="CPS_Order__c" n="CPS_Class__r" relationshipName="CPS_Class__r" s="2-" t="01I0V000002N5PQ"/>
+    <sfObjectRelationship childName="Integration_Error_Log__c" field="Order__c" n="Integration_Error_Logs__r" relationshipName="Integration_Error_Logs__r" s="2-" t="01I3o000002dqRY"/>
+    <sfObjectRelationship childName="Training_Events__c" field="CC_Order__c" n="Training_Event__r" relationshipName="Training_Event__r" s="2-" t="01Id00000005m3o"/>
+    <sfObjectRelationship childName="Case" field="CC_Order__c" n="Cases__r" relationshipName="Cases__r" s="2-" t="Case"/>
+    <sfObjectRelationship childName="Case" field="Adjusted_Child_Order__c" n="Cases1__r" relationshipName="Cases1__r" s="2-" t="Case"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType n="&lt;default&gt;" t="Web Record Type Mapping">
+      <children>
+        <sfLayout interactionLogEnabled="true" layoutFileName="ccrz__E_Order__c-No Edit PHSS CC Order Layout" n="Primary" profileLayout="false" s="" t="Page Layout">
+          <layoutTypes>
+            <sfLayoutType layoutType="Edit" n="Edit" t="Web Layout Type">
+              <children>
+                <sfLayoutSection customLabel="false" detailHeading="false" n="Information" s="" seqNum="0" style="TwoColumnsTopToBottom" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Number" n="Order Number" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Order_Number_Text__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Date" n="Order Date" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__OrderDate__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Name" n="Order Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Name__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Status" n="Order Status" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__OrderStatus__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Originated Cart" n="Originated Cart" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__OriginatedCart__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Encrypted Id" n="Encrypted Id" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__EncryptedId__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="3">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Total Amount" n="Total Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TotalAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Currency ISO Code" n="Currency ISO Code" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__CurrencyISOCode__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="4">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Subtotal Amount" n="Subtotal Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__SubtotalAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="VerifyExemptionFlag" n="VerifyExemptionFlag" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__VerifyExemptionFlag__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="5">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship Discount Amount" n="Ship Discount Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipDiscountAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ext Carrier" n="Ext Carrier" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ExtCarrier__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="6">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Adjustment Amount" n="Adjustment Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__AdjustmentAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ext ShipTo" n="Ext ShipTo" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ExtShipTo__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="7">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Adjustment Reason" n="Adjustment Reason" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__AdjustmentReason__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ext ShipTrack No" n="Ext ShipTrack No" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ExtShipTrackNo__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="8">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Coupon Codes" n="Coupon Codes" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Coupon_Codes__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="PO Number" n="PO Number" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__PONumber__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="9">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship Method" n="Ship Method" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipMethod__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skip Tax Calculation" n="Skip Tax Calculation" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__SkipTax__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="10">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Tax SubTotal Amount" n="Tax SubTotal Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TaxSubTotalAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order" n="Order" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Order__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="11">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Split Parent Order" n="Split Parent Order" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__SplitParentOrder__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Storefront" n="Storefront" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Storefront__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="12">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Split Processed" n="Split Processed" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__SplitProcessed__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="FOCIS Category" n="FOCIS Category" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="FOCIS_Category__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="13">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Seller" n="Order Seller" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__OrderSeller__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="14">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="B2C Order Number" n="B2C Order Number" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="NSSCCConnector_SFCC_Order_Number__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="15">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Contact" n="Order Contact" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="NSSCCConnector_Order_Contact__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="16">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="from SFCC" n="from SFCC" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="NSSCCConnector_from_SFCC__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="17">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CRE Request Processed" n="CRE Request Processed" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CRE_Request_Processed__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="18">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order SCC Sync Status" n="Order SCC Sync Status" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="NSSCCConnector_Order_SCCSync_Status__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="19">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Opportunity Order" n="Opportunity Order" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Opportunity_Order__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="20">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Auto Approval" n="Auto Approval" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Auto_Approval__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="21">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Override Credit Limit" n="Override Credit Limit" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Override_Credit_Limit__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="22">
+                      <children>
+                        <sfLI label="Error Message" n="Error Message" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Error_Message__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="23">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Highest Item Discount" n="Highest Item Discount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Highest_Item_Discount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="24">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Supplemental Information" n="Supplemental Information" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Supplemental_Information__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" n="Buyer Info" s="" seqNum="1" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="First Name" n="First Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerFirstName__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Email" n="Email" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerEmail__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Last Name" n="Last Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerLastName__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Phone" n="Phone" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerPhone__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Company Name" n="Company Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerCompanyName__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Mobile Phone" n="Mobile Phone" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerMobilePhone__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" n="Contact" s="" seqNum="2" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI label="Is Anonymous" n="Is Anonymous" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__IsAnonymous__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Owner" n="Owner" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="OwnerId" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="User" n="User" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__User__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Contact" n="Contact" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Contact__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="3">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Account" n="Account" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Account__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" n="Billing" s="" seqNum="3" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Bill To" n="Bill To" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BillTo__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Contract ID" n="Contract ID" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ContractId__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Tax Exempt Flag" n="Tax Exempt Flag" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TaxExemptFlag__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" n="Shipping" s="" seqNum="4" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship To" n="Ship To" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipTo__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Request Date" n="Request Date" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__RequestDate__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI label="Note" n="Note" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Note__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship Complete" n="Ship Complete" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipComplete__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI label="Online Vouchers Sent" n="Online Vouchers Sent" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Online_Vouchers_Sent__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" n="Amounts" s="" seqNum="5" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship Amount" n="Ship Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Total Surcharge" n="Total Surcharge" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TotalSurcharge__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Tax Amount" n="Tax Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TaxAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Total Discount" n="Total Discount" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TotalDiscount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" editHeading="false" n="Refund Notes" s="" seqNum="6" style="OneColumn" t="Web Layout Section - false">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI label="Refund Notes" n="Refund Notes" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Refund_Notes__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+              </children>
+            </sfLayoutType>
+            <sfLayoutType layoutType="Detail" n="Detail" s="2-" t="Web Layout Type">
+              <children>
+                <sfLayoutSection customLabel="false" detailHeading="false" editHeading="false" n="Information" s="" seqNum="0" style="TwoColumnsTopToBottom" t="Web Layout Section - false">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Number" n="Order Number" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Order_Number_Text__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Date" n="Order Date" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__OrderDate__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Name" n="Order Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Name__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Status" n="Order Status" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__OrderStatus__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Originated Cart" n="Originated Cart" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__OriginatedCart__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Encrypted Id" n="Encrypted Id" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__EncryptedId__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="3">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Total Amount" n="Total Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TotalAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Currency ISO Code" n="Currency ISO Code" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__CurrencyISOCode__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="4">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Subtotal Amount" n="Subtotal Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__SubtotalAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="VerifyExemptionFlag" n="VerifyExemptionFlag" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__VerifyExemptionFlag__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="5">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship Discount Amount" n="Ship Discount Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipDiscountAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ext Carrier" n="Ext Carrier" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ExtCarrier__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="6">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Adjustment Amount" n="Adjustment Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__AdjustmentAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ext ShipTo" n="Ext ShipTo" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ExtShipTo__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="7">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Adjustment Reason" n="Adjustment Reason" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__AdjustmentReason__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ext ShipTrack No" n="Ext ShipTrack No" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ExtShipTrackNo__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="8">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Coupon Codes" n="Coupon Codes" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Coupon_Codes__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="PO Number" n="PO Number" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__PONumber__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="9">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship Method" n="Ship Method" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipMethod__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skip Tax Calculation" n="Skip Tax Calculation" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__SkipTax__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="10">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Tax SubTotal Amount" n="Tax SubTotal Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TaxSubTotalAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order" n="Order" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Order__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="11">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Split Parent Order" n="Split Parent Order" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__SplitParentOrder__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Storefront" n="Storefront" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Storefront__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="12">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Split Processed" n="Split Processed" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__SplitProcessed__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="FOCIS Category" n="FOCIS Category" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="FOCIS_Category__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="13">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Seller" n="Order Seller" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__OrderSeller__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="14">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="B2C Order Number" n="B2C Order Number" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="NSSCCConnector_SFCC_Order_Number__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="15">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order Contact" n="Order Contact" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="NSSCCConnector_Order_Contact__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="16">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="from SFCC" n="from SFCC" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="NSSCCConnector_from_SFCC__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="17">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CRE Request Processed" n="CRE Request Processed" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CRE_Request_Processed__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="18">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Order SCC Sync Status" n="Order SCC Sync Status" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="NSSCCConnector_Order_SCCSync_Status__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="19">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Opportunity Order" n="Opportunity Order" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Opportunity_Order__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="20">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Auto Approval" n="Auto Approval" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Auto_Approval__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="21">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Override Credit Limit" n="Override Credit Limit" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Override_Credit_Limit__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="22">
+                      <children>
+                        <sfLI label="Error Message" n="Error Message" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Error_Message__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="23">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Highest Item Discount" n="Highest Item Discount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Highest_Item_Discount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="24">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Supplemental Information" n="Supplemental Information" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Supplemental_Information__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" editHeading="false" n="Buyer Info" s="" seqNum="1" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="First Name" n="First Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerFirstName__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Email" n="Email" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerEmail__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Last Name" n="Last Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerLastName__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Phone" n="Phone" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerPhone__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Company Name" n="Company Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerCompanyName__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Mobile Phone" n="Mobile Phone" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BuyerMobilePhone__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" editHeading="false" n="Contact" s="" seqNum="2" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI label="Is Anonymous" n="Is Anonymous" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__IsAnonymous__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Owner" n="Owner" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="OwnerId" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="User" n="User" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__User__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Created By" n="Created By" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CreatedById" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Contact" n="Contact" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Contact__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Last Modified By" n="Last Modified By" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="LastModifiedById" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="3">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Account" n="Account" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Account__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" editHeading="false" n="Billing" s="" seqNum="3" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Bill To" n="Bill To" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__BillTo__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Contract ID" n="Contract ID" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ContractId__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Tax Exempt Flag" n="Tax Exempt Flag" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TaxExemptFlag__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" editHeading="false" n="Shipping" s="" seqNum="4" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship To" n="Ship To" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipTo__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Request Date" n="Request Date" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__RequestDate__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI label="Note" n="Note" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__Note__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship Complete" n="Ship Complete" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipComplete__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI label="Online Vouchers Sent" n="Online Vouchers Sent" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Online_Vouchers_Sent__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" editHeading="false" n="Amounts" s="" seqNum="5" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ship Amount" n="Ship Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__ShipAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Total Surcharge" n="Total Surcharge" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TotalSurcharge__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Tax Amount" n="Tax Amount" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TaxAmount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Total Discount" n="Total Discount" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="ccrz__TotalDiscount__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" editHeading="false" n="Refund Notes" s="" seqNum="6" style="OneColumn" t="Web Layout Section - false">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI label="Refund Notes" n="Refund Notes" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Refund_Notes__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+              </children>
+            </sfLayoutType>
+          </layoutTypes>
+          <relatedLists>
+            <sfRelatedList fieldName="ccrz__Order__c" label="Order Items" n="ccrz__E_OrderItems__r" nameAlias="ccrz__E_OrderItem__c.ccrz__Order__c" relationshipName="ccrz__E_OrderItems__r" s="3-" t="Order Items (ccrz__Order__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="OrderItemAutoNumber"/>
+                <sfRelatedListColumn alias="ccrz__Product__c" n="ccrz__Product__c" s="" seq="1" t="Product"/>
+                <sfRelatedListColumn alias="toLabel(ccrz__OrderItemStatus__c)" n="ccrz__OrderItemStatus__c" s="" seq="2" t="Order Item Status"/>
+                <sfRelatedListColumn alias="ccrz__Price__c" n="ccrz__Price__c" s="" seq="3" t="Price"/>
+                <sfRelatedListColumn alias="ccrz__Quantity__c" n="ccrz__Quantity__c" s="" seq="4" t="Quantity"/>
+                <sfRelatedListColumn alias="ccrz__ItemTotal__c" n="ccrz__ItemTotal__c" s="" seq="5" t="Item Total"/>
+                <sfRelatedListColumn alias="ILT_Class_Id__c" n="ILT_Class_Id__c" s="" seq="6" t="ILT Class Id"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="CC_Order__c" label="Voucher" n="Voucher__r" nameAlias="Voucher__c.CC_Order__c" relationshipName="Voucher__r" s="3-" t="Voucher (CC_Order__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Voucher Number"/>
+                <sfRelatedListColumn alias="CC_Product__c" n="CC_Product__c" s="" seq="1" t="CC Product"/>
+                <sfRelatedListColumn alias="toLabel(Status__c)" n="Status__c" s="" seq="2" t="Status"/>
+                <sfRelatedListColumn alias="ILT_Class__c" n="ILT_Class__c" s="" seq="3" t="ILT Class"/>
+                <sfRelatedListColumn alias="QR_Code_Web_Address__c" n="QR_Code_Web_Address__c" s="" seq="4" t="QR Code Web Address"/>
+                <sfRelatedListColumn alias="User__c" n="User__c" s="" seq="5" t="User"/>
+                <sfRelatedListColumn alias="CC_Order_Item__c" n="CC_Order_Item__c" s="" seq="6" t="CC Order Item"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="Order__c" label="Fulfillments" n="Fulfillments__r" nameAlias="Fulfillment__c.Order__c" relationshipName="Fulfillments__r" s="3-" t="Fulfillments (Order__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Fulfillment Name"/>
+                <sfRelatedListColumn alias="toLabel(Type__c)" n="Type__c" s="" seq="1" t="Type"/>
+                <sfRelatedListColumn alias="toLabel(Status__c)" n="Status__c" s="" seq="2" t="Status"/>
+                <sfRelatedListColumn alias="Fulfillment_Date__c" n="Fulfillment_Date__c" s="" seq="3" t="Fulfillment Date"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ccrz__CCOrder__c" label="CC Transaction Payments" n="ccrz__TransactionPayments__r" nameAlias="ccrz__E_TransactionPayment__c.ccrz__CCOrder__c" relationshipName="ccrz__TransactionPayments__r" s="3-" t="CC Transaction Payments (ccrz__CCOrder__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="CC Transaction Payment Name"/>
+                <sfRelatedListColumn alias="ccrz__AccountType__c" n="ccrz__AccountType__c" s="" seq="1" t="Account Type"/>
+                <sfRelatedListColumn alias="ccrz__StoredPayment__c" n="ccrz__StoredPayment__c" s="" seq="2" t="Stored Payment"/>
+                <sfRelatedListColumn alias="ccrz__Amount__c" n="ccrz__Amount__c" s="" seq="3" t="Amount"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ccrz__Order__c" label="Order Shipments" n="ccrz__E_OrderShipments__r" nameAlias="ccrz__E_OrderShipment__c.ccrz__Order__c" relationshipName="ccrz__E_OrderShipments__r" s="3-" t="Order Shipments (ccrz__Order__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Order Shipment Number"/>
+                <sfRelatedListColumn alias="toLabel(ccrz__Carrier__c)" n="ccrz__Carrier__c" s="" seq="1" t="Carrier"/>
+                <sfRelatedListColumn alias="ccrz__DeliveryDate__c" n="ccrz__DeliveryDate__c" s="" seq="2" t="Delivery Date"/>
+                <sfRelatedListColumn alias="ccrz__ShipmentDate__c" n="ccrz__ShipmentDate__c" s="" seq="3" t="Shipment Date"/>
+                <sfRelatedListColumn alias="ccrz__ShippingMethod__c" n="ccrz__ShippingMethod__c" s="" seq="4" t="Shipping Method"/>
+                <sfRelatedListColumn alias="ccrz__TrackingNo__c" n="ccrz__TrackingNo__c" s="" seq="5" t="Tracking Number"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ccrz__Order__c" label="CC Order Terms" n="ccrz__OrderTerms__r" nameAlias="ccrz__E_OrderTerm__c.ccrz__Order__c" relationshipName="ccrz__OrderTerms__r" s="3-" t="CC Order Terms (ccrz__Order__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="CC Order Term Auto Number"/>
+                <sfRelatedListColumn alias="ccrz__Title__c" n="ccrz__Title__c" s="" seq="1" t="Title"/>
+                <sfRelatedListColumn alias="ccrz__Description__c" n="ccrz__Description__c" s="" seq="2" t="Description"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="Order__c" label="Associated Orders" n="Associated_Orders__r" nameAlias="Associated_Orders__c.Order__c" relationshipName="Associated_Orders__r" s="3-" t="Associated Orders (Order__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Associated Orders #"/>
+                <sfRelatedListColumn alias="Case__c" n="Case__c" s="" seq="1" t="Case"/>
+                <sfRelatedListColumn alias="Order_Number__c" n="Order_Number__c" s="" seq="2" t="Order Number"/>
+                <sfRelatedListColumn alias="Order_Status__c" n="Order_Status__c" s="" seq="3" t="Order Status"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="CC_Order__c" label="Training Event" n="Training_Event__r" nameAlias="Training_Events__c.CC_Order__c" relationshipName="Training_Event__r" s="3-" t="Training Event (CC_Order__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Training Events Name"/>
+                <sfRelatedListColumn alias="Course_Name__c" n="Course_Name__c" s="" seq="1" t="Course Name"/>
+                <sfRelatedListColumn alias="End_Date__c" n="End_Date__c" s="" seq="2" t="End Date"/>
+                <sfRelatedListColumn alias="Start_Date__c" n="Start_Date__c" s="" seq="3" t="Start Date"/>
+                <sfRelatedListColumn alias="Number_in_Class__c" n="Number_in_Class__c" s="" seq="4" t="Number in Class"/>
+                <sfRelatedListColumn alias="Number_of_Instructors__c" n="Number_of_Instructors__c" s="" seq="5" t="Number of Instructors"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="CC_Order_Number__c" label="ILT Classes" n="ILT_Classes__r" nameAlias="redwing__ILT_Class__c.CC_Order_Number__c" relationshipName="ILT_Classes__r" s="3-" t="ILT Classes (CC_Order_Number__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="ILT Class Name"/>
+                <sfRelatedListColumn alias="Learning_Plan__c" n="Learning_Plan__c" s="" seq="1" t="Course Name"/>
+                <sfRelatedListColumn alias="Cloud_Craze_Product__c" n="Cloud_Craze_Product__c" s="" seq="2" t="Cloud Craze Product"/>
+                <sfRelatedListColumn alias="toLabel(Course_Class_Type__c)" n="Course_Class_Type__c" s="" seq="3" t="Course Class Type"/>
+                <sfRelatedListColumn alias="redwing__Start_Date__c" n="redwing__Start_Date__c" s="" seq="4" t="Start Date"/>
+                <sfRelatedListColumn alias="redwing__End_Date__c" n="redwing__End_Date__c" s="" seq="5" t="End Date"/>
+                <sfRelatedListColumn alias="Account__c" n="Account__c" s="" seq="6" t="Facility"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ParentId" label="Notes &amp; Attachments" n="CombinedAttachments" nameAlias="RelatedNoteList" relationshipName="CombinedAttachments" s="3-" t="Notes &amp; Attachments (ParentId)">
+              <children>
+                <sfRelatedListColumn n="RecordType" s="" seq="0" t="Type"/>
+                <sfRelatedListColumn n="Title" s="" seq="1"/>
+                <sfRelatedListColumn n="RelatedTo" s="" seq="2" t="Related To"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="3" t="Last Modified"/>
+                <sfRelatedListColumn alias="CreatedBy.Name" n="CreatedById" s="" seq="4" t="Created By"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+              <lightningColumns>
+                <sfRelatedListColumn n="Title" s="" seq="0"/>
+                <sfRelatedListColumn n="CreatedById" s="" seq="1" t="Created By"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="2" t="Last Modified"/>
+                <sfRelatedListColumn n="ContentSize" s="" seq="3" t="Size"/>
+                <sfRelatedListColumn n="FileExtension" s="" seq="4" t="File Extension"/>
+              </lightningColumns>
+            </sfRelatedList>
+            <sfRelatedList fieldName="WhatId" label="Open Activities" n="OpenActivities" nameAlias="RelatedActivityList" relationshipName="OpenActivities" s="3-" t="Open Activities (WhatId)">
+              <children>
+                <sfRelatedListColumn alias="Subject" n="TASK.SUBJECT" s="" seq="0" t="Subject"/>
+                <sfRelatedListColumn alias="WhoId" n="TASK.WHO_NAME" s="" seq="1" t="Name"/>
+                <sfRelatedListColumn alias="IsTask" n="ACTIVITY.TASK" s="" seq="2" t="Task"/>
+                <sfRelatedListColumn alias="ActivityDate" n="TASK.DUE_DATE" s="" seq="3" t="Due Date"/>
+                <sfRelatedListColumn alias="toLabel(Status)" n="TASK.STATUS" s="" seq="4" t="Status"/>
+                <sfRelatedListColumn alias="toLabel(Priority)" n="TASK.PRIORITY" s="" seq="5" t="Priority"/>
+                <sfRelatedListColumn alias="OwnerId" n="OwnerId" s="" seq="6" t="Assigned To"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="WhatId" label="Activity History" n="ActivityHistories" nameAlias="RelatedHistoryList" relationshipName="ActivityHistories" s="3-" t="Activity History (WhatId)">
+              <children>
+                <sfRelatedListColumn alias="Subject" n="TASK.SUBJECT" s="" seq="0" t="Subject"/>
+                <sfRelatedListColumn alias="OpenActivity.WhoId" n="TASK.WHO_NAME" s="" seq="1" t="Name"/>
+                <sfRelatedListColumn alias="IsTask" n="ACTIVITY.TASK" s="" seq="2" t="Task"/>
+                <sfRelatedListColumn alias="ActivityDate" n="TASK.DUE_DATE" s="" seq="3" t="Due Date"/>
+                <sfRelatedListColumn alias="OwnerId" n="OwnerId" s="" seq="4" t="Assigned To"/>
+                <sfRelatedListColumn alias="LastModifiedDate" n="TASK.LAST_UPDATE" s="" seq="5" t="Last Modified Date/Time"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ccrz__Order__c" label="Children Orders" n="ccrz__E_Orders__r" nameAlias="ccrz__E_Order__c.ccrz__Order__c" relationshipName="ccrz__E_Orders__r" s="3-" t="Children Orders (ccrz__Order__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Name"/>
+                <sfRelatedListColumn alias="Owner.Alias" n="OWNER.ALIAS" s="" seq="1" t="Owner Alias"/>
+                <sfRelatedListColumn alias="CreatedDate" n="CREATED_DATE" s="" seq="2" t="Created Date"/>
+                <sfRelatedListColumn alias="ccrz__OrderDate__c" n="ccrz__OrderDate__c" s="" seq="3" t="Order Date"/>
+                <sfRelatedListColumn alias="toLabel(ccrz__OrderStatus__c)" n="ccrz__OrderStatus__c" s="" seq="4" t="Order Status"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ParentId" label="CC Order History" n="Histories" nameAlias="RelatedEntityHistoryList" relationshipName="Histories" s="3-" t="Entity History (ParentId)">
+              <children>
+                <sfRelatedListColumn n="CreatedDate" s="" seq="0" t="Date"/>
+                <sfRelatedListColumn alias="User" n="CreatedById" s="" seq="1" t="User"/>
+                <sfRelatedListColumn n="Action" s="" seq="2"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+              <lightningColumns>
+                <sfRelatedListColumn n="CreatedDate" s="" seq="0" t="Date"/>
+                <sfRelatedListColumn n="Field" s="" seq="1"/>
+                <sfRelatedListColumn alias="User" n="CreatedById" s="" seq="2" t="User"/>
+                <sfRelatedListColumn n="OldValue" s="" seq="3" t="Original Value"/>
+                <sfRelatedListColumn n="NewValue" s="" seq="4" t="New Value"/>
+              </lightningColumns>
+            </sfRelatedList>
+            <sfRelatedList fieldName="TargetObjectId" label="Approval History (TargetObjectId)" n="ProcessSteps" nameAlias="RelatedProcessHistoryList" relationshipName="ProcessSteps" s="3-" t="Process Instance History (TargetObjectId)">
+              <children>
+                <sfRelatedListColumn alias="CreatedDate" n="CreatedDate" s="" seq="0" t="Date"/>
+                <sfRelatedListColumn alias="toLabel(StepStatus)" n="StepStatus" s="" seq="1" t="Status"/>
+                <sfRelatedListColumn alias="OriginalActorId" n="OriginalActor" s="" seq="2" t="Assigned To"/>
+                <sfRelatedListColumn alias="ActorId" n="Actor" s="" seq="3" t="Actual Approver"/>
+                <sfRelatedListColumn alias="Comments" n="Comments" s="" seq="4"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+              <lightningColumns>
+                <sfRelatedListColumn n="ProcessInstanceNode.ProcessNodeName" s="" seq="5" t="Name"/>
+                <sfRelatedListColumn alias="CreatedDate" n="CreatedDate" s="" seq="0" t="Date"/>
+                <sfRelatedListColumn alias="toLabel(StepStatus)" n="StepStatus" s="" seq="1" t="Status"/>
+                <sfRelatedListColumn alias="OriginalActorId" n="OriginalActor" s="" seq="2" t="Assigned To"/>
+                <sfRelatedListColumn alias="ActorId" n="Actor" s="" seq="3" t="Actual Approver"/>
+                <sfRelatedListColumn alias="Comments" n="Comments" s="" seq="4"/>
+              </lightningColumns>
+            </sfRelatedList>
+            <sfRelatedList fieldName="CC_Order__c" label="Cases" n="Cases__r" nameAlias="Case.CC_Order__c" relationshipName="Cases__r" s="3-" t="Cases (CC_Order__c)">
+              <children>
+                <sfRelatedListColumn alias="CaseNumber" n="CASES.CASE_NUMBER" s="" seq="0" t="Case"/>
+                <sfRelatedListColumn alias="toLabel(Type)" n="CASES.TYPE" s="" seq="1" t="Type"/>
+                <sfRelatedListColumn alias="toLabel(Case_Sub_Type__c)" n="Case_Sub_Type__c" s="" seq="2" t="Case Sub-Type"/>
+                <sfRelatedListColumn alias="Subject" n="CASES.SUBJECT" s="" seq="3" t="Subject"/>
+                <sfRelatedListColumn alias="toLabel(Status)" n="CASES.STATUS" s="" seq="4" t="Status"/>
+                <sfRelatedListColumn alias="Case_Record_Type__c" n="Case_Record_Type__c" s="" seq="5" t="Case Record Type"/>
+                <sfRelatedListColumn alias="OwnerId" n="OWNER_NAME" s="" seq="6" t="Owner"/>
+                <sfRelatedListColumn alias="Account.Name" n="ACCOUNT.NAME" s="" seq="7" t="Account Name"/>
+                <sfRelatedListColumn alias="ContactId" n="NAME" s="" seq="8" t="Contact Name"/>
+                <sfRelatedListColumn alias="Contact.AccountId" n="CONTACT.ACCOUNT" s="" seq="9" t="Account Name"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="Adjusted_Child_Order__c" label="Cases (Adjusted (Child) Order #)" n="Cases1__r" nameAlias="Case.Adjusted_Child_Order__c" relationshipName="Cases1__r" s="3-" t="Cases (Adjusted (Child) Order #) (Adjusted_Child_Order__c)">
+              <children>
+                <sfRelatedListColumn alias="CaseNumber" n="CASES.CASE_NUMBER" s="" seq="0" t="Case"/>
+                <sfRelatedListColumn alias="toLabel(Type)" n="CASES.TYPE" s="" seq="1" t="Type"/>
+                <sfRelatedListColumn alias="toLabel(Case_Sub_Type__c)" n="Case_Sub_Type__c" s="" seq="2" t="Case Sub-Type"/>
+                <sfRelatedListColumn alias="Subject" n="CASES.SUBJECT" s="" seq="3" t="Subject"/>
+                <sfRelatedListColumn alias="toLabel(Status)" n="CASES.STATUS" s="" seq="4" t="Status"/>
+                <sfRelatedListColumn alias="Case_Record_Type__c" n="Case_Record_Type__c" s="" seq="5" t="Case Record Type"/>
+                <sfRelatedListColumn alias="OwnerId" n="OWNER_NAME" s="" seq="6" t="Owner"/>
+                <sfRelatedListColumn alias="Account.Name" n="ACCOUNT.NAME" s="" seq="7" t="Account Name"/>
+                <sfRelatedListColumn alias="ContactId" n="NAME" s="" seq="8" t="Contact Name"/>
+                <sfRelatedListColumn alias="Contact.AccountId" n="CONTACT.ACCOUNT" s="" seq="9" t="Account Name"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="CPS_Order__c" label="ILT Classes (CPS Order)" n="CPS_Class__r" nameAlias="redwing__ILT_Class__c.CPS_Order__c" relationshipName="CPS_Class__r" s="3-" t="ILT Classes (CPS Order) (CPS_Order__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="ILT Class Name"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="LinkedEntityId" label="Notes" n="AttachedContentNotes" nameAlias="RelatedContentNoteList" relationshipName="RelatedContentNoteList" s="3-" t="Notes (ParentId)">
+              <children>
+                <sfRelatedListColumn n="Title" s="" seq="0"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="1" t="Content Modified Date"/>
+                <sfRelatedListColumn n="CreatedById" s="" seq="2" t="Created By"/>
+                <sfRelatedListColumn n="TextPreview" s="" seq="3" t="Text Preview"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+              <lightningColumns>
+                <sfRelatedListColumn n="Title" s="" seq="0"/>
+                <sfRelatedListColumn n="TextPreview" s="" seq="1" t="Text Preview"/>
+                <sfRelatedListColumn n="CreatedById" s="" seq="2" t="Created By"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="3" t="Content Modified Date"/>
+                <sfRelatedListColumn n="LastModifiedBy" s="" seq="4" t="Last Modified By"/>
+              </lightningColumns>
+            </sfRelatedList>
+          </relatedLists>
+          <actionLinks/>
+          <excludeButtons>
+            <string>Delete</string>
+          </excludeButtons>
+          <customTags/>
+          <quickActionNames>
+            <string>FeedItem.TextPost</string>
+            <string>FeedItem.ContentPost</string>
+            <string>FeedItem.MobileSmartActions</string>
+            <string>FeedItem.RypplePost</string>
+            <string>FeedItem.LinkPost</string>
+            <string>FeedItem.PollPost</string>
+            <string>FeedItem.QuestionPost</string>
+            <string>FeedItem.ContentNote</string>
+          </quickActionNames>
+          <consoleComponents>
+            <sfConsoleComponent index="1" location="south" n="consoleComponent01" primaryComponent="true" region="Bottom" s="" style="Stack" t="Interaction Log" targetDef="primary:south:InteractionLog" type="InteractionLog"/>
+          </consoleComponents>
+          <platformActionNames>
+            <string>FeedItem.TextPost</string>
+            <string>FeedItem.ContentPost</string>
+            <string>FeedItem.RypplePost</string>
+            <string>FeedItem.LinkPost</string>
+            <string>FeedItem.PollPost</string>
+          </platformActionNames>
+        </sfLayout>
+      </children>
+    </sfRecordType>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome ccrz__E_Orders__r CC_Orders__r ccrz__CC_Orders__r List ccrz__OrderSplits__r ccrz__Orders__r ccrz__E_Orders1__r ccrz__CCOrders__r" n="New"/>
+    <sfActionLink modes="View ccrz__E_Orders__r CC_Orders__r ccrz__CC_Orders__r ccrz__OrderSplits__r ccrz__Orders__r ccrz__E_Orders1__r ccrz__CCOrders__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View ccrz__E_Orders__r CC_Orders__r ccrz__CC_Orders__r ccrz__OrderSplits__r ccrz__Orders__r ccrz__E_Orders1__r ccrz__CCOrders__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View ccrz__E_Orders__r CC_Orders__r ccrz__CC_Orders__r ccrz__OrderSplits__r ccrz__Orders__r ccrz__E_Orders1__r ccrz__CCOrders__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ccrz__E_Orders__r CC_Orders__r ccrz__CC_Orders__r ccrz__OrderSplits__r ccrz__Orders__r ccrz__E_Orders1__r ccrz__CCOrders__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="CC Orders Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink buttonName="Print_Order" n="Print_Order" s="" t="Print Order"/>
+    <sfActionLink buttonName="Add_NAT_Student_Name" n="Add_NAT_Student_Name" s="" t="Add NAT Student Name"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>CCRZ__E_ORDER__C.NAME</string>
+    <string>OWNER.ALIAS</string>
+    <string>CREATED_DATE</string>
+    <string>ccrz__OrderDate__c</string>
+    <string>ccrz__OrderStatus__c</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CCRZ__E_ORDER__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>CCRZ__E_ORDER__C.NAME</string>
+    <string>ccrz__Account__c</string>
+    <string>ccrz__OrderDate__c</string>
+    <string>ccrz__User__c</string>
+    <string>OWNER.FIRST_NAME</string>
+    <string>OWNER.LAST_NAME</string>
+    <string>ccrz__TotalAmount__c</string>
+    <string>ccrz__Storefront__c</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

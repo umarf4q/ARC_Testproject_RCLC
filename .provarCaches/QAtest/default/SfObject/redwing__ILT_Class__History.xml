@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject label="History: ILT Class" labelPlural="History: ILT Class" n="redwing__ILT_Class__History" queryable="true" retrieveable="true" s="" t="History: ILT Class">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="History: ILT Class ID" type="id" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="ParentId" relationshipName="Parent" required="true" t="Parent History: ILT Class" type="reference" updateable="false">
+      <referenceTos>
+        <string>redwing__ILT_Class__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="User" type="reference" updateable="false">
+      <referenceTos>
+        <string>SelfServiceUser</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="255" n="Field" required="true" restrictedPicklist="true" type="picklist" updateable="false">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Skedulo_Account__c" s="" t="Account"/>
+        <sfPLE id="2" n="Site_Address_1__c" s="" t="Address 1"/>
+        <sfPLE id="3" n="Site_Address_2__c" s="" t="Address 2"/>
+        <sfPLE id="4" n="redwing__Enroll_In_Optional_Sessions__c" s="" t="Auto Enroll in Optional ILT Sessions"/>
+        <sfPLE id="5" n="Automatically_Closed__c" s="" t="Automatically Closed"/>
+        <sfPLE id="6" n="Available_Seats__c" s="" t="Available Seats"/>
+        <sfPLE id="7" n="Canceled_After_Closed__c" s="" t="Canceled After Closed"/>
+        <sfPLE id="8" n="redwing__Cancelled__c" s="" t="Cancelled"/>
+        <sfPLE id="9" n="Site_City__c" s="" t="City"/>
+        <sfPLE id="10" n="Class_Cancellation_Reason__c" s="" t="Class Cancellation Reason"/>
+        <sfPLE id="11" n="Class_Cancelled_Date__c" s="" t="Class Cancelled Date"/>
+        <sfPLE id="12" n="Class_Closed_Date__c" s="" t="Class Closed Date"/>
+        <sfPLE id="13" n="Class_Online__c" s="" t="Class Online (RCO)"/>
+        <sfPLE id="14" n="Class_Online_From__c" s="" t="Class Online From (RCO)"/>
+        <sfPLE id="15" n="Class_Online_To__c" s="" t="Class Online To (RCO)"/>
+        <sfPLE id="16" n="Classroom_Setting__c" s="" t="Classroom Setting"/>
+        <sfPLE id="17" n="Class_Searchable__c" s="" t="Class Searchable (RCO)"/>
+        <sfPLE id="18" n="Class_Searchable_If_Unavailable__c" s="" t="Class Searchable If Unavailable (RCO)"/>
+        <sfPLE id="19" n="CC_Order_Number__c" s="" t="Cloud Craze Order"/>
+        <sfPLE id="20" n="Cloud_Craze_Product__c" s="" t="Cloud Craze Product"/>
+        <sfPLE id="21" n="Course_Class_Type__c" s="" t="Course Class Type"/>
+        <sfPLE id="22" n="Learning_Plan__c" s="" t="Course Name"/>
+        <sfPLE id="23" n="CPS_Approval_Date__c" s="" t="CPS Approval Date"/>
+        <sfPLE id="24" n="CPS_Approval_Status__c" s="" t="CPS Approval Status"/>
+        <sfPLE id="25" n="CPS_Order__c" s="" t="CPS Order"/>
+        <sfPLE id="26" n="CPS_Order_Item__c" s="" t="CPS Order Item"/>
+        <sfPLE id="27" n="CPS_Registration_Email__c" s="" t="CPS Registration Email"/>
+        <sfPLE id="28" n="CPS_Registration_Phone__c" s="" t="CPS Registration Phone"/>
+        <sfPLE id="29" n="CPS_Registration_URL__c" s="" t="CPS Registration URL"/>
+        <sfPLE id="30" n="created" s="" t="Created."/>
+        <sfPLE id="31" n="redwing__Description__c" s="" t="Description"/>
+        <sfPLE id="32" n="Dev_External_ID__c" s="" t="Dev External ID"/>
+        <sfPLE id="33" n="redwing__Enable_Waitlist__c" s="" t="Enable Waitlist"/>
+        <sfPLE id="34" n="redwing__End_Date__c" s="" t="End Date"/>
+        <sfPLE id="35" n="redwing__End_Time__c" s="" t="End Time"/>
+        <sfPLE id="36" n="Account__c" s="" t="Facility"/>
+        <sfPLE id="37" n="feedEvent" s="" t="Feed event"/>
+        <sfPLE id="38" n="Generate_CRE_List__c" s="" t="Generate CRE List"/>
+        <sfPLE id="39" n="Generate_Roster_PDF__c" s="" t="Generate Roster PDF"/>
+        <sfPLE id="40" n="Name" s="" t="ILT Class Name"/>
+        <sfPLE id="41" n="individualMerged" s="" t="Individual Merged"/>
+        <sfPLE id="42" n="Is_Master_Class__c" s="" t="Is Master Class"/>
+        <sfPLE id="43" n="Is_Stacked_Class__c" s="" t="Is Stacked Class"/>
+        <sfPLE id="44" n="redwing__Learning__c" s="" t="Learning"/>
+        <sfPLE id="45" n="redwing__Location__c" s="" t="Location"/>
+        <sfPLE id="46" n="redwing__Max_Seats__c" s="" t="Max Seats"/>
+        <sfPLE id="47" n="redwing__Max_Waitlist_Seats__c" s="" t="Max Waitlist Seats"/>
+        <sfPLE id="48" n="redwing__Min_Seats__c" s="" t="Min Seats"/>
+        <sfPLE id="49" n="Notes__c" s="" t="Notes"/>
+        <sfPLE id="50" n="Not_Evaluated__c" s="" t="Not Evaluated"/>
+        <sfPLE id="51" n="Opportunity__c" s="" t="Opportunity"/>
+        <sfPLE id="52" n="ownerAccepted" s="" t="Owner (Accepted)"/>
+        <sfPLE id="53" n="ownerAssignment" s="" t="Owner (Assignment)"/>
+        <sfPLE id="54" n="Price_Override__c" s="" t="Price Override"/>
+        <sfPLE id="55" n="Ready_to_Publish__c" s="" t="Ready to Publish"/>
+        <sfPLE id="56" n="locked" s="" t="Record locked."/>
+        <sfPLE id="57" n="unlocked" s="" t="Record unlocked."/>
+        <sfPLE id="58" n="redwing__Registration_Cutoff__c" s="" t="Registration Cutoff"/>
+        <sfPLE id="59" n="Registration_Fee__c" s="" t="Registration Fee"/>
+        <sfPLE id="60" n="Request_Type__c" s="" t="Request Type"/>
+        <sfPLE id="61" n="Site_Name__c" s="" t="Site Name"/>
+        <sfPLE id="62" n="Skedulo_Job_Active__c" s="" t="Skedulo Job Active"/>
+        <sfPLE id="63" n="Skedulo_Job_Id__c" s="" t="Skedulo Job Id"/>
+        <sfPLE id="64" n="Skedulo_Job_Id_External__c" s="" t="Skedulo Job Id"/>
+        <sfPLE id="65" n="Skedulo_Job_Number__c" s="" t="Skedulo Job Number"/>
+        <sfPLE id="66" n="Skedulo_Job_Status__c" s="" t="Skedulo Job Status"/>
+        <sfPLE id="67" n="Skedulo_Parent_Job__c" s="" t="Skedulo Parent Job"/>
+        <sfPLE id="68" n="redwing__Start_Date__c" s="" t="Start Date"/>
+        <sfPLE id="69" n="redwing__Start_Time__c" s="" t="Start Time"/>
+        <sfPLE id="70" n="State__c" s="" t="State"/>
+        <sfPLE id="71" n="Successful_Evaluations__c" s="" t="Successful Evaluations"/>
+        <sfPLE id="72" n="Supplemental_Information__c" s="" t="Supplemental Information"/>
+        <sfPLE id="73" n="redwing__Timezone__c" s="" t="Timezone"/>
+        <sfPLE id="74" n="Skedulo_Training_Event__c" s="" t="Training Event"/>
+        <sfPLE id="75" n="Unsuccessful_Evaluations__c" s="" t="Unsuccessful Evaluations"/>
+        <sfPLE id="76" n="redwing__Withdraw_Cutoff__c" s="" t="Withdraw Cutoff"/>
+        <sfPLE id="77" n="Site_Postal_Code__c" s="" t="Zip"/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="40" n="DataType" restrictedPicklist="true" t="Variable Data Type" type="picklist" updateable="false">
+      <picklistEntryIds>78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="78" n="Address" s=""/>
+        <sfPLE id="79" n="AnyType" s=""/>
+        <sfPLE id="80" n="AutoNumber" s=""/>
+        <sfPLE id="81" n="Base64" s=""/>
+        <sfPLE id="82" n="BitVector" s=""/>
+        <sfPLE id="83" n="Boolean" s=""/>
+        <sfPLE id="84" n="Content" s=""/>
+        <sfPLE id="85" n="Currency" s=""/>
+        <sfPLE id="86" n="DataCategoryGroupReference" s=""/>
+        <sfPLE id="87" n="DateOnly" s=""/>
+        <sfPLE id="88" n="DateTime" s=""/>
+        <sfPLE id="89" n="Division" s=""/>
+        <sfPLE id="90" n="Double" s=""/>
+        <sfPLE id="91" n="DynamicEnum" s=""/>
+        <sfPLE id="92" n="Email" s=""/>
+        <sfPLE id="93" n="EncryptedBase64" s=""/>
+        <sfPLE id="94" n="EncryptedText" s=""/>
+        <sfPLE id="95" n="EntityId" s=""/>
+        <sfPLE id="96" n="EnumOrId" s=""/>
+        <sfPLE id="97" n="ExternalId" s=""/>
+        <sfPLE id="98" n="Fax" s=""/>
+        <sfPLE id="99" n="File" s=""/>
+        <sfPLE id="100" n="HtmlMultiLineText" s=""/>
+        <sfPLE id="101" n="HtmlStringPlusClob" s=""/>
+        <sfPLE id="102" n="InetAddress" s=""/>
+        <sfPLE id="103" n="Json" s=""/>
+        <sfPLE id="104" n="Location" s=""/>
+        <sfPLE id="105" n="MultiEnum" s=""/>
+        <sfPLE id="106" n="MultiLineText" s=""/>
+        <sfPLE id="107" n="Namespace" s=""/>
+        <sfPLE id="108" n="Percent" s=""/>
+        <sfPLE id="109" n="PersonName" s=""/>
+        <sfPLE id="110" n="Phone" s=""/>
+        <sfPLE id="111" n="Raw" s=""/>
+        <sfPLE id="112" n="RecordType" s=""/>
+        <sfPLE id="113" n="SfdcEncryptedText" s=""/>
+        <sfPLE id="114" n="SimpleNamespace" s=""/>
+        <sfPLE id="115" n="StringPlusClob" s=""/>
+        <sfPLE id="116" n="Switchable_PersonName" s=""/>
+        <sfPLE id="117" n="Text" s=""/>
+        <sfPLE id="118" n="TimeOnly" s=""/>
+        <sfPLE id="119" n="Url" s=""/>
+        <sfPLE id="120" n="YearQuarter" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" filterable="false" length="255" n="OldValue" t="Original Value" type="anyType" updateable="false"/>
+    <sfField createable="false" editPermission="false" filterable="false" length="255" n="NewValue" t="New Value" type="anyType" updateable="false"/>
+  </fields>
+  <childRelationships/>
+  <recordTypes/>
+  <standardActions>
+    <sfActionLink modes="ObjectHome Histories List" n="New"/>
+    <sfActionLink modes="View Histories" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Histories" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Histories" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Histories" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <weblinks/>
+</sfObject>

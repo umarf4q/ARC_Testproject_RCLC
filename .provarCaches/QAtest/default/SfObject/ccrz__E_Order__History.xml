@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject label="History: CC Order" labelPlural="History: CC Order" n="ccrz__E_Order__History" queryable="true" retrieveable="true" s="" t="History: CC Order">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="History: CC Order ID" type="id" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="ParentId" relationshipName="Parent" required="true" t="Parent History: CC Order" type="reference" updateable="false">
+      <referenceTos>
+        <string>ccrz__E_Order__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="User" type="reference" updateable="false">
+      <referenceTos>
+        <string>SelfServiceUser</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="255" n="Field" required="true" restrictedPicklist="true" type="picklist" updateable="false">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="ccrz__Account__c" s="" t="Account"/>
+        <sfPLE id="2" n="ccrz__AdjustmentAmount__c" s="" t="Adjustment Amount"/>
+        <sfPLE id="3" n="ccrz__AdjustmentReason__c" s="" t="Adjustment Reason"/>
+        <sfPLE id="4" n="Auto_Approval__c" s="" t="Auto Approval"/>
+        <sfPLE id="5" n="NSSCCConnector_SFCC_Order_Number__c" s="" t="B2C Order Number"/>
+        <sfPLE id="6" n="ccrz__BillTo__c" s="" t="Bill To"/>
+        <sfPLE id="7" n="ccrz__CCEmailAddress__c" s="" t="CCEmailAddress"/>
+        <sfPLE id="8" n="ccrz__CCSubscription__c" s="" t="CCSubscription"/>
+        <sfPLE id="9" n="CC_Transaction_Payment_Date__c" s="" t="CC Transaction Payment Date"/>
+        <sfPLE id="10" n="ccrz__BuyerCompanyName__c" s="" t="Company Name"/>
+        <sfPLE id="11" n="ccrz__Contact__c" s="" t="Contact"/>
+        <sfPLE id="12" n="ccrz__ContractId__c" s="" t="Contract ID"/>
+        <sfPLE id="13" n="Coupon_Codes__c" s="" t="Coupon Codes"/>
+        <sfPLE id="14" n="created" s="" t="Created."/>
+        <sfPLE id="15" n="CRE_Request_Processed__c" s="" t="CRE Request Processed"/>
+        <sfPLE id="16" n="ccrz__CurrencyISOCode__c" s="" t="Currency ISO Code"/>
+        <sfPLE id="17" n="ccrz__EffectiveAccountID__c" s="" t="Effective Account ID"/>
+        <sfPLE id="18" n="ccrz__BuyerEmail__c" s="" t="Email"/>
+        <sfPLE id="19" n="ccrz__EncryptedId__c" s="" t="Encrypted Id"/>
+        <sfPLE id="20" n="Error_Message__c" s="" t="Error Message"/>
+        <sfPLE id="21" n="ccrz__ExtCarrier__c" s="" t="Ext Carrier"/>
+        <sfPLE id="22" n="ccrz__ExtShipTo__c" s="" t="Ext ShipTo"/>
+        <sfPLE id="23" n="ccrz__ExtShipTrackNo__c" s="" t="Ext ShipTrack No"/>
+        <sfPLE id="24" n="feedEvent" s="" t="Feed event"/>
+        <sfPLE id="25" n="ccrz__BuyerFirstName__c" s="" t="First Name"/>
+        <sfPLE id="26" n="NSSCCConnector_from_SFCC__c" s="" t="from SFCC"/>
+        <sfPLE id="27" n="individualMerged" s="" t="Individual Merged"/>
+        <sfPLE id="28" n="ccrz__IsAnonymous__c" s="" t="Is Anonymous"/>
+        <sfPLE id="29" n="NSSCCConnector_isContactIdExist__c" s="" t="isContactIdExist"/>
+        <sfPLE id="30" n="Is_Return_Order__c" s="" t="Is Return Order"/>
+        <sfPLE id="31" n="Is_Submitted__c" s="" t="Is Submitted"/>
+        <sfPLE id="32" n="ccrz__BuyerLastName__c" s="" t="Last Name"/>
+        <sfPLE id="33" n="ccrz__BuyerMobilePhone__c" s="" t="Mobile Phone"/>
+        <sfPLE id="34" n="Name" s=""/>
+        <sfPLE id="35" n="ccrz__Note__c" s="" t="Note"/>
+        <sfPLE id="36" n="Online_Vouchers_Sent__c" s="" t="Online Vouchers Sent"/>
+        <sfPLE id="37" n="Opportunity_Order__c" s="" t="Opportunity Order"/>
+        <sfPLE id="38" n="ccrz__Order__c" s="" t="Order"/>
+        <sfPLE id="39" n="NSSCCConnector_Order_Contact__c" s="" t="Order Contact"/>
+        <sfPLE id="40" n="ccrz__OrderDate__c" s="" t="Order Date"/>
+        <sfPLE id="41" n="ccrz__OrderId__c" s="" t="Order Id"/>
+        <sfPLE id="42" n="ccrz__Name__c" s="" t="Order Name"/>
+        <sfPLE id="43" n="ccrz__OrderNumber__c" s="" t="Order Number"/>
+        <sfPLE id="44" n="NSSCCConnector_Order_SCCSync_Status__c" s="" t="Order SCC Sync Status"/>
+        <sfPLE id="45" n="ccrz__OrderSeller__c" s="" t="Order Seller"/>
+        <sfPLE id="46" n="ccrz__OrderStatus__c" s="" t="Order Status"/>
+        <sfPLE id="47" n="NSSCCConnector_SFCC_Order_Total__c" s="" t="Order Total"/>
+        <sfPLE id="48" n="ccrz__OriginatedCart__c" s="" t="Originated Cart"/>
+        <sfPLE id="49" n="Override_Credit_Limit__c" s="" t="Override Credit Limit"/>
+        <sfPLE id="50" n="Owner" s=""/>
+        <sfPLE id="51" n="ownerAccepted" s="" t="Owner (Accepted)"/>
+        <sfPLE id="52" n="ownerAssignment" s="" t="Owner (Assignment)"/>
+        <sfPLE id="53" n="ccrz__PaymentMethod__c" s="" t="PaymentMethod"/>
+        <sfPLE id="54" n="ccrz__BuyerPhone__c" s="" t="Phone"/>
+        <sfPLE id="55" n="ccrz__PONumber__c" s="" t="PO Number"/>
+        <sfPLE id="56" n="locked" s="" t="Record locked."/>
+        <sfPLE id="57" n="unlocked" s="" t="Record unlocked."/>
+        <sfPLE id="58" n="Refund_Notes__c" s="" t="Refund Notes"/>
+        <sfPLE id="59" n="ccrz__RequestDate__c" s="" t="Request Date"/>
+        <sfPLE id="60" n="Resend_Receipt__c" s="" t="Resend Receipt"/>
+        <sfPLE id="61" n="ccrz__ShipAmount__c" s="" t="Ship Amount"/>
+        <sfPLE id="62" n="ccrz__ShipComplete__c" s="" t="Ship Complete"/>
+        <sfPLE id="63" n="ccrz__ShipDiscountAmount__c" s="" t="Ship Discount Amount"/>
+        <sfPLE id="64" n="ccrz__ShipMethod__c" s="" t="Ship Method"/>
+        <sfPLE id="65" n="ccrz__ShipStructure__c" s="" t="Ship Structure"/>
+        <sfPLE id="66" n="ccrz__ShipTo__c" s="" t="Ship To"/>
+        <sfPLE id="67" n="ccrz__SkipTax__c" s="" t="Skip Tax Calculation"/>
+        <sfPLE id="68" n="ccrz__SplitParentOrder__c" s="" t="Split Parent Order"/>
+        <sfPLE id="69" n="ccrz__SplitProcessed__c" s="" t="Split Processed"/>
+        <sfPLE id="70" n="ccrz__Storefront__c" s="" t="Storefront"/>
+        <sfPLE id="71" n="Supplemental_Information__c" s="" t="Supplemental Information"/>
+        <sfPLE id="72" n="ccrz__TaxAmount__c" s="" t="Tax Amount"/>
+        <sfPLE id="73" n="ccrz__TaxExemptFlag__c" s="" t="Tax Exempt Flag"/>
+        <sfPLE id="74" n="ccrz__TotalDiscount__c" s="" t="Total Discount"/>
+        <sfPLE id="75" n="ccrz__TotalSurcharge__c" s="" t="Total Surcharge"/>
+        <sfPLE id="76" n="ccrz__User__c" s="" t="User"/>
+        <sfPLE id="77" n="ccrz__VerifyExemptionFlag__c" s="" t="VerifyExemptionFlag"/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="40" n="DataType" restrictedPicklist="true" t="Variable Data Type" type="picklist" updateable="false">
+      <picklistEntryIds>78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="78" n="Address" s=""/>
+        <sfPLE id="79" n="AnyType" s=""/>
+        <sfPLE id="80" n="AutoNumber" s=""/>
+        <sfPLE id="81" n="Base64" s=""/>
+        <sfPLE id="82" n="BitVector" s=""/>
+        <sfPLE id="83" n="Boolean" s=""/>
+        <sfPLE id="84" n="Content" s=""/>
+        <sfPLE id="85" n="Currency" s=""/>
+        <sfPLE id="86" n="DataCategoryGroupReference" s=""/>
+        <sfPLE id="87" n="DateOnly" s=""/>
+        <sfPLE id="88" n="DateTime" s=""/>
+        <sfPLE id="89" n="Division" s=""/>
+        <sfPLE id="90" n="Double" s=""/>
+        <sfPLE id="91" n="DynamicEnum" s=""/>
+        <sfPLE id="92" n="Email" s=""/>
+        <sfPLE id="93" n="EncryptedBase64" s=""/>
+        <sfPLE id="94" n="EncryptedText" s=""/>
+        <sfPLE id="95" n="EntityId" s=""/>
+        <sfPLE id="96" n="EnumOrId" s=""/>
+        <sfPLE id="97" n="ExternalId" s=""/>
+        <sfPLE id="98" n="Fax" s=""/>
+        <sfPLE id="99" n="File" s=""/>
+        <sfPLE id="100" n="HtmlMultiLineText" s=""/>
+        <sfPLE id="101" n="HtmlStringPlusClob" s=""/>
+        <sfPLE id="102" n="InetAddress" s=""/>
+        <sfPLE id="103" n="Json" s=""/>
+        <sfPLE id="104" n="Location" s=""/>
+        <sfPLE id="105" n="MultiEnum" s=""/>
+        <sfPLE id="106" n="MultiLineText" s=""/>
+        <sfPLE id="107" n="Namespace" s=""/>
+        <sfPLE id="108" n="Percent" s=""/>
+        <sfPLE id="109" n="PersonName" s=""/>
+        <sfPLE id="110" n="Phone" s=""/>
+        <sfPLE id="111" n="Raw" s=""/>
+        <sfPLE id="112" n="RecordType" s=""/>
+        <sfPLE id="113" n="SfdcEncryptedText" s=""/>
+        <sfPLE id="114" n="SimpleNamespace" s=""/>
+        <sfPLE id="115" n="StringPlusClob" s=""/>
+        <sfPLE id="116" n="Switchable_PersonName" s=""/>
+        <sfPLE id="117" n="Text" s=""/>
+        <sfPLE id="118" n="TimeOnly" s=""/>
+        <sfPLE id="119" n="Url" s=""/>
+        <sfPLE id="120" n="YearQuarter" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" filterable="false" length="255" n="OldValue" t="Original Value" type="anyType" updateable="false"/>
+    <sfField createable="false" editPermission="false" filterable="false" length="255" n="NewValue" t="New Value" type="anyType" updateable="false"/>
+  </fields>
+  <childRelationships/>
+  <recordTypes/>
+  <standardActions>
+    <sfActionLink modes="ObjectHome Histories List" n="New"/>
+    <sfActionLink modes="View Histories" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Histories" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Histories" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Histories" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <weblinks/>
+</sfObject>

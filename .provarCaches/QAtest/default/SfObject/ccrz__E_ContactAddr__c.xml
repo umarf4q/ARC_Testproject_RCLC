@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" keyPrefix="a3z" label="CC Contact Address" labelPlural="CC Contact Addresss" layoutable="true" metadataLabel="CC Contact Address" n="ccrz__E_ContactAddr__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="CC Contact Address (a3z)" updatable="true" urlDetail="https://arc-phss--test.my.salesforce.com/{ID}" urlEdit="https://arc-phss--test.my.salesforce.com/{ID}/e" urlNew="https://arc-phss--test.my.salesforce.com/a3z/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="CC Contact Address ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="Contact Auto Number" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="ccrz__AddrReadOnly__c" t="AddrReadOnly" type="_boolean" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="255" n="ccrz__AddressFirstline__c" t="Address Firstline" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="255" n="ccrz__AddressSecondline__c" t="Address Secondline" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="255" n="ccrz__AddressThirdline__c" t="Address Thirdline" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="255" n="ccrz__City__c" t="City" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="100" n="ccrz__CompanyName__c" t="Company Name" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="128" n="ccrz__ContactAddrId__c" t="Contact Addr Id" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="10" n="ccrz__CountryISOCode__c" t="Country ISO Code" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="50" n="ccrz__Country__c" t="Country" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="40" n="ccrz__DaytimePhone__c" t="Daytime Phone" type="phone" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="80" n="ccrz__Email__c" t="Email" type="email" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="100" n="ccrz__FirstName__c" t="First Name" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="40" n="ccrz__HomePhone__c" t="Home Phone" type="phone" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="100" n="ccrz__LastName__c" t="Last Name" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="255" n="ccrz__MailStop__c" t="Mail Stop" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="100" n="ccrz__MiddleName__c" t="Middle Name" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="10" n="ccrz__PostalCode__c" t="Postal Code" updateable="false"/>
+    <sfField createable="false" editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="32000" n="ccrz__ShippingComments__c" t="Shipping Comments" type="textarea" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="10" n="ccrz__StateISOCode__c" t="State ISO Code" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="255" n="ccrz__State__c" t="State" updateable="false"/>
+    <sfField editPermission="false" filterable="false" length="100" n="ccrz__Partner_Id__c" notVisibleToMetadataUser="true" readPermission="false" summary="External Id used to tie the address to another system.  This id is carried through from the address book to the eventual order." t="Partner_Id"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship childName="ccrz__E_AddressBook__c" field="ccrz__E_ContactAddress__c" n="ccrz__E_Address_Books__r" relationshipName="ccrz__E_Address_Books__r" s="2-" t="ccrz__E_AddressBook__c"/>
+    <sfObjectRelationship childName="ccrz__E_Cart__c" field="ccrz__BillTo__c" n="ccrz__E_Carts__r" relationshipName="ccrz__E_Carts__r" s="2-" t="ccrz__E_Cart__c"/>
+    <sfObjectRelationship childName="ccrz__E_Cart__c" field="ccrz__ShipTo__c" n="ccrz__E_Carts1__r" relationshipName="ccrz__E_Carts1__r" s="2-" t="ccrz__E_Cart__c"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="ccrz__E_ContactAddr__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="ccrz__E_ContactAddr__History"/>
+    <sfObjectRelationship childName="ccrz__E_ContactAddr__Share" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="ccrz__E_ContactAddr__Share"/>
+    <sfObjectRelationship childName="ccrz__E_Invoice__c" field="ccrz__BillAddress__c" n="ccrz__CCBillingInvoices__r" relationshipName="ccrz__CCBillingInvoices__r" s="2-" t="ccrz__E_Invoice__c"/>
+    <sfObjectRelationship childName="ccrz__E_Invoice__c" field="ccrz__SoldAddress__c" n="ccrz__CCSoldInvoices__r" relationshipName="ccrz__CCSoldInvoices__r" s="2-" t="ccrz__E_Invoice__c"/>
+    <sfObjectRelationship childName="ccrz__E_Order__c" field="ccrz__BillTo__c" n="ccrz__E_Orders__r" relationshipName="ccrz__E_Orders__r" s="2-" t="ccrz__E_Order__c"/>
+    <sfObjectRelationship childName="ccrz__E_Order__c" field="ccrz__ExtShipTo__c" n="ccrz__Orders__r" relationshipName="ccrz__Orders__r" s="2-" t="ccrz__E_Order__c"/>
+    <sfObjectRelationship childName="ccrz__E_Order__c" field="ccrz__ShipTo__c" n="ccrz__E_Orders1__r" relationshipName="ccrz__E_Orders1__r" s="2-" t="ccrz__E_Order__c"/>
+    <sfObjectRelationship childName="ccrz__E_StoredPayment__c" field="ccpgcs__Address__c" n="ccpgcs__StoredPayments__r" relationshipName="ccpgcs__StoredPayments__r" s="2-" t="ccrz__E_StoredPayment__c"/>
+    <sfObjectRelationship childName="ccrz__E_StoredPayment__c" field="ccrz__Address__c" n="ccrz__StoredPayments__r" relationshipName="ccrz__StoredPayments__r" s="2-" t="ccrz__E_StoredPayment__c"/>
+    <sfObjectRelationship childName="ccrz__E_TransactionPayment__c" field="ccpgcs__Address__c" n="ccpgcs__TransactionPayments__r" relationshipName="ccpgcs__TransactionPayments__r" s="2-" t="ccrz__E_TransactionPayment__c"/>
+    <sfObjectRelationship childName="ccrz__E_TransactionPayment__c" field="ccrz__Address__c" n="ccrz__TransactionPayments__r" relationshipName="ccrz__TransactionPayments__r" s="2-" t="ccrz__E_TransactionPayment__c"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink modes="View" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink modes="View" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="ObjectHome List" n="New"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink n="Tab" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>CCRZ__E_CONTACTADDR__C.NAME</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CCRZ__E_CONTACTADDR__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>CCRZ__E_CONTACTADDR__C.NAME</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>NAME</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

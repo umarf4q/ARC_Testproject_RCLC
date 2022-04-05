@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" keyPrefix="035" label="CSS User" labelPlural="CSS Users" n="SelfServiceUser" queryable="true" retrieveable="true" s="" t="CSS User (035)" updatable="true">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="CSS User ID" type="id" updateable="false"/>
+    <sfField extraTypeInfo="personname" length="80" n="LastName" required="true" t="Last Name"/>
+    <sfField extraTypeInfo="personname" length="40" n="FirstName" t="First Name"/>
+    <sfField createable="false" extraTypeInfo="personname" length="121" n="Name" nameField="true" required="true" t="CSS User Name" updateable="false"/>
+    <sfField length="80" n="Username" required="true"/>
+    <sfField length="80" n="Email" required="true" type="email"/>
+    <sfField editPermission="false" n="IsActive" t="Active" type="_boolean"/>
+    <sfField length="40" n="TimeZoneSidKey" required="true" restrictedPicklist="true" t="Time Zone" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Pacific/Kiritimati" s="" t="(GMT+14:00) Line Islands Time (Pacific/Kiritimati)"/>
+        <sfPLE id="2" n="Pacific/Chatham" s="" t="(GMT+13:45) Chatham Daylight Time (Pacific/Chatham)"/>
+        <sfPLE id="3" n="Pacific/Auckland" s="" t="(GMT+13:00) New Zealand Daylight Time (Pacific/Auckland)"/>
+        <sfPLE id="4" n="Pacific/Enderbury" s="" t="(GMT+13:00) Phoenix Islands Time (Pacific/Enderbury)"/>
+        <sfPLE id="5" n="Pacific/Fiji" s="" t="(GMT+13:00) Fiji Summer Time (Pacific/Fiji)"/>
+        <sfPLE id="6" n="Pacific/Tongatapu" s="" t="(GMT+13:00) Tonga Standard Time (Pacific/Tongatapu)"/>
+        <sfPLE id="7" n="Asia/Kamchatka" s="" t="(GMT+12:00) Petropavlovsk-Kamchatski Standard Time (Asia/Kamchatka)"/>
+        <sfPLE id="8" n="Pacific/Norfolk" s="" t="(GMT+12:00) Norfolk Island Daylight Time (Pacific/Norfolk)"/>
+        <sfPLE id="9" n="Australia/Lord_Howe" s="" t="(GMT+11:00) Lord Howe Daylight Time (Australia/Lord_Howe)"/>
+        <sfPLE id="10" n="Australia/Sydney" s="" t="(GMT+11:00) Australian Eastern Daylight Time (Australia/Sydney)"/>
+        <sfPLE id="11" n="Pacific/Guadalcanal" s="" t="(GMT+11:00) Solomon Islands Time (Pacific/Guadalcanal)"/>
+        <sfPLE id="12" n="Australia/Adelaide" s="" t="(GMT+10:30) Australian Central Daylight Time (Australia/Adelaide)"/>
+        <sfPLE id="13" n="Australia/Brisbane" s="" t="(GMT+10:00) Australian Eastern Standard Time (Australia/Brisbane)"/>
+        <sfPLE id="14" n="Australia/Darwin" s="" t="(GMT+09:30) Australian Central Standard Time (Australia/Darwin)"/>
+        <sfPLE id="15" n="Asia/Seoul" s="" t="(GMT+09:00) Korean Standard Time (Asia/Seoul)"/>
+        <sfPLE id="16" n="Asia/Tokyo" s="" t="(GMT+09:00) Japan Standard Time (Asia/Tokyo)"/>
+        <sfPLE id="17" n="Asia/Hong_Kong" s="" t="(GMT+08:00) Hong Kong Standard Time (Asia/Hong_Kong)"/>
+        <sfPLE id="18" n="Asia/Kuala_Lumpur" s="" t="(GMT+08:00) Malaysia Time (Asia/Kuala_Lumpur)"/>
+        <sfPLE id="19" n="Asia/Manila" s="" t="(GMT+08:00) Philippine Standard Time (Asia/Manila)"/>
+        <sfPLE id="20" n="Asia/Shanghai" s="" t="(GMT+08:00) China Standard Time (Asia/Shanghai)"/>
+        <sfPLE id="21" n="Asia/Singapore" s="" t="(GMT+08:00) Singapore Standard Time (Asia/Singapore)"/>
+        <sfPLE id="22" n="Asia/Taipei" s="" t="(GMT+08:00) Taipei Standard Time (Asia/Taipei)"/>
+        <sfPLE id="23" n="Australia/Perth" s="" t="(GMT+08:00) Australian Western Standard Time (Australia/Perth)"/>
+        <sfPLE id="24" n="Asia/Bangkok" s="" t="(GMT+07:00) Indochina Time (Asia/Bangkok)"/>
+        <sfPLE id="25" n="Asia/Ho_Chi_Minh" s="" t="(GMT+07:00) Indochina Time (Asia/Ho_Chi_Minh)"/>
+        <sfPLE id="26" n="Asia/Jakarta" s="" t="(GMT+07:00) Western Indonesia Time (Asia/Jakarta)"/>
+        <sfPLE id="27" n="Asia/Rangoon" s="" t="(GMT+06:30) Myanmar Time (Asia/Rangoon)"/>
+        <sfPLE id="28" n="Asia/Dhaka" s="" t="(GMT+06:00) Bangladesh Standard Time (Asia/Dhaka)"/>
+        <sfPLE id="29" n="Asia/Kathmandu" s="" t="(GMT+05:45) Nepal Time (Asia/Kathmandu)"/>
+        <sfPLE id="30" n="Asia/Colombo" s="" t="(GMT+05:30) India Standard Time (Asia/Colombo)"/>
+        <sfPLE id="31" n="Asia/Kolkata" s="" t="(GMT+05:30) India Standard Time (Asia/Kolkata)"/>
+        <sfPLE id="32" n="Asia/Karachi" s="" t="(GMT+05:00) Pakistan Standard Time (Asia/Karachi)"/>
+        <sfPLE id="33" n="Asia/Tashkent" s="" t="(GMT+05:00) Uzbekistan Standard Time (Asia/Tashkent)"/>
+        <sfPLE id="34" n="Asia/Yekaterinburg" s="" t="(GMT+05:00) Yekaterinburg Standard Time (Asia/Yekaterinburg)"/>
+        <sfPLE id="35" n="Asia/Kabul" s="" t="(GMT+04:30) Afghanistan Time (Asia/Kabul)"/>
+        <sfPLE id="36" n="Asia/Baku" s="" t="(GMT+04:00) Azerbaijan Standard Time (Asia/Baku)"/>
+        <sfPLE id="37" n="Asia/Dubai" s="" t="(GMT+04:00) Gulf Standard Time (Asia/Dubai)"/>
+        <sfPLE id="38" n="Asia/Tbilisi" s="" t="(GMT+04:00) Georgia Standard Time (Asia/Tbilisi)"/>
+        <sfPLE id="39" n="Asia/Yerevan" s="" t="(GMT+04:00) Armenia Standard Time (Asia/Yerevan)"/>
+        <sfPLE id="40" n="Asia/Tehran" s="" t="(GMT+03:30) Iran Standard Time (Asia/Tehran)"/>
+        <sfPLE id="41" n="Africa/Nairobi" s="" t="(GMT+03:00) East Africa Time (Africa/Nairobi)"/>
+        <sfPLE id="42" n="Asia/Baghdad" s="" t="(GMT+03:00) Arabian Standard Time (Asia/Baghdad)"/>
+        <sfPLE id="43" n="Asia/Kuwait" s="" t="(GMT+03:00) Arabian Standard Time (Asia/Kuwait)"/>
+        <sfPLE id="44" n="Asia/Riyadh" s="" t="(GMT+03:00) Arabian Standard Time (Asia/Riyadh)"/>
+        <sfPLE id="45" n="Europe/Istanbul" s="" t="(GMT+03:00) Eastern European Standard Time (Europe/Istanbul)"/>
+        <sfPLE id="46" n="Europe/Minsk" s="" t="(GMT+03:00) Moscow Standard Time (Europe/Minsk)"/>
+        <sfPLE id="47" n="Europe/Moscow" s="" t="(GMT+03:00) Moscow Standard Time (Europe/Moscow)"/>
+        <sfPLE id="48" n="Africa/Cairo" s="" t="(GMT+02:00) Eastern European Standard Time (Africa/Cairo)"/>
+        <sfPLE id="49" n="Africa/Johannesburg" s="" t="(GMT+02:00) South Africa Standard Time (Africa/Johannesburg)"/>
+        <sfPLE id="50" n="Asia/Beirut" s="" t="(GMT+02:00) Eastern European Standard Time (Asia/Beirut)"/>
+        <sfPLE id="51" n="Asia/Jerusalem" s="" t="(GMT+02:00) Israel Standard Time (Asia/Jerusalem)"/>
+        <sfPLE id="52" n="Europe/Athens" s="" t="(GMT+02:00) Eastern European Standard Time (Europe/Athens)"/>
+        <sfPLE id="53" n="Europe/Bucharest" s="" t="(GMT+02:00) Eastern European Standard Time (Europe/Bucharest)"/>
+        <sfPLE id="54" n="Europe/Helsinki" s="" t="(GMT+02:00) Eastern European Standard Time (Europe/Helsinki)"/>
+        <sfPLE id="55" n="Africa/Algiers" s="" t="(GMT+01:00) Central European Standard Time (Africa/Algiers)"/>
+        <sfPLE id="56" n="Africa/Casablanca" s="" t="(GMT+01:00) Western European Summer Time (Africa/Casablanca)"/>
+        <sfPLE id="57" n="Europe/Amsterdam" s="" t="(GMT+01:00) Central European Standard Time (Europe/Amsterdam)"/>
+        <sfPLE id="58" n="Europe/Berlin" s="" t="(GMT+01:00) Central European Standard Time (Europe/Berlin)"/>
+        <sfPLE id="59" n="Europe/Brussels" s="" t="(GMT+01:00) Central European Standard Time (Europe/Brussels)"/>
+        <sfPLE id="60" n="Europe/Paris" s="" t="(GMT+01:00) Central European Standard Time (Europe/Paris)"/>
+        <sfPLE id="61" n="Europe/Prague" s="" t="(GMT+01:00) Central European Standard Time (Europe/Prague)"/>
+        <sfPLE id="62" n="Europe/Rome" s="" t="(GMT+01:00) Central European Standard Time (Europe/Rome)"/>
+        <sfPLE id="63" n="Europe/Dublin" s="" t="(GMT+00:00) Greenwich Mean Time (Europe/Dublin)"/>
+        <sfPLE id="64" n="Europe/Lisbon" s="" t="(GMT+00:00) Western European Standard Time (Europe/Lisbon)"/>
+        <sfPLE id="65" n="Europe/London" s="" t="(GMT+00:00) Greenwich Mean Time (Europe/London)"/>
+        <sfPLE id="66" n="GMT" s="" t="(GMT+00:00) Greenwich Mean Time (GMT)"/>
+        <sfPLE id="67" n="America/Scoresbysund" s="" t="(GMT-01:00) East Greenland Standard Time (America/Scoresbysund)"/>
+        <sfPLE id="68" n="Atlantic/Azores" s="" t="(GMT-01:00) Azores Standard Time (Atlantic/Azores)"/>
+        <sfPLE id="69" n="Atlantic/Cape_Verde" s="" t="(GMT-01:00) Cape Verde Standard Time (Atlantic/Cape_Verde)"/>
+        <sfPLE id="70" n="Atlantic/South_Georgia" s="" t="(GMT-02:00) South Georgia Time (Atlantic/South_Georgia)"/>
+        <sfPLE id="71" n="America/Argentina/Buenos_Aires" s="" t="(GMT-03:00) Argentina Standard Time (America/Argentina/Buenos_Aires)"/>
+        <sfPLE id="72" n="America/Santiago" s="" t="(GMT-03:00) Chile Summer Time (America/Santiago)"/>
+        <sfPLE id="73" n="America/Sao_Paulo" s="" t="(GMT-03:00) Brasilia Standard Time (America/Sao_Paulo)"/>
+        <sfPLE id="74" n="America/St_Johns" s="" t="(GMT-03:30) Newfoundland Standard Time (America/St_Johns)"/>
+        <sfPLE id="75" n="America/Caracas" s="" t="(GMT-04:00) Venezuela Time (America/Caracas)"/>
+        <sfPLE id="76" n="America/Halifax" s="" t="(GMT-04:00) Atlantic Standard Time (America/Halifax)"/>
+        <sfPLE id="77" n="America/Puerto_Rico" s="" t="(GMT-04:00) Atlantic Standard Time (America/Puerto_Rico)"/>
+        <sfPLE id="78" n="Atlantic/Bermuda" s="" t="(GMT-04:00) Atlantic Standard Time (Atlantic/Bermuda)"/>
+        <sfPLE id="79" n="America/Bogota" s="" t="(GMT-05:00) Colombia Standard Time (America/Bogota)"/>
+        <sfPLE id="80" n="America/Indiana/Indianapolis" s="" t="(GMT-05:00) Eastern Standard Time (America/Indiana/Indianapolis)"/>
+        <sfPLE id="81" n="America/Lima" s="" t="(GMT-05:00) Peru Standard Time (America/Lima)"/>
+        <sfPLE id="82" n="America/New_York" s="" t="(GMT-05:00) Eastern Standard Time (America/New_York)"/>
+        <sfPLE id="83" n="America/Panama" s="" t="(GMT-05:00) Eastern Standard Time (America/Panama)"/>
+        <sfPLE id="84" n="America/Chicago" s="" t="(GMT-06:00) Central Standard Time (America/Chicago)"/>
+        <sfPLE id="85" n="America/El_Salvador" s="" t="(GMT-06:00) Central Standard Time (America/El_Salvador)"/>
+        <sfPLE id="86" n="America/Mexico_City" s="" t="(GMT-06:00) Central Standard Time (America/Mexico_City)"/>
+        <sfPLE id="87" n="America/Denver" s="" t="(GMT-07:00) Mountain Standard Time (America/Denver)"/>
+        <sfPLE id="88" n="America/Mazatlan" s="" t="(GMT-07:00) Mexican Pacific Standard Time (America/Mazatlan)"/>
+        <sfPLE id="89" n="America/Phoenix" s="" t="(GMT-07:00) Mountain Standard Time (America/Phoenix)"/>
+        <sfPLE id="90" n="America/Los_Angeles" s="" t="(GMT-08:00) Pacific Standard Time (America/Los_Angeles)"/>
+        <sfPLE id="91" n="America/Tijuana" s="" t="(GMT-08:00) Pacific Standard Time (America/Tijuana)"/>
+        <sfPLE id="92" n="Pacific/Pitcairn" s="" t="(GMT-08:00) Pitcairn Time (Pacific/Pitcairn)"/>
+        <sfPLE id="93" n="America/Anchorage" s="" t="(GMT-09:00) Alaska Standard Time (America/Anchorage)"/>
+        <sfPLE id="94" n="Pacific/Gambier" s="" t="(GMT-09:00) Gambier Time (Pacific/Gambier)"/>
+        <sfPLE id="95" n="Pacific/Marquesas" s="" t="(GMT-09:30) Marquesas Time (Pacific/Marquesas)"/>
+        <sfPLE id="96" n="America/Adak" s="" t="(GMT-10:00) Hawaii-Aleutian Standard Time (America/Adak)"/>
+        <sfPLE id="97" n="Pacific/Honolulu" s="" t="(GMT-10:00) Hawaii-Aleutian Standard Time (Pacific/Honolulu)"/>
+        <sfPLE id="98" n="Pacific/Niue" s="" t="(GMT-11:00) Niue Time (Pacific/Niue)"/>
+        <sfPLE id="99" n="Pacific/Pago_Pago" s="" t="(GMT-11:00) Samoa Standard Time (Pacific/Pago_Pago)"/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="40" n="LocaleSidKey" required="true" restrictedPicklist="true" t="Locale" type="picklist">
+      <picklistEntryIds>100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="100" n="af_ZA" s="" t="Afrikaans (South Africa)"/>
+        <sfPLE id="101" n="sq_AL" s="" t="Albanian (Albania)"/>
+        <sfPLE id="102" n="am_ET" s="" t="Amharic (Ethiopia)"/>
+        <sfPLE id="103" n="ar_DZ" s="" t="Arabic (Algeria)"/>
+        <sfPLE id="104" n="ar_BH" s="" t="Arabic (Bahrain)"/>
+        <sfPLE id="105" n="ar_EG" s="" t="Arabic (Egypt)"/>
+        <sfPLE id="106" n="ar_IQ" s="" t="Arabic (Iraq)"/>
+        <sfPLE id="107" n="ar_JO" s="" t="Arabic (Jordan)"/>
+        <sfPLE id="108" n="ar_KW" s="" t="Arabic (Kuwait)"/>
+        <sfPLE id="109" n="ar_LB" s="" t="Arabic (Lebanon)"/>
+        <sfPLE id="110" n="ar_LY" s="" t="Arabic (Libya)"/>
+        <sfPLE id="111" n="ar_MA" s="" t="Arabic (Morocco)"/>
+        <sfPLE id="112" n="ar_OM" s="" t="Arabic (Oman)"/>
+        <sfPLE id="113" n="ar_QA" s="" t="Arabic (Qatar)"/>
+        <sfPLE id="114" n="ar_SA" s="" t="Arabic (Saudi Arabia)"/>
+        <sfPLE id="115" n="ar_SD" s="" t="Arabic (Sudan)"/>
+        <sfPLE id="116" n="ar_SY" s="" t="Arabic (Syria)"/>
+        <sfPLE id="117" n="ar_TN" s="" t="Arabic (Tunisia)"/>
+        <sfPLE id="118" n="ar_AE" s="" t="Arabic (United Arab Emirates)"/>
+        <sfPLE id="119" n="ar_YE" s="" t="Arabic (Yemen)"/>
+        <sfPLE id="120" n="hy_AM" s="" t="Armenian (Armenia)"/>
+        <sfPLE id="121" n="az_AZ" s="" t="Azerbaijani (Azerbaijan)"/>
+        <sfPLE id="122" n="bn_BD" s="" t="Bangla (Bangladesh)"/>
+        <sfPLE id="123" n="bn_IN" s="" t="Bangla (India)"/>
+        <sfPLE id="124" n="eu_ES" s="" t="Basque (Spain)"/>
+        <sfPLE id="125" n="be_BY" s="" t="Belarusian (Belarus)"/>
+        <sfPLE id="126" n="bs_BA" s="" t="Bosnian (Bosnia &amp; Herzegovina)"/>
+        <sfPLE id="127" n="bg_BG" s="" t="Bulgarian (Bulgaria)"/>
+        <sfPLE id="128" n="my_MM" s="" t="Burmese (Myanmar (Burma))"/>
+        <sfPLE id="129" n="ca_ES" s="" t="Catalan (Spain)"/>
+        <sfPLE id="130" n="zh_CN_PINYIN" s="" t="Chinese (China, Pinyin Ordering)"/>
+        <sfPLE id="131" n="zh_CN_STROKE" s="" t="Chinese (China, Stroke Ordering)"/>
+        <sfPLE id="132" n="zh_CN" s="" t="Chinese (China)"/>
+        <sfPLE id="133" n="zh_HK_STROKE" s="" t="Chinese (Hong Kong SAR China, Stroke Ordering)"/>
+        <sfPLE id="134" n="zh_HK" s="" t="Chinese (Hong Kong SAR China)"/>
+        <sfPLE id="135" n="zh_MO" s="" t="Chinese (Macao SAR China)"/>
+        <sfPLE id="136" n="zh_MY" s="" t="Chinese (Malaysia)"/>
+        <sfPLE id="137" n="zh_SG" s="" t="Chinese (Singapore)"/>
+        <sfPLE id="138" n="zh_TW_STROKE" s="" t="Chinese (Taiwan, Stroke Ordering)"/>
+        <sfPLE id="139" n="zh_TW" s="" t="Chinese (Taiwan)"/>
+        <sfPLE id="140" n="hr_HR" s="" t="Croatian (Croatia)"/>
+        <sfPLE id="141" n="cs_CZ" s="" t="Czech (Czechia)"/>
+        <sfPLE id="142" n="da_DK" s="" t="Danish (Denmark)"/>
+        <sfPLE id="143" n="nl_AW" s="" t="Dutch (Aruba)"/>
+        <sfPLE id="144" n="nl_BE" s="" t="Dutch (Belgium)"/>
+        <sfPLE id="145" n="nl_NL" s="" t="Dutch (Netherlands)"/>
+        <sfPLE id="146" n="nl_SR" s="" t="Dutch (Suriname)"/>
+        <sfPLE id="147" n="dz_BT" s="" t="Dzongkha (Bhutan)"/>
+        <sfPLE id="148" n="en_AG" s="" t="English (Antigua &amp; Barbuda)"/>
+        <sfPLE id="149" n="en_AU" s="" t="English (Australia)"/>
+        <sfPLE id="150" n="en_BS" s="" t="English (Bahamas)"/>
+        <sfPLE id="151" n="en_BB" s="" t="English (Barbados)"/>
+        <sfPLE id="152" n="en_BZ" s="" t="English (Belize)"/>
+        <sfPLE id="153" n="en_BM" s="" t="English (Bermuda)"/>
+        <sfPLE id="154" n="en_BW" s="" t="English (Botswana)"/>
+        <sfPLE id="155" n="en_CM" s="" t="English (Cameroon)"/>
+        <sfPLE id="156" n="en_CA" s="" t="English (Canada)"/>
+        <sfPLE id="157" n="en_KY" s="" t="English (Cayman Islands)"/>
+        <sfPLE id="158" n="en_ER" s="" t="English (Eritrea)"/>
+        <sfPLE id="159" n="en_SZ" s="" t="English (Eswatini)"/>
+        <sfPLE id="160" n="en_FK" s="" t="English (Falkland Islands)"/>
+        <sfPLE id="161" n="en_FJ" s="" t="English (Fiji)"/>
+        <sfPLE id="162" n="en_GM" s="" t="English (Gambia)"/>
+        <sfPLE id="163" n="en_GH" s="" t="English (Ghana)"/>
+        <sfPLE id="164" n="en_GI" s="" t="English (Gibraltar)"/>
+        <sfPLE id="165" n="en_GY" s="" t="English (Guyana)"/>
+        <sfPLE id="166" n="en_HK" s="" t="English (Hong Kong SAR China)"/>
+        <sfPLE id="167" n="en_IN" s="" t="English (India)"/>
+        <sfPLE id="168" n="en_ID" s="" t="English (Indonesia)"/>
+        <sfPLE id="169" n="en_IE" s="" t="English (Ireland)"/>
+        <sfPLE id="170" n="en_JM" s="" t="English (Jamaica)"/>
+        <sfPLE id="171" n="en_KE" s="" t="English (Kenya)"/>
+        <sfPLE id="172" n="en_LR" s="" t="English (Liberia)"/>
+        <sfPLE id="173" n="en_MG" s="" t="English (Madagascar)"/>
+        <sfPLE id="174" n="en_MW" s="" t="English (Malawi)"/>
+        <sfPLE id="175" n="en_MY" s="" t="English (Malaysia)"/>
+        <sfPLE id="176" n="en_MU" s="" t="English (Mauritius)"/>
+        <sfPLE id="177" n="en_NA" s="" t="English (Namibia)"/>
+        <sfPLE id="178" n="en_NZ" s="" t="English (New Zealand)"/>
+        <sfPLE id="179" n="en_NG" s="" t="English (Nigeria)"/>
+        <sfPLE id="180" n="en_PK" s="" t="English (Pakistan)"/>
+        <sfPLE id="181" n="en_PG" s="" t="English (Papua New Guinea)"/>
+        <sfPLE id="182" n="en_PH" s="" t="English (Philippines)"/>
+        <sfPLE id="183" n="en_RW" s="" t="English (Rwanda)"/>
+        <sfPLE id="184" n="en_WS" s="" t="English (Samoa)"/>
+        <sfPLE id="185" n="en_SC" s="" t="English (Seychelles)"/>
+        <sfPLE id="186" n="en_SL" s="" t="English (Sierra Leone)"/>
+        <sfPLE id="187" n="en_SG" s="" t="English (Singapore)"/>
+        <sfPLE id="188" n="en_SX" s="" t="English (Sint Maarten)"/>
+        <sfPLE id="189" n="en_SB" s="" t="English (Solomon Islands)"/>
+        <sfPLE id="190" n="en_ZA" s="" t="English (South Africa)"/>
+        <sfPLE id="191" n="en_SH" s="" t="English (St. Helena)"/>
+        <sfPLE id="192" n="en_TZ" s="" t="English (Tanzania)"/>
+        <sfPLE id="193" n="en_TO" s="" t="English (Tonga)"/>
+        <sfPLE id="194" n="en_TT" s="" t="English (Trinidad &amp; Tobago)"/>
+        <sfPLE id="195" n="en_UG" s="" t="English (Uganda)"/>
+        <sfPLE id="196" n="en_GB" s="" t="English (United Kingdom)"/>
+        <sfPLE id="197" n="en_US" s="" t="English (United States)"/>
+        <sfPLE id="198" n="en_VU" s="" t="English (Vanuatu)"/>
+        <sfPLE id="199" n="et_EE" s="" t="Estonian (Estonia)"/>
+        <sfPLE id="200" n="fi_FI" s="" t="Finnish (Finland)"/>
+        <sfPLE id="201" n="fr_BE" s="" t="French (Belgium)"/>
+        <sfPLE id="202" n="fr_CA" s="" t="French (Canada)"/>
+        <sfPLE id="203" n="fr_KM" s="" t="French (Comoros)"/>
+        <sfPLE id="204" n="fr_FR" s="" t="French (France)"/>
+        <sfPLE id="205" n="fr_GN" s="" t="French (Guinea)"/>
+        <sfPLE id="206" n="fr_HT" s="" t="French (Haiti)"/>
+        <sfPLE id="207" n="fr_LU" s="" t="French (Luxembourg)"/>
+        <sfPLE id="208" n="fr_MR" s="" t="French (Mauritania)"/>
+        <sfPLE id="209" n="fr_MC" s="" t="French (Monaco)"/>
+        <sfPLE id="210" n="fr_CH" s="" t="French (Switzerland)"/>
+        <sfPLE id="211" n="fr_WF" s="" t="French (Wallis &amp; Futuna)"/>
+        <sfPLE id="212" n="ka_GE" s="" t="Georgian (Georgia)"/>
+        <sfPLE id="213" n="de_AT" s="" t="German (Austria)"/>
+        <sfPLE id="214" n="de_BE" s="" t="German (Belgium)"/>
+        <sfPLE id="215" n="de_DE" s="" t="German (Germany)"/>
+        <sfPLE id="216" n="de_LU" s="" t="German (Luxembourg)"/>
+        <sfPLE id="217" n="de_CH" s="" t="German (Switzerland)"/>
+        <sfPLE id="218" n="el_GR" s="" t="Greek (Greece)"/>
+        <sfPLE id="219" n="gu_IN" s="" t="Gujarati (India)"/>
+        <sfPLE id="220" n="ht_HT" s="" t="Haitian Creole (Haiti)"/>
+        <sfPLE id="221" n="ht_US" s="" t="Haitian Creole (United States)"/>
+        <sfPLE id="222" n="haw_US" s="" t="Hawaiian (United States)"/>
+        <sfPLE id="223" n="iw_IL" s="" t="Hebrew (Israel)"/>
+        <sfPLE id="224" n="hi_IN" s="" t="Hindi (India)"/>
+        <sfPLE id="225" n="hu_HU" s="" t="Hungarian (Hungary)"/>
+        <sfPLE id="226" n="is_IS" s="" t="Icelandic (Iceland)"/>
+        <sfPLE id="227" n="in_ID" s="" t="Indonesian (Indonesia)"/>
+        <sfPLE id="228" n="ga_IE" s="" t="Irish (Ireland)"/>
+        <sfPLE id="229" n="it_IT" s="" t="Italian (Italy)"/>
+        <sfPLE id="230" n="it_CH" s="" t="Italian (Switzerland)"/>
+        <sfPLE id="231" n="ja_JP" s="" t="Japanese (Japan)"/>
+        <sfPLE id="232" n="kn_IN" s="" t="Kannada (India)"/>
+        <sfPLE id="233" n="kk_KZ" s="" t="Kazakh (Kazakhstan)"/>
+        <sfPLE id="234" n="km_KH" s="" t="Khmer (Cambodia)"/>
+        <sfPLE id="235" n="ko_KP" s="" t="Korean (North Korea)"/>
+        <sfPLE id="236" n="ko_KR" s="" t="Korean (South Korea)"/>
+        <sfPLE id="237" n="ky_KG" s="" t="Kyrgyz (Kyrgyzstan)"/>
+        <sfPLE id="238" n="lo_LA" s="" t="Lao (Laos)"/>
+        <sfPLE id="239" n="lv_LV" s="" t="Latvian (Latvia)"/>
+        <sfPLE id="240" n="lt_LT" s="" t="Lithuanian (Lithuania)"/>
+        <sfPLE id="241" n="lu_CD" s="" t="Luba-Katanga (Congo - Kinshasa)"/>
+        <sfPLE id="242" n="lb_LU" s="" t="Luxembourgish (Luxembourg)"/>
+        <sfPLE id="243" n="mk_MK" s="" t="Macedonian (North Macedonia)"/>
+        <sfPLE id="244" n="ms_BN" s="" t="Malay (Brunei)"/>
+        <sfPLE id="245" n="ms_MY" s="" t="Malay (Malaysia)"/>
+        <sfPLE id="246" n="ml_IN" s="" t="Malayalam (India)"/>
+        <sfPLE id="247" n="mt_MT" s="" t="Maltese (Malta)"/>
+        <sfPLE id="248" n="mr_IN" s="" t="Marathi (India)"/>
+        <sfPLE id="249" n="sh_ME_USD" s="" t="Montenegrin (Montenegro, USD)"/>
+        <sfPLE id="250" n="sh_ME" s="" t="Montenegrin (Montenegro)"/>
+        <sfPLE id="251" n="ne_NP" s="" t="Nepali (Nepal)"/>
+        <sfPLE id="252" n="no_NO" s="" t="Norwegian (Norway)"/>
+        <sfPLE id="253" n="ps_AF" s="" t="Pashto (Afghanistan)"/>
+        <sfPLE id="254" n="fa_IR" s="" t="Persian (Iran)"/>
+        <sfPLE id="255" n="pl_PL" s="" t="Polish (Poland)"/>
+        <sfPLE id="256" n="pt_AO" s="" t="Portuguese (Angola)"/>
+        <sfPLE id="257" n="pt_BR" s="" t="Portuguese (Brazil)"/>
+        <sfPLE id="258" n="pt_CV" s="" t="Portuguese (Cape Verde)"/>
+        <sfPLE id="259" n="pt_MZ" s="" t="Portuguese (Mozambique)"/>
+        <sfPLE id="260" n="pt_PT" s="" t="Portuguese (Portugal)"/>
+        <sfPLE id="261" n="pt_ST" s="" t="Portuguese (São Tomé &amp; Príncipe)"/>
+        <sfPLE id="262" n="ro_MD" s="" t="Romanian (Moldova)"/>
+        <sfPLE id="263" n="ro_RO" s="" t="Romanian (Romania)"/>
+        <sfPLE id="264" n="rm_CH" s="" t="Romansh (Switzerland)"/>
+        <sfPLE id="265" n="rn_BI" s="" t="Rundi (Burundi)"/>
+        <sfPLE id="266" n="ru_AM" s="" t="Russian (Armenia)"/>
+        <sfPLE id="267" n="ru_BY" s="" t="Russian (Belarus)"/>
+        <sfPLE id="268" n="ru_KZ" s="" t="Russian (Kazakhstan)"/>
+        <sfPLE id="269" n="ru_KG" s="" t="Russian (Kyrgyzstan)"/>
+        <sfPLE id="270" n="ru_LT" s="" t="Russian (Lithuania)"/>
+        <sfPLE id="271" n="ru_MD" s="" t="Russian (Moldova)"/>
+        <sfPLE id="272" n="ru_PL" s="" t="Russian (Poland)"/>
+        <sfPLE id="273" n="ru_RU" s="" t="Russian (Russia)"/>
+        <sfPLE id="274" n="ru_UA" s="" t="Russian (Ukraine)"/>
+        <sfPLE id="275" n="sm_WS" s="" t="Samoan (Samoa)"/>
+        <sfPLE id="276" n="sm_US" s="" t="Samoan (United States)"/>
+        <sfPLE id="277" n="sr_BA" s="" t="Serbian (Cyrillic) (Bosnia and Herzegovina)"/>
+        <sfPLE id="278" n="sr_CS" s="" t="Serbian (Cyrillic) (Serbia)"/>
+        <sfPLE id="279" n="sh_BA" s="" t="Serbian (Latin) (Bosnia and Herzegovina)"/>
+        <sfPLE id="280" n="sh_CS" s="" t="Serbian (Latin) (Serbia)"/>
+        <sfPLE id="281" n="sr_RS" s="" t="Serbian (Serbia)"/>
+        <sfPLE id="282" n="sk_SK" s="" t="Slovak (Slovakia)"/>
+        <sfPLE id="283" n="sl_SI" s="" t="Slovenian (Slovenia)"/>
+        <sfPLE id="284" n="so_DJ" s="" t="Somali (Djibouti)"/>
+        <sfPLE id="285" n="so_SO" s="" t="Somali (Somalia)"/>
+        <sfPLE id="286" n="es_AR" s="" t="Spanish (Argentina)"/>
+        <sfPLE id="287" n="es_BO" s="" t="Spanish (Bolivia)"/>
+        <sfPLE id="288" n="es_CL" s="" t="Spanish (Chile)"/>
+        <sfPLE id="289" n="es_CO" s="" t="Spanish (Colombia)"/>
+        <sfPLE id="290" n="es_CR" s="" t="Spanish (Costa Rica)"/>
+        <sfPLE id="291" n="es_CU" s="" t="Spanish (Cuba)"/>
+        <sfPLE id="292" n="es_DO" s="" t="Spanish (Dominican Republic)"/>
+        <sfPLE id="293" n="es_EC" s="" t="Spanish (Ecuador)"/>
+        <sfPLE id="294" n="es_SV" s="" t="Spanish (El Salvador)"/>
+        <sfPLE id="295" n="es_GT" s="" t="Spanish (Guatemala)"/>
+        <sfPLE id="296" n="es_HN" s="" t="Spanish (Honduras)"/>
+        <sfPLE id="297" n="es_MX" s="" t="Spanish (Mexico)"/>
+        <sfPLE id="298" n="es_NI" s="" t="Spanish (Nicaragua)"/>
+        <sfPLE id="299" n="es_PA" s="" t="Spanish (Panama)"/>
+        <sfPLE id="300" n="es_PY" s="" t="Spanish (Paraguay)"/>
+        <sfPLE id="301" n="es_PE" s="" t="Spanish (Peru)"/>
+        <sfPLE id="302" n="es_PR" s="" t="Spanish (Puerto Rico)"/>
+        <sfPLE id="303" n="es_ES" s="" t="Spanish (Spain)"/>
+        <sfPLE id="304" n="es_US" s="" t="Spanish (United States)"/>
+        <sfPLE id="305" n="es_UY" s="" t="Spanish (Uruguay)"/>
+        <sfPLE id="306" n="es_VE" s="" t="Spanish (Venezuela)"/>
+        <sfPLE id="307" n="sw_KE" s="" t="Swahili (Kenya)"/>
+        <sfPLE id="308" n="sv_SE" s="" t="Swedish (Sweden)"/>
+        <sfPLE id="309" n="tl_PH" s="" t="Tagalog (Philippines)"/>
+        <sfPLE id="310" n="tg_TJ" s="" t="Tajik (Tajikistan)"/>
+        <sfPLE id="311" n="ta_IN" s="" t="Tamil (India)"/>
+        <sfPLE id="312" n="ta_LK" s="" t="Tamil (Sri Lanka)"/>
+        <sfPLE id="313" n="te_IN" s="" t="Telugu (India)"/>
+        <sfPLE id="314" n="mi_NZ" s="" t="Te reo (New Zealand)"/>
+        <sfPLE id="315" n="th_TH" s="" t="Thai (Thailand)"/>
+        <sfPLE id="316" n="ti_ET" s="" t="Tigrinya (Ethiopia)"/>
+        <sfPLE id="317" n="tr_TR" s="" t="Turkish (Turkey)"/>
+        <sfPLE id="318" n="uk_UA" s="" t="Ukrainian (Ukraine)"/>
+        <sfPLE id="319" n="ur_PK" s="" t="Urdu (Pakistan)"/>
+        <sfPLE id="320" n="uz_LATN_UZ" s="" t="Uzbek (LATN,UZ)"/>
+        <sfPLE id="321" n="vi_VN" s="" t="Vietnamese (Vietnam)"/>
+        <sfPLE id="322" n="cy_GB" s="" t="Welsh (United Kingdom)"/>
+        <sfPLE id="323" n="xh_ZA" s="" t="Xhosa (South Africa)"/>
+        <sfPLE id="324" n="yo_BJ" s="" t="Yoruba (Benin)"/>
+        <sfPLE id="325" n="zu_ZA" s="" t="Zulu (South Africa)"/>
+      </picklistEntries>
+    </sfField>
+    <sfField internalLabel="Contact ID" length="18" n="ContactId" required="true" t="Contact Name" type="reference" updateable="false">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="40" n="LanguageLocaleKey" required="true" restrictedPicklist="true" t="Language" type="picklist">
+      <picklistEntryIds>326,327,328,329,330,331,332,333,334,335,257,336,337,338,339,340,297,341</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="326" n="en_US" s="" t="English"/>
+        <sfPLE id="327" n="de" s="" t="German"/>
+        <sfPLE id="328" n="es" s="" t="Spanish"/>
+        <sfPLE id="329" n="fr" s="" t="French"/>
+        <sfPLE id="330" n="it" s="" t="Italian"/>
+        <sfPLE id="331" n="ja" s="" t="Japanese"/>
+        <sfPLE id="332" n="sv" s="" t="Swedish"/>
+        <sfPLE id="333" n="ko" s="" t="Korean"/>
+        <sfPLE id="334" n="zh_TW" s="" t="Chinese (Traditional)"/>
+        <sfPLE id="335" n="zh_CN" s="" t="Chinese (Simplified)"/>
+        <sfPLE id="257" n="pt_BR" s="" t="Portuguese (Brazil)"/>
+        <sfPLE id="336" n="nl_NL" s="" t="Dutch"/>
+        <sfPLE id="337" n="da" s="" t="Danish"/>
+        <sfPLE id="338" n="th" s="" t="Thai"/>
+        <sfPLE id="339" n="fi" s="" t="Finnish"/>
+        <sfPLE id="340" n="ru" s="" t="Russian"/>
+        <sfPLE id="297" n="es_MX" s="" t="Spanish (Mexico)"/>
+        <sfPLE id="341" n="no" s="" t="Norwegian"/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" n="SuperUser" t="Super User" type="_boolean" updateable="false"/>
+    <sfField createable="false" n="LastLoginDate" t="Last Login" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+  </fields>
+  <childRelationships/>
+  <recordTypes/>
+  <standardActions>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+    <sfActionLink modes="ObjectHome List" n="New"/>
+  </standardActions>
+  <weblinks/>
+</sfObject>

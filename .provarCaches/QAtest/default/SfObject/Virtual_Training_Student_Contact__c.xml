@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" feedEnabled="true" keyPrefix="aA3" label="Virtual Training - Student Contact" labelPlural="Virtual Training - Student Contact" layoutable="true" n="Virtual_Training_Student_Contact__c" queryable="true" readPermission="false" retrieveable="true" s="" t="Virtual Training - Student Contact (aA3)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome Virtual_Training_Student_Contact__r Virtual_Training_Student_Contact_1__r" n="New"/>
+    <sfActionLink modes="View Virtual_Training_Student_Contact__r Virtual_Training_Student_Contact_1__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Virtual_Training_Student_Contact__r Virtual_Training_Student_Contact_1__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Virtual_Training_Student_Contact__r Virtual_Training_Student_Contact_1__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Virtual_Training_Student_Contact__r Virtual_Training_Student_Contact_1__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" keyPrefix="a8B" label="Integration Error Log" labelPlural="Integration Error Logs" layoutable="true" n="Integration_Error_Log__c" queryable="true" readPermission="false" retrieveable="true" s="" t="Integration Error Log (a8B)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome Integration_Error_Logs__r" n="New"/>
+    <sfActionLink modes="View Integration_Error_Logs__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Integration_Error_Logs__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Integration_Error_Logs__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Integration_Error_Logs__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

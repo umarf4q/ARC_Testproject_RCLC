@@ -1,0 +1,708 @@
+<apex:page controller="Dataplier.DMPostInstallScriptController" sidebar="false" docType="html-5.0">
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-1.10.2.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__postinstall,'js/jsforce.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__postinstall,'js/jszip.min.js')}"/>
+    <apex:slds />
+    <c:TrackPanel /> 
+
+    <apex:form id="postinstallForm">
+        <apex:pageMessages id="msg"/>
+        <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+            <div class="slds-media__body">
+                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#recent')}"/>
+							</svg>
+						</span>
+                    <span style="font-weight: bolder;" class="slds-m-left--small">{!$Label.Post_Install_Page_Title}</span>
+                </h1>
+            </div>
+        </div>
+        <apex:actionFunction name="profileSecondStep" action="{!profileValidate}" reRender="msg" onComplete="overridePageMessages();createProfilePermissionZip('{!profileNamesStr}','{!profileXml}');"/>
+        <apex:actionFunction name="deployLayout" action="{!deployPostScript}" reRender="postinstallForm" onComplete="overridePageMessages();checkDeploymentStatus('{!AsyncResultId}',{!isProfileFirstStep});">
+            <apex:param assignTo="{!zipStr}" name="zipStr" value=""/>
+            <apex:param assignTo="{!isPartOfPackage}" name="isPartOfPackage" value=""/>
+        </apex:actionFunction>
+        <apex:actionFunction name="checkStatus" action="{!checkAsyncRequest}" rerender="postinstallForm" onComplete="overridePageMessages();checkDeploymentStatus('{!AsyncResultId}',{!isProfileFirstStep});">
+            <apex:param assignTo="{!AsyncResultId}" name="AsyncResultId" value=""/>
+        </apex:actionFunction>
+        <apex:actionFunction name="stop" action="{!stop}" rerender="msg" onComplete="overridePageMessages();"/>
+
+        <apex:outputPanel layout="block">
+            <div class="slds-box slds-m-top--medium">
+                <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				<span class="slds-icon_container slds-icon-standard-account">
+ 					<svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#person_account')}"/>
+					</svg>
+				</span>
+                    <span class="slds-truncate slds-m-left--small">{!$Label.dataplier__post_install_profile_title}</span>
+                </div>
+                <div class="slds-grid slds-gutters slds-m-top--medium">
+                    <div class="slds-col slds-size--10-of-12">
+                        <p class="">{!$Label.dataplier__post_install_profile_description}</p>
+                        <apex:outputPanel styleClass="slds-m-top--large slds-size--6-of-12" layout="block">
+                            <apex:outputPanel id="picklist" layout="block">
+                                <c:MultiSelectComponent leftLabel="Available Profiles"
+                                                        leftOption="{!leftOptionList}"
+                                                        rightLabel="Selected Profiles"
+                                                        rightOption="{!rightOptionList}"
+                                                        size="10"
+                                                        width="300px"/>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-col slds-size--2-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-float--right">
+                            <apex:commandButton action="{!profileApplicationValidate}" styleClass="slds-button slds-button_neutral" value="Update" reRender="msg" onComplete="overridePageMessages();createProfilePermissionZip('{!profileNamesStr}','{!profileXml}');"/>
+                        </apex:outputPanel>
+                    </div>
+
+                </div>
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+    <style>
+        .customMessage * {
+            color: #fff !important
+        }
+
+        .customMessage {
+            margin: 5px 0 !important;
+            max-width: 100%;
+            opacity: 1 !important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+
+        .message {
+            opacity: 1;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            overridePageMessages();
+        }
+
+        function overridePageMessages() {
+            var textureEffect = '';
+            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage ' + textureEffect);
+            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage ' + textureEffect);
+            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage ' + textureEffect);
+            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage ' + textureEffect);
+
+            $('.errorM3').removeClass('errorM3');
+            $('.confirmM3').removeClass('confirmM3');
+            $('.infoM3').removeClass('infoM3');
+            $('.warningM3').removeClass('warningM3');
+        }
+
+
+        var url = '{!baseUrl}';
+        var packageXmlName = 'package.xml';
+        var NameSpacePrefix = '{!NameSpacePrefix}';
+        var flosumsf = jsforce;
+        var flosumTabandListViewMap = {};
+
+        //enable block UI
+
+        var migratorLayoutMap = {};
+        var layoutFileMap = {};
+        var packLayoutFileMap = {};
+        var Execution_Sequence = '<?xml version="1.0" encoding="UTF-8"?>' +
+            '<Layout xmlns="http://soap.sforce.com/2006/04/metadata">' +
+            '<customButtons>PREFIX__PrePostActions</customButtons>' +
+            '<customButtons>PREFIX__Start_Execution</customButtons>' +
+            '<customButtons>PREFIX__Dry_Run</customButtons>' +
+            '<customButtons>PREFIX__Schedule_Migration</customButtons>' +
+            '<excludeButtons>Submit</excludeButtons>' +
+            '<relatedLists>' +
+            '<excludeButtons>New</excludeButtons>' +
+            '<fields>NAME</fields>' +
+            '<fields>PREFIX__Data_Set__c</fields>' +
+            '<fields>UPDATEDBY_USER</fields>' +
+            '<fields>PREFIX__Sequence__c</fields>' +
+            '<relatedList>PREFIX__Execution_Sequence_Step__c.PREFIX__Execution_Sequence__c</relatedList>' +
+            '<sortField>PREFIX__Sequence__c</sortField>' +
+            '<sortOrder>Asc</sortOrder>' +
+            '</relatedLists>' +
+            '<relatedLists>' +
+            '<excludeButtons>New</excludeButtons>' +
+            '<fields>NAME</fields>' +
+            '<fields>PREFIX__Started__c</fields>' +
+            '<relatedList>PREFIX__Execution__c.PREFIX__Execution_Sequence__c</relatedList>' +
+            '</relatedLists>' +
+            '<relatedLists>' +
+            '<fields>NAME</fields>' +
+            '<fields>PREFIX__Status__c</fields>' +
+            '<fields>PREFIX__Org__c</fields>' +
+            '<fields>PREFIX__Start_Date__c</fields>' +
+            '<fields>PREFIX__Completed_Date__c</fields>' +
+            '<relatedList>PREFIX__Migration_Job__c.PREFIX__Sequence__c</relatedList>' +
+            '</relatedLists>' +
+            '<relatedLists>' +
+            '<relatedList>RelatedNoteList</relatedList>' +
+            '</relatedLists>' +
+
+            '<layoutSections>' +
+            '<customLabel>false</customLabel>' +
+            '<detailHeading>false</detailHeading>' +
+            '<editHeading>true</editHeading>' +
+            '<label>Information</label>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Required</behavior>' +
+            '<field>Name</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Execution_Direction__c</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>OwnerId</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<style>TwoColumnsTopToBottom</style>' +
+            '</layoutSections>' +
+            '<layoutSections>' +
+            '<customLabel>false</customLabel>' +
+            '<detailHeading>false</detailHeading>' +
+            '<editHeading>true</editHeading>' +
+            '<label>System Information</label>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>CreatedById</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>LastModifiedById</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<style>TwoColumnsTopToBottom</style>' +
+            '</layoutSections>' +
+            '<layoutSections>' +
+            '<customLabel>true</customLabel>' +
+            '<detailHeading>false</detailHeading>' +
+            '<editHeading>true</editHeading>' +
+            '<label>Custom Links</label>' +
+            '<layoutColumns/>' +
+            '<layoutColumns/>' +
+            '<layoutColumns/>' +
+            '<style>CustomLinks</style>' +
+            '</layoutSections>' +
+            '</Layout>';
+
+        var Migration_Step = '<?xml version="1.0" encoding="UTF-8"?>' +
+            '<Layout xmlns="http://soap.sforce.com/2006/04/metadata">' +
+            '<excludeButtons>Submit</excludeButtons>' +
+            '<relatedLists>' +
+            '<relatedList>RelatedNoteList</relatedList>' +
+            '</relatedLists>' +
+            '<layoutSections>' +
+            '<customLabel>false</customLabel>' +
+            '<detailHeading>false</detailHeading>' +
+            '<editHeading>true</editHeading>' +
+            '<label>Information</label>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>Name</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Required</behavior>' +
+            '<field>PREFIX__Job__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Object_Name__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Status__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>PREFIX__Space_required__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Order__c</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Total__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Inserted__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Updated__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Failed__c</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<style>TwoColumnsTopToBottom</style>' +
+            '</layoutSections>' +
+            '<layoutSections>' +
+            '<customLabel>false</customLabel>' +
+            '<detailHeading>false</detailHeading>' +
+            '<editHeading>true</editHeading>' +
+            '<label>System Information</label>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>CreatedById</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>LastModifiedById</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<style>TwoColumnsTopToBottom</style>' +
+            '</layoutSections>' +
+            '<layoutSections>' +
+            '<customLabel>true</customLabel>' +
+            '<detailHeading>false</detailHeading>' +
+            '<editHeading>true</editHeading>' +
+            '<label>Custom Links</label>' +
+            '<layoutColumns/>' +
+            '<layoutColumns/>' +
+            '<layoutColumns/>' +
+            '<style>CustomLinks</style>' +
+            '</layoutSections>' +
+            '</Layout>';
+
+        var Migration_Job = '<?xml version="1.0" encoding="UTF-8"?>' +
+            '<Layout xmlns="http://soap.sforce.com/2006/04/metadata">' +
+            '<customButtons>PREFIX__Details</customButtons>' +
+            '<excludeButtons>Submit</excludeButtons>' +
+            '<layoutSections>' +
+            '<customLabel>false</customLabel>' +
+            '<detailHeading>false</detailHeading>' +
+            '<editHeading>true</editHeading>' +
+            '<label>Information</label>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>Name</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Required</behavior>' +
+            '<field>PREFIX__Sequence__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Org__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Status__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>PREFIX__Space_required__c</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>OwnerId</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__ETA__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Start_Date__c</field>' +
+            '</layoutItems>' +
+            '<layoutItems>' +
+            '<behavior>Edit</behavior>' +
+            '<field>PREFIX__Completed_Date__c</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<style>TwoColumnsTopToBottom</style>' +
+            '</layoutSections>' +
+            '<layoutSections>' +
+            '<customLabel>false</customLabel>' +
+            '<detailHeading>false</detailHeading>' +
+            '<editHeading>true</editHeading>' +
+            '<label>System Information</label>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>CreatedById</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<layoutColumns>' +
+            '<layoutItems>' +
+            '<behavior>Readonly</behavior>' +
+            '<field>LastModifiedById</field>' +
+            '</layoutItems>' +
+            '</layoutColumns>' +
+            '<style>TwoColumnsTopToBottom</style>' +
+            '</layoutSections>' +
+            '<layoutSections>' +
+            '<customLabel>true</customLabel>' +
+            '<detailHeading>false</detailHeading>' +
+            '<editHeading>true</editHeading>' +
+            '<label>Custom Links</label>' +
+            '<layoutColumns/>' +
+            '<layoutColumns/>' +
+            '<layoutColumns/>' +
+            '<style>CustomLinks</style>' +
+            '</layoutSections>' +
+            '<relatedLists>' +
+            '<fields>NAME</fields>' +
+            '<fields>PREFIX__Object_Name__c</fields>' +
+            '<fields>PREFIX__Status__c</fields>' +
+            '<fields>PREFIX__Total__c</fields>' +
+            '<fields>PREFIX__Inserted__c</fields>' +
+            '<fields>PREFIX__Updated__c</fields>' +
+            '<fields>PREFIX__Failed__c</fields>' +
+            '<fields>PREFIX__Order__c</fields>' +
+            '<relatedList>PREFIX__Migration_Step__c.PREFIX__Job__c</relatedList>' +
+            '<sortField>PREFIX__Order__c</sortField>' +
+            '<sortOrder>Asc</sortOrder>' +
+            '</relatedLists>' +
+            '<relatedLists>' +
+            '<relatedList>RelatedNoteList</relatedList>' +
+            '</relatedLists>' +
+            '</Layout>';
+
+        migratorLayoutMap['Execution_Sequence'] = Execution_Sequence;
+        migratorLayoutMap['Migration_Step'] = Migration_Step;
+        migratorLayoutMap['Migration_Job'] = Migration_Job;
+
+        layoutFileMap['Execution_Sequence'] = 'PREFIX__Execution_Sequence__c-PREFIX__Execution Sequence Layout';
+        layoutFileMap['Migration_Step'] = 'PREFIX__Migration_Step__c-PREFIX__Migration Step Layout';
+        layoutFileMap['Migration_Job'] = 'PREFIX__Migration_Job__c-PREFIX__Migration Job Layout';
+
+        function createLayoutsZip(packageDescr) {
+            var dataplierPackageXml = packageDescr.xml;
+            var myZip = packageDescr.zip;
+            dataplierPackageXml += '<types>';
+            for (var key in layoutFileMap) {
+                if (migratorLayoutMap[key] != undefined) {
+                    var member = layoutFileMap[key];// : layoutFileMap[key];
+                    if (NameSpacePrefix != undefined && NameSpacePrefix != '') {
+                        member = member.replaceAll('PREFIX', NameSpacePrefix);
+                    } else {
+                        member = member.replaceAll('PREFIX__', '');
+                    }
+
+                    var body = migratorLayoutMap[key];
+
+                    if (NameSpacePrefix != undefined && NameSpacePrefix != '') {
+                        body = body.replaceAll('PREFIX', NameSpacePrefix);
+                    } else {
+                        body = body.replaceAll('PREFIX__', '');
+                    }
+
+                    dataplierPackageXml += '<members>' + member + '</members>';
+                    var fileName = 'layouts/' + member + '.layout';
+                    myZip.file(fileName, body);
+                }
+            }
+            dataplierPackageXml += '<name>Layout</name>';
+            dataplierPackageXml += '</types>';
+            packageDescr.xml = dataplierPackageXml;
+
+        }
+
+        String.prototype.replaceAll = function (str1, str2) {
+            return this.replace(new RegExp(str1, 'g'), str2);
+        }
+
+        function createLayoutsZip2() {
+            var dataplierPackageXmlName = NameSpacePrefix != '' ? NameSpacePrefix + '/package.xml' : 'package.xml';
+            var dataplierPackageXml = '';
+            dataplierPackageXml += '<?xml version="1.0" encoding="UTF-8"?>';
+            dataplierPackageXml += '<Package xmlns="http://soap.sforce.com/2006/04/metadata">';
+
+
+            var myZip = new JSZip();
+            if (NameSpacePrefix != '') {
+                dataplierPackageXml += '<fullName>' + NameSpacePrefix + '</fullName>';
+                dataplierPackageXml += '<apiAccessLevel>Unrestricted</apiAccessLevel>';
+                dataplierPackageXml += '<namespacePrefix>' + NameSpacePrefix + '</namespacePrefix>';
+            }
+            dataplierPackageXml += '<types>';
+            for (var key in layoutFileMap) {
+                if (migratorLayoutMap[key] != undefined) {
+                    dataplierPackageXml += '<members>' + layoutFileMap[key] + '</members>';
+                    var fileName = NameSpacePrefix != '' ? NameSpacePrefix + '/' + key : key;
+                    myZip.file(fileName, migratorLayoutMap[key]);
+                }
+            }
+            dataplierPackageXml += '<name>Layout</name>';
+            dataplierPackageXml += '</types>';
+
+            var temp = NameSpacePrefix != '' ? NameSpacePrefix + '__' : NameSpacePrefix;
+            //Patch object xml
+
+
+            var dataSetXml = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">' +
+                '<deploymentStatus>Deployed</deploymentStatus>' +
+                '<label>Data Set</label>' +
+                '<listViews>' +
+                '<fullName>All</fullName>' +
+                '<filterScope>Everything</filterScope>' +
+                '<label>All</label>' +
+                '</listViews>' +
+                '<nameField>' +
+                '<label>Data Set Name</label>' +
+                '<type>Text</type>' +
+                '</nameField>' +
+                '<pluralLabel>Data Sets</pluralLabel>' +
+                '<searchLayouts/>' +
+                '<sharingModel>ReadWrite</sharingModel>' +
+                '</CustomObject>';
+
+            var executionXml = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">' +
+                '<deploymentStatus>Deployed</deploymentStatus>' +
+                '<label>Execution</label>' +
+                '<listViews>' +
+                '<fullName>All</fullName>' +
+                '<columns>NAME</columns>' +
+                '<columns>Execution_Sequence__c</columns>' +
+                '<columns>Started__c</columns>' +
+                '<filterScope>Everything</filterScope>' +
+                '<label>All</label>' +
+                '</listViews>' +
+                '<nameField>' +
+                '<label>Execution Name</label>' +
+                '<type>Text</type>' +
+                '</nameField>' +
+                '<pluralLabel>Executions</pluralLabel>' +
+                '<searchLayouts>' +
+                '<customTabListAdditionalFields>Execution_Sequence__c</customTabListAdditionalFields>' +
+                '<customTabListAdditionalFields>Started__c</customTabListAdditionalFields>' +
+                '<excludedStandardButtons>Accept</excludedStandardButtons>' +
+                '<excludedStandardButtons>New</excludedStandardButtons>' +
+                '<searchResultsAdditionalFields>Execution_Sequence__c</searchResultsAdditionalFields>' +
+                '<searchResultsAdditionalFields>Started__c</searchResultsAdditionalFields>' +
+                '</searchLayouts>' +
+                '<sharingModel>ReadWrite</sharingModel>' +
+                '</CustomObject>';
+
+            var executionSequenceXml = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">' +
+                '<deploymentStatus>Deployed</deploymentStatus>' +
+                '<label>Execution Sequence</label>' +
+                '<listViews>' +
+                '<fullName>All</fullName>' +
+                '<filterScope>Everything</filterScope>' +
+                '<fullName>All</fullName>' +
+                '<columns>NAME</columns>' +
+                '<columns>CREATED_DATE</columns>' +
+                '<columns>CREATEDBY_USER</columns>' +
+                '<columns>UPDATEDBY_USER.ALIAS</columns>' +
+                '<columns>UPDATEDBY_USER</columns>' +
+                '<columns>LAST_UPDATE</columns>' +
+                '<filterScope>Everything</filterScope>' +
+                '<label>All</label>' +
+                '</listViews>' +
+                '<nameField>' +
+                '<label>Sequence Name</label>' +
+                '<type>Text</type>' +
+                '</nameField>' +
+                '<pluralLabel>Sequences</pluralLabel>' +
+                '<searchLayouts>' +
+                '<customTabListAdditionalFields>Execution_Direction__c</customTabListAdditionalFields>' +
+                '<searchResultsAdditionalFields>Execution_Direction__c</searchResultsAdditionalFields>' +
+                '</searchLayouts>' +
+                '<sharingModel>ReadWrite</sharingModel>' +
+                '</CustomObject>';
+
+            var logXml = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">' +
+                '<deploymentStatus>Deployed</deploymentStatus>' +
+                '<label>Log</label>' +
+                '<listViews>' +
+                '<fullName>All</fullName>' +
+                '<filterScope>Everything</filterScope>' +
+                '<label>All</label>' +
+                '</listViews>' +
+                '<nameField>' +
+                '<label>Log Name</label>' +
+                '<type>Text</type>' +
+                '</nameField>' +
+                '<pluralLabel>Logs</pluralLabel>' +
+                '<searchLayouts/>' +
+                '<sharingModel>ReadWrite</sharingModel>' +
+                '</CustomObject>';
+
+            flosumTabandListViewMap['objects/Data_Set__c.object'] = dataSetXml;
+            flosumTabandListViewMap['objects/Execution__c.object'] = executionXml;
+            flosumTabandListViewMap['objects/Execution_Sequence__c.object'] = executionSequenceXml;
+            flosumTabandListViewMap['objects/Log__c.object'] = logXml;
+            for (var key in flosumTabandListViewMap) {
+                var fileName = NameSpacePrefix != '' ? NameSpacePrefix + '/' + key : key;
+                myZip.file(fileName, flosumTabandListViewMap[key]);
+            }
+
+            dataplierPackageXml += '<types>';
+            dataplierPackageXml += '<members>*</members>';
+            dataplierPackageXml += '<name>CustomObject</name>';
+            dataplierPackageXml += '</types>';
+            dataplierPackageXml += '<types>';
+            dataplierPackageXml += '<members>*</members>';
+            dataplierPackageXml += '<name>ListView</name>';
+            dataplierPackageXml += '</types>';
+            dataplierPackageXml += '<version>50.0</version>';
+            dataplierPackageXml += '</Package>';
+            myZip.file(dataplierPackageXmlName, dataplierPackageXml);
+            var deployZipStr = myZip.generate({type: "base64", compression: "DEFLATE"});
+            if (NameSpacePrefix != '')
+                deployLayout(deployZipStr, true);
+            else
+                deployLayout(deployZipStr, false);
+        }
+
+        /*
+                function createApplicationZip()
+                {
+                    var dataplierPackageXmlName= NameSpacePrefix != '' ? NameSpacePrefix+'/package.xml' : 'package.xml';
+                    var dataplierPackageXml = '';
+                    dataplierPackageXml+='<?xml version="1.0" encoding="UTF-8"?>';
+                    dataplierPackageXml+='<Package xmlns="http://soap.sforce.com/2006/04/metadata">';
+
+                    var myZip = new JSZip();
+                    if(NameSpacePrefix != '')
+                    {
+                        dataplierPackageXml+='<fullName>'+NameSpacePrefix+'</fullName>';
+                        dataplierPackageXml+='<apiAccessLevel>Unrestricted</apiAccessLevel>';
+                        dataplierPackageXml+='<namespacePrefix>'+NameSpacePrefix+'</namespacePrefix>';
+                    }
+                    //custom application
+                    dataplierPackageXml+='<types>';
+                    for(var key in migratorAppMap)
+                    {
+                        var fileName = NameSpacePrefix != '' ? NameSpacePrefix+'/'+key : key;
+                        myZip.file(fileName ,migratorAppMap[key]);
+                    }
+                    dataplierPackageXml+='<members>Dataplier</members>';
+                    dataplierPackageXml+='<name>CustomApplication</name>';
+                    dataplierPackageXml+='</types>';
+                    dataplierPackageXml+='<version>33.0</version>';
+                    dataplierPackageXml+='</Package>';
+                    myZip.file(dataplierPackageXmlName,dataplierPackageXml);
+                    var deployZipStr = myZip.generate({type:"base64",compression:"DEFLATE"});
+                    if(NameSpacePrefix != '')
+                        deployLayout(deployZipStr,true);
+                    else
+                        deployLayout(deployZipStr,false);
+                }
+        */
+        var AppFileMap = {};
+        var migratorAppMap = {};
+
+        var Custom_App = '<?xml version="1.0" encoding="UTF-8"?>' +
+            '<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">' +
+            '<defaultLandingTab>standard-home</defaultLandingTab>' +
+            '<formFactors>Large</formFactors>' +
+            '<label>Dataplier</label>' +
+            '<tab>PREFIX__Data_Set__c</tab>' +
+            '<tab>PREFIX__Execution_Sequence__c</tab>' +
+            '<tab>PREFIX__Execution__c</tab>' +
+            '<tab>PREFIX__Settings</tab>' +
+            '</CustomApplication>';
+
+        migratorAppMap['Custom_App'] = Custom_App;
+
+        AppFileMap['Custom_App'] = 'PREFIX__Dataplier';
+
+
+        function createAppZip(packageDescr) {
+            var dataplierPackageXml = packageDescr.xml;
+            var myZip = packageDescr.zip;
+            dataplierPackageXml += '<types>';
+            for (var key in AppFileMap) {
+                if (migratorAppMap[key] != undefined) {
+                    var member = AppFileMap[key];// : layoutFileMap[key];
+                    if (NameSpacePrefix != undefined && NameSpacePrefix != '') {
+                        member = member.replaceAll('PREFIX', NameSpacePrefix);
+                    } else {
+                        member = member.replaceAll('PREFIX__', '');
+                    }
+
+                    var body = migratorAppMap[key];
+
+                    if (NameSpacePrefix != undefined && NameSpacePrefix != '') {
+                        body = body.replaceAll('PREFIX', NameSpacePrefix);
+                    } else {
+                        body = body.replaceAll('PREFIX__', '');
+                    }
+
+                    dataplierPackageXml += '<members>' + member + '</members>';
+                    var fileName = 'applications/' + member + '.app';
+                    myZip.file(fileName, body);
+                }
+            }
+            dataplierPackageXml += '<name>CustomApplication</name>';
+            dataplierPackageXml += '</types>';
+            packageDescr.xml = dataplierPackageXml;
+
+        }
+
+        function createProfilePermissionZip(profileNames, profileXml) {
+            if (profileNames != undefined && profileNames != '') {
+                var myZip = new JSZip();
+                var proLi = JSON.parse(profileNames);
+                var packageXmlPre = '<?xml version="1.0" encoding="UTF-8"?><Package xmlns="http://soap.sforce.com/2006/04/metadata">';
+                packageXmlPre += '<types>';
+                for (var key in proLi) {
+                    myZip.file(key, profileXml);// add all profiles
+                    packageXmlPre += '<members>' + proLi[key] + '</members>';// update package.xml file
+                }
+                packageXmlPre += '<name>Profile</name></types>';
+                var descriptor = {};
+                descriptor.zip = myZip;
+                descriptor.xml = packageXmlPre;
+                createAppZip(descriptor);
+                createLayoutsZip(descriptor);
+                packageXmlPre = descriptor.xml;
+                packageXmlPre += '<version>50.0</version></Package>';
+                myZip.file(packageXmlName, packageXmlPre);
+                var deployZipStr = myZip.generate({type: "base64", compression: "DEFLATE"});
+                deployLayout(deployZipStr, false);
+            } else {
+            }
+        }
+
+        function checkDeploymentStatus(asyncId, isProfileFirstStep) {
+            console.log('asyncId=' + asyncId);
+            console.log('isProfileFirstStep=' + isProfileFirstStep);
+            if (asyncId != undefined && asyncId != null && asyncId.length == 18) {
+                setTimeout(
+                    function () {
+                        checkStatus(asyncId)
+                    }, 8000);
+            } else {
+                console.log('stop!');
+//              stop(); 
+            }
+        }
+
+    </script>
+</apex:page>

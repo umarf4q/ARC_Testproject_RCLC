@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject keyPrefix="0OO" label="Process Instance Node" labelPlural="Process Instance Node" n="ProcessInstanceNode" queryable="true" retrieveable="true" s="" t="Process Instance Node (0OO)">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Process Instance Node ID" type="id" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" length="18" n="ProcessInstanceId" relationshipName="ProcessInstance" required="true" t="Process Instance ID" type="reference" updateable="false">
+      <referenceTos>
+        <string>ProcessInstance</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" length="18" n="ProcessNodeId" relationshipName="ProcessNode" required="true" t="Process Node ID" type="reference" updateable="false">
+      <referenceTos>
+        <string>ProcessNode</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" length="255" n="NodeStatus" restrictedPicklist="true" t="Node Status" type="picklist" updateable="false">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Approved" s=""/>
+        <sfPLE id="2" n="Rejected" s=""/>
+        <sfPLE id="3" n="Removed" s="" t="Recalled"/>
+        <sfPLE id="4" n="Fault" s=""/>
+        <sfPLE id="5" n="Pending" s=""/>
+        <sfPLE id="6" n="Held" s="" t="Hold"/>
+        <sfPLE id="7" n="Reassigned" s=""/>
+        <sfPLE id="8" n="Started" s="" t="Submitted"/>
+        <sfPLE id="9" n="NoResponse" s="" t="No Response"/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" n="CompletedDate" t="Completed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" length="18" n="LastActorId" relationshipName="LastActor" t="User ID" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" length="255" n="ProcessNodeName" t="Name" updateable="false"/>
+    <sfField createable="false" n="ElapsedTimeInDays" precision="7" scale="3" t="Elapsed Time (Days)" type="_double" updateable="false"/>
+    <sfField createable="false" n="ElapsedTimeInHours" precision="7" scale="2" t="Elapsed Time in Hours" type="_double" updateable="false"/>
+    <sfField createable="false" n="ElapsedTimeInMinutes" precision="8" t="Elapsed Time in Minutes" type="_double" updateable="false"/>
+  </fields>
+  <childRelationships/>
+  <recordTypes/>
+  <standardActions>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+    <sfActionLink modes="ObjectHome List" n="New"/>
+  </standardActions>
+  <weblinks/>
+</sfObject>

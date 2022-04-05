@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="redwing__Learning_Assignment__c.SYSTEM" defaultFlexipageId="Learning_Assignment_Record_Page" deleteable="true" feedEnabled="true" keyPrefix="a6I" label="Learning Assignment" labelPlural="Learning Assignments" layoutable="true" metadataLabel="Learning Assignment" n="redwing__Learning_Assignment__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Learning Assignment (a6I)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a6I/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Learning Assignment ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="Learning Assignment Name" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField length="255" n="redwing__Approval_Status__c" t="Approval Status" type="picklist">
+      <picklistEntryIds>1,2,3</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Pending" s=""/>
+        <sfPLE id="2" n="Rejected" s=""/>
+        <sfPLE id="3" n="Approved" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="redwing__Approved_By__c" relationshipName="redwing__Approved_By__r" t="Approved By" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__Approved__c" t="Approved" type="_boolean"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="redwing__Approver_Notes__c" t="Approver Notes" type="textarea"/>
+    <sfField n="redwing__Assignment_Time_Limit__c" precision="4" t="Assignment Time Limit (mins)" type="_double"/>
+    <sfField n="redwing__CheckIn_Latitude__c" precision="18" scale="3" t="Check-In Latitude" type="_double"/>
+    <sfField n="redwing__CheckIn_Longitude__c" precision="18" scale="3" t="Check-In Longitude" type="_double"/>
+    <sfField length="18" n="redwing__Community_Id__c" t="Community Id"/>
+    <sfField n="redwing__Completed_On__c" t="Completed On" type="date"/>
+    <sfField length="18" n="redwing__Contact__c" relationshipLabel="Learning Assignments" relationshipName="redwing__Contact__r" t="Contact" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__Due_Date__c" t="Due Date" type="date"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT( redwing__Evaluation_Result__c )" length="1300" n="redwing__Evaluation_Result_Text__c" t="Evaluation Result Text" updateable="false"/>
+    <sfField length="255" n="redwing__Evaluation_Result__c" t="Evaluation Result" type="picklist">
+      <picklistEntryIds>4,5,6</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="4" n="Successful" s=""/>
+        <sfPLE id="5" n="Unsuccessful" s=""/>
+        <sfPLE id="6" n="Not Evaluated" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="redwing__Evaluation_Score__c" precision="5" scale="2" t="Evaluation Score" type="_double"/>
+    <sfField n="redwing__Evaluation_Start_Time__c" t="Evaluation Start Time" type="datetime"/>
+    <sfField n="redwing__Evaluation_Time_Limit_Exceeded__c" t="Evaluation Time Limit Exceeded" type="_boolean"/>
+    <sfField n="redwing__Evaluation_Times_Taken__c" precision="4" t="Evaluation Times Taken" type="_double"/>
+    <sfField n="redwing__Is_Activity_Assignment__c" t="Is Activity Assignment" type="_boolean"/>
+    <sfField n="redwing__Is_Test_Assignment__c" t="Is Test Assignment" type="_boolean"/>
+    <sfField length="255" n="redwing__Last_Published_Learning_Version_Decision__c" t="Last Published Learning Version Decision" type="picklist">
+      <picklistEntryIds>7,8</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="7" n="New version taken" s=""/>
+        <sfPLE id="8" n="Keep using old version" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="redwing__Last_Published_Learning_Version__c" relationshipLabel="Learning Assignments" relationshipName="redwing__Last_Published_Learning_Version__r" t="Last Published Learning Version" type="reference">
+      <referenceTos>
+        <string>redwing__Learning_Version__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__Last_Updated__c" t="Last Updated" type="datetime"/>
+    <sfField length="18" n="redwing__Learning_Version__c" relationshipLabel="Learning Assignments (Learning Version)" relationshipName="redwing__Learning_Version__r" t="Learning Version" type="reference">
+      <referenceTos>
+        <string>redwing__Learning_Version__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="redwing__Learning__c" relationshipLabel="Learning Assignments" relationshipName="redwing__Learning__r" t="Learning" type="reference">
+      <referenceTos>
+        <string>redwing__Learning__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__Optional__c" t="Optional" type="_boolean"/>
+    <sfField n="redwing__Previous_Version_Number__c" precision="18" t="Previous Version Number" type="_double"/>
+    <sfField length="255" n="redwing__Previous_Version_Progress__c" t="Previous Version Progress" type="picklist">
+      <picklistEntryIds>9,10,11,12,13</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="9" n="Not Started" s=""/>
+        <sfPLE id="10" n="In Progress" s=""/>
+        <sfPLE id="11" n="In Review" s=""/>
+        <sfPLE id="12" n="Completed" s=""/>
+        <sfPLE id="13" n="Cancelled" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="redwing__Progress_Percentage__c" precision="18" scale="2" t="Progress %" type="percent"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(redwing__Progress__c)" length="1300" n="redwing__Progress_Text__c" t="Progress Text" updateable="false"/>
+    <sfField length="255" n="redwing__Progress__c" t="Progress" type="picklist">
+      <picklistEntryIds>14,15,16,17,18,19,20</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="14" n="Not Started" s=""/>
+        <sfPLE id="15" n="In Progress" s=""/>
+        <sfPLE id="16" n="In Review" s=""/>
+        <sfPLE id="17" n="Completed" s=""/>
+        <sfPLE id="18" n="Waiting" s=""/>
+        <sfPLE id="19" n="Under Review" s=""/>
+        <sfPLE id="20" n="Unenroll" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="redwing__Shared_Learning_Assignment__c" relationshipLabel="Learning Assignments" relationshipName="redwing__Shared_Learning_Assignment__r" t="Shared Learning Assignment" type="reference">
+      <referenceTos>
+        <string>redwing__Shared_Learning_Assignment__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__Task_Rating__c" precision="5" scale="2" t="Task Rating" type="_double"/>
+    <sfField n="redwing__Times_Launched__c" precision="18" t="Times Launched" type="_double"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="redwing__Total_Task_Rating__c / IF( redwing__Total_Votes__c  != 0, redwing__Total_Votes__c , 1)" formulaTreatBlanksAs="BlankAsZero" n="redwing__Total_Avg_Task_Rating__c" precision="18" scale="1" t="Total Avg Task Rating" type="_double" updateable="false"/>
+    <sfField length="18" n="redwing__Training_Activity__c" relationshipLabel="Learning Assignments" relationshipName="redwing__Training_Activity__r" t="Learning Activity" type="reference">
+      <referenceTos>
+        <string>redwing__Training_Activity__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="redwing__Training_Plan_Section_Assignment__c" relationshipLabel="Learning Assignments" relationshipName="redwing__Training_Plan_Section_Assignment__r" t="Learning Plan Section Assignment" type="reference">
+      <referenceTos>
+        <string>redwing__Training_Plan_Section_Assignment__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="redwing__Training_Plan_Section_Item__c" relationshipLabel="Learning Assignments" relationshipName="redwing__Training_Plan_Section_Item__r" t="Learning Plan Section Item" type="reference">
+      <referenceTos>
+        <string>redwing__Training_Plan_Section_Item__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="redwing__Training_Plan_Section__c" relationshipLabel="Learning Assignments" relationshipName="redwing__Training_Plan_Section__r" t="Learning Plan Section" type="reference">
+      <referenceTos>
+        <string>redwing__Training_Plan_Section__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="redwing__Training_Plan__c" relationshipLabel="Learning Assignments" relationshipName="redwing__Training_Plan__r" t="Learning Plan" type="reference">
+      <referenceTos>
+        <string>redwing__Training_Plan__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32000" n="redwing__User_Notes__c" t="User Notes" type="textarea"/>
+    <sfField length="18" n="redwing__User__c" relationshipName="redwing__User__r" t="User" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__Waitlist_Order__c" precision="18" t="Waitlist Order" type="_double"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="redwing__Total_Task_Rating__c" precision="18" summarizedField="redwing__Criterion_Rating__c.redwing__Score__c" summaryForeignKey="redwing__Criterion_Rating__c.redwing__Learning_Assignment__c" summaryOperation="sum" t="Total Task Rating" type="_double" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="redwing__Total_Votes__c" precision="18" summaryForeignKey="redwing__Criterion_Rating__c.redwing__Learning_Assignment__c" summaryOperation="count" t="Total Votes" type="_double" updateable="false"/>
+    <sfField editPermission="false" length="255" n="External_Id__c" readPermission="false" t="External Id"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Grade_Additional_Info__c" t="Grade Additional Info" type="textarea"/>
+    <sfField length="255" n="Grade_Reason__c" t="Grade Reason" type="picklist">
+      <picklistEntryIds>21,22,23,24,25,26</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="21" n="Did not successfully complete course all objectives" s=""/>
+        <sfPLE id="22" n="Failed written exam" s=""/>
+        <sfPLE id="23" n="Unable to perform one or more skills" s=""/>
+        <sfPLE id="24" n="Did not attend all course sessions" s=""/>
+        <sfPLE id="25" n="Did not desire grade/certificate" s=""/>
+        <sfPLE id="26" n="Arrangements to complete course objectives" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="redwing__Learning__r.RecordType.Name" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Learning_Record_Type__c" t="Learning Record Type" updateable="false"/>
+    <sfField editPermission="false" length="30" n="RCO_Order_Id__c" readPermission="false" t="RCO Order Id"/>
+    <sfField editPermission="false" n="redwing__Exempted__c" readPermission="false" t="Exempted" type="_boolean"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="30000" n="redwing__Random_Quiz_Questions__c" readPermission="false" t="Random Quiz Questions" type="textarea"/>
+    <sfField editPermission="false" length="18" n="redwing__Related_Learning_Object__c" readPermission="false" relationshipLabel="Archived Learning Assignments" relationshipName="redwing__Related_Learning_Object__r" t="Related Learning Object" type="reference">
+      <referenceTos>
+        <string>redwing__Learning__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" n="redwing__Status_Date__c" readPermission="false" t="Status Date" type="date"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship childName="redwing__Learning_Assignment__Share" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="01I0V000002N5Pd.Share"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="redwing__Learning_Assignment__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002N5Pd.History"/>
+    <sfObjectRelationship childName="redwing__Learning_Assignment__Feed" field="ParentId" n="Feeds" relationshipName="Feeds" s="2-" t="01I0V000002N5Pd.Feed"/>
+    <sfObjectRelationship childName="scormanywhere__Transcript__c" field="rwscorm__Learning_Assignment__c" n="rwscorm__Transcripts__r" relationshipName="rwscorm__Transcripts__r" s="2-" t="01I0V000002N5P9"/>
+    <sfObjectRelationship childName="redwing__Criterion_Rating__c" field="redwing__Learning_Assignment__c" n="redwing__Criterion_Ratings__r" relationshipName="redwing__Criterion_Ratings__r" s="2-" t="01I0V000002N5PN"/>
+    <sfObjectRelationship childName="redwing__ILT_Roster__c" field="redwing__Learning_Assignment__c" n="redwing__ILT_Rosters__r" relationshipName="redwing__ILT_Rosters__r" s="2-" t="01I0V000002N5PV"/>
+    <sfObjectRelationship childName="redwing__Response_Summary__c" field="redwing__Learning_Assignment__c" n="redwing__Response_Summaries__r" relationshipName="redwing__Response_Summaries__r" s="2-" t="01I0V000002N5Py"/>
+    <sfObjectRelationship childName="redwing__Response__c" field="redwing__Learning_Assignment__c" n="redwing__Responses__r" relationshipName="redwing__Responses__r" s="2-" t="01I0V000002N5Pz"/>
+    <sfObjectRelationship childName="redwing__Shared_Learning_Assignment__c" field="redwing__Learning_Assignment_Last_Update__c" n="redwing__Shared_Learning_Assignments__r" relationshipName="redwing__Shared_Learning_Assignments__r" s="2-" t="01I0V000002N5Q2"/>
+    <sfObjectRelationship childName="rwscorm__Learning_Assignment_Course__c" field="rwscorm__Learning_Assignment__c" n="rwscorm__Learning_Assignments__r" relationshipName="rwscorm__Learning_Assignments__r" s="2-" t="01I0V000002N5QX"/>
+    <sfObjectRelationship childName="Case" field="Learning_Assignment__c" n="Cases__r" relationshipName="Cases__r" s="2-" t="Case"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome redwing__Learning_Assignments__r redwing__Learning_Assignments1__r List redwing__Archived_Learning_Assignments__r" n="New"/>
+    <sfActionLink modes="View redwing__Learning_Assignments__r redwing__Learning_Assignments1__r redwing__Archived_Learning_Assignments__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View redwing__Learning_Assignments__r redwing__Learning_Assignments1__r redwing__Archived_Learning_Assignments__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View redwing__Learning_Assignments__r redwing__Learning_Assignments1__r redwing__Archived_Learning_Assignments__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View redwing__Learning_Assignments__r redwing__Learning_Assignments1__r redwing__Archived_Learning_Assignments__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="Learning Assignments Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink buttonName="redwing__Approve" n="redwing__Approve" s="" t="Approve"/>
+    <sfActionLink buttonName="Approve_Submission" n="Approve_Submission" s="" t="Approve Submission"/>
+    <sfActionLink buttonName="Approve_Documents" n="Approve_Documents" s="" t="Approve Documents"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>REDWING__LEARNING_ASSIGNMENT__C.NAME</string>
+    <string>redwing__User__c</string>
+    <string>OWNER.ALIAS</string>
+    <string>redwing__Learning__c</string>
+    <string>redwing__Learning_Version__c</string>
+    <string>redwing__Progress__c</string>
+    <string>redwing__Progress_Percentage__c</string>
+    <string>redwing__Last_Published_Learning_Version__c</string>
+    <string>redwing__Last_Published_Learning_Version_Decision__c</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>REDWING__LEARNING_ASSIGNMENT__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>REDWING__LEARNING_ASSIGNMENT__C.NAME</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

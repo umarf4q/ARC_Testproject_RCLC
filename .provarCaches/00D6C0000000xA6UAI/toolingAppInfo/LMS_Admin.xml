@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingAppInfo>
+  <appDefinition DeveloperName="LMS_Admin" Label="LMS Admin" NavType="Standard">
+    <Metadata>&lt;CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata"   &gt;    &lt;defaultLandingTab&gt;standard-home&lt;/defaultLandingTab&gt; &lt;description&gt;Provides central location to manage the entry of Course information for Delivery and Sales&lt;/description&gt;  &lt;isNavAutoTempTabsDisabled&gt;false&lt;/isNavAutoTempTabsDisabled&gt; &lt;isNavPersonalizationDisabled&gt;false&lt;/isNavPersonalizationDisabled&gt; &lt;isServiceCloudConsole&gt;false&lt;/isServiceCloudConsole&gt; &lt;label&gt;LMS Admin&lt;/label&gt;      &lt;tabs&gt;ccrz__E_Product__c&lt;/tabs&gt; &lt;tabs&gt;redwing__Training_Plan__c&lt;/tabs&gt; &lt;tabs&gt;redwing__Learning__c&lt;/tabs&gt; &lt;tabs&gt;redwing__Achievement__c&lt;/tabs&gt; &lt;tabs&gt;Course_Catalog__c&lt;/tabs&gt; &lt;tabs&gt;Course_Catalog_Tag__c&lt;/tabs&gt; &lt;tabs&gt;redwing__Training_Track__c&lt;/tabs&gt; &lt;tabs&gt;ccrz__E_PriceList__c&lt;/tabs&gt; &lt;tabs&gt;ccrz__E_Category__c&lt;/tabs&gt; &lt;tabs&gt;ccrz__E_Spec__c&lt;/tabs&gt; &lt;tabs&gt;redwing__Achievement_Assignment__c&lt;/tabs&gt; &lt;tabs&gt;redwing__Training_Plan_Achievement__c&lt;/tabs&gt;   &lt;/CustomApplication&gt;</Metadata>
+  </appDefinition>
+</toolingAppInfo>

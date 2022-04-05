@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultFlexipageId="Centennial_Campaign_Reporting" deleteable="true" keyPrefix="a7L" label="Centennial Campaign" labelPlural="Centennial Campaigns" layoutable="true" metadataLabel="Centennial Campaign" n="Centennial_Campaign__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Centennial Campaign (a7L)" updatable="true" urlDetail="https://arc-phss--test.my.salesforce.com/{ID}" urlEdit="https://arc-phss--test.my.salesforce.com/{ID}/e" urlNew="https://arc-phss--test.my.salesforce.com/a7L/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Centennial Campaign ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="CC ID" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField n="Adult_Swim_Improving_Skills_and_Swimming__c" precision="18" t="Adult Swim—Improving Skills and Swimming" type="_double"/>
+    <sfField n="Adult_Swim_Learning_the_Basics__c" precision="18" t="Adult Swim—Learning the Basics" type="_double"/>
+    <sfField n="Basic_Swim_Instructor__c" precision="18" t="Basic Swim Instructor" type="_double"/>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32768" n="Centennial_Campaign_Reporting__c" t="Centennial Campaign Reporting" type="textarea"/>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32768" n="Comments__c" summary="We welcome any comments or anecdotes about your experience and participation in the Centennial Campaign." t="Comments" type="textarea"/>
+    <sfField length="18" n="Facility_Name__c" relationshipLabel="Centennial Campaigns (Facility Name)" relationshipName="Facility_Name__r" t="Facility Name" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Junior_Lifeguarding__c" precision="18" t="Junior Lifeguarding" type="_double"/>
+    <sfField n="Learn_to_Swim_Level_1__c" precision="18" t="Learn-to-Swim Level 1" type="_double"/>
+    <sfField n="Learn_to_Swim_Level_2__c" precision="18" t="Learn-to-Swim Level 2" type="_double"/>
+    <sfField n="Learn_to_Swim_Level_3__c" precision="18" t="Learn-to-Swim Level 3" type="_double"/>
+    <sfField n="Learn_to_Swim__c" precision="18" t="Learn-to-Swim" type="_double"/>
+    <sfField n="Lifeguarding_Instructor_Trainer__c" precision="18" t="Lifeguarding Instructor Trainer" type="_double"/>
+    <sfField n="Lifeguarding_Instructor__c" precision="18" t="Lifeguarding Instructor" type="_double"/>
+    <sfField n="Lifeguarding_Management__c" precision="18" t="Lifeguarding Management" type="_double"/>
+    <sfField n="Lifeguarding__c" precision="18" t="Lifeguarding" type="_double"/>
+    <sfField length="255" n="Month__c" restrictedPicklist="true" t="Month" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9,10,11,12</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="January" s=""/>
+        <sfPLE id="2" n="February" s=""/>
+        <sfPLE id="3" n="March" s=""/>
+        <sfPLE id="4" n="April" s=""/>
+        <sfPLE id="5" n="May" s=""/>
+        <sfPLE id="6" n="June" s=""/>
+        <sfPLE id="7" n="July" s=""/>
+        <sfPLE id="8" n="August" s=""/>
+        <sfPLE id="9" n="September" s=""/>
+        <sfPLE id="10" n="October" s=""/>
+        <sfPLE id="11" n="November" s=""/>
+        <sfPLE id="12" n="December" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="Name__c" relationshipLabel="Centennial Campaigns" relationshipName="Name__r" t="Name" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Organization_Name__c" relationshipLabel="Centennial Campaigns" relationshipName="Organization_Name__r" t="Organization Name" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Parent_and_Child_Aquatics__c" precision="18" t="Parent and Child Aquatics" type="_double"/>
+    <sfField n="Parents_Caregivers_Pediatric_CPR_AED__c" precision="18" t="Parents/Caregivers - Pediatric CPR/AED" type="_double"/>
+    <sfField n="Parents_Caregivers_Water_Safety_Educat__c" precision="18" t="Parent/Caregivers-Water Safety Education" type="_double"/>
+    <sfField n="Preschool_Level_1__c" precision="18" t="Preschool Level 1" type="_double"/>
+    <sfField n="Preschool_Level_2__c" precision="18" t="Preschool Level 2" type="_double"/>
+    <sfField n="Preschool_Level_3__c" precision="18" t="Preschool Level 3" type="_double"/>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32768" n="Reporting_of_Total_Participation__c" t="Reporting of Total Participation" type="textarea"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Adult_Swim_Improving_Skills_and_Swimming__c + Adult_Swim_Learning_the_Basics__c + Basic_Swim_Instructor__c + Junior_Lifeguarding__c + Learn_to_Swim__c + Learn_to_Swim_Level_1__c + Learn_to_Swim_Level_2__c + Learn_to_Swim_Level_3__c + Lifeguarding__c + Lifeguarding_Instructor__c + Lifeguarding_Instructor_Trainer__c + Lifeguarding_Management__c + Parents_Caregivers_Water_Safety_Educat__c + Parent_and_Child_Aquatics__c + Parents_Caregivers_Pediatric_CPR_AED__c + Preschool_Level_1__c + Preschool_Level_2__c + Preschool_Level_3__c + Water_Safety_Instructor__c + Water_Safety_Instructor_Trainer__c" formulaTreatBlanksAs="BlankAsZero" n="Total_Students_Taught__c" precision="18" t="Total Students Taught" type="_double" updateable="false"/>
+    <sfField n="Water_Safety_Instructor_Trainer__c" precision="18" t="Water Safety Instructor Trainer" type="_double"/>
+    <sfField n="Water_Safety_Instructor__c" precision="18" t="Water Safety Instructor" type="_double"/>
+    <sfField length="255" n="Year__c" restrictedPicklist="true" t="Year" type="picklist">
+      <picklistEntryIds>13,14,15,16,17,18,19,20</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="13" n="2016" s=""/>
+        <sfPLE id="14" n="2017" s=""/>
+        <sfPLE id="15" n="2018" s=""/>
+        <sfPLE id="16" n="2019" s=""/>
+        <sfPLE id="17" n="2020" s=""/>
+        <sfPLE id="18" n="2021" s=""/>
+        <sfPLE id="19" n="2022" s=""/>
+        <sfPLE id="20" n="2023" s=""/>
+      </picklistEntries>
+    </sfField>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="Centennial_Campaign__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="Centennial_Campaign__History"/>
+    <sfObjectRelationship childName="Centennial_Campaign__Share" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="Centennial_Campaign__Share"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome Centennial_Campaigns1__r Centennial_Campaigns__r List" n="New"/>
+    <sfActionLink modes="View Centennial_Campaigns1__r Centennial_Campaigns__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Centennial_Campaigns1__r Centennial_Campaigns__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Centennial_Campaigns1__r Centennial_Campaigns__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Centennial_Campaigns1__r Centennial_Campaigns__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink n="Tab" s=""/>
+    <sfActionLink locator="Centennial_Campaign_Reporting" modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>CENTENNIAL_CAMPAIGN__C.NAME</string>
+    <string>Name__c</string>
+    <string>Organization_Name__c</string>
+    <string>Facility_Name__c</string>
+    <string>Month__c</string>
+    <string>Year__c</string>
+    <string>Total_Students_Taught__c</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CENTENNIAL_CAMPAIGN__C.NAME</string>
+    <string>Name__c</string>
+    <string>Organization_Name__c</string>
+    <string>Facility_Name__c</string>
+    <string>Month__c</string>
+    <string>Year__c</string>
+    <string>Total_Students_Taught__c</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>CENTENNIAL_CAMPAIGN__C.NAME</string>
+    <string>Name__c</string>
+    <string>Organization_Name__c</string>
+    <string>Facility_Name__c</string>
+    <string>Month__c</string>
+    <string>Year__c</string>
+    <string>Total_Students_Taught__c</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+    <string>Total_Students_Taught__c</string>
+    <string>Name__c</string>
+    <string>Organization_Name__c</string>
+    <string>Facility_Name__c</string>
+    <string>Month__c</string>
+    <string>Year__c</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

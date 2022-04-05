@@ -1,0 +1,72 @@
+<apex:page standardController="Dataplier__Execution_Sequence__c" extensions="Dataplier.DeepCloneController" id="deepClonePage" sideBar="false" docType="html-5.0">
+	<c:TrackPanel /> 
+	<apex:slds />
+	<apex:form id="pageForm">
+		<apex:pagemessages id="msg"/>
+<!--		 <apex:sectionHeader title="Clone parameters" description="{!$Label.Clone_Parameters_Description}"/>-->
+		<div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+			<div class="slds-media__body">
+				<h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#drafts')}"/>
+							</svg>
+						</span>
+					<span style="font-weight: bolder;" class="slds-m-left--small">Clone Parameters
+					</span>
+				</h1>
+			</div>
+		</div>
+		<apex:outputPanel id="pageBlock">
+			<apex:outputPanel styleClass="slds-box slds-m-top--medium" layout="block">
+				<div class="slds-grid slds-gutters">
+					<div class="slds-col slds-size--10-of-12">
+						<apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--4-of-12">
+							<apex:outputLabel styleClass="slds-form-element__label" for="DataSetName" value="Name: "/>
+							<div class="slds-form-element__control">
+								<apex:outputPanel styleClass="requiredBlock"/>
+								<apex:inputText styleClass="slds-input" id="DataSetName" value="{!newES.Name}"/>
+							</div>
+						</apex:outputPanel>
+						<apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--4-of-12">
+							<div class="slds-form-element">
+								<label class="slds-checkbox_toggle slds-grid">
+									<span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Generate a new DataSet:</span>
+									<apex:inputCheckbox value="{!bUseApiName}"/>
+									<span id="checkbox-toggle-16" class="slds-checkbox_faux_container" aria-live="assertive">
+      								<span class="slds-checkbox_faux"></span>
+   									</span>
+								</label>
+							</div>
+						</apex:outputPanel>
+					</div>
+					<div class="slds-col slds-size--2-of-12">
+						<apex:outputPanel layout="block" styleClass="slds-float--right">
+							<apex:commandButton styleClass="slds-button_neutral slds-button" action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
+							<apex:commandButton styleClass="slds-button_neutral slds-button" action="{!deepClone}" value="Clone" />
+						</apex:outputPanel>
+					</div>
+				</div>
+<!--				<apex:inputField id="SequenceName" value="{!newES.Name}" required="true"/>-->
+<!--				<apex:inputCheckbox value="{!bUseApiName}" label="Generate a new DataSet name from  API name"/>-->
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</apex:form>
+	<style>
+		.requiredBlock {
+			background-color: #c00;
+			position: absolute;
+			border-radius: 35%;
+			left: 33%;
+			width: 3px;
+			height: 31px;
+		}
+	</style>
+	<script type="text/javascript">
+		function confirmCancel() {
+							var isCancel = confirm("Are you sure you wish to cancel?");
+							if (isCancel) return true;
+							return false;
+		} 
+	</script> 
+</apex:page>

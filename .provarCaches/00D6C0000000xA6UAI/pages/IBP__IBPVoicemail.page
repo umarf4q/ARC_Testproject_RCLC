@@ -1,0 +1,23 @@
+<apex:page standardController="IBP__Ifbyphone_Call__c" extensions="IBP.IBPVoicemailController">
+<apex:pageBlock >
+    <p>
+        Voicemail
+    </p>
+    <apex:pageBlockSection rendered="{!NOT(ISNULL(voicemailUrl))}">
+        
+        <audio controls="true">
+            <source src="{!voicemailUrl}" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+        
+    </apex:pageBlockSection>
+    
+    <apex:pageBlockSection rendered="{!ISNULL(voicemailUrl)}" columns="1">
+        
+        <p>
+            <i>There is no voicemail for this call.</i>
+        </p>
+        
+    </apex:pageBlockSection>
+</apex:pageBlock>
+</apex:page>

@@ -1,0 +1,8 @@
+<apex:page id="CyberSourceSOP" controller="ccpgcs.cc_pgcs_ctrl_pmt_SOP" action="{!processSOP}" applyHtmlTag="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+<body>
+<script type="text/javascript">
+  var result = '<apex:outputText value="{!JSENCODE(result)}"/>';
+  if (parent) parent.postMessage(result, parent.location.origin);
+</script>
+</body>
+</apex:page>

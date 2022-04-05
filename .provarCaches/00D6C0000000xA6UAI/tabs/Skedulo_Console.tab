@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>For embedding the Skedulo Web App.</description>
+    <frameHeight>1200</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>Skedulo Console</label>
+    <motif>Custom25: Alarm clock</motif>
+    <url>https://arc.my.skedulo.com?platform=salesforce&amp;platform_org={!User.X18_Char_Org_Id__c}&amp;platform_user={!User.X18_Char_User_Id__c}</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

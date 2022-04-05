@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata"
+   >
+ <fullName>Instructor_s_Corner_Administration</fullName>
+  <flexiPageRegions>
+  <appendable>enabled</appendable>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>bannerText</name>
+                   </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>bannerTextWithKnowledge</name>
+          <value>Explore other &lt;a href="javascript:void(0)" class="headlineArticles">articles&lt;/a> and &lt;a href="javascript:void(0)" class="headlineDiscussions">discussions&lt;/a> on this topic.</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>bannerTextWithoutKnowledge</name>
+          <value>Explore other &lt;a href="javascript:void(0)" class="headlineDiscussions">discussions&lt;/a> on this topic.</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>pageType</name>
+                   </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>searchTerm</name>
+          <value>{!searchString}</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>showSubTopics</name>
+          <value>true</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>title</name>
+          <value>Administration</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>topicId</name>
+          <value>{!topicId}</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>uniqueNameOrId</name>
+                   </componentInstanceProperties>
+    <componentName>forceCommunity:headline</componentName>
+           </componentInstance>
+     </itemInstances>
+    <name>header</name>
+  <prependable>enabled</prependable>
+  <replaceable>enabled</replaceable>
+  <type>Region</type>
+ </flexiPageRegions>
+ <flexiPageRegions>
+  <appendable>enabled</appendable>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>body</name>
+          <value>6c1b2d47-51a3-43c4-9cd5-d1e9ca1f2d60</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>title</name>
+          <value>1</value>
+         </componentInstanceProperties>
+    <componentName>flexipage:tab</componentName>
+           </componentInstance>
+     </itemInstances>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>body</name>
+          <value>9d0f151f-b1c7-4395-b3b2-55e68288b4b3</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>title</name>
+          <value>2</value>
+         </componentInstanceProperties>
+    <componentName>flexipage:tab</componentName>
+           </componentInstance>
+     </itemInstances>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>body</name>
+          <value>2cd11e8b-60bc-4d29-b6c6-a2aaccf8e22b</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>title</name>
+          <value>3</value>
+         </componentInstanceProperties>
+    <componentName>flexipage:tab</componentName>
+           </componentInstance>
+     </itemInstances>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>body</name>
+          <value>6def2bc3-663c-46b8-bd15-a580bac3da87</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>title</name>
+          <value>ac242</value>
+         </componentInstanceProperties>
+    <componentName>flexipage:tab</componentName>
+           </componentInstance>
+     </itemInstances>
+    <name>facet-indirection-92d16018-9fbd-44ae-886e-6104beee8929</name>
+  <prependable>enabled</prependable>
+  <replaceable>enabled</replaceable>
+  <type>Facet</type>
+ </flexiPageRegions>
+ <flexiPageRegions>
+  <appendable>enabled</appendable>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>richTextValue</name>
+          <value>&lt;p style="text-align: center;">
+      &lt;strong>&lt;span style="font-size:18px">Information and resources for setting up and closing out instructor-led classes &lt;/span>&lt;/strong>
+    &lt;/p>
+    &lt;p>&amp;nbsp;&lt;/p>
+    &lt;p>When setting up an Authorized Provider (AP)/Licensed Training Provider (LTP) classroom (instructor-led class), instructors should follow the guidance as outlined in their instructor&amp;rsquo;s manuals. Unless an instructor class, instructors do not need to submit a request to set up a class.&lt;/p>
+    &lt;p>&amp;nbsp;&lt;/p>
+    &lt;p>If the LTP is authorized to post classes on &lt;a href="http://redcross.org" target="_blank">redcross.org&lt;/a>, the designated LTP administrator may submit a request to post the class on the LTP on RCO portal. To close out an instructor-led class, instructors are encouraged to use the Instructor Portal (also known as Course Record Portal or AP Portal).&lt;/p>
+    &lt;p>&amp;nbsp;&lt;/p>
+    &lt;p>Job aids, including video demonstrations, are available below.&lt;/p></value>
+         </componentInstanceProperties>
+    <componentName>forceCommunity:richText</componentName>
+           </componentInstance>
+     </itemInstances>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>category</name>
+          <value>Supporting Materials</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>description</name>
+          <value>Classroom Materials</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>initalDisplayNum</name>
+          <value>10</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>isCandidateMaterial</name>
+          <value>false</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>lastModifiedDateColumnLabel</name>
+          <value>Last Modified Date</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>libraryName</name>
+          <value>PHSS-IC-CourseAdmin-Instructor</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>materialNameColumnLabel</name>
+          <value>Material Name</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>materialTypeColumnLabel</name>
+          <value>Type</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>noResultsLabel</name>
+          <value>No results</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>searchTitle</name>
+          <value>Title Search</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>tagsCsv</name>
+          <value>classroom</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>type</name>
+          <value>All</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>unavailablePreviewMessage</name>
+          <value>Preview of this file is not supported, please download</value>
+         </componentInstanceProperties>
+    <componentName>PHSSMaterialsByLibraryOrTags</componentName>
+           </componentInstance>
+     </itemInstances>
+    <name>6c1b2d47-51a3-43c4-9cd5-d1e9ca1f2d60</name>
+  <prependable>enabled</prependable>
+  <replaceable>enabled</replaceable>
+  <type>Facet</type>
+ </flexiPageRegions>
+ <flexiPageRegions>
+  <appendable>enabled</appendable>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>richTextValue</name>
+          <value>&lt;p style="text-align: center;">
+      &lt;strong>&lt;span style="font-size:18px">Information and resources for setting up, monitoring and closing out all instructor classes as well as basic-level Lifeguarding (2012 edition) and CPR/AED for Professional Rescuer (2012 edition) classes&lt;/span>&lt;/strong>
+    &lt;/p></value>
+         </componentInstanceProperties>
+    <componentName>forceCommunity:richText</componentName>
+           </componentInstance>
+     </itemInstances>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>category</name>
+          <value>Supporting Materials</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>description</name>
+          <value>Tools and Resources</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>initalDisplayNum</name>
+          <value>10</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>isCandidateMaterial</name>
+          <value>false</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>lastModifiedDateColumnLabel</name>
+          <value>Last Modified Date</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>libraryName</name>
+          <value>PHSS-IC-CourseAdmin-Instructor</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>materialNameColumnLabel</name>
+          <value>Material Name</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>materialTypeColumnLabel</name>
+          <value>Type</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>noResultsLabel</name>
+          <value>No results</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>searchTitle</name>
+          <value>Title Search</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>tagsCsv</name>
+          <value>Blended</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>type</name>
+          <value>All</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>unavailablePreviewMessage</name>
+          <value>Preview of this file is not supported, please download</value>
+         </componentInstanceProperties>
+    <componentName>PHSSMaterialsByLibraryOrTags</componentName>
+           </componentInstance>
+     </itemInstances>
+    <name>9d0f151f-b1c7-4395-b3b2-55e68288b4b3</name>
+  <prependable>enabled</prependable>
+  <replaceable>enabled</replaceable>
+  <type>Facet</type>
+ </flexiPageRegions>
+ <flexiPageRegions>
+  <appendable>enabled</appendable>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>richTextValue</name>
+          <value>&lt;p style="text-align: center;">
+      &lt;strong>&lt;span style="font-size:18px">Setting up and closing out Blended Learning classes delivered via Direct Links.&lt;/span>&lt;/strong>
+    &lt;/p>
+    &lt;p style="text-align: center;">
+      &lt;strong>&lt;span style="font-size:18px">Direct Links are available for First Aid/CPR/AED and Basic Life Support programs.&lt;/span>&lt;/strong>
+    &lt;/p>
+    &lt;p>&amp;nbsp;&lt;/p>
+    &lt;p>The Direct Links delivery method provides a self-service portal for instructors and course participants to access the online portion of selected blended learning courses. Instructors can easily access and send the Direct Link for First Aid/CPR/AED and Basic Life Support courses to their class participants. Instructors should use the appropriate Instructor&amp;rsquo;s Manual Blended Learning Supplement found on the Program Material page of Instructor&amp;rsquo;s Corner to prepare and conduct skills sessions. To close out a Direct Links class, instructors should use the Instructor Portal (also known as Course Record Portal or AP Portal). Job aids, including video demonstrations are available below.&lt;/p></value>
+         </componentInstanceProperties>
+    <componentName>forceCommunity:richText</componentName>
+           </componentInstance>
+     </itemInstances>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>category</name>
+          <value>Supporting Materials</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>description</name>
+          <value>Tools and Resources</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>initalDisplayNum</name>
+          <value>10</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>isCandidateMaterial</name>
+          <value>false</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>lastModifiedDateColumnLabel</name>
+          <value>Last Modified Date</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>libraryName</name>
+          <value>PHSS-IC-CourseAdmin-Instructor</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>materialNameColumnLabel</name>
+          <value>Material Name</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>materialTypeColumnLabel</name>
+          <value>Type</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>noResultsLabel</name>
+          <value>No results</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>searchTitle</name>
+          <value>Title Search</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>tagsCsv</name>
+          <value>direct links</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>type</name>
+          <value>All</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>unavailablePreviewMessage</name>
+          <value>Preview of this file is not supported, please download</value>
+         </componentInstanceProperties>
+    <componentName>PHSSMaterialsByLibraryOrTags</componentName>
+           </componentInstance>
+     </itemInstances>
+    <name>2cd11e8b-60bc-4d29-b6c6-a2aaccf8e22b</name>
+  <prependable>enabled</prependable>
+  <replaceable>enabled</replaceable>
+  <type>Facet</type>
+ </flexiPageRegions>
+ <flexiPageRegions>
+  <appendable>enabled</appendable>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>richTextValue</name>
+          <value>&lt;p style="text-align: center;">
+      &lt;strong>&lt;span style="font-size:18px">Information and resources for digital certificates. Digital certs can be accessed anywhere, anytime and include a unique ID and a QR code that allows employers to easily confirm the certificate is valid. &lt;/span>&lt;/strong>
+    &lt;/p></value>
+         </componentInstanceProperties>
+    <componentName>forceCommunity:richText</componentName>
+           </componentInstance>
+     </itemInstances>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>category</name>
+          <value>Supporting Materials</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>description</name>
+          <value>Tools and Resources</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>initalDisplayNum</name>
+          <value>10</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>isCandidateMaterial</name>
+          <value>false</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>lastModifiedDateColumnLabel</name>
+          <value>Last Modified Date</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>libraryName</name>
+          <value>PHSS-IC-CourseAdmin-Instructor</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>materialNameColumnLabel</name>
+          <value>Material Name</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>materialTypeColumnLabel</name>
+          <value>Type</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>noResultsLabel</name>
+          <value>No results</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>searchTitle</name>
+          <value>Title Search</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>tagsCsv</name>
+          <value>Digital Certs, Digital Cert</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>type</name>
+          <value>All</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>unavailablePreviewMessage</name>
+          <value>Preview of this file is not supported, please download</value>
+         </componentInstanceProperties>
+    <componentName>PHSSMaterialsByLibraryOrTags</componentName>
+           </componentInstance>
+     </itemInstances>
+    <name>6def2bc3-663c-46b8-bd15-a580bac3da87</name>
+  <prependable>enabled</prependable>
+  <replaceable>enabled</replaceable>
+  <type>Facet</type>
+ </flexiPageRegions>
+ <flexiPageRegions>
+  <appendable>enabled</appendable>
+  <itemInstances>
+   <componentInstance>
+    <componentInstanceProperties>
+     <name>regions</name>
+          <value>facet-indirection-92d16018-9fbd-44ae-886e-6104beee8929</value>
+         </componentInstanceProperties>
+    <componentInstanceProperties>
+     <name>tabsetConfig</name>
+          <value>{"UUID":"92d16018-9fbd-44ae-886e-6104beee8929","activeTab":"","useOverflowMenu":false,"tabs":[{"UUID":"6c1b2d47-51a3-43c4-9cd5-d1e9ca1f2d60","tabName":"Classroom","tabKey":"1","locked":false,"allowGuestUser":false,"seedComponents":[]},{"UUID":"9d0f151f-b1c7-4395-b3b2-55e68288b4b3","tabName":"Blended Learning","tabKey":"2","locked":false,"allowGuestUser":false,"seedComponents":[]},{"UUID":"2cd11e8b-60bc-4d29-b6c6-a2aaccf8e22b","tabName":"Direct Links","tabKey":"3","locked":false,"allowGuestUser":false,"seedComponents":[]},{"UUID":"6def2bc3-663c-46b8-bd15-a580bac3da87","tabName":"Digital Certs","tabKey":"ac242","locked":false,"allowGuestUser":false,"seedComponents":[]}]}</value>
+         </componentInstanceProperties>
+    <componentName>forceCommunity:tabset</componentName>
+           </componentInstance>
+     </itemInstances>
+    <name>content</name>
+  <prependable>enabled</prependable>
+  <replaceable>enabled</replaceable>
+  <type>Region</type>
+ </flexiPageRegions>
+ <flexiPageRegions>
+  <appendable>enabled</appendable>
+    <name>footer</name>
+  <prependable>enabled</prependable>
+  <replaceable>enabled</replaceable>
+  <type>Region</type>
+ </flexiPageRegions>
+ <masterLabel>Administration</masterLabel>
+     <template>
+  <name>siteforce:sldsOneColLayout</name>
+ </template>
+ <type>CommAppPage</type>
+</FlexiPage>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="Free_Class__c.SYSTEM" defaultFlexipageId="Free_Class_Record_Page" deleteable="true" keyPrefix="a7k" label="Learn to Swim/Safety Outreach" labelPlural="Learn to Swim/Safety Outreach" layoutable="true" metadataLabel="Learn to Swim/Safety Outreach" n="Free_Class__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Learn to Swim/Safety Outreach (a7k)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a7k/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Learn to Swim/Safety Outreach ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="Class ID" updateable="false"/>
+    <sfField length="18" n="RecordTypeId" relationshipName="RecordType" t="Record Type" type="reference">
+      <referenceTos>
+        <string>RecordType</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField length="100" n="Address__c" t="Address"/>
+    <sfField length="100" n="City__c" t="City"/>
+    <sfField length="255" n="Course_Name__c" restrictedPicklist="true" t="Course Name" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Adult Swim – Fitness Swimming" s=""/>
+        <sfPLE id="2" n="Adult Swim – Learning and Refining Swim Strokes" s=""/>
+        <sfPLE id="3" n="Adult Swim – Learning the Basics" s=""/>
+        <sfPLE id="4" n="General Water Safety" s=""/>
+        <sfPLE id="5" n="Home Pool Safety" s=""/>
+        <sfPLE id="6" n="Learn-to-Swim Level 1 – Introduction to Water Skills" s=""/>
+        <sfPLE id="7" n="Learn-to-Swim Level 2 – Fundamental Aquatic Skills" s=""/>
+        <sfPLE id="8" n="Learn-to-Swim Level 3 – Stroke Development" s=""/>
+        <sfPLE id="9" n="Learn-to-Swim Level 4 – Stroke Improvement" s=""/>
+        <sfPLE id="10" n="Learn-to-Swim Level 5 – Stroke Refinement" s=""/>
+        <sfPLE id="11" n="Learn-to-Swim Level 6 – Skill Proficiency – Fitness Swimmer" s=""/>
+        <sfPLE id="12" n="Learn-to-Swim Level 6 – Skill Proficiency – Fundamentals of Diving" s=""/>
+        <sfPLE id="13" n="Learn-to-Swim Level 6 – Skill Proficiency – Personal Water Safety" s=""/>
+        <sfPLE id="14" n="Parent and Child Aquatics Level 1" s=""/>
+        <sfPLE id="15" n="Parent and Child Aquatics Level 2" s=""/>
+        <sfPLE id="16" n="Parent Orientation to Swim Lessons" s=""/>
+        <sfPLE id="17" n="Preschool Aquatics Level 1" s=""/>
+        <sfPLE id="18" n="Preschool Aquatics Level 2" s=""/>
+        <sfPLE id="19" n="Preschool Aquatics Level 3" s=""/>
+        <sfPLE id="20" n="Private Swim Lesson" s=""/>
+        <sfPLE id="21" n="Rip Current Safety" s=""/>
+        <sfPLE id="22" n="Sun Safety" s=""/>
+        <sfPLE id="23" n="WHALE Tales – Longfellows" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="Date__c" t="Date" type="date"/>
+    <sfField length="18" n="Facility_Name__c" relationshipLabel="Learn to Swim/Safety Outreach (Facility Name)" relationshipName="Facility_Name__r" t="Facility Name" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Grant_Funded__c" t="Grant Funded?" type="_boolean"/>
+    <sfField length="18" n="Organization__c" relationshipLabel="Learn to Swim/Safety Outreach (Organization)" relationshipName="Organization__r" t="Organization" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="50" n="Other_Topic__c" t="Other Topic"/>
+    <sfField length="255" n="State__c" restrictedPicklist="true" t="State" type="picklist">
+      <picklistEntryIds>24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="24" n="AK" s=""/>
+        <sfPLE id="25" n="AL" s=""/>
+        <sfPLE id="26" n="AZ" s=""/>
+        <sfPLE id="27" n="AR" s=""/>
+        <sfPLE id="28" n="CA" s=""/>
+        <sfPLE id="29" n="CO" s=""/>
+        <sfPLE id="30" n="CT" s=""/>
+        <sfPLE id="31" n="DE" s=""/>
+        <sfPLE id="32" n="FL" s=""/>
+        <sfPLE id="33" n="GA" s=""/>
+        <sfPLE id="34" n="HI" s=""/>
+        <sfPLE id="35" n="ID" s=""/>
+        <sfPLE id="36" n="IL" s=""/>
+        <sfPLE id="37" n="IN" s=""/>
+        <sfPLE id="38" n="IA" s=""/>
+        <sfPLE id="39" n="KS" s=""/>
+        <sfPLE id="40" n="KY" s=""/>
+        <sfPLE id="41" n="LA" s=""/>
+        <sfPLE id="42" n="ME" s=""/>
+        <sfPLE id="43" n="MD" s=""/>
+        <sfPLE id="44" n="MA" s=""/>
+        <sfPLE id="45" n="MI" s=""/>
+        <sfPLE id="46" n="MN" s=""/>
+        <sfPLE id="47" n="MS" s=""/>
+        <sfPLE id="48" n="MO" s=""/>
+        <sfPLE id="49" n="MT" s=""/>
+        <sfPLE id="50" n="NE" s=""/>
+        <sfPLE id="51" n="NV" s=""/>
+        <sfPLE id="52" n="NH" s=""/>
+        <sfPLE id="53" n="NJ" s=""/>
+        <sfPLE id="54" n="NM" s=""/>
+        <sfPLE id="55" n="NY" s=""/>
+        <sfPLE id="56" n="NC" s=""/>
+        <sfPLE id="57" n="ND" s=""/>
+        <sfPLE id="58" n="OH" s=""/>
+        <sfPLE id="59" n="OK" s=""/>
+        <sfPLE id="60" n="OR" s=""/>
+        <sfPLE id="61" n="PA" s=""/>
+        <sfPLE id="62" n="RI" s=""/>
+        <sfPLE id="63" n="SC" s=""/>
+        <sfPLE id="64" n="SD" s=""/>
+        <sfPLE id="65" n="TN" s=""/>
+        <sfPLE id="66" n="TX" s=""/>
+        <sfPLE id="67" n="UT" s=""/>
+        <sfPLE id="68" n="VT" s=""/>
+        <sfPLE id="69" n="VA" s=""/>
+        <sfPLE id="70" n="WA" s=""/>
+        <sfPLE id="71" n="WV" s=""/>
+        <sfPLE id="72" n="WI" s=""/>
+        <sfPLE id="73" n="WY" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="Topic__c" restrictedPicklist="true" t="Topic" type="picklist">
+      <picklistEntryIds>74,75,76,77,78,79,80,81</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="74" n="General Water Safety" s=""/>
+        <sfPLE id="75" n="Hands-only CPR (course code: HSSCPR701 r.2018" s=""/>
+        <sfPLE id="76" n="Home Pool Safety" s=""/>
+        <sfPLE id="77" n="Longfellow’s WHALE Tales" s=""/>
+        <sfPLE id="78" n="Other" s=""/>
+        <sfPLE id="79" n="Rip Current Safety" s=""/>
+        <sfPLE id="80" n="Sun Safety" s=""/>
+        <sfPLE id="81" n="Water Safety Today" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="Total_Students_Taught__c" precision="18" t="Total Students Taught" type="_double"/>
+    <sfField length="10" n="Zip_Code__c" t="Zip Code"/>
+    <sfField n="of_Students_not_Evaluated__c" precision="18" t="# of Students not Evaluated" type="_double"/>
+    <sfField n="of_Successful_Students__c" precision="18" t="# of Successful Students" type="_double"/>
+    <sfField n="of_Unsuccessful_Students__c" precision="18" t="# of Unsuccessful Students" type="_double"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship childName="Free_Class__Share" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="01I0V000002EfVs.Share"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="Free_Class__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002EfVs.History"/>
+    <sfObjectRelationship childName="Class_Instructor__c" field="Class_Taught__c" n="Class_Instructors__r" relationshipName="Class_Instructors__r" s="2-" t="01I0V000002EfVr"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType defaultRecordType="false" fromToolingApi="true" fullName="Learn_to_Swim_Class" layoutsLoaded="false" n="Learn to Swim Class" recordTypeId="0120V000001xnoLQAQ" s="3-"/>
+    <sfRecordType defaultRecordType="false" fromToolingApi="true" fullName="Safety_Outreach" layoutsLoaded="false" n="Safety Outreach" recordTypeId="0120V000001xnoMQAQ" s="3-"/>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome Learn_to_Swim_Safety_Outreach__r Free_Classes__r List" n="New"/>
+    <sfActionLink modes="View Learn_to_Swim_Safety_Outreach__r Free_Classes__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Learn_to_Swim_Safety_Outreach__r Free_Classes__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Learn_to_Swim_Safety_Outreach__r Free_Classes__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Learn_to_Swim_Safety_Outreach__r Free_Classes__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="Learn to Swim/Safety Outreach Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>FREE_CLASS__C.NAME</string>
+    <string>Course_Name__c</string>
+    <string>Grant_Funded__c</string>
+    <string>Organization__c</string>
+    <string>Total_Students_Taught__c</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>FREE_CLASS__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>FREE_CLASS__C.NAME</string>
+    <string>Course_Name__c</string>
+    <string>Grant_Funded__c</string>
+    <string>Organization__c</string>
+    <string>Total_Students_Taught__c</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

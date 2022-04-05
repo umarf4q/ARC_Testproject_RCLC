@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="ccrz__E_StoredPayment__c.SYSTEM" defaultFlexipageId="CC_Stored_Payment" deleteable="true" keyPrefix="a5H" label="CC Stored Payment" labelPlural="CC Stored Payments" layoutable="true" metadataLabel="CC Stored Payment" n="ccrz__E_StoredPayment__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="CC Stored Payment (a5H)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a5H/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="CC Stored Payment ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField length="80" n="Name" nameField="true" t="CC Stored Payment Name"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField editPermission="false" n="ccrz__AccountAccessible__c" readPermission="false" t="Account Accessible" type="_boolean"/>
+    <sfField length="255" n="ccrz__AccountNumber__c" t="Account Number"/>
+    <sfField length="255" n="ccrz__AccountType__c" t="Account Type"/>
+    <sfField length="18" n="ccrz__Account__c" relationshipLabel="CC Stored Payments" relationshipName="ccrz__Account__r" t="Account" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="ccrz__Address__c" relationshipLabel="CC Stored Payments" relationshipName="ccrz__Address__r" t="Address" type="reference">
+      <referenceTos>
+        <string>ccrz__E_ContactAddr__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" n="ccrz__Default__c" readPermission="false" t="Default" type="_boolean"/>
+    <sfField length="255" n="ccrz__DisplayName__c" t="Display Name"/>
+    <sfField editPermission="false" length="20" n="ccrz__EffectiveAccountID__c" readPermission="false" t="Effective Account ID"/>
+    <sfField n="ccrz__Enabled__c" t="Enabled" type="_boolean"/>
+    <sfField n="ccrz__EndDate__c" t="End Date" type="date"/>
+    <sfField editPermission="false" n="ccrz__ExpMonth__c" precision="2" readPermission="false" t="Exp Month" type="_double"/>
+    <sfField editPermission="false" n="ccrz__ExpYear__c" precision="4" readPermission="false" t="Exp Year" type="_double"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="30" n="ccrz__Name__c" t="Name" updateable="false"/>
+    <sfField length="255" n="ccrz__PaymentType__c" t="Payment Type"/>
+    <sfField editPermission="false" n="ccrz__ReadOnly__c" readPermission="false" t="Read Only" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__Sequence__c" precision="18" readPermission="false" t="Sequence" type="_double"/>
+    <sfField n="ccrz__StartDate__c" t="Start Date" type="date"/>
+    <sfField length="255" n="ccrz__StoredPaymentId__c" t="Stored Payment Id"/>
+    <sfField length="255" n="ccrz__Storefront__c" t="Storefront"/>
+    <sfField editPermission="false" length="255" n="ccrz__SubaccountNumber__c" readPermission="false" t="Subaccount Number"/>
+    <sfField editPermission="false" length="255" n="ccrz__Token__c" readPermission="false" t="Token"/>
+    <sfField editPermission="false" length="18" n="ccrz__User__c" readPermission="false" relationshipName="ccrz__User__r" t="User" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="ccpgcs__Address__c" relationshipLabel="CC Stored Payments" relationshipName="ccpgcs__Address__r" t="Address" type="reference">
+      <referenceTos>
+        <string>ccrz__E_ContactAddr__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="100" n="ccpgcs__FirstName__c" readPermission="false" t="First Name"/>
+    <sfField editPermission="false" length="100" n="ccpgcs__LastName__c" readPermission="false" t="Last Name"/>
+    <sfField n="Original_PO_Amount__c" precision="18" scale="2" t="Original PO Amount" type="currency"/>
+    <sfField n="Remaining_PO_Amount__c" precision="18" scale="2" t="Remaining PO Amount" type="currency"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship childName="ccrz__E_StoredPayment__Share" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="01I0V000002N5OW.Share"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="ccrz__E_StoredPayment__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002N5OW.History"/>
+    <sfObjectRelationship childName="SFDC_MDF_Claim__c" field="CC_Stored_Payment__c" n="Grant_Claims__r" relationshipName="Grant_Claims__r" s="2-" t="01I0V000002Ef5n"/>
+    <sfObjectRelationship childName="ccrz__E_Subscription__c" field="ccrz__StoredPayment__c" n="ccrz__CCSubscriptions__r" relationshipName="ccrz__CCSubscriptions__r" s="2-" t="01I0V000002N5Od"/>
+    <sfObjectRelationship childName="ccrz__E_TransactionPayment__c" field="ccrz__StoredPayment__c" n="ccrz__CC_Transaction_Payments__r" relationshipName="ccrz__CC_Transaction_Payments__r" s="2-" t="01I0V000002N5Og"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome ccrz__CC_Stored_Payments__r List ccpgcs__StoredPayments__r ccrz__StoredPayments__r" n="New"/>
+    <sfActionLink modes="View ccrz__CC_Stored_Payments__r ccpgcs__StoredPayments__r ccrz__StoredPayments__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View ccrz__CC_Stored_Payments__r ccpgcs__StoredPayments__r ccrz__StoredPayments__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View ccrz__CC_Stored_Payments__r ccpgcs__StoredPayments__r ccrz__StoredPayments__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ccrz__CC_Stored_Payments__r ccpgcs__StoredPayments__r ccrz__StoredPayments__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="CC Stored Payments Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink buttonName="Credit_CB_Record" n="Credit_CB_Record" s="" t="Credit CB Record"/>
+    <sfActionLink buttonName="Update_Purchase_Order_List" massAction="true" n="Update_Purchase_Order_List" s="" t="Update Purchase Order"/>
+    <sfActionLink buttonName="Update_Purchase_Order" n="Update_Purchase_Order" s="" t="Update Purchase Order"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>CCRZ__E_STOREDPAYMENT__C.NAME</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CCRZ__E_STOREDPAYMENT__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>CCRZ__E_STOREDPAYMENT__C.NAME</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

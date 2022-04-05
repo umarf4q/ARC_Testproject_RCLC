@@ -1,0 +1,3 @@
+<apex:page id="MigrateData" sideBar="false" standardController="Dataplier__Execution_Sequence__c" extensions="Dataplier.MigrateDataController" action="{!redirectPage}">
+    <c:TrackPanel />
+</apex:page>

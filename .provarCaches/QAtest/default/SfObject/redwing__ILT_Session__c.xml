@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="redwing__ILT_Session__c.SYSTEM" deleteable="true" keyPrefix="a6B" label="ILT Session" labelPlural="ILT Sessions" layoutable="true" metadataLabel="ILT Session" n="redwing__ILT_Session__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="ILT Session (a6B)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a6B/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="ILT Session ID" type="id" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField length="80" n="Name" nameField="true" t="ILT Session Name"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField isMasterDetail="true" length="18" n="redwing__ILT_Class__c" relationshipLabel="ILT Sessions" relationshipName="redwing__ILT_Class__r" required="true" t="ILT Class" type="reference" updateable="false">
+      <referenceTos>
+        <string>redwing__ILT_Class__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__All_Day_Event__c" t="All-Day Event" type="_boolean"/>
+    <sfField n="redwing__Date__c" t="Date" type="date"/>
+    <sfField extraTypeInfo="richtextarea" filterable="false" length="32768" n="redwing__Description__c" t="Description" type="textarea"/>
+    <sfField editPermission="false" length="5" n="redwing__End_Time__c" readPermission="false" t="End Time"/>
+    <sfField length="18" n="redwing__Location__c" relationshipLabel="ILT Sessions" relationshipName="redwing__Location__r" t="Location" type="reference">
+      <referenceTos>
+        <string>redwing__ILT_Location__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__Optional__c" t="Optional" type="_boolean"/>
+    <sfField editPermission="false" length="5" n="redwing__Start_Time__c" readPermission="false" t="Start Time"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(redwing__End_Time__c != &quot;&quot;,\nIF( VALUE( LEFT( redwing__End_Time__c, 2 ) ) = 12 , &quot;12&quot; + RIGHT( redwing__End_Time__c, 3 ) + &quot; PM&quot;, \nIF( VALUE( LEFT( redwing__End_Time__c, 2 ) ) = 0 , &quot;12&quot; + RIGHT( redwing__End_Time__c, 3 ) + &quot; AM&quot;, \nIF( VALUE( LEFT( redwing__End_Time__c, 2 ) ) &gt; 12, \nIF( VALUE( LEFT( redwing__End_Time__c, 2 ) ) &lt; 22, \n&quot;0&quot; + TEXT( VALUE( LEFT( redwing__End_Time__c, 2 ) ) - 12 ) + RIGHT( redwing__End_Time__c, 3 ) + &quot; PM&quot;, \nTEXT( VALUE( LEFT( redwing__End_Time__c, 2 ) ) - 12 ) + RIGHT( redwing__End_Time__c, 3 ) + &quot; PM&quot; ), \nredwing__End_Time__c+ &quot; AM&quot; ) ) ), &quot;&quot;)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="ltui__End_Time_Formatted__c" t="End Time" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(redwing__Start_Time__c != &quot;&quot;,\nIF( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) = 12 , &quot;12&quot; + RIGHT( redwing__Start_Time__c, 3 ) + &quot; PM&quot;, \nIF( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) = 0 , &quot;12&quot; + RIGHT( redwing__Start_Time__c, 3 ) + &quot; AM&quot;, \nIF( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) &gt; 12, \nIF( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) &lt; 22, \n&quot;0&quot; + TEXT( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) - 12 ) + RIGHT( redwing__Start_Time__c, 3 ) + &quot; PM&quot;, \nTEXT( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) - 12 ) + RIGHT( redwing__Start_Time__c, 3 ) + &quot; PM&quot; ), \nredwing__Start_Time__c+ &quot; AM&quot; ) ) ), &quot;&quot;)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="ltui__Start_Time_Formatted__c" t="Start Time" updateable="false"/>
+    <sfField editPermission="false" length="18" n="Dev_External_ID__c" readPermission="false" t="Dev External ID"/>
+    <sfField length="18" n="Skedulo_Account__c" relationshipLabel="ILT Sessions" relationshipName="Skedulo_Account__r" t="Account" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" length="255" n="Skedulo_Address__c" t="Address (FS Only)" type="textarea"/>
+    <sfField editPermission="false" n="Skedulo_Job_Active__c" readPermission="false" t="Skedulo Job Active" type="_boolean"/>
+    <sfField editPermission="false" length="18" n="Skedulo_Job_Id_External__c" readPermission="false" t="Skedulo Job Id"/>
+    <sfField editPermission="false" length="18" n="Skedulo_Job_Id__c" readPermission="false" relationshipLabel="ILT Sessions" relationshipName="Skedulo_Job_Id__r" t="Skedulo Job Id" type="reference">
+      <referenceTos>
+        <string>sked__Job__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Skedulo_Job_Status__c" restrictedPicklist="true" t="Skedulo Job Status" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6,7,8</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Pending Allocation" s=""/>
+        <sfPLE id="2" n="Pending Dispatch" s=""/>
+        <sfPLE id="3" n="Dispatched" s=""/>
+        <sfPLE id="4" n="Ready" s=""/>
+        <sfPLE id="5" n="En Route" s=""/>
+        <sfPLE id="6" n="On Site" s=""/>
+        <sfPLE id="7" n="In Progress" s=""/>
+        <sfPLE id="8" n="Cancelled" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="10000" n="Skedulo_Special_Instructions__c" t="Special Instructions" type="textarea"/>
+    <sfField editPermission="false" length="255" n="redwing__Type__c" readPermission="false" restrictedPicklist="true" t="Type" type="picklist">
+      <picklistEntryIds>9,10,11</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="9" n="ILT" s=""/>
+        <sfPLE id="10" n="vILT" s=""/>
+        <sfPLE id="11" n="vILT Webinar" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="18" n="redwing__vILT_Account_Member__c" readPermission="false" relationshipLabel="ILT Sessions" relationshipName="redwing__vILT_Account_Member__r" t="vILT Account Member" type="reference">
+      <referenceTos>
+        <string>redwing__vILT_Account_Member__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="18" n="redwing__vILT_Account__c" readPermission="false" relationshipLabel="ILT Sessions" relationshipName="redwing__vILT_Account__r" t="vILT Account" type="reference">
+      <referenceTos>
+        <string>redwing__vILT_Account__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="18" n="redwing__vILT_Meeting__c" readPermission="false" relationshipLabel="ILT Sessions" relationshipName="redwing__vILT_Meeting__r" t="vILT Meeting" type="reference">
+      <referenceTos>
+        <string>redwing__vILT_Meeting__c</string>
+      </referenceTos>
+    </sfField>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship childName="redwing__ILT_Instructor__c" field="redwing__ILT_Session__c" n="redwing__ILT_Instructors__r" relationshipName="redwing__ILT_Instructors__r" s="2-" t="01I0V000002N5PT"/>
+    <sfObjectRelationship childName="redwing__ILT_Roster__c" field="redwing__ILT_Session__c" n="redwing__ILT_Rosters__r" relationshipName="redwing__ILT_Rosters__r" s="2-" t="01I0V000002N5PV"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome ILT_Sessions__r List redwing__ILT_Sessions__r" n="New" target="sf:ui:target?object=redwing__ILT_Session__c&amp;page=ILTSession"/>
+    <sfActionLink modes="View ILT_Sessions__r redwing__ILT_Sessions__r" n="Edit" requiresRow="true" s="2" target="sf:ui:target?object=redwing__ILT_Session__c&amp;page=ILTSession"/>
+    <sfActionLink modes="View ILT_Sessions__r redwing__ILT_Sessions__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View ILT_Sessions__r redwing__ILT_Sessions__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ILT_Sessions__r redwing__ILT_Sessions__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="ILT Sessions Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>REDWING__ILT_SESSION__C.NAME</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>REDWING__ILT_SESSION__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>REDWING__ILT_SESSION__C.NAME</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

@@ -1,0 +1,16 @@
+2022/01/24-11:57:42.054 2cc0 Reusing MANIFEST C:\Users\Administrator\Provar\Workspace1\Testproject\.provarCaches\.chromeProfiles\profile0\Default\IndexedDB\https_test-americanredcross.cs63.force.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/01/24-11:57:42.055 2cc0 Recovering log #572
+2022/01/24-11:57:42.060 2cc0 Reusing old log C:\Users\Administrator\Provar\Workspace1\Testproject\.provarCaches\.chromeProfiles\profile0\Default\IndexedDB\https_test-americanredcross.cs63.force.com_0.indexeddb.leveldb/000572.log 
+2022/01/24-11:57:42.061 2cc0 Delete type=2 #567
+2022/01/24-11:57:42.061 2cc0 Delete type=2 #570
+2022/01/24-11:57:42.061 2cc0 Delete type=2 #573
+2022/01/24-11:57:45.691 2364 Level-0 table #577: started
+2022/01/24-11:57:45.731 2364 Level-0 table #577: 2309442 bytes OK
+2022/01/24-11:57:45.735 2364 Delete type=0 #572
+2022/01/24-11:57:45.743 2364 Compacting 1@0 + 1@1 files
+2022/01/24-11:57:45.813 2364 Generated table #578@0: 34601 keys, 2178096 bytes
+2022/01/24-11:57:45.822 2364 Generated table #579@0: 1537 keys, 138115 bytes
+2022/01/24-11:57:45.822 2364 Compacted 1@0 + 1@1 files => 2316211 bytes
+2022/01/24-11:57:45.823 2364 compacted to: files[ 0 2 1 0 0 0 0 ]
+2022/01/24-11:57:45.823 2364 Delete type=2 #574
+2022/01/24-11:57:45.823 2364 Delete type=2 #577

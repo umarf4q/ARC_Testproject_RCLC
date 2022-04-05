@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" keyPrefix="a5O" label="CC Subscription" labelPlural="CC Subscriptions" layoutable="true" metadataLabel="CC Subscription" n="ccrz__E_Subscription__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="CC Subscription (a5O)" updatable="true" urlDetail="https://arc-phss--test.my.salesforce.com/{ID}" urlEdit="https://arc-phss--test.my.salesforce.com/{ID}/e" urlNew="https://arc-phss--test.my.salesforce.com/a5O/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="CC Subscription ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="CC Subscription Name" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField n="ccrz__Sequence__c" precision="8" required="true" t="Sequence" type="_double"/>
+    <sfField length="255" n="ccrz__Storefront__c" required="true" t="Storefront"/>
+    <sfField n="ccrz__SubscriptionStartDate__c" required="true" t="Subscription Start Date" type="datetime"/>
+    <sfField length="255" n="ccrz__SubscriptionStatus__c" required="true" t="Subscription Status"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__Account__c" notVisibleToMetadataUser="true" readPermission="false" relationshipLabel="CC Subscriptions" relationshipName="CCSubscriptions" summary="Account associated with this subscription." t="Account">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" filterable="false" n="ccrz__AutoRenew__c" notVisibleToMetadataUser="true" readPermission="false" summary="Whether or not this subscription automatically renews" t="Auto Renew" type="boolean"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__CCOrderItem__c" notVisibleToMetadataUser="true" readPermission="false" relationshipLabel="CC Subscriptions" relationshipName="CCSubscriptions" summary="Reference to original order item used to create this subscription." t="CC Order Item">
+      <referenceTos>
+        <string>ccrz__E_OrderItem__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" filterable="false" n="ccrz__CCOrder__c" notVisibleToMetadataUser="true" readPermission="false" relationshipLabel="CC Subscriptions" relationshipName="CCSubscriptions" summary="Reference to original order used to create this subscription." t="CC Order">
+      <referenceTos>
+        <string>ccrz__E_Order__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" filterable="false" length="32768" n="ccrz__Comments__c" notVisibleToMetadataUser="true" readPermission="false" summary="Any comments to note about this subscription" t="Comments" type="textarea"/>
+    <sfField editPermission="false" filterable="false" length="10" n="ccrz__CurrencyISOCode__c" notVisibleToMetadataUser="true" readPermission="false" summary="The B2B Commerce currency for this transaction." t="Currency ISO Code"/>
+    <sfField editPermission="false" filterable="false" length="20" n="ccrz__EffectiveAccountID__c" notVisibleToMetadataUser="true" readPermission="false" summary="Holds the effective account for this Subscription. This field will be utilized in implementations where a user can order for multiple accounts inclusive or exclusive of their own. The effective account is used to control the entitlements, pricing, integrations etc that drive the site experience." t="Effective Account ID"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__IgnoreInstallmentFrequencyFields__c" notVisibleToMetadataUser="true" readPermission="false" summary="Copied on creation from original ccrz__E_ProdSubTerm__c object." t="Ignore Installment Frequency Fields" type="boolean"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__InstallmentAddress__c" notVisibleToMetadataUser="true" readPermission="false" relationshipLabel="CC Subscriptions (Installment Address)" relationshipName="CCInstallmentSubscriptions" summary="Reference to a CC Contact Address object that contains the billing address data. This will be a unique copy of the address information captured when the subscription is checked out." t="Installment Address">
+      <referenceTos>
+        <string>ccrz__E_ContactAddr__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" filterable="false" n="ccrz__InstallmentCountRemaining__c" notVisibleToMetadataUser="true" precision="10" readPermission="false" summary="The number of installments left in this subscription.  0 indicates no more installments left.  Null indicates this is not an installment based subscription." t="Installment Count Remaining" type="int"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__InstallmentLastDate__c" notVisibleToMetadataUser="true" readPermission="false" summary="Last date that payment will be billed for this subscription" t="Installment Last Date" type="datetime"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__InstallmentNextDate__c" notVisibleToMetadataUser="true" readPermission="false" summary="The date the next time payment will be processed for this subscription" t="Installment Next Date" type="datetime"/>
+    <sfField editPermission="false" filterable="false" length="255" n="ccrz__InstallmentStatus__c" notVisibleToMetadataUser="true" readPermission="false" summary="Not currently used" t="Installment Status"/>
+    <sfField editPermission="false" filterable="false" length="32768" n="ccrz__LastRecurringFailure__c" notVisibleToMetadataUser="true" readPermission="false" summary="Indicates a message why the last recurring process for this subscription failed." t="Last Recurring Failure" type="textarea"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__OrderAddress__c" notVisibleToMetadataUser="true" readPermission="false" relationshipLabel="CC Subscriptions (Order Address)" relationshipName="CCOrderSubscriptions" summary="Reference to a CC Contact Address object that contains subscription shipping address data. This will be a unique copy of the address information captured during checkout." t="Order Address">
+      <referenceTos>
+        <string>ccrz__E_ContactAddr__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" filterable="false" n="ccrz__OrderCountRemaining__c" notVisibleToMetadataUser="true" precision="10" readPermission="false" summary="The number of orders left in this subscription.  0 indicates no more orders left.  Null indicates this is not an order based subscription." t="Order Count Remaining" type="int"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__OrderLastDate__c" notVisibleToMetadataUser="true" readPermission="false" summary="The date of the last order for this subscription" t="Order Last Date" type="datetime"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__OrderNextDate__c" notVisibleToMetadataUser="true" readPermission="false" summary="The date of the next order for this subscription" t="Order Next Date" type="datetime"/>
+    <sfField editPermission="false" filterable="false" length="255" n="ccrz__OrderStatus__c" notVisibleToMetadataUser="true" readPermission="false" summary="Not currently used" t="Order Status"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__ParentSubscription__c" notVisibleToMetadataUser="true" readPermission="false" relationshipLabel="CC Subscriptions" relationshipName="CCSubscriptions" summary="If this subscription has a parent subscription, this will point to it" t="Parent Subscription">
+      <referenceTos>
+        <string>ccrz__E_Subscription__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" filterable="false" n="ccrz__Quantity__c" notVisibleToMetadataUser="true" precision="18" readPermission="false" summary="The number of items shipped for this subscriptions" t="Quantity" type="int"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__RecurringPriceSubAmt__c" notVisibleToMetadataUser="true" precision="18" readPermission="false" scale="2" summary="Sub total for the recurring price.  This will be the amount used for installments." t="Recurring Price Sub Amount" type="currency"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__RecurringPrice__c" notVisibleToMetadataUser="true" precision="18" readPermission="false" scale="2" summary="Individual unit price for the installment." t="Recurring Price" type="double"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__SPTInstallmentCount__c" notVisibleToMetadataUser="true" precision="10" readPermission="false" summary="Copied on creation from original ccrz__E_ProdSubTerm__c object." t="SPT Installment Count" type="int"/>
+    <sfField editPermission="false" filterable="false" length="255" n="ccrz__SPTInstallmentFrequencyUOM__c" notVisibleToMetadataUser="true" readPermission="false" summary="Copied on creation from original ccrz__E_ProdSubTerm__c object." t="SPT Installment Frequency UOM"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__SPTInstallmentFrequency__c" notVisibleToMetadataUser="true" precision="12" readPermission="false" scale="2" summary="Copied on creation from original ccrz__E_ProdSubTerm__c object." t="SPT Installment Frequency" type="double"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__SPTOrderCount__c" notVisibleToMetadataUser="true" precision="10" readPermission="false" summary="Copied on creation from original ccrz__E_ProdSubTerm__c object." t="SPT Order Count" type="int"/>
+    <sfField editPermission="false" filterable="false" length="255" n="ccrz__SPTOrderFrequencyUOM__c" notVisibleToMetadataUser="true" readPermission="false" summary="Copied on creation from original ccrz__E_ProdSubTerm__c object." t="SPT Order Frequency UOM"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__SPTOrderFrequency__c" notVisibleToMetadataUser="true" precision="12" readPermission="false" scale="2" summary="Copied on creation from original ccrz__E_ProdSubTerm__c object." t="SPT Order Frequency" type="double"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__SPTRecurringPricePercentage__c" notVisibleToMetadataUser="true" precision="18" readPermission="false" scale="2" summary="Recurring Price Percentage Field from the original SubProdTerm" t="SPT Recurring Price Percentage" type="double"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__SPTUpfrontPricePercentage__c" notVisibleToMetadataUser="true" precision="18" readPermission="false" scale="2" summary="Upfront Price Percentage Field from the original SubProdTerm" t="SPT Upfront Price Percentage" type="double"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__SPT__c" notVisibleToMetadataUser="true" readPermission="false" relationshipLabel="CC Subscriptions" relationshipName="CCSubscriptions" summary="The sub prod term this subscription was ordered from" t="SPT">
+      <referenceTos>
+        <string>ccrz__E_SubProdTerm__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" filterable="false" n="ccrz__StoredPayment__c" notVisibleToMetadataUser="true" readPermission="false" relationshipLabel="CC Subscriptions" relationshipName="CCSubscriptions" summary="The stored payment method for this subscription." t="Stored Payment">
+      <referenceTos>
+        <string>ccrz__E_StoredPayment__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" filterable="false" length="255" n="ccrz__SubscriptionId__c" notVisibleToMetadataUser="true" readPermission="false" summary="The external id of the subscription.  Not functionally used by B2B Commerce but may be used when creating objects within B2B Commerce." t="Subscription Id"/>
+    <sfField editPermission="false" filterable="false" n="ccrz__SubscriptionProduct__c" notVisibleToMetadataUser="true" readPermission="false" relationshipLabel="CC Subscriptions" relationshipName="CCSubscriptions" summary="The product that this subscription is for.  When recurring orders are used this is the product that will be ordered." t="Subscription Product">
+      <referenceTos>
+        <string>ccrz__E_Product__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" filterable="false" n="ccrz__User__c" notVisibleToMetadataUser="true" readPermission="false" relationshipName="CCSubscriptions" summary="User associated with the subscription" t="User">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship childName="ccrz__E_Order__c" field="ccrz__CCSubscription__c" n="ccrz__CCOrders__r" relationshipName="ccrz__CCOrders__r" s="2-" t="ccrz__E_Order__c"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="ccrz__E_Subscription__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="ccrz__E_Subscription__History"/>
+    <sfObjectRelationship childName="ccrz__E_Subscription__Share" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="ccrz__E_Subscription__Share"/>
+    <sfObjectRelationship childName="ccrz__E_TransactionPayment__c" field="ccrz__CCSubscription__c" n="ccrz__TransactionPayments__r" relationshipName="ccrz__TransactionPayments__r" s="2-" t="ccrz__E_TransactionPayment__c"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome ccrz__CCSubscriptions__r List" n="New"/>
+    <sfActionLink modes="View ccrz__CCSubscriptions__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View ccrz__CCSubscriptions__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View ccrz__CCSubscriptions__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ccrz__CCSubscriptions__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink n="Tab" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>CCRZ__E_SUBSCRIPTION__C.NAME</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CCRZ__E_SUBSCRIPTION__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>CCRZ__E_SUBSCRIPTION__C.NAME</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>NAME</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

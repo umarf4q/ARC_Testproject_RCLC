@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>600</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <icon>IBP__ifbyphone_Documents/IBP__dialogtech_thumbnail.png</icon>
+    <label>DialogTech Home</label>
+    <motif>Custom109: TV Widescreen</motif>
+    <url>https://secure.ifbyphone.com/</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

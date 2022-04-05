@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" keyPrefix="570" label="Chat Transcript" labelPlural="Chat Transcripts" layoutable="true" n="LiveChatTranscript" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Chat Transcript (570)" updatable="true" urlDetail="https://arc-phss--test.my.salesforce.com/{ID}" urlEdit="https://arc-phss--test.my.salesforce.com/{ID}/e" urlNew="https://arc-phss--test.my.salesforce.com/570/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Chat Transcript ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Chat Transcript Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="255" n="Name" nameField="true" t="Chat Transcript Name" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField length="18" n="LiveChatVisitorId" relationshipName="LiveChatVisitor" required="true" t="Chat Visitor ID" type="reference" updateable="false">
+      <referenceTos>
+        <string>LiveChatVisitor</string>
+      </referenceTos>
+    </sfField>
+    <sfField extraTypeInfo="richtextarea" filterable="false" length="131072" n="Body" type="textarea"/>
+    <sfField internalLabel="Contact ID" length="18" n="ContactId" relationshipName="Contact" t="Contact Name" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="LeadId" relationshipName="Lead" t="Lead" type="reference">
+      <referenceTos>
+        <string>Lead</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="CaseId" relationshipName="Case" t="Case" type="reference">
+      <referenceTos>
+        <string>Case</string>
+      </referenceTos>
+    </sfField>
+    <sfField internalLabel="Account ID" length="18" n="AccountId" relationshipName="Account" t="Account Name" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="LiveChatDeploymentId" relationshipName="LiveChatDeployment" t="Chat Deployment ID" type="reference">
+      <referenceTos>
+        <string>LiveChatDeployment</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="LiveChatButtonId" relationshipName="LiveChatButton" t="Chat Button ID" type="reference">
+      <referenceTos>
+        <string>LiveChatButton</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="SkillId" relationshipName="Skill" t="Skill" type="reference">
+      <referenceTos>
+        <string>Skill</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="39" n="IpAddress" t="IP Address"/>
+    <sfField length="200" n="Location"/>
+    <sfField length="200" n="UserAgent" t="User Agent"/>
+    <sfField length="200" n="Browser"/>
+    <sfField length="200" n="Platform"/>
+    <sfField length="200" n="BrowserLanguage" t="Browser Language"/>
+    <sfField length="200" n="ScreenResolution" t="Screen Resolution"/>
+    <sfField length="200" n="ReferrerUri" t="Referring Site"/>
+    <sfField length="255" n="Status" restrictedPicklist="true" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Missed" s=""/>
+        <sfPLE id="2" n="Completed" s=""/>
+        <sfPLE id="3" n="Dropped" s=""/>
+        <sfPLE id="4" n="Blocked" s=""/>
+        <sfPLE id="5" n="Waiting" s=""/>
+        <sfPLE id="6" n="InProgress" s="" t="In Progress"/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="RequestTime" t="Request Time" type="datetime"/>
+    <sfField n="StartTime" t="Start Time" type="datetime"/>
+    <sfField n="EndTime" t="End Time" type="datetime"/>
+    <sfField length="255" n="EndedBy" restrictedPicklist="true" t="Ended By" type="picklist">
+      <picklistEntryIds>7,8,9</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="7" n="Agent" s=""/>
+        <sfPLE id="8" n="Visitor" s=""/>
+        <sfPLE id="9" n="System" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField digits="9" n="AverageResponseTimeVisitor" t="Visitor Average Response Time" type="_int"/>
+    <sfField digits="9" n="AverageResponseTimeOperator" t="Agent Average Response Time" type="_int"/>
+    <sfField digits="9" n="OperatorMessageCount" t="Agent Message Count" type="_int"/>
+    <sfField digits="9" n="VisitorMessageCount" t="Visitor Message Count" type="_int"/>
+    <sfField length="200" n="ChatKey" t="Chat Key" updateable="false"/>
+    <sfField extraTypeInfo="richtextarea" filterable="false" length="131072" n="SupervisorTranscriptBody" t="Supervisor Transcript Body" type="textarea"/>
+    <sfField createable="false" editPermission="false" n="IsChatbotSession" t="Is Chatbot Session" type="_boolean" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="( EndTime - StartTime ) *24*3600" formulaTreatBlanksAs="BlankAsZero" n="Handle_Time__c" precision="18" scale="2" t="Handle Time" type="_double" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF (( EndTime - StartTime )&gt; 0, \nTEXT(FLOOR((EndTime - StartTime))) &amp; &quot;:&quot; &amp; \nTEXT(FLOOR( 24 * ((EndTime - StartTime) - FLOOR((EndTime - StartTime))))) &amp; &quot;:&quot; &amp; \nTEXT(ROUND(60 * (ROUND( 24 * ((EndTime - StartTime)-FLOOR((EndTime - StartTime))),8) - FLOOR( \nROUND( 24 * ((EndTime - StartTime)- FLOOR((EndTime - StartTime))),8)) ),0))&amp; &quot;:&quot; &amp; \nTEXT(Round(60*(((EndTime - StartTime) *1440) - FLOOR(((EndTime - StartTime) *1440))),0)) \n, &quot;&quot;)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Handle_Time_Readability__c" t="Handle Time (Readability)" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="SECOND( Time_Var__c )" formulaTreatBlanksAs="BlankAsZero" n="Seconds__c" precision="18" scale="2" t="Seconds" type="_double" updateable="false"/>
+    <sfField n="Seconds_til_next_Owner__c" precision="18" scale="4" t="Seconds til next Owner" type="_double"/>
+    <sfField n="Time_Var__c" t="Time_Var" type="time"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="NOW()" formulaTreatBlanksAs="BlankAsZero" n="Transferred_Time_Stamp__c" t="Transferred Time Stamp" type="datetime" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(RequestTime -4/24)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Request_Time_In_sec__c" t="Request Time In sec" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(StartTime - 4/24)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Start_time_in_Sec__c" t="Start Time In Sec" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(EndTime - 4/24)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="End_Time_In_Sec__c" t="End Time In Sec" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="(StartTime - RequestTime)*86400" formulaTreatBlanksAs="BlankAsZero" n="Respond_Time__c" precision="18" scale="2" t="Respond Time" type="_double" updateable="false"/>
+    <sfField filterable="false" n="Abandoned" notVisibleToMetadataUser="true"/>
+    <sfField filterable="false" n="ChatDuration" notVisibleToMetadataUser="true"/>
+    <sfField filterable="false" n="MaxResponseTimeOperator" notVisibleToMetadataUser="true"/>
+    <sfField filterable="false" n="MaxResponseTimeVisitor" notVisibleToMetadataUser="true"/>
+    <sfField editPermission="false" filterable="false" n="Testing__c" notVisibleToMetadataUser="true" readPermission="false" t="Testing" type="boolean"/>
+    <sfField filterable="false" n="VisitorNetwork" notVisibleToMetadataUser="true"/>
+    <sfField filterable="false" n="WaitTime" notVisibleToMetadataUser="true"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship alias="RelatedCaseList" childName="Case" field="SourceId" n="Cases" relationshipName="Cases" s="2-" t="Case"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship childName="ConversationContextEntry" field="ParentId" n="ConversationContextEntries" relationshipName="ConversationContextEntries" s="2-" t="ConversationContextEntry"/>
+    <sfObjectRelationship childName="ConversationEntry" field="ConversationId" n="ConversationEntries" relationshipName="ConversationEntries" s="2-" t="ConversationEntry"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="LinkedArticle" field="LinkedEntityId" n="LinkedArticles" relationshipName="LinkedArticles" s="2-" t="LinkedArticle"/>
+    <sfObjectRelationship childName="LiveChatTranscriptEvent" field="LiveChatTranscriptId" n="LiveChatTranscriptEvents" relationshipName="LiveChatTranscriptEvents" s="2-" t="LiveChatTranscriptEvent"/>
+    <sfObjectRelationship childName="LiveChatTranscriptFeed" field="ParentId" n="Feeds" relationshipName="Feeds" s="2-" t="LiveChatTranscriptFeed"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="LiveChatTranscriptHistory" field="LiveChatTranscriptId" n="Histories" relationshipName="Histories" s="2-" t="LiveChatTranscriptHistory"/>
+    <sfObjectRelationship childName="LiveChatTranscriptShare" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="LiveChatTranscriptShare"/>
+    <sfObjectRelationship childName="LiveChatTranscriptSkill" field="TranscriptId" n="LiveChatTranscriptSkills" relationshipName="LiveChatTranscriptSkills" s="2-" t="LiveChatTranscriptSkill"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome LiveChatTranscripts List" n="New"/>
+    <sfActionLink modes="View LiveChatTranscripts" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View LiveChatTranscripts" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View LiveChatTranscripts" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View LiveChatTranscripts" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink n="Tab" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>LIVECHATTRANSCRIPT.NAME</string>
+    <string>LiveChatVisitor</string>
+    <string>StartTime</string>
+    <string>EndTime</string>
+    <string>Status</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>LIVECHATTRANSCRIPT.NAME</string>
+    <string>LiveChatVisitor</string>
+    <string>StartTime</string>
+    <string>EndTime</string>
+    <string>Status</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>LIVECHATTRANSCRIPT.NAME</string>
+    <string>LiveChatVisitor</string>
+    <string>StartTime</string>
+    <string>EndTime</string>
+    <string>Status</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>NAME</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

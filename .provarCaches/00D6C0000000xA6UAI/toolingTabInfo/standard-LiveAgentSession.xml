@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="LiveAgentSession" IsAvailableInAloha="true" IsAvailableInLightning="true" Label="Chat Sessions" Name="standard-LiveAgentSession" SobjectName="LiveAgentSession" Url="https://arc-phss--test.my.salesforce.com/0HK/o"/>
+</toolingTabInfo>

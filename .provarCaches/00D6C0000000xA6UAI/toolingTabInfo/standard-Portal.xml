@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="Portal" IsAvailableInAloha="true" Label="Portals" Name="standard-Portal" SobjectName="Portal" Url="https://arc-phss--test.my.salesforce.com/ui/portal/PortalPage"/>
+</toolingTabInfo>

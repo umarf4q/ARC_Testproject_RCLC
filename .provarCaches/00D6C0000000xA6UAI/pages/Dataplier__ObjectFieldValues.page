@@ -1,0 +1,122 @@
+<apex:page controller="Dataplier.ObjectFieldValuesController" showHeader="false" sideBar="false" action="{!LoadAction}" title="Select Picklist Values">
+    <apex:slds />
+    <style>
+        .topButton, .bottomButton {
+            padding: 2px 0;
+            text-align: center;
+        }
+    </style>
+
+    <body class="hasMotif lookupTab FilterLookupPage">
+    <apex:outputPanel layout="block" styleClass="lookup">
+        <apex:outputPanel layout="block">
+            <!--				<apex:image styleClass="pageTitleIcon" value="/s.gif" />-->
+
+            <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+                <div class="slds-media__body">
+                    <h1 class="slds-text-heading--medium">
+						<span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product_required')}"/>
+							</svg>
+						</span>
+                        <span>Lookup</span>
+                    </h1>
+                </div>
+            </div>
+            <!--				<h1><apex:outputText value="Lookup" /></h1>-->
+        </apex:outputPanel>
+        <apex:outputPanel layout="block" styleClass="slds-m-top--medium slds-box">
+            <apex:outputPanel layout="block" style="background-color: #f7f9fb; padding: 9px; margin : -15px -15px 0 -15px">
+                <h2>
+                    <apex:outputText value="Select the picklist values to add below."/>
+                </h2>
+            </apex:outputPanel>
+            <!--        <apex:outputLink value="javascript:CheckAll(false)" rendered="{!SelectValuesMultiple}">-->
+            <!--            <apex:outputText value="Deselect all"/>-->
+            <!--        </apex:outputLink>-->
+            <apex:outputPanel layout="block">
+                <apex:outputPanel layout="block" styleClass="slds-m-top--medium">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size--10-of-12">
+                            <apex:outputPanel layout="block">
+                                <apex:variable var="seq" value="{!1}"/>
+                                <apex:dataTable value="{!PickerValues}" style="margin-top: -10px; margin-left: -15px" var="line" styleClass="slds-table slds-table_cell-buffer slds-table_header-hidden slds-no-row-hover" headerClass="slds-color__background_gray-1">
+                                    <apex:column width="10">
+                                        <apex:outputPanel layout="none" rendered="{!SelectValuesSingle}"> 
+                                            <input id="pickoption{!seq}" type="radio" value="{!line.value}" name="lookup0"/>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel layout="none" rendered="{!SelectValuesMultiple}">
+                                            <input id="pickoption{!seq}" type="checkbox" value="{!line.value}"/>
+                                        </apex:outputPanel>
+                                    </apex:column>
+                                    <apex:column headerValue="">
+                                        <label for="pickoption{!seq}">
+                                            <apex:outputText value="{!line.label}"/>
+                                        </label>
+                                        <apex:variable var="seq" value="{!seq+1}"/>
+                                    </apex:column>
+                                </apex:dataTable>
+                            </apex:outputPanel>
+
+                        </div>
+                        <div class="slds-col slds-size--2-of-12">
+                            <apex:outputPanel layout="block" styleClass="slds-float--right">
+                                <input type="button" value="Insert" title="Insert Selected" onclick="SetValuesToParentPage();" class="slds-button slds-button--brand"/>
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+
+                </apex:outputPanel>
+            </apex:outputPanel>
+        </apex:outputPanel>
+
+
+    </apex:outputPanel>
+
+    </body>
+
+    <script type="text/javascript">
+        function CheckAll(checked) {
+            var elements = document.getElementsByTagName('input');
+            for (var i = 0; i < elements.length; i++) {
+                var el = elements[i];
+                if (el.id.indexOf("pickoption") == 0) {
+                    el.checked = checked;
+                }
+            }
+        }
+
+        function SetValuesToParentPage() {
+            var values = [];
+            var elements = document.getElementsByTagName('input');
+            for (var i = 0; i < elements.length; i++) {
+                var el = elements[i];
+                if (el.id.indexOf("pickoption") == 0 && el.checked) {
+                    values.push(el.value);
+                }
+            }
+            var valueElement = parent.opener.document.getElementById('{!JSENCODE(ElementId)}');
+            if (valueElement) {
+                var result = [];
+                if ({!SelectValuesMultiple}) {
+                    var value = valueElement.value;
+                    var arr = value.split(/\s*,\s*/);
+                    for (var i = 0; i < arr.length; i++) {
+                        if (arr[i]) {
+                            result.push(arr[i]);
+                        }
+                    }
+                }
+                for (var i = 0; i < values.length; i++) {
+                    if (values[i]) {
+                        result.push(values[i]);
+                    }
+                }
+                valueElement.value = result.join(', ');
+            }
+            parent.window.close();
+        }
+    </script>
+
+</apex:page>

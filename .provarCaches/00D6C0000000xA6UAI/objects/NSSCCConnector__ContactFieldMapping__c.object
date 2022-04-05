@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This Custom Setting holds field mapping between Salesforce Commerce Cloud Contact Object and Service Cloud Customer/Customer Profile Object. This mapping is used in Rest Apex wrapper class</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>NSSCCConnector__Field_Api_Name__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>This Field holds mapping between Service Cloud Object Attributes mapping with Commerce Cloud request object attributes</description>
+        <externalId>false</externalId>
+        <label>Field Api Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>ContactFieldMapping</label>
+    <visibility>Public</visibility>
+</CustomObject>

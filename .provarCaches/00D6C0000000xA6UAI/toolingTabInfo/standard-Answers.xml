@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="Answers" IsAvailableInAloha="true" Label="Answers" Name="standard-Answers" SobjectName="Answers" Url="https://arc-phss--test.my.salesforce.com/answers/answersHome.apexp"/>
+</toolingTabInfo>

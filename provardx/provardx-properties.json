@@ -1,0 +1,31 @@
+{
+   "provarHome":"C:/Program Files/Provar/",
+   "projectPath":"C:/Users/Administrator/Provar/Workspace1/Testproject",
+   "resultsPath":"C:/Users/Administrator/Provar/Workspace1/Testproject/ANT/Results",
+   "smtpPath": "",
+   "resultsPathDisposition": "Increment", 
+   "testOutputLevel":"BASIC",
+   "pluginOutputlevel":"WARNING",
+   "stopOnError":false,
+   "lightningMode":true,
+   "connectionRefreshType":"Reload",
+   "metadata":{
+      "metadataLevel":"Reuse",
+      "cachePath":"../.provarCaches"
+   },
+   "environment":{
+      "testEnvironment":"",
+      "webBrowser":"Chrome",
+      "webBrowserConfig":"Full Screen",
+      "webBrowserProviderName":"Desktop",
+      "webBrowserDeviceName":"Full Screen"
+   }
+   ,"testplanFeatures":[
+		{"name":"PDF", "type":"OUTPUT", "enabled":"true"}
+		,{"name":"PIECHART", "type":"OUTPUT", "enabled":"true"}
+		,{"name":"EMAIL", "type":"NOTIFICATION", "enabled":"true"}
+   ]
+   ,"testPlan":[
+    	"/RCLCIT-RegressionSuite/1.CreateRBC By Partner & Validate In Sales App.testinstance"  
+   ]
+}

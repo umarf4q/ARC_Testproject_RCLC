@@ -1,0 +1,29 @@
+<apex:page standardController="IBP__Ifbyphone_Call__c" extensions="IBP.IBPRelatedContactsController">
+    <style type="text/css">body { margin: 0px !important }</style>
+    <apex:form >
+    <apex:pageBlock id="related_contacts" title="Search Results for Related Contacts">
+        <apex:pageMessages />
+        <apex:pageBlockSection rendered="{!contacts.size == 0}">
+         <h2>No related Contact records found.</h2><br/>
+        </apex:pageBlockSection>
+        <apex:pageBlockTable value="{!contacts}" var="c" rendered="{!contacts.size != 0}">
+            <apex:column headerValue="Action">
+                <apex:commandLink action="{!link}" rerender="related_contacts" rendered="{!c.Id <> call.IBP__ContactId__c}">
+                    <apex:param name="contactId" assignTo="{!contactId}" value="{!c.Id}"/>
+                    Link
+                </apex:commandLink>
+                <apex:commandLink action="{!unlink}" rerender="related_contacts" rendered="{!c.Id == call.IBP__ContactId__c}">
+                    Unlink
+                </apex:commandLink>
+            </apex:column>
+            <apex:column headerValue="Name">
+                <apex:outputLink value="{!URLFOR($Action.Contact.View, c.Id)}" target="_parent">{!c.Name}</apex:outputLink>
+            </apex:column>
+            <apex:column value="{!c.Phone}"/>
+            <apex:column value="{!c.MobilePhone}"/>
+            <apex:column value="{!c.HomePhone}"/>
+            <apex:column value="{!c.OtherPhone}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

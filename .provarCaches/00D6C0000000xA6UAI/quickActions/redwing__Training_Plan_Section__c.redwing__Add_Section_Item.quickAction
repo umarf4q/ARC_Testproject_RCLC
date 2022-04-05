@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><QuickAction xmlns="http://soap.sforce.com/2006/04/metadata"
+   >
+ <fullName>redwing__Training_Plan_Section__c.redwing__Add_Section_Item</fullName>
+     <height>0</height>
+  <isProtected>false</isProtected>
+ <label>Add Section Item</label>
+   <optionsCreateFeedItem>false</optionsCreateFeedItem>
+  <quickActionLayout>
+  <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+  <quickActionLayoutColumns>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>redwing__Training_Plan_Section__c</field>
+    <uiBehavior>Required</uiBehavior>
+   </quickActionLayoutItems>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>redwing__Learning__c</field>
+    <uiBehavior>Edit</uiBehavior>
+   </quickActionLayoutItems>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>redwing__Optional__c</field>
+    <uiBehavior>Edit</uiBehavior>
+   </quickActionLayoutItems>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>redwing__Order__c</field>
+    <uiBehavior>Edit</uiBehavior>
+   </quickActionLayoutItems>
+  </quickActionLayoutColumns>
+  <quickActionLayoutColumns />
+ </quickActionLayout>
+    <targetObject>redwing__Training_Plan_Section_Item__c</targetObject>
+ <targetParentField>redwing__Training_Plan_Section__c</targetParentField>
+  <type>Create</type>
+ <width>0</width>
+</QuickAction>

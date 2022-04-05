@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testPlan>
+  <planSettings>
+    <planSetting name="browserProvider">
+      <value valueClass="string">Desktop:1024x768</value>
+    </planSetting>
+    <planSetting name="webBrowser">
+      <value valueClass="string">Chrome</value>
+    </planSetting>
+  </planSettings>
+  <planFeatures>
+    <planFeature enabled="true" name="PIECHART" type="OUTPUT">
+      <settings mutable="Mutable">
+        <namedValue name="enabled">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+        <namedValue name="includeLegend">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+        <namedValue name="artifactName">
+          <value class="value" valueClass="string">pieChart.png</value>
+        </namedValue>
+      </settings>
+    </planFeature>
+    <planFeature enabled="true" name="PDF" type="OUTPUT">
+      <settings mutable="Mutable">
+        <namedValue name="enabled">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+        <namedValue name="includeTestCaseSummary">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+        <namedValue name="includeTestCaseDetails">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+        <namedValue name="includeTestCasePathHierarchy">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+        <namedValue name="includeBdd">
+          <value class="value" valueClass="boolean">false</value>
+        </namedValue>
+        <namedValue name="includeSkippedTestSteps">
+          <value class="value" valueClass="boolean">false</value>
+        </namedValue>
+        <namedValue name="includeTestCaseShowSummary">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+        <namedValue name="includeTestStepTime">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+        <namedValue name="includeDetailLogs">
+          <value class="value" valueClass="boolean">false</value>
+        </namedValue>
+        <namedValue name="includeScreenshotThumbnail">
+          <value class="value" valueClass="boolean">false</value>
+        </namedValue>
+        <namedValue name="includeFullScreenShot">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+        <namedValue name="includeNoScreenshots">
+          <value class="value" valueClass="boolean">false</value>
+        </namedValue>
+        <namedValue name="includeDiagnosticTrace">
+          <value class="value" valueClass="boolean">false</value>
+        </namedValue>
+        <namedValue name="artifactName">
+          <value class="value" valueClass="string">executionReport.pdf</value>
+        </namedValue>
+        <namedValue name="includeAllFailuresInSummary">
+          <value class="value" valueClass="boolean">false</value>
+        </namedValue>
+        <namedValue name="includeBasicLogs">
+          <value class="value" valueClass="boolean">false</value>
+        </namedValue>
+        <namedValue name="includeNoLogs">
+          <value class="value" valueClass="boolean">true</value>
+        </namedValue>
+      </settings>
+    </planFeature>
+    <planFeature enabled="true" name="EMAIL" type="NOTIFICATION">
+      <settings mutable="Mutable">
+        <namedValue name="to">
+          <value class="value" valueClass="string">umar.farooq@redcross.org</value>
+        </namedValue>
+        <namedValue name="subject">
+          <value class="value" valueClass="string">Provar- Test Plan Execution Report (RCLC)</value>
+        </namedValue>
+        <namedValue name="emailBody">
+          <value class="value" valueClass="string">&lt;p&gt;&lt;b&gt;RCLC&lt;/b&gt; -Daily Run - Regression Test Execution Report{TestArtifact('pieChart.png')}{TestArtifact('executionReport.pdf')}&lt;/p&gt;&lt;p&gt;List of Test Scripts:&lt;/p&gt;&lt;p&gt;1.CreateRBCByPartner&amp;amp;ValidateInSalesApp&lt;/p&gt;&lt;p&gt;2.CancelRBC-Partner&lt;/p&gt;&lt;p&gt;3.CancelRBC-Instructor&lt;/p&gt;&lt;p&gt;4.CRE-LTS-PartnerOrInstructorUser&lt;/p&gt;&lt;p&gt;5.EnrollLearner&lt;/p&gt;&lt;p&gt;6.Create&amp;amp;CloseRBCByPartnerUser (Skipped)&lt;/p&gt;&lt;p&gt;7.CloseRBC-Instructor (Skipped)&lt;/p&gt;&lt;p&gt;8.CreateCREByPartnerUser&amp;amp;ValidateInSf&lt;/p&gt;&lt;p&gt;&lt;b&gt;No. of Script Passed:&lt;/b&gt;{SuccessfulCount}&lt;/p&gt;&lt;p&gt;&lt;b&gt;No. of Script Failed:&lt;/b&gt;{FailureCount}&lt;/p&gt;</value>
+        </namedValue>
+        <namedValue name="cc">
+          <value class="value" valueClass="string">michaela.french@redcross.org, mike.demeglio2@redcross.org, brian.liming@redcross.org, rclcsfdevteam@redcross.org, fawad.rehman2@redcross.org</value>
+        </namedValue>
+      </settings>
+    </planFeature>
+  </planFeatures>
+</testPlan>

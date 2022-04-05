@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="Opportunity.SYSTEM" defaultFlexipageId="Opportunity_Record_Page" deleteable="true" feedEnabled="true" keyPrefix="006" label="Opportunity" labelPlural="Opportunities" layoutable="true" listViewFilterType="o" metadataLabel="Opportunity" n="Opportunity" queryable="true" retrieveable="true" s="" searchLayoutable="true" standardLabel="Opportunity" t="Opportunity (006)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/006/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Opportunity ID" type="id" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField internalLabel="Account ID" length="18" n="AccountId" relationshipName="Account" t="Account Name" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="RecordTypeId" relationshipName="RecordType" t="Opportunity Record Type" type="reference">
+      <referenceTos>
+        <string>RecordType</string>
+      </referenceTos>
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Opportunity.RecordType</key>
+          <value valueClass="string">Opportunity Record Type</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField n="IsPrivate" t="Private" type="_boolean"/>
+    <sfField length="120" n="Name" nameField="true" required="true" t="Opportunity Name">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Opportunity.Name</key>
+          <value valueClass="string">Opportunity Name</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32000" n="Description" type="textarea"/>
+    <sfField length="255" n="StageName" required="true" standardPickListName="OpportunityStage" t="Stage" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Approach" s=""/>
+        <sfPLE id="2" n="Interview" s=""/>
+        <sfPLE id="3" n="Demonstrate/Proposal" s=""/>
+        <sfPLE id="4" n="Validate" s=""/>
+        <sfPLE id="5" n="Negotiation" s=""/>
+        <sfPLE id="6" n="Closed Won" s=""/>
+        <sfPLE id="7" n="Closed Lost" s=""/>
+        <sfPLE id="8" n="Reservation" s=""/>
+        <sfPLE id="9" n="Only for Orders" s=""/>
+      </picklistEntries>
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Opportunity.Stage</key>
+          <value valueClass="string">Stage</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField n="Amount" precision="18" scale="2" type="currency">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Opportunity.Amount</key>
+          <value valueClass="string">Amount</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField n="Probability" precision="3" t="Probability (%)" type="percent"/>
+    <sfField createable="false" editPermission="false" n="ExpectedRevenue" precision="18" readPermission="false" scale="2" t="Expected Revenue" type="currency" updateable="false"/>
+    <sfField n="TotalOpportunityQuantity" precision="18" scale="2" t="Quantity" type="_double"/>
+    <sfField n="CloseDate" required="true" t="Close Date" type="date">
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Opportunity.CloseDate</key>
+          <value valueClass="string">Close Date</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField length="255" n="Type" standardPickListName="OpportunityType" type="picklist">
+      <picklistEntryIds>10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="10" n="New Business - FS" s=""/>
+        <sfPLE id="11" n="Existing Business - FS" s=""/>
+        <sfPLE id="12" n="New Business - AP" s=""/>
+        <sfPLE id="13" n="Existing Business - AP" s=""/>
+        <sfPLE id="14" n="New Business-LTP" s=""/>
+        <sfPLE id="15" n="Existing Business-LTP" s=""/>
+        <sfPLE id="16" n="AED" s=""/>
+        <sfPLE id="17" n="AES" s=""/>
+        <sfPLE id="18" n="Retail" s=""/>
+        <sfPLE id="19" n="No Contract/Upsell" s=""/>
+        <sfPLE id="20" n="NAT Existing Business - AP" s=""/>
+        <sfPLE id="21" n="NAT Existing Business - LTP" s=""/>
+        <sfPLE id="22" n="NAT New Business - AP" s=""/>
+        <sfPLE id="23" n="NAT New Business - LTP" s=""/>
+        <sfPLE id="24" n="CEP New Business - FS" s=""/>
+        <sfPLE id="25" n="CEP Existing Business - FS" s=""/>
+        <sfPLE id="26" n="CEP New Business - Community" s=""/>
+        <sfPLE id="27" n="CEP Existing Business – Community" s=""/>
+        <sfPLE id="28" n="Provisional" s=""/>
+      </picklistEntries>
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">Opportunity.Type</key>
+          <value valueClass="string">Type</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField length="255" n="NextStep" t="Next Step"/>
+    <sfField length="255" n="LeadSource" standardPickListName="LeadSource" t="Lead Source" type="picklist">
+      <picklistEntryIds>29,30,31,32,33,34,35,36,37,38,39,40</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="29" n="Marketing Lead" s=""/>
+        <sfPLE id="30" n="Sales Lead" s=""/>
+        <sfPLE id="31" n="Partner" s=""/>
+        <sfPLE id="32" n="HealthStream" s=""/>
+        <sfPLE id="33" n="Marketing - Account Maximization" s=""/>
+        <sfPLE id="34" n="AHA Conversion" s=""/>
+        <sfPLE id="35" n="FAST" s=""/>
+        <sfPLE id="36" n="Marketing - Field Recert" s="" t="Marketing - TC/TS"/>
+        <sfPLE id="37" n="Marketing Email" s=""/>
+        <sfPLE id="38" n="Marketing NR" s=""/>
+        <sfPLE id="39" n="Marketing - EMS" s=""/>
+        <sfPLE id="40" n="Web" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsClosed" t="Closed" type="_boolean" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsWon" t="Won" type="_boolean" updateable="false"/>
+    <sfField createable="false" length="40" n="ForecastCategory" required="true" restrictedPicklist="true" standardPickListName="ForecastCategory" t="Forecast Category" type="picklist" updateable="false">
+      <picklistEntryIds>41,42,43,44,45</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="41" n="Omitted" s=""/>
+        <sfPLE id="42" n="Pipeline" s=""/>
+        <sfPLE id="43" n="BestCase" s="" t="Best Case"/>
+        <sfPLE id="44" n="Forecast" s="" t="Commit"/>
+        <sfPLE id="45" n="Closed" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="ForecastCategoryName" restrictedPicklist="true" standardPickListName="ForecastCategoryName" t="Forecast Category" type="picklist">
+      <picklistEntryIds>41,42,46,47,45</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="41" n="Omitted" s=""/>
+        <sfPLE id="42" n="Pipeline" s=""/>
+        <sfPLE id="46" n="Best Case" s=""/>
+        <sfPLE id="47" n="Commit" s=""/>
+        <sfPLE id="45" n="Closed" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="CampaignId" relationshipName="Campaign" t="Primary Campaign Source" type="reference">
+      <referenceTos>
+        <string>Campaign</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="HasOpportunityLineItem" t="Has Line Item" type="_boolean" updateable="false"/>
+    <sfField length="18" n="Pricebook2Id" relationshipName="Pricebook2" t="Price Book" type="reference">
+      <referenceTos>
+        <string>Pricebook2</string>
+      </referenceTos>
+    </sfField>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Opportunity Owner" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" digits="9" n="FiscalQuarter" t="Fiscal Quarter" type="_int" updateable="false"/>
+    <sfField createable="false" digits="9" n="FiscalYear" t="Fiscal Year" type="_int" updateable="false"/>
+    <sfField createable="false" length="6" n="Fiscal" t="Fiscal Period" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="ContactId" readPermission="false" t="Contact" type="reference" updateable="false">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="18" n="PrimaryPartnerAccountId" readPermission="false" t="Primary Partner Account" type="reference" updateable="false">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="PartnerAccountId" readPermission="false" relationshipName="PartnerAccount" t="Partner Account" type="reference" updateable="false">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="SyncedQuoteId" relationshipName="SyncedQuote" t="Synced Quote" type="reference">
+      <referenceTos>
+        <string>Quote</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="ContractId" relationshipName="Contract" t="Contract" type="reference">
+      <referenceTos>
+        <string>Contract</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" filterable="false" n="HasOpenActivity" t="Has Open Activity" type="_boolean" updateable="false"/>
+    <sfField createable="false" editPermission="false" filterable="false" n="HasOverdueTask" t="Has Overdue Task" type="_boolean" updateable="false"/>
+    <sfField digits="9" editPermission="false" n="IqScore" readPermission="false" t="Opportunity Score" type="_int"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastAmountChangedHistoryId" readPermission="false" relationshipName="LastAmountChangedHistory" t="Last Amount Changed History" type="reference" updateable="false">
+      <referenceTos>
+        <string>OpportunityHistory</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" length="18" n="LastCloseDateChangedHistoryId" readPermission="false" relationshipName="LastCloseDateChangedHistory" t="Last Close Date Changed History" type="reference" updateable="false">
+      <referenceTos>
+        <string>OpportunityHistory</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="255" n="Approval_Status__c" t="Approval Status" type="picklist">
+      <picklistEntryIds>48,49,50,51</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="48" n="Submit for Approval" s=""/>
+        <sfPLE id="49" n="Approved" s=""/>
+        <sfPLE id="50" n="Rejected" s=""/>
+        <sfPLE defaultValue="true" id="51" n="N/A" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="Approver_1__c" relationshipName="Approver_1__r" t="Approver 1" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Approver_2__c" relationshipName="Approver_2__r" t="Approver 2" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Approver_3__c" relationshipName="Approver_3__r" t="Approver 3" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Books_for_Class__c" t="Books for Class" type="textarea"/>
+    <sfField length="140" n="Breaks__c" t="Breaks"/>
+    <sfField length="140" n="Confirmation_Number__c" t="Confirmation Number"/>
+    <sfField length="100" n="County__c" t="County"/>
+    <sfField length="15" n="Course_ID__c" t="Course ID"/>
+    <sfField length="50" n="Course_Name__c" t="Course Name"/>
+    <sfField length="40" n="DM_External_Id__c" t="DM External Id"/>
+    <sfField length="120" n="DM_Legacy_Owner_Name__c" t="DM Legacy Owner Name"/>
+    <sfField n="Start_Date__c" t="Start Date" type="date"/>
+    <sfField length="255" n="End_Time__c" t="End Time" type="picklist">
+      <picklistEntryIds>52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="52" n="05:00 PM" s=""/>
+        <sfPLE id="53" n="05:15 PM" s=""/>
+        <sfPLE id="54" n="05:30 PM" s=""/>
+        <sfPLE id="55" n="05:45 PM" s=""/>
+        <sfPLE id="56" n="06:00 PM" s=""/>
+        <sfPLE id="57" n="06:15 PM" s=""/>
+        <sfPLE id="58" n="06:30 PM" s=""/>
+        <sfPLE id="59" n="06:45 PM" s=""/>
+        <sfPLE id="60" n="07:00 PM" s=""/>
+        <sfPLE id="61" n="07:15 PM" s=""/>
+        <sfPLE id="62" n="07:30 PM" s=""/>
+        <sfPLE id="63" n="07:45 PM" s=""/>
+        <sfPLE id="64" n="08:00 PM" s=""/>
+        <sfPLE id="65" n="08:15 PM" s=""/>
+        <sfPLE id="66" n="08:30 PM" s=""/>
+        <sfPLE id="67" n="08:45 PM" s=""/>
+        <sfPLE id="68" n="09:00 PM" s=""/>
+        <sfPLE id="69" n="09:15 PM" s=""/>
+        <sfPLE id="70" n="09:30 PM" s=""/>
+        <sfPLE id="71" n="09:45 PM" s=""/>
+        <sfPLE id="72" n="10:00 PM" s=""/>
+        <sfPLE id="73" n="10:15 PM" s=""/>
+        <sfPLE id="74" n="10:30 PM" s=""/>
+        <sfPLE id="75" n="10:45 PM" s=""/>
+        <sfPLE id="76" n="11:00 PM" s=""/>
+        <sfPLE id="77" n="11:15 PM" s=""/>
+        <sfPLE id="78" n="11:30 PM" s=""/>
+        <sfPLE id="79" n="11:45 PM" s=""/>
+        <sfPLE id="80" n="12:00 AM" s=""/>
+        <sfPLE id="81" n="12:15 AM" s=""/>
+        <sfPLE id="82" n="12:30 AM" s=""/>
+        <sfPLE id="83" n="12:45 AM" s=""/>
+        <sfPLE id="84" n="01:00 AM" s=""/>
+        <sfPLE id="85" n="01:15 AM" s=""/>
+        <sfPLE id="86" n="01:30 AM" s=""/>
+        <sfPLE id="87" n="01:45 AM" s=""/>
+        <sfPLE id="88" n="02:00 AM" s=""/>
+        <sfPLE id="89" n="02:15 AM" s=""/>
+        <sfPLE id="90" n="02:30 AM" s=""/>
+        <sfPLE id="91" n="02:45 AM" s=""/>
+        <sfPLE id="92" n="03:00 AM" s=""/>
+        <sfPLE id="93" n="03:15 AM" s=""/>
+        <sfPLE id="94" n="03:30 AM" s=""/>
+        <sfPLE id="95" n="03:45 AM" s=""/>
+        <sfPLE id="96" n="04:00 AM" s=""/>
+        <sfPLE id="97" n="04:15 AM" s=""/>
+        <sfPLE id="98" n="04:30 AM" s=""/>
+        <sfPLE id="99" n="04:45 AM" s=""/>
+        <sfPLE id="100" n="05:00 AM" s=""/>
+        <sfPLE id="101" n="05:15 AM" s=""/>
+        <sfPLE id="102" n="05:30 AM" s=""/>
+        <sfPLE id="103" n="05:45 AM" s=""/>
+        <sfPLE id="104" n="06:00 AM" s=""/>
+        <sfPLE id="105" n="06:15 AM" s=""/>
+        <sfPLE id="106" n="06:30 AM" s=""/>
+        <sfPLE id="107" n="06:45 AM" s=""/>
+        <sfPLE id="108" n="07:00 AM" s=""/>
+        <sfPLE id="109" n="07:15 AM" s=""/>
+        <sfPLE id="110" n="07:30 AM" s=""/>
+        <sfPLE id="111" n="07:45 AM" s=""/>
+        <sfPLE id="112" n="08:00 AM" s=""/>
+        <sfPLE id="113" n="08:15 AM" s=""/>
+        <sfPLE id="114" n="08:30 AM" s=""/>
+        <sfPLE id="115" n="08:45 AM" s=""/>
+        <sfPLE id="116" n="09:00 AM" s=""/>
+        <sfPLE id="117" n="09:15 AM" s=""/>
+        <sfPLE id="118" n="09:30 AM" s=""/>
+        <sfPLE id="119" n="09:45 AM" s=""/>
+        <sfPLE id="120" n="10:00 AM" s=""/>
+        <sfPLE id="121" n="10:15 AM" s=""/>
+        <sfPLE id="122" n="10:30 AM" s=""/>
+        <sfPLE id="123" n="10:45 AM" s=""/>
+        <sfPLE id="124" n="11:00 AM" s=""/>
+        <sfPLE id="125" n="11:15 AM" s=""/>
+        <sfPLE id="126" n="11:30 AM" s=""/>
+        <sfPLE id="127" n="11:45 AM" s=""/>
+        <sfPLE id="128" n="12:00 PM" s=""/>
+        <sfPLE id="129" n="12:15 PM" s=""/>
+        <sfPLE id="130" n="12:30 PM" s=""/>
+        <sfPLE id="131" n="12:45 PM" s=""/>
+        <sfPLE id="132" n="01:00 PM" s=""/>
+        <sfPLE id="133" n="01:15 PM" s=""/>
+        <sfPLE id="134" n="01:30 PM" s=""/>
+        <sfPLE id="135" n="01:45 PM" s=""/>
+        <sfPLE id="136" n="02:00 PM" s=""/>
+        <sfPLE id="137" n="02:15 PM" s=""/>
+        <sfPLE id="138" n="02:30 PM" s=""/>
+        <sfPLE id="139" n="02:45 PM" s=""/>
+        <sfPLE id="140" n="03:00 PM" s=""/>
+        <sfPLE id="141" n="03:15 PM" s=""/>
+        <sfPLE id="142" n="03:30 PM" s=""/>
+        <sfPLE id="143" n="03:45 PM" s=""/>
+        <sfPLE id="144" n="04:00 PM" s=""/>
+        <sfPLE id="145" n="04:15 PM" s=""/>
+        <sfPLE id="146" n="04:30 PM" s=""/>
+        <sfPLE id="147" n="04:45 PM" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Equipment_Needed__c" t="Equipment Needed" type="textarea"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Instructor_1__c" t="Instructor 1" type="textarea"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Instructor_2__c" t="Instructor 2" type="textarea"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Instructor_3__c" t="Instructor 3" type="textarea"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Instructor_4__c" t="Instructor 4" type="textarea"/>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="10000" n="Loss_Reason__c" t="Loss Reason" type="textarea"/>
+    <sfField length="140" n="Lunch__c" t="Lunch"/>
+    <sfField n="Number_in_Class__c" precision="4" t="Number in Class" type="_double"/>
+    <sfField length="255" n="Pricing_Approval_Level__c" t="Pricing Approval Level" type="picklist">
+      <picklistEntryIds>148,149,150,151,152</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="148" n="No Approval Needed" s=""/>
+        <sfPLE id="149" n="Manager" s=""/>
+        <sfPLE id="150" n="Sales Director" s=""/>
+        <sfPLE id="151" n="Executive Director" s=""/>
+        <sfPLE id="152" n="MOM" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(TEXT(Pricing_Approval_Level__c)=&quot;No Approval Needed&quot;,IMAGE(&quot;/img/samples/flag_green.gif&quot;, &quot;Green&quot;),( IF(TEXT(Approval_Status__c)=&quot;Approved&quot;,IMAGE(&quot;/img/samples/flag_green.gif&quot;, &quot;Green&quot;),IMAGE(&quot;/img/samples/flag_red.gif&quot;, &quot;Red&quot;))))" length="1300" n="Pricing_Approval_Status__c" t="Pricing Approval Status" updateable="false"/>
+    <sfField length="255" n="Primary_Product__c" t="Primary Product" type="picklist">
+      <picklistEntryIds>153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="153" n="AED" s=""/>
+        <sfPLE id="154" n="AES" s=""/>
+        <sfPLE id="155" n="Aquatics Learn to Swim" s=""/>
+        <sfPLE id="156" n="Aquatics Other" s=""/>
+        <sfPLE id="157" n="Babysitting" s=""/>
+        <sfPLE id="158" n="Basic Water Rescue" s=""/>
+        <sfPLE id="159" n="BLS" s=""/>
+        <sfPLE id="160" n="Continuing Education Units" s=""/>
+        <sfPLE id="161" n="Emergency Preparedness" s=""/>
+        <sfPLE id="162" n="EMR" s=""/>
+        <sfPLE id="163" n="First Aid" s=""/>
+        <sfPLE id="164" n="First Aid/CPR/AED Training" s=""/>
+        <sfPLE id="165" n="First Aid Emergency Drills" s=""/>
+        <sfPLE id="166" n="Lifeguarding" s=""/>
+        <sfPLE id="167" n="Lifeline" s=""/>
+        <sfPLE id="168" n="Nurse Assistant Training" s=""/>
+        <sfPLE id="169" n="OSHA" s=""/>
+        <sfPLE id="170" n="Ready Rating" s=""/>
+        <sfPLE id="171" n="Safety Training for Swim Coaches" s=""/>
+        <sfPLE id="172" n="Training Supplies" s=""/>
+        <sfPLE id="173" n="Water Safety Instructor" s=""/>
+        <sfPLE id="174" n="Water Safety Outreach" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="140" n="Saba_Order__c" t="Saba Order #"/>
+    <sfField length="150" n="Source_System__c" t="Source System"/>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="5000" n="Special_Instructions__c" t="Special Instructions" type="textarea"/>
+    <sfField length="255" n="Start_Time__c" t="Start Time" type="picklist">
+      <picklistEntryIds>175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="175" n="08:00 AM" s=""/>
+        <sfPLE id="176" n="08:15 AM" s=""/>
+        <sfPLE id="177" n="08:30 AM" s=""/>
+        <sfPLE id="178" n="08:45 AM" s=""/>
+        <sfPLE id="179" n="09:00 AM" s=""/>
+        <sfPLE id="180" n="09:15 AM" s=""/>
+        <sfPLE id="181" n="09:30 AM" s=""/>
+        <sfPLE id="182" n="09:45 AM" s=""/>
+        <sfPLE id="183" n="10:00 AM" s=""/>
+        <sfPLE id="184" n="10:15 AM" s=""/>
+        <sfPLE id="185" n="10:30 AM" s=""/>
+        <sfPLE id="186" n="10:45 AM" s=""/>
+        <sfPLE id="187" n="11:00 AM" s=""/>
+        <sfPLE id="188" n="11:15 AM" s=""/>
+        <sfPLE id="189" n="11:30 AM" s=""/>
+        <sfPLE id="190" n="11:45 AM" s=""/>
+        <sfPLE id="191" n="12:00 PM" s=""/>
+        <sfPLE id="192" n="12:15 PM" s=""/>
+        <sfPLE id="193" n="12:30 PM" s=""/>
+        <sfPLE id="194" n="12:45 PM" s=""/>
+        <sfPLE id="195" n="01:00 PM" s=""/>
+        <sfPLE id="196" n="01:15 PM" s=""/>
+        <sfPLE id="197" n="01:30 PM" s=""/>
+        <sfPLE id="198" n="01:45 PM" s=""/>
+        <sfPLE id="199" n="02:00 PM" s=""/>
+        <sfPLE id="200" n="02:15 PM" s=""/>
+        <sfPLE id="201" n="02:30 PM" s=""/>
+        <sfPLE id="202" n="02:45 PM" s=""/>
+        <sfPLE id="203" n="03:00 PM" s=""/>
+        <sfPLE id="204" n="03:15 PM" s=""/>
+        <sfPLE id="205" n="03:30 PM" s=""/>
+        <sfPLE id="206" n="03:45 PM" s=""/>
+        <sfPLE id="207" n="04:00 PM" s=""/>
+        <sfPLE id="208" n="04:15 PM" s=""/>
+        <sfPLE id="209" n="04:30 PM" s=""/>
+        <sfPLE id="210" n="04:45 PM" s=""/>
+        <sfPLE id="211" n="05:00 PM" s=""/>
+        <sfPLE id="212" n="05:15 PM" s=""/>
+        <sfPLE id="213" n="05:30 PM" s=""/>
+        <sfPLE id="214" n="05:45 PM" s=""/>
+        <sfPLE id="215" n="06:00 PM" s=""/>
+        <sfPLE id="216" n="06:15 PM" s=""/>
+        <sfPLE id="217" n="06:30 PM" s=""/>
+        <sfPLE id="218" n="06:45 PM" s=""/>
+        <sfPLE id="219" n="07:00 PM" s=""/>
+        <sfPLE id="220" n="07:15 PM" s=""/>
+        <sfPLE id="221" n="07:30 PM" s=""/>
+        <sfPLE id="222" n="07:45 PM" s=""/>
+        <sfPLE id="223" n="08:00 PM" s=""/>
+        <sfPLE id="224" n="08:15 PM" s=""/>
+        <sfPLE id="225" n="08:30 PM" s=""/>
+        <sfPLE id="226" n="08:45 PM" s=""/>
+        <sfPLE id="227" n="09:00 PM" s=""/>
+        <sfPLE id="228" n="09:15 PM" s=""/>
+        <sfPLE id="229" n="09:30 PM" s=""/>
+        <sfPLE id="230" n="09:45 PM" s=""/>
+        <sfPLE id="231" n="10:00 PM" s=""/>
+        <sfPLE id="232" n="10:15 PM" s=""/>
+        <sfPLE id="233" n="10:30 PM" s=""/>
+        <sfPLE id="234" n="10:45 PM" s=""/>
+        <sfPLE id="235" n="11:00 PM" s=""/>
+        <sfPLE id="236" n="11:15 PM" s=""/>
+        <sfPLE id="237" n="11:30 PM" s=""/>
+        <sfPLE id="238" n="11:45 PM" s=""/>
+        <sfPLE id="239" n="12:00 AM" s=""/>
+        <sfPLE id="240" n="12:15 AM" s=""/>
+        <sfPLE id="241" n="12:30 AM" s=""/>
+        <sfPLE id="242" n="12:45 AM" s=""/>
+        <sfPLE id="243" n="01:00 AM" s=""/>
+        <sfPLE id="244" n="01:15 AM" s=""/>
+        <sfPLE id="245" n="01:30 AM" s=""/>
+        <sfPLE id="246" n="01:45 AM" s=""/>
+        <sfPLE id="247" n="02:00 AM" s=""/>
+        <sfPLE id="248" n="02:15 AM" s=""/>
+        <sfPLE id="249" n="02:30 AM" s=""/>
+        <sfPLE id="250" n="02:45 AM" s=""/>
+        <sfPLE id="251" n="03:00 AM" s=""/>
+        <sfPLE id="252" n="03:15 AM" s=""/>
+        <sfPLE id="253" n="03:30 AM" s=""/>
+        <sfPLE id="254" n="03:45 AM" s=""/>
+        <sfPLE id="255" n="04:00 AM" s=""/>
+        <sfPLE id="256" n="04:15 AM" s=""/>
+        <sfPLE id="257" n="04:30 AM" s=""/>
+        <sfPLE id="258" n="04:45 AM" s=""/>
+        <sfPLE id="259" n="05:00 AM" s=""/>
+        <sfPLE id="260" n="05:15 AM" s=""/>
+        <sfPLE id="261" n="05:30 AM" s=""/>
+        <sfPLE id="262" n="05:45 AM" s=""/>
+        <sfPLE id="263" n="06:00 AM" s=""/>
+        <sfPLE id="264" n="06:15 AM" s=""/>
+        <sfPLE id="265" n="06:30 AM" s=""/>
+        <sfPLE id="266" n="06:45 AM" s=""/>
+        <sfPLE id="267" n="07:00 AM" s=""/>
+        <sfPLE id="268" n="07:15 AM" s=""/>
+        <sfPLE id="269" n="07:30 AM" s=""/>
+        <sfPLE id="270" n="07:45 AM" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Training_Contact__r.MobilePhone" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Training_Contact_Cell_Phone__c" t="Training Contact Cell Phone" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Training_Contact__r.Phone" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Training_Contact_Office_Phone__c" t="Training Contact Office Phone" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Training_Contact__r.Title &amp; &quot; &quot; &amp;Training_Contact__r.FirstName &amp; &quot; &quot; &amp;  Training_Contact__r.LastName" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Training_Contact_Office_Title__c" t="Training Contact Office Title" updateable="false"/>
+    <sfField length="18" n="Training_Contact__c" relationshipLabel="Opportunities" relationshipName="Training_Contact__r" t="Training Contact" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Training_Location__c" t="Training Location" type="textarea"/>
+    <sfField length="255" n="Written_test__c" t="Written Test?" type="picklist">
+      <picklistEntryIds>271,272</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="271" n="Yes" s=""/>
+        <sfPLE id="272" n="No" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="End_Date__c" t="End Date" type="date"/>
+    <sfField n="Delta_Data_Migration__c" t="Delta Data Migration" type="_boolean"/>
+    <sfField length="40" n="Actual_Attendance__c" t="Actual Attendance"/>
+    <sfField length="250" n="Client_PO__c" t="Client PO#"/>
+    <sfField length="250" n="Final_Billing_Amount__c" t="Final Billing Amount"/>
+    <sfField length="255" n="Minimum_of_Students__c" t="Minimum # of Students"/>
+    <sfField length="18" n="Approver_4__c" relationshipName="Approver_4__r" t="Approver 4" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Training_Contact__r.Email" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Training_Contact_email__c" t="Training Contact email" updateable="false"/>
+    <sfField length="255" n="Break_Times__c" t="Break Times" type="picklist">
+      <picklistEntryIds>273,274,275,276,277,278,279,280,281,282,283,284</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="273" n="10m" s=""/>
+        <sfPLE id="274" n="20m" s=""/>
+        <sfPLE id="275" n="30m" s=""/>
+        <sfPLE id="276" n="40m" s=""/>
+        <sfPLE id="277" n="50m" s=""/>
+        <sfPLE id="278" n="60m" s=""/>
+        <sfPLE id="279" n="70m" s=""/>
+        <sfPLE id="280" n="80m" s=""/>
+        <sfPLE id="281" n="90m" s=""/>
+        <sfPLE id="282" n="100m" s=""/>
+        <sfPLE id="283" n="110m" s=""/>
+        <sfPLE id="284" n="120m" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="4099" n="Equipment__c" precision="5" t="Equipment" type="multipicklist">
+      <picklistEntryIds>285,286,287</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="285" n="DVD and TV on site" s=""/>
+        <sfPLE id="286" n="LCD Projector on site" s=""/>
+        <sfPLE id="287" n="Instructor to provide AV equipment" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account.SABA_LMS_Code__c" length="1300" n="LMS_Org_ID__c" t="LMS Org ID" updateable="false"/>
+    <sfField length="255" n="Materials__c" t="Materials" type="picklist">
+      <picklistEntryIds>288,289,290,291,292</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="288" n="Purchase Materials - (see special Instructions below)" s=""/>
+        <sfPLE id="289" n="Customer Downloads Materials" s=""/>
+        <sfPLE id="290" n="Red Cross Provides Materials for In Class Use Only" s=""/>
+        <sfPLE id="291" n="Course Includes Materials" s=""/>
+        <sfPLE id="292" n="Customer Provides Materials" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField controllerName="Opportunity.StageName" dependentPicklist="true" length="4099" n="Closed_Lost_Reason__c" precision="4" t="Closed Lost Reason (old)" type="multipicklist">
+      <picklistEntryIds>293,294,295,296,297,298,299,300,301</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="293" n="Client Ceased to Communicate" s=""/>
+        <sfPLE id="294" n="Insufficient Staff Size" s=""/>
+        <sfPLE id="295" n="Lack of Internal Approval" s=""/>
+        <sfPLE id="296" n="Loss to Competitor - AHA" s=""/>
+        <sfPLE id="297" n="Loss to Competitor - Other" s=""/>
+        <sfPLE id="298" n="Price" s=""/>
+        <sfPLE id="299" n="Service Delivery Issue" s=""/>
+        <sfPLE id="300" n="Time Commitment" s=""/>
+        <sfPLE id="301" n="Expired Opportunity" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="BGST_Industry__c" readPermission="false" t="BGST Industry" type="picklist">
+      <picklistEntryIds>302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="302" n="Forestry, Fishing and Hunting" s=""/>
+        <sfPLE id="303" n="Mining, Quarrying, and Oil and Gas Extraction" s=""/>
+        <sfPLE id="304" n="Utilities" s=""/>
+        <sfPLE id="305" n="Construction" s=""/>
+        <sfPLE id="306" n="Manufacturing" s=""/>
+        <sfPLE id="307" n="Wholesale Trade" s=""/>
+        <sfPLE id="308" n="Retail Trade" s=""/>
+        <sfPLE id="309" n="Transportation and Warehousing" s=""/>
+        <sfPLE id="310" n="Information" s=""/>
+        <sfPLE id="311" n="Finance and Insurance" s=""/>
+        <sfPLE id="312" n="Real Estate and Rental and Leasing" s=""/>
+        <sfPLE id="313" n="Professional, Scientific and Technical Services" s=""/>
+        <sfPLE id="314" n="Management of Companies and Enterprises" s=""/>
+        <sfPLE id="315" n="Administrative and Support and Waste Management and Remediation Services" s=""/>
+        <sfPLE id="316" n="Educational Services" s=""/>
+        <sfPLE id="317" n="Health Care and Social Assistance" s=""/>
+        <sfPLE id="318" n="Arts, Entertainment, and Recreation" s=""/>
+        <sfPLE id="319" n="Accommodation and Food Services" s=""/>
+        <sfPLE id="320" n="Other Services, except Public Administration" s=""/>
+        <sfPLE id="321" n="ublic Administration" s=""/>
+        <sfPLE id="322" n="Unclassified" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="BGST_Lead_Source__c" readPermission="false" t="BGST Lead Source" type="picklist">
+      <picklistEntryIds>323,324,325,326,327,328</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="323" n="IVR" s=""/>
+        <sfPLE id="324" n="TSC Transfer" s=""/>
+        <sfPLE id="325" n="Voice Mail" s=""/>
+        <sfPLE id="326" n="After-Hours Transfer Lead Form" s=""/>
+        <sfPLE id="327" n="Referral/Repeat Business" s=""/>
+        <sfPLE id="328" n="Marketing" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="BGST_Rating__c" readPermission="false" t="BGST Rating" type="picklist">
+      <picklistEntryIds>329,330,331</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="329" n="Hot" s=""/>
+        <sfPLE id="330" n="Warm" s=""/>
+        <sfPLE id="331" n="Cold" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="Coupon_Code__c" t="Coupon Code"/>
+    <sfField n="Created_From_Lead__c" t="Created From Lead" type="_boolean"/>
+    <sfField controllerName="Opportunity.00Nd0000007wvaY" dependentPicklist="true" length="255" n="Opportunity_Result_Detail_1__c" t="Opportunity Result Detail 1" type="picklist">
+      <picklistEntryIds>332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="332" n="Being Worked" s=""/>
+        <sfPLE id="333" n="Sent Proposal" s=""/>
+        <sfPLE id="334" n="Contract" s=""/>
+        <sfPLE id="335" n="Closed Failed to Connect" s=""/>
+        <sfPLE id="336" n="ARC Community" s=""/>
+        <sfPLE id="337" n="ARC AP" s=""/>
+        <sfPLE id="338" n="Competitor" s=""/>
+        <sfPLE id="339" n="Price" s=""/>
+        <sfPLE id="340" n="Date Availability" s=""/>
+        <sfPLE id="341" n="Local Rep" s=""/>
+        <sfPLE id="342" n="Not Interested - No Reason Given" s=""/>
+        <sfPLE id="343" n="Escalated" s=""/>
+        <sfPLE id="344" n="Buyer's Remorse" s=""/>
+        <sfPLE id="345" n="Instructor No Show" s=""/>
+        <sfPLE id="346" n="No Contact - Follow Up" s=""/>
+        <sfPLE id="347" n="Price - Bugdet" s=""/>
+        <sfPLE id="348" n="NAN" s=""/>
+        <sfPLE id="349" n="SD Issue" s=""/>
+        <sfPLE id="350" n="Other" s=""/>
+        <sfPLE id="351" n="Pricing Agreement" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField controllerName="Opportunity.00Nd0000007wvaW" dependentPicklist="true" length="255" n="Opportunity_Result_Detail_2__c" t="Opportunity Result Detail 2" type="picklist">
+      <picklistEntryIds>352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="352" n="Called No Answer" s=""/>
+        <sfPLE id="353" n="Connect POC" s=""/>
+        <sfPLE id="354" n="Connect POC VM" s=""/>
+        <sfPLE id="355" n="Agreement Pending" s=""/>
+        <sfPLE id="356" n="Agreement to Sales Admin" s=""/>
+        <sfPLE id="357" n="AP" s=""/>
+        <sfPLE id="358" n="Date" s=""/>
+        <sfPLE id="359" n="Group Size" s=""/>
+        <sfPLE id="360" n="Price" s=""/>
+        <sfPLE id="361" n="Full Service" s=""/>
+        <sfPLE id="362" n="Budget" s=""/>
+        <sfPLE id="363" n="Shopping" s=""/>
+        <sfPLE id="364" n="Too High" s=""/>
+        <sfPLE id="365" n="Date Availability" s=""/>
+        <sfPLE id="366" n="Training Loaction" s=""/>
+        <sfPLE id="367" n="SD unable to reach customer" s=""/>
+        <sfPLE id="368" n="Other" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="Opportunity_Result__c" t="Opportunity Result" type="picklist">
+      <picklistEntryIds>369,370,371,372,373,374,375</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="369" n="Open" s=""/>
+        <sfPLE id="370" n="Sale" s=""/>
+        <sfPLE id="371" n="No Sale" s=""/>
+        <sfPLE id="372" n="Cancellation" s=""/>
+        <sfPLE id="373" n="Duplicate Opportunity" s=""/>
+        <sfPLE id="374" n="Agent Pipeline Lead" s=""/>
+        <sfPLE id="375" n="Other" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Owner.Profile.Name" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Owner_Profile__c" t="Owner Profile" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(BGST_Rep__c, Owner.Email,&quot;&quot;)" length="1300" n="BGST_Rep_Email__c" readPermission="false" t="BGST Rep Email" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(OR(Owner.Profile.Name = &quot;ARC BGST Sales Admin&quot;, Owner.Profile.Name = &quot;ARC BGST Sales User&quot;), true, false)" n="BGST_Rep__c" readPermission="false" t="BGST Rep" type="_boolean" updateable="false"/>
+    <sfField n="Highest_Product_Discount__c" precision="18" scale="2" t="Highest Product Discount" type="percent"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Text(Account.Estimated_Annual_Enrollees__c)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Estimated_Annual_Enrollees__c" t="Estimated Annual Enrollees" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(Owner.Profile.Id = &quot;00ed0000000IiEd&quot;, true, false)" formulaTreatBlanksAs="BlankAsZero" n="SCC_User__c" t="SCC User" type="_boolean" updateable="false"/>
+    <sfField editPermission="false" length="255" n="BGST_Activity_Type__c" readPermission="false" t="BGST Activity Type" type="picklist">
+      <picklistEntryIds>376,377,378,379</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="376" n="FS" s=""/>
+        <sfPLE id="377" n="AP" s=""/>
+        <sfPLE id="378" n="AED" s=""/>
+        <sfPLE id="379" n="LTP" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="AED_Device_Type__c" t="AED Device Type" type="picklist">
+      <picklistEntryIds>380,381,382,383</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="380" n="Philips" s=""/>
+        <sfPLE id="381" n="Zoll Medical" s=""/>
+        <sfPLE id="382" n="EnPro" s=""/>
+        <sfPLE id="383" n="Physio-Control" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="Approved_for_Commision_Payment__c" t="Approved for Commission Payment" type="_boolean"/>
+    <sfField length="18" n="Customer_Contact__c" relationshipLabel="Opportunities (Customer Contact)" relationshipName="Customer_Contact__r" t="Customer Contact" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Customer_Contact__r.Email" length="1300" n="Customer_Contact_email__c" readPermission="false" t="Customer Contact email" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Customer_Contact__r.Phone" length="1300" n="Customer_Contact_phone__c" readPermission="false" t="Customer Contact phone" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Customer_Contact__r.Extension__c" length="1300" n="Customer_Contact_phone_ext__c" readPermission="false" t="Customer Contact phone ext" updateable="false"/>
+    <sfField n="Date_of_Sale__c" t="Date of Sale" type="date"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Owner.Extension" length="1300" n="Opportunity_Owner_PhExt__c" readPermission="false" t="Opportunity Owner PhExt" updateable="false"/>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32768" n="Scheduling_Notes__c" t="Scheduling Notes" type="textarea"/>
+    <sfField length="255" n="Assigned_SD_Territory__c" t="Assigned SD Territory" type="picklist">
+      <picklistEntryIds>384,385,386,387,388,389,390,391,392,393,394,395,396,397,398</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="384" n="Multi" s=""/>
+        <sfPLE id="385" n="AES" s="" t="AES/AQU/Academy"/>
+        <sfPLE id="386" n="SCC" s=""/>
+        <sfPLE id="387" n="Central Mid West" s=""/>
+        <sfPLE id="388" n="Great Lakes" s=""/>
+        <sfPLE id="389" n="Keystone" s=""/>
+        <sfPLE id="390" n="Lone Star" s=""/>
+        <sfPLE id="391" n="Mid Atlantic" s=""/>
+        <sfPLE id="392" n="Mid South" s=""/>
+        <sfPLE id="393" n="New England" s=""/>
+        <sfPLE id="394" n="NY Metro" s=""/>
+        <sfPLE id="395" n="Pacific Northwest" s=""/>
+        <sfPLE id="396" n="Pacific South" s=""/>
+        <sfPLE id="397" n="South" s=""/>
+        <sfPLE id="398" n="Upper Mid West" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="Assigned_Scheduler__c" relationshipName="Assigned_Scheduler__r" t="Assigned Scheduler" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" n="Est_Delivery_Fee__c" precision="18" scale="2" summarizedField="OpportunityLineItem.UnitPrice" summaryForeignKey="OpportunityLineItem.OpportunityId" summaryOperation="sum" t="Est. Delivery Fee" type="currency" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="Est_Num_of_Attendees__c" precision="12" scale="2" summarizedField="OpportunityLineItem.Quantity" summaryForeignKey="OpportunityLineItem.OpportunityId" summaryOperation="sum" t="Est. Num of Attendees" type="_double" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="(Amount- Est_Delivery_Fee__c )/ Est_Num_of_Attendees__c" formulaTreatBlanksAs="BlankAsZero" n="Est_Price_per_Attendee__c" precision="18" t="Est. Price per Attendee" type="currency" updateable="false"/>
+    <sfField n="Closed_Won_Date__c" t="Closed Won Date" type="datetime"/>
+    <sfField length="255" n="Closed_Lost_Reason_New__c" restrictedPicklist="true" t="Closed Lost Reason" type="picklist">
+      <picklistEntryIds>399,400,401,402,403,404,405,406,407,408,409,410,411,412,413</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="399" n="Budget Cycle" s=""/>
+        <sfPLE id="400" n="Client Ceased to Communicate" s=""/>
+        <sfPLE id="401" n="Contract Requirements" s=""/>
+        <sfPLE id="402" n="Created in Error" s=""/>
+        <sfPLE id="403" n="Delivery Timeline unavailable" s=""/>
+        <sfPLE id="404" n="Expired Opportunity" s=""/>
+        <sfPLE id="405" n="Insufficient number of Participants" s=""/>
+        <sfPLE id="406" n="Non standard course not available" s=""/>
+        <sfPLE id="407" n="Previous Service Issues" s=""/>
+        <sfPLE id="408" n="Price" s=""/>
+        <sfPLE id="409" n="Pricing Agreement" s=""/>
+        <sfPLE id="410" n="Product Features" s=""/>
+        <sfPLE id="411" n="Recently trained with competitor" s=""/>
+        <sfPLE id="412" n="Recently trained with Red Cross" s=""/>
+        <sfPLE id="413" n="Referred to Counsilman-Hunsacker" s="" t="Referred to Counsilman-Hunsaker"/>
+      </picklistEntries>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32768" n="Closed_Lost_Details__c" t="Closed Lost Details" type="textarea"/>
+    <sfField controllerName="Opportunity.Type" dependentPicklist="true" length="255" n="Multi_Jurisdictional__c" restrictedPicklist="true" t="Multi-Location" type="picklist">
+      <picklistEntryIds>414,415</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="414" n="No" s=""/>
+        <sfPLE id="415" n="Yes" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField controllerName="Opportunity.00N0V000009W2cI" dependentPicklist="true" length="255" n="Multi_Jurisdictional_Type__c" restrictedPicklist="true" t="Multi-Location Type" type="picklist">
+      <picklistEntryIds>416,417,418,419</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="416" n="Single POC, Central Billing" s=""/>
+        <sfPLE id="417" n="Single POC, Local Billing" s=""/>
+        <sfPLE id="418" n="Local POC, Central Billing" s=""/>
+        <sfPLE id="419" n="Local POC, Local Billing" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="Approved_Process_Deviations__c" t="Approved Process Deviations" type="picklist">
+      <picklistEntryIds>420,421</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="420" n="Yes, select Contract Number above" s=""/>
+        <sfPLE id="421" n="No" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" n="Highest_Product_Discount_Value__c" precision="18" scale="2" summarizedField="OpportunityLineItem.Discount_Value__c" summaryForeignKey="OpportunityLineItem.OpportunityId" summaryOperation="max" t="Highest BGST Product Discount" type="percent" updateable="false"/>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32768" n="Processing_Notes__c" t="Processing Notes" type="textarea"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account.Owner.FirstName+' '+Account.Owner.LastName" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Account_Owner__c" t="Account Owner" updateable="false"/>
+    <sfField length="255" n="Pricing_Agreement__c" restrictedPicklist="true" t="Pricing Agreement" type="picklist">
+      <picklistEntryIds>422,423</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="422" n="Yes" s=""/>
+        <sfPLE defaultValue="true" id="423" n="No" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="32768" n="Features_Attractions_Description__c" t="Features/Attractions Description" type="textarea"/>
+    <sfField length="255" n="Invoice_Timing__c" restrictedPicklist="true" t="Invoice Timing" type="picklist">
+      <picklistEntryIds>424,425,426</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="424" n="Per Service" s=""/>
+        <sfPLE id="425" n="Per Agreement" s=""/>
+        <sfPLE id="426" n="Prepaid PO" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="Multi_year_Agreement__c" readPermission="false" t="Multi-year Agreement?" type="_boolean"/>
+    <sfField n="Number_of_Sites__c" precision="18" t="Number of Sites" type="_double"/>
+    <sfField editPermission="false" length="18" n="IBP__IfbyphoneCallId__c" readPermission="false" relationshipLabel="Opportunities" relationshipName="IBP__IfbyphoneCallId__r" t="DialogTech Call" type="reference">
+      <referenceTos>
+        <string>IBP__Ifbyphone_Call__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="255" n="GACLIENTID__c" t="GACLIENTID"/>
+    <sfField length="255" n="GACampaign__c" t="GACampaign"/>
+    <sfField length="255" n="GAMedium__c" t="GAMedium"/>
+    <sfField length="255" n="GASource__c" t="GASource"/>
+    <sfField length="255" n="GATRACKID__c" t="GATRACKID"/>
+    <sfField length="255" n="GAUSERID__c" t="GAUSERID"/>
+    <sfField length="255" n="GCLID__c" t="GCLID"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account.ccrz__E_AccountGroup__r.Name" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Account_Group__c" readPermission="false" t="Account Group" updateable="false"/>
+    <sfField length="18" n="CC_Account_Group__c" relationshipLabel="Opportunities" relationshipName="CC_Account_Group__r" t="CC Account Group" type="reference">
+      <referenceTos>
+        <string>ccrz__E_AccountGroup__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="255" n="Cart_Id__c" t="Cart Id"/>
+    <sfField length="18" n="Case__c" relationshipLabel="Opportunities" relationshipName="Case__r" t="Case" type="reference">
+      <referenceTos>
+        <string>Case</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Contract_Exception__c" t="Contract Exception" type="_boolean"/>
+    <sfField length="18" n="Contract_Opportunity__c" relationshipLabel="Sales Opportunities" relationshipName="Contract_Opportunity__r" t="Contract Opportunity" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="FS_Transaction_Sale__c" t="FS Transaction Sale" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(Highest_Product_Discount_Value__c&gt;=Highest_Product_Discount__c,Highest_Product_Discount_Value__c,Highest_Product_Discount__c)" formulaTreatBlanksAs="BlankAsZero" n="Highest_Discount__c" precision="18" scale="2" t="Highest Discount" type="percent" updateable="false"/>
+    <sfField n="Order_Generated__c" t="Order Generated" type="_boolean"/>
+    <sfField n="Training_Events_Created__c" t="Training Events Created" type="_boolean"/>
+    <sfField n="Number_of_Additional_Videos__c" precision="4" t="Number of Additional Videos" type="_double"/>
+    <sfField n="Number_of_Additional_Visits__c" precision="4" t="Number of Additional Visits" type="_double"/>
+    <sfField n="Estimated_Annual_Participants__c" precision="18" t="Estimated Annual Participants" type="_double"/>
+    <sfField n="Estimated_annual_revenue__c" precision="18" scale="2" t="Estimated Annual Revenue" type="currency"/>
+    <sfField editPermission="false" n="Override_Channel__c" readPermission="false" t="Override Channel" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Contract.ContractTerm" formulaTreatBlanksAs="BlankAsZero" n="Contract_Term__c" precision="18" readPermission="false" t="Contract Term" type="_double" updateable="false"/>
+    <sfField length="18" n="Account_Plan__c" relationshipLabel="Opportunities" relationshipName="Account_Plan__r" t="Account Plan" type="reference">
+      <referenceTos>
+        <string>Account_Plan__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="255" n="NAT_State_Approval_status__c" t="14. State Approval status" type="picklist">
+      <picklistEntryIds>427,428,429,430,431</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="427" n="Not submitted" s=""/>
+        <sfPLE id="428" n="Approval Pending" s=""/>
+        <sfPLE id="429" n="Approved" s=""/>
+        <sfPLE id="430" n="Rejected" s=""/>
+        <sfPLE id="431" n="Stalled" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="4099" n="Field_Sales_Programs__c" precision="4" t="Field Sales Programs" type="multipicklist">
+      <picklistEntryIds>432,433</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="432" n="FY21 LTP/AP Enrollee Incentive" s=""/>
+        <sfPLE id="433" n="FY21 FS Enrollee Incentive" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="32768" n="AST_Notes_for_SD__c" t="AST Notes for SD" type="textarea"/>
+    <sfField length="255" n="Address__c" t="Address" type="picklist">
+      <picklistEntryIds>434,435,436</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="434" n="Billing" s=""/>
+        <sfPLE id="435" n="Shipping" s=""/>
+        <sfPLE id="436" n="In Special Instructions" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="Day_of_Class_On_Site_Contact__c" relationshipLabel="Opportunities (Day of Class/On-Site Contact)" relationshipName="Day_of_Class_On_Site_Contact__r" t="Day of Class/On-Site Contact" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Preferred_Class_Date__c" t="Preferred Class Date" type="date"/>
+    <sfField editPermission="false" n="All_Completed__c" t="15. All Completed" type="_boolean"/>
+    <sfField editPermission="false" length="255" n="Completed_Instructor_training__c" t="11. Completed Instructor training" type="picklist">
+      <picklistEntryIds>437,438,439</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="437" n="Yes" s=""/>
+        <sfPLE id="438" n="No" s=""/>
+        <sfPLE id="439" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="Completion_Date10__c" t="10. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date11__c" t="11. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date12__c" t="12. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date13__c" t="13. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date14__c" t="14. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date15__c" t="15. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date1__c" t="1. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date2__c" t="2. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date3__c" t="3. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date4__c" t="4. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date5__c" t="5. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date6__c" t="6. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date7__c" t="7. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date8__c" t="8. Completion Date" type="date"/>
+    <sfField editPermission="false" n="Completion_Date9__c" t="9. Completion Date" type="date"/>
+    <sfField editPermission="false" length="255" n="Course_Type__c" t="Course Type" type="picklist">
+      <picklistEntryIds>440,441,442</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="440" n="BL" s=""/>
+        <sfPLE id="441" n="ILT" s=""/>
+        <sfPLE id="442" n="BL &amp; ILT" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Currently_a_CNA_provider__c" t="5. Currently a CNA provider" type="picklist">
+      <picklistEntryIds>443,444,445</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="443" n="Yes" s=""/>
+        <sfPLE id="444" n="No" s=""/>
+        <sfPLE id="445" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Has_clinical_partners__c" t="9. Has clinical partners" type="picklist">
+      <picklistEntryIds>446,447,448</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="446" n="Yes" s=""/>
+        <sfPLE id="447" n="No" s=""/>
+        <sfPLE id="448" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Has_equipment__c" t="8. Has equipment" type="picklist">
+      <picklistEntryIds>449,450,451</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="449" n="Yes" s=""/>
+        <sfPLE id="450" n="No" s=""/>
+        <sfPLE id="451" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Has_instructors__c" t="10. Has instructors" type="picklist">
+      <picklistEntryIds>452,453,454</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="452" n="Yes" s=""/>
+        <sfPLE id="453" n="No" s=""/>
+        <sfPLE id="454" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Has_training_space__c" t="6. Has training space" type="picklist">
+      <picklistEntryIds>455,456,457</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="455" n="Yes" s=""/>
+        <sfPLE id="456" n="No" s=""/>
+        <sfPLE id="457" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="If_BL_curriculum_documents_sent__c" t="4. If BL, curriculum documents sent" type="picklist">
+      <picklistEntryIds>458,459,460</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="458" n="Yes" s=""/>
+        <sfPLE id="459" n="No" s=""/>
+        <sfPLE id="460" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="If_BL_info_sent_to_CHE__c" t="1. If BL, info sent to CHE" type="picklist">
+      <picklistEntryIds>461,462,463</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="461" n="Yes" s=""/>
+        <sfPLE id="462" n="No" s=""/>
+        <sfPLE id="463" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="If_BL_orientation_complete__c" t="12. If BL, orientation complete" type="picklist">
+      <picklistEntryIds>464,465,466</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="464" n="Yes" s=""/>
+        <sfPLE id="465" n="No" s=""/>
+        <sfPLE id="466" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Kickoff_meeting_held__c" t="2. Kickoff meeting held" type="picklist">
+      <picklistEntryIds>467,468,469</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="467" n="Yes" s=""/>
+        <sfPLE id="468" n="No" s=""/>
+        <sfPLE id="469" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="32768" n="Onboarding_Notes__c" t="Onboarding Notes" type="textarea"/>
+    <sfField editPermission="false" length="255" n="Signed_ARC_rental_agreement__c" t="7. Signed ARC rental agreement" type="picklist">
+      <picklistEntryIds>470,471,472</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="470" n="Yes" s=""/>
+        <sfPLE id="471" n="No" s=""/>
+        <sfPLE id="472" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="State_Approval_Assistance__c" t="13. State Approval Assistance" type="picklist">
+      <picklistEntryIds>473,474,475,476</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="473" n="Requested" s=""/>
+        <sfPLE id="474" n="In Process" s=""/>
+        <sfPLE id="475" n="Completed" s=""/>
+        <sfPLE id="476" n="Not Qualified" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Welcome_packet_sent__c" t="3. Welcome packet sent" type="picklist">
+      <picklistEntryIds>477,478,479</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="477" n="Yes" s=""/>
+        <sfPLE id="478" n="No" s=""/>
+        <sfPLE id="479" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="NC_U_Reason__c" t="NC/U Reason" type="picklist">
+      <picklistEntryIds>480,481,482,483,484,485,486,487,488</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="480" n="Add Products to Contract Opportunity" s=""/>
+        <sfPLE id="481" n="Change Products/Delivery Method on Sales Opportunity" s=""/>
+        <sfPLE id="482" n="SD-requested change to Products/Delivery Method" s=""/>
+        <sfPLE id="483" n="Add CPS" s=""/>
+        <sfPLE id="484" n="Change Pricing" s=""/>
+        <sfPLE id="485" n="Fix Mistake" s=""/>
+        <sfPLE id="486" n="Addendum - Licensing" s=""/>
+        <sfPLE id="487" n="Addendum - Centennial" s=""/>
+        <sfPLE id="488" n="Addendum - Other" s=""/>
+      </picklistEntries>
+    </sfField>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedOrderList" childName="Order" field="OpportunityId" n="Orders" relationshipName="Orders" s="2-" t="Order"/>
+    <sfObjectRelationship alias="RelatedContactRoleList" childName="OpportunityContactRole" field="OpportunityId" n="OpportunityContactRoles" relationshipName="OpportunityContactRoles" s="2-" t="OpportunityContactRole"/>
+    <sfObjectRelationship alias="RelatedOpportunityHistoryList" childName="OpportunityHistory" field="OpportunityId" n="OpportunityHistories" relationshipName="OpportunityHistories" s="2-" t="OpportunityHistory"/>
+    <sfObjectRelationship alias="RelatedLineItemList" childName="OpportunityLineItem" field="OpportunityId" n="OpportunityLineItems" relationshipName="OpportunityLineItems" s="2-" t="OpportunityLineItem"/>
+    <sfObjectRelationship alias="RelatedCompetitorList" childName="OpportunityCompetitor" field="OpportunityId" n="OpportunityCompetitors" relationshipName="OpportunityCompetitors" s="2-" t="OpportunityCompetitor"/>
+    <sfObjectRelationship childName="Partner" field="OpportunityId" n="Partners" relationshipName="Partners" s="2-" t="Partner"/>
+    <sfObjectRelationship childName="AccountPartner" field="OpportunityId" n="AccountPartners" relationshipName="AccountPartners" s="2-" t="AccountPartner"/>
+    <sfObjectRelationship alias="RelatedPartnerList" childName="OpportunityPartner" field="OpportunityId" n="OpportunityPartnersFrom" relationshipName="OpportunityPartnersFrom" s="2-" t="OpportunityPartner"/>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedQuoteList" childName="Quote" field="OpportunityId" n="Quotes" relationshipName="Quotes" s="2-" t="Quote"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="VideoCall" field="RelatedRecordId" n="VideoRelatedRecords" relationshipName="VideoRelatedRecords" s="2-" t="VideoCall"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="OpportunityFieldHistory" field="OpportunityId" n="Histories" relationshipName="Histories" s="2-" t="OpportunityFieldHistory"/>
+    <sfObjectRelationship childName="OpportunityFeed" field="ParentId" n="Feeds" relationshipName="Feeds" s="2-" t="OpportunityFeed"/>
+    <sfObjectRelationship childName="OpportunityShare" field="OpportunityId" n="Shares" relationshipName="Shares" s="2-" t="OpportunityShare"/>
+    <sfObjectRelationship childName="Voucher__c" field="Opportunity__c" n="Voucher__r" relationshipName="Voucher__r" s="2-" t="01I0V000002Ef5r"/>
+    <sfObjectRelationship childName="GetFeedback_Aut__Response__c" field="GetFeedback_Aut__Opportunity__c" n="GetFeedback_Aut__Responses__r" relationshipName="GetFeedback_Aut__Responses__r" s="2-" t="01I0V000002EgpQ"/>
+    <sfObjectRelationship childName="SSign__SSEnvelope__c" field="SSign__Opportunity__c" n="SSign__S_Sign_Envelopes__r" relationshipName="SSign__S_Sign_Envelopes__r" s="2-" t="01I0V000002Eh3w"/>
+    <sfObjectRelationship childName="IBP__Ifbyphone_Call__c" field="IBP__OpportunityId__c" n="IBP__Ifbyphone_Calls__r" relationshipName="IBP__Ifbyphone_Calls__r" s="2-" t="01I0V000002N51G"/>
+    <sfObjectRelationship childName="SDOC__SDRelationship__c" field="SDOC__Opportunity__c" n="SDOC__SDoc_Relationships__r" relationshipName="SDOC__SDoc_Relationships__r" s="2-" t="01I0V000002N5Mh"/>
+    <sfObjectRelationship childName="ccrz__E_Cart__c" field="Opportunity__c" n="CC_Carts__r" relationshipName="CC_Carts__r" s="2-" t="01I0V000002N5N5"/>
+    <sfObjectRelationship childName="ccrz__E_Order__c" field="Opportunity_Order__c" n="CC_Orders__r" relationshipName="CC_Orders__r" s="2-" t="01I0V000002N5Nc"/>
+    <sfObjectRelationship childName="ccrz__E_PriceGroupAccount__c" field="Opportunity__c" n="CC_Price_Group_Accounts__r" relationshipName="CC_Price_Group_Accounts__r" s="2-" t="01I0V000002N5Nl"/>
+    <sfObjectRelationship childName="ccrz__E_PriceGroup__c" field="Opportunity__c" n="CC_Price_Groups__r" relationshipName="CC_Price_Groups__r" s="2-" t="01I0V000002N5No"/>
+    <sfObjectRelationship childName="redwing__ILT_Class__c" field="Opportunity__c" n="ILT_Classes__r" relationshipName="ILT_Classes__r" s="2-" t="01I0V000002N5PQ"/>
+    <sfObjectRelationship childName="zkmulti__MCShipment__c" field="zkmulti__Recipient_Opportunity__c" n="zkmulti__Shipments__r" relationshipName="zkmulti__Shipments__r" s="2-" t="01I3o000002AZZA"/>
+    <sfObjectRelationship childName="zkmulti__MultiPackageShipment__c" field="zkmulti__Recipient_Opportunity__c" n="zkmulti__Consolidations__r" relationshipName="zkmulti__Consolidations__r" s="2-" t="01I3o000002AZZC"/>
+    <sfObjectRelationship childName="ReportCard__c" field="Opportunity__c" n="ReportCards__r" relationshipName="ReportCards__r" s="2-" t="01Id00000005i7P"/>
+    <sfObjectRelationship childName="BLND_DFDT_Project__c" field="BLND_Opportunity_Link__c" n="R00N30000002PYjyEAG__r" relationshipName="R00N30000002PYjyEAG__r" s="2-" t="01Id00000005k3Z"/>
+    <sfObjectRelationship childName="BLND_DFTE_Expense__c" field="BLND_Opportunity_Link__c" n="R00N30000002PYgNEAW__r" relationshipName="R00N30000002PYgNEAW__r" s="2-" t="01Id00000005k3e"/>
+    <sfObjectRelationship childName="BLND_DFTE_Time__c" field="BLND_Opportunity_Link__c" n="R00N30000002PYgOEAW__r" relationshipName="R00N30000002PYgOEAW__r" s="2-" t="01Id00000005k3f"/>
+    <sfObjectRelationship childName="dsfs__DocuSign_Status__c" field="dsfs__Opportunity__c" n="dsfs__R00N80000002fD9vEAE__r" relationshipName="dsfs__R00N80000002fD9vEAE__r" s="2-" t="01Id00000005kAy"/>
+    <sfObjectRelationship childName="Training_Events__c" field="Opportunity__c" n="Training_Event__r" relationshipName="Training_Event__r" s="2-" t="01Id00000005m3o"/>
+    <sfObjectRelationship childName="SFGA__Ad_Group__c" field="SFGA__Opportunity__c" n="SFGA__R00N40000001HggwEAC__r" relationshipName="SFGA__R00N40000001HggwEAC__r" s="2-" t="01Id0000000axYt"/>
+    <sfObjectRelationship childName="SFGA__Google_Campaign__c" field="SFGA__Opportunity__c" n="SFGA__R00N40000001HggrEAC__r" relationshipName="SFGA__R00N40000001HggrEAC__r" s="2-" t="01Id0000000axYu"/>
+    <sfObjectRelationship childName="SFGA__Keyword__c" field="SFGA__Opportunity__c" n="SFGA__R00N40000001HghAEAS__r" relationshipName="SFGA__R00N40000001HghAEAS__r" s="2-" t="01Id0000000axYv"/>
+    <sfObjectRelationship childName="SFGA__Search_Phrase__c" field="SFGA__Opportunity__c" n="SFGA__R00N40000001HghEEAS__r" relationshipName="SFGA__R00N40000001HghEEAS__r" s="2-" t="01Id0000000axYw"/>
+    <sfObjectRelationship childName="SFGA__Text_Ad__c" field="SFGA__Opportunity__c" n="SFGA__R00N40000001Hgh5EAC__r" relationshipName="SFGA__R00N40000001Hgh5EAC__r" s="2-" t="01Id0000000axYx"/>
+    <sfObjectRelationship childName="Contract" field="Addendum_2_Opportunity__c" n="Contracts1__r" relationshipName="Contracts1__r" s="2-" t="Contract"/>
+    <sfObjectRelationship childName="Contract" field="Addendum_3_Opportunity__c" n="Contracts2__r" relationshipName="Contracts2__r" s="2-" t="Contract"/>
+    <sfObjectRelationship childName="Contract" field="Addendum_4_Opportunity__c" n="Contracts3__r" relationshipName="Contracts3__r" s="2-" t="Contract"/>
+    <sfObjectRelationship childName="Contract" field="Addendum_1_Opportunity__c" n="Contracts__r" relationshipName="Contracts__r" s="2-" t="Contract"/>
+    <sfObjectRelationship childName="Contract" field="Opportunity__c" n="Contracts4__r" relationshipName="Contracts4__r" s="2-" t="Contract"/>
+    <sfObjectRelationship childName="Opportunity" field="Contract_Opportunity__c" n="Opportunities__r" relationshipName="Opportunities__r" s="2-" t="Opportunity"/>
+    <sfObjectRelationship alias="RelatedContentDistributionList" childName="ContentDistribution" field="RelatedRecordId" n="RelatedContentDistributionList" relationshipName="RelatedContentDistributionList" s="2-" t="Content Deliveries"/>
+    <sfObjectRelationship alias="RelatedCaseList" childName="Case" field="OpportunityId" n="Cases" relationshipName="Cases" s="2-"/>
+    <sfObjectRelationship alias="RelatedOrderList" childName="Order" field="OpportunityId" n="Orders" relationshipName="Orders" s="2-"/>
+    <sfObjectRelationship alias="RelatedCampaignInfluenceList" childName="Campaign" field="CampaignId" n="Campaigns" relationshipName="Campaigns" s="2-" t="Campaign Influence"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType available="false" defaultRecordType="false" fromToolingApi="true" fullName="AED" layoutsLoaded="false" n="AED" recordTypeId="012d000000099jrAAA" s="3-"/>
+    <sfRecordType available="false" defaultRecordType="false" fromToolingApi="true" fullName="Aquatics_Examiner_Service" layoutsLoaded="false" n="AES" recordTypeId="0120V000001Yce4QAC" s="3-"/>
+    <sfRecordType defaultRecordType="false" fromToolingApi="true" fullName="Contract" layoutsLoaded="false" n="Contract" recordTypeId="0120V000001xnoNQAQ" s="3-"/>
+    <sfRecordType defaultRecordType="false" fromToolingApi="true" fullName="Order_Opportunity" layoutsLoaded="false" n="Order Opportunity" recordTypeId="0120V000001xnoOQAQ" s="3-"/>
+    <sfRecordType defaultRecordType="false" fromToolingApi="true" fullName="Sales_Opportunity" layoutsLoaded="false" n="Sales Opportunity" recordTypeId="0120V000001xnoPQAQ" s="3-"/>
+    <sfRecordType available="false" defaultRecordType="false" fromToolingApi="true" fullName="Standard" layoutsLoaded="false" n="Standard" recordTypeId="012d000000099jsAAA" s="3-"/>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome Opportunities Opportunities__r Opportunities2__r Opportunities1__r Approver_1__r Approver_2__r Approver_3__r Approver_4__r List" n="New"/>
+    <sfActionLink modes="View Opportunities Opportunities__r Opportunities2__r Opportunities1__r Approver_1__r Approver_2__r Approver_3__r Approver_4__r detail" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Opportunities Opportunities__r Opportunities2__r Opportunities1__r Approver_1__r Approver_2__r Approver_3__r Approver_4__r detail" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Opportunities Opportunities__r Opportunities2__r Opportunities1__r Approver_1__r Approver_2__r Approver_3__r Approver_4__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Opportunities Opportunities__r Opportunities2__r Opportunities1__r Approver_1__r Approver_2__r Approver_3__r Approver_4__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="Opportunities Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View detail" n="Clone" requiresRow="true"/>
+    <sfActionLink n="AddInfluence" s="" t="Add to Campaign"/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink n="StartOutboundConversation" s="" t="Start Conversation"/>
+    <sfActionLink n="DeepClone" requiresRow="true" t="Clone with Related"/>
+    <sfActionLink buttonName="App_B_AES" n="App_B_AES" s="" t="App B - AES"/>
+    <sfActionLink buttonName="dsfs__Verify_with_DNB" n="dsfs__Verify_with_DNB" s="" t="Verify with D&amp;B"/>
+    <sfActionLink buttonName="App_B_LTP_L" n="App_B_LTP_L" s="" t="App B - LTP L"/>
+    <sfActionLink buttonName="App_B_LTP_Q" n="App_B_LTP_Q" s="" t="App B - LTP Q"/>
+    <sfActionLink buttonName="App_B_NAT" n="App_B_NAT" s="" t="App B - NAT"/>
+    <sfActionLink buttonName="Contract_Pricing" n="Contract_Pricing" s="" t="Contract Pricing"/>
+    <sfActionLink buttonName="Create_Contract" n="Create_Contract" s="" t="Create Contract"/>
+    <sfActionLink buttonName="Create_Sales_Opp" n="Create_Sales_Opp" s="" t="Create Sales Opp"/>
+    <sfActionLink buttonName="SDOC__Email_Docs" n="SDOC__Email_Docs" s="" t="Email S-Docs"/>
+    <sfActionLink buttonName="XactlyCorp__Estimate_Incentives_Prod" n="XactlyCorp__Estimate_Incentives_Prod" s="" t="Estimate Incentives"/>
+    <sfActionLink buttonName="Generate_Contract" n="Generate_Contract" s="" t="Generate Contract"/>
+    <sfActionLink buttonName="MA_MapIt_a0Rd00000006eWjEAI" n="MA_MapIt_a0Rd00000006eWjEAI" s="" t="Map It"/>
+    <sfActionLink buttonName="Migrate_Opportunity" n="Migrate_Opportunity" s="" t="Migrate Opportunity"/>
+    <sfActionLink buttonName="SalesOpportunity" n="SalesOpportunity" s=""/>
+    <sfActionLink buttonName="dsfs__Send_with_DocuSign" n="dsfs__Send_with_DocuSign" s="" t="Send with DocuSign"/>
+    <sfActionLink buttonName="SDOC__S_Docs" n="SDOC__S_Docs" s="" t="S-Docs"/>
+    <sfActionLink buttonName="App_B_FS" n="App_B_FS" s="" t="App B - FS"/>
+    <sfActionLink modes="View Submit detail" n="Submit" requiresRow="true" t="Submit for Approval"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone new edit clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone new edit clone" n="save_new" requiresRow="true" t="Save &amp; New"/>
+    <sfActionLink modes="Edit New Clone new edit clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View detail" n="Share" t="Sharing"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+    <sfActionLink n="editShare" t="Edit Sharing"/>
+    <sfActionLink modes="Opportunities List" n="newOpp" newAction="true" t="New Opportunity"/>
+    <sfActionLink modes="detail" n="cloneWithProducts" parentMenuAction="Clone" t="Clone with Products"/>
+    <sfActionLink modes="detail" n="cloneWithoutProducts" parentMenuAction="Clone" t="Clone without Products"/>
+    <sfActionLink alias="changeStatus" modes="detail Opportunities" n="ChangeStatus" t="Change Status"/>
+  </standardActions>
+  <homeListColumns>
+    <string>OPPORTUNITY.NAME</string>
+    <string>ACCOUNT.NAME</string>
+    <string>OPPORTUNITY.CLOSE_DATE</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>OPPORTUNITY.NAME</string>
+    <string>ACCOUNT.NAME</string>
+    <string>Course_Name__c</string>
+    <string>Start_Date__c</string>
+    <string>CORE.USERS.FULL_NAME</string>
+  </lookupColumns>
+  <weblinks>
+    <sfWeblink displayType="link" linkType="url" n="BLND_FormFactory_Opportunity_Link" s="" t="FormFactory Opportunity Link" url="https://www.dreamfactory.net/sforce/formfactory/formfactory.html? \nsforce_session_id={!API.Session_ID}&amp; \nsforce_server_url={!API.Partner_Server_URL_120}&amp; \nsforce_user_name={!User.Username}&amp; \nsforce_full_name={!User.Name}&amp; \nsforce_user_id={!User.Id}&amp; \ncustom_link_name=FormFactory Form Name&amp; \nmyaccount={!Account.Id}&amp; \nmyopportunity={!Opportunity.Id}&amp; \nmyuser={!User.Id}"/>
+  </weblinks>
+  <searchResultColumns>
+    <string>OPPORTUNITY.NAME</string>
+    <string>Pricing_Agreement__c</string>
+    <string>OPPORTUNITY.TYPE</string>
+    <string>ACCOUNT.NAME</string>
+    <string>ACCOUNT.SITE</string>
+    <string>OPPORTUNITY.STAGE_NAME</string>
+    <string>OPPORTUNITY.CLOSE_DATE</string>
+    <string>CORE.USERS.FULL_NAME</string>
+    <string>OPPORTUNITY.AMOUNT</string>
+    <string>OPPORTUNITY.EXP_AMOUNT</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+    <string>AccountId</string>
+    <string>CloseDate</string>
+    <string>Amount</string>
+    <string>OwnerId</string>
+    <string>IqScore</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

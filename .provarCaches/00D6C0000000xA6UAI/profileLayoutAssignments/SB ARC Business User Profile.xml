@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<metadataProfileLayoutAssignments>
+  <layoutAssignments>
+    <sfLayoutAssignment layoutName="Account-Account_Admin layout" recordType="Account.Facility_Billing_Accounts_in_Account_Hierarchy"/>
+    <sfLayoutAssignment layoutName="Account-Account_Admin layout" recordType="Account.SB_Household_Account"/>
+    <sfLayoutAssignment layoutName="Account-Bucket Account Page Layout" recordType="Account.Bucket_Account"/>
+    <sfLayoutAssignment layoutName="Account-Household Account" recordType="Account.Household_Account"/>
+    <sfLayoutAssignment layoutName="Account-Individual Account" recordType="Account.Individual_Account"/>
+    <sfLayoutAssignment layoutName="Account-Organization Account" recordType="Account.Organization_Account"/>
+    <sfLayoutAssignment layoutName="Account-SB Account_Admin layout"/>
+    <sfLayoutAssignment layoutName="Account-SB Account_Admin layout" recordType="Account.Bucket_Archive"/>
+    <sfLayoutAssignment layoutName="Account-SB Organization Account" recordType="Account.SB_Organization_Account"/>
+    <sfLayoutAssignment layoutName="AccountBrand-Account Brand Layout"/>
+    <sfLayoutAssignment layoutName="AccountContactRelation-Account Contact Relationship Layout"/>
+    <sfLayoutAssignment layoutName="AccountContactRole-Account Contact Role Layout"/>
+    <sfLayoutAssignment layoutName="Account_Plan__c-Account Plan Layout"/>
+    <sfLayoutAssignment layoutName="Agreement__c-Agreement Layout"/>
+    <sfLayoutAssignment layoutName="Asset-Asset Layout"/>
+    <sfLayoutAssignment layoutName="AssetRelationship-Asset Relationship Layout"/>
+    <sfLayoutAssignment layoutName="Associated_Orders__c-Associated Order Layout"/>
+    <sfLayoutAssignment layoutName="AuditTrailLoginAs__c-AuditTrailLoginAs Layout"/>
+    <sfLayoutAssignment layoutName="AuthorizationForm-Authorization Form Layout"/>
+    <sfLayoutAssignment layoutName="AuthorizationFormConsent-Authorization Form Consent Layout"/>
+    <sfLayoutAssignment layoutName="AuthorizationFormDataUse-Authorization Form Data Use Layout"/>
+    <sfLayoutAssignment layoutName="AuthorizationFormText-Authorization Form Text Layout"/>
+    <sfLayoutAssignment layoutName="B2CCommerceCloud_Internal_SF_Helpdesk__c-Demandware User Creation Request"/>
+    <sfLayoutAssignment layoutName="B2CCommerceCloud_Internal_SF_Helpdesk__c-Demandware User Creation Request" recordType="B2CCommerceCloud_Internal_SF_Helpdesk__c.User_Creation_Request"/>
+    <sfLayoutAssignment layoutName="B2CCommerceCloud_Internal_SF_Helpdesk__c-Demandware User Termination Request" recordType="B2CCommerceCloud_Internal_SF_Helpdesk__c.User_Termination_Request"/>
+    <sfLayoutAssignment layoutName="BLND_DFAC_Shared_View__c-DreamFactory Shared View Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFCS_Carousel__c-Carousel Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFCS_Slide__c-Slide Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFDT_Action_Item__c-DreamTeam Action Item Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFDT_Discussion__c-DreamTeam Discussion Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFDT_Highlight__c-DreamTeam Highlight Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFDT_Issue__c-DreamTeam Issue Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFDT_Linker__c-DreamTeam Linker Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFDT_Project__c-DreamTeam Project Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFDT_Resource__c-DreamTeam Resource Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFDT_Task__c-DreamTeam Task Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFFF_Form__c-Form Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFFF_Page__c-Page Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFTE_Expense__c-DreamTeam Expense Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFTE_Time__c-DreamTeam Time Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFTT_Document__c-TableTop Document Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFTT_Entity_Info__c-TableTop Entity Info Layout"/>
+    <sfLayoutAssignment layoutName="BLND_DFTT_Folder__c-TableTop Folder Layout"/>
+    <sfLayoutAssignment layoutName="Broadcast_Message__c-Broadcast Message Layout"/>
+    <sfLayoutAssignment layoutName="BusinessBrand-Business Brand Layout"/>
+    <sfLayoutAssignment layoutName="BuyerAccount-Buyer Account Layout"/>
+    <sfLayoutAssignment layoutName="CCS_Batch_Class__c-Batch Class Layout"/>
+    <sfLayoutAssignment layoutName="CCS_Batch_Instructor__c-Batch Instructor Layout"/>
+    <sfLayoutAssignment layoutName="CCS_Batch_Participant__c-Batch Participant Layout"/>
+    <sfLayoutAssignment layoutName="CFS_PO_File__c-CFS PO File Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__AutoConvert_Mapping__c-CRMfusionDBR101__DupeBlocker Auto-Convert Mapping Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__AutoConvert_Setting__c-CRMfusionDBR101__DupeBlocker Auto-Convert Setting Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__AutoMerge_Mapping__c-CRMfusionDBR101__DupeBlocker Auto-Merge Mapping Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__AutoMerge_Setting__c-CRMfusionDBR101__DupeBlocker Auto-Merge Setting Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Batch_Key_Builder_Data__c-CRMfusionDBR101__DupeBlocker Batch Key Builder Data Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Block_Bypass__c-CRMfusionDBR101__DupeBlocker Block Bypass Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Duplicate_Warning__c-CRMfusionDBR101__DupeBlocker Duplicate Warning Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Potential_Duplicate__c-CRMfusionDBR101__DupeBlocker Potential Duplicate Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Scenario_Filter__c-CRMfusionDBR101__DupeBlocker Scenario Filter Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Scenario_Key__c-CRMfusionDBR101__DupeBlocker Scenario Key Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Scenario_Link__c-CRMfusionDBR101__DupeBlocker Scenario Link Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Scenario_Rule__c-CRMfusionDBR101__DupeBlocker Scenario Rule Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Scenario_Target_Filter__c-CRMfusionDBR101__DupeBlocker Scenario Target Filter Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Scenario__c-CRMfusionDBR101__DupeBlocker Scenario Admin Layout"/>
+    <sfLayoutAssignment layoutName="CRMfusionDBR101__Setting__c-CRMfusionDBR101__DupeBlocker Setting Layout"/>
+    <sfLayoutAssignment layoutName="Campaign-Campaign Layout"/>
+    <sfLayoutAssignment layoutName="CampaignMember-Campaign Member Page Layout"/>
+    <sfLayoutAssignment layoutName="CardPaymentMethod-Card Payment Method Layout"/>
+    <sfLayoutAssignment layoutName="Case-CRE RBC Case Layout" recordType="Case.CRE_Case"/>
+    <sfLayoutAssignment layoutName="Case-CRE RBC Case Layout" recordType="Case.RBC_Case"/>
+    <sfLayoutAssignment layoutName="Case-Data Quality Case" recordType="Case.Data_Quality_Case"/>
+    <sfLayoutAssignment layoutName="Case-Invoicing Case Type" recordType="Case.Invoicing"/>
+    <sfLayoutAssignment layoutName="Case-LTPonRCO" recordType="Case.LTP_on_RCO"/>
+    <sfLayoutAssignment layoutName="Case-Learn to Swim Registration Request" recordType="Case.Learn_to_Swim_Facility_Registration"/>
+    <sfLayoutAssignment layoutName="Case-RCS PO Case Layout" recordType="Case.RCS_PO"/>
+    <sfLayoutAssignment layoutName="Case-Read Only Invoicing Case Type" recordType="Case.Read_Only_Invoicing"/>
+    <sfLayoutAssignment layoutName="Case-Read Only Non-Training Case" recordType="Case.Read_Only_Non_Training_Case"/>
+    <sfLayoutAssignment layoutName="Case-Read Only RCS PO Case Layout" recordType="Case.Read_Only_RCS_PO"/>
+    <sfLayoutAssignment layoutName="Case-Read Only Sales Case Layout" recordType="Case.Sales_Case_Read_Only"/>
+    <sfLayoutAssignment layoutName="Case-Read Only Service Case Layout" recordType="Case.Service_Case_Read_Only"/>
+    <sfLayoutAssignment layoutName="Case-Read Only Troubleshooting" recordType="Case.Read_Only_Troubleshooting_Case"/>
+    <sfLayoutAssignment layoutName="Case-Sales Case Layout" recordType="Case.Sales_Case"/>
+    <sfLayoutAssignment layoutName="Case-Service Case Layout"/>
+    <sfLayoutAssignment layoutName="Case-Service Case Layout" recordType="Case.Community_Instructor_Case"/>
+    <sfLayoutAssignment layoutName="Case-Service Case Layout" recordType="Case.Community_Learner_Case"/>
+    <sfLayoutAssignment layoutName="Case-Service Case Layout" recordType="Case.Community_Partner_Case"/>
+    <sfLayoutAssignment layoutName="Case-Service Case Layout" recordType="Case.Non_Training_Case"/>
+    <sfLayoutAssignment layoutName="Case-Service Case Layout" recordType="Case.Service_Cases"/>
+    <sfLayoutAssignment layoutName="Case-Service Case Layout" recordType="Case.Troubleshooting_Case"/>
+    <sfLayoutAssignment layoutName="Case-Social Customer Care Layout" recordType="Case.Social_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.CRE_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Community_Instructor_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Community_Learner_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Community_Partner_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Data_Quality_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Invoicing"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Learn_to_Swim_Facility_Registration"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Non_Training_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.RBC_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.RCS_PO"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Read_Only_Invoicing"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Read_Only_Non_Training_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Read_Only_RCS_PO"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Read_Only_Troubleshooting_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Social_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Invoicing Close Case" recordType="Case.Troubleshooting_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Read Only Sales Case Close Layout" recordType="Case.LTP_on_RCO"/>
+    <sfLayoutAssignment layoutName="CaseClose-Read Only Sales Case Close Layout" recordType="Case.Sales_Case"/>
+    <sfLayoutAssignment layoutName="CaseClose-Read Only Sales Case Close Layout" recordType="Case.Sales_Case_Read_Only"/>
+    <sfLayoutAssignment layoutName="CaseClose-Read Only Sales Case Close Layout" recordType="Case.Service_Case_Read_Only"/>
+    <sfLayoutAssignment layoutName="CaseClose-Sales Case Close Layout"/>
+    <sfLayoutAssignment layoutName="CaseClose-Servce Case Close Layout" recordType="Case.Service_Cases"/>
+    <sfLayoutAssignment layoutName="CaseMilestone-Case Milestone Layout"/>
+    <sfLayoutAssignment layoutName="Case_Comment_Template__c-Case Comment Template Layout"/>
+    <sfLayoutAssignment layoutName="Case_Owner_History__c-Case Owner History Layout"/>
+    <sfLayoutAssignment layoutName="Case__hd-Case Layout"/>
+    <sfLayoutAssignment layoutName="Centennial_Campaign__c-Centennial Campaign Layout"/>
+    <sfLayoutAssignment layoutName="ChannelProgram-Channel Program Layout"/>
+    <sfLayoutAssignment layoutName="ChannelProgramLevel-Channel Program Level Layout"/>
+    <sfLayoutAssignment layoutName="Channel_Compensation__c-Channel Compensation Layout"/>
+    <sfLayoutAssignment layoutName="Class_Instructor__c-Class Instructor Layout"/>
+    <sfLayoutAssignment layoutName="CollaborationGroup-Group Layout"/>
+    <sfLayoutAssignment layoutName="CommunityMemberLayout-Community Member Layout"/>
+    <sfLayoutAssignment layoutName="Contact-SB TSC Contact Page Layout"/>
+    <sfLayoutAssignment layoutName="ContactPointAddress-Contact Point Address Layout"/>
+    <sfLayoutAssignment layoutName="ContactPointEmail-Contact Point Email Layout"/>
+    <sfLayoutAssignment layoutName="ContactPointPhone-Contact Point Phone Layout"/>
+    <sfLayoutAssignment layoutName="ContactPointTypeConsent-Contact Point Type Consent Layout"/>
+    <sfLayoutAssignment layoutName="Contact_Address_Detail__c-Contact Address Detail Layout"/>
+    <sfLayoutAssignment layoutName="ContentVersion-General"/>
+    <sfLayoutAssignment layoutName="Contract-Authorized Provider" recordType="Contract.Authorized_Provider"/>
+    <sfLayoutAssignment layoutName="Contract-Contract Layout"/>
+    <sfLayoutAssignment layoutName="Contract-Full Service" recordType="Contract.Full_Service"/>
+    <sfLayoutAssignment layoutName="Contract-Licensed Training Provider" recordType="Contract.Licensed_Training_Provider"/>
+    <sfLayoutAssignment layoutName="ContractLineItem-Contract Line Item Layout"/>
+    <sfLayoutAssignment layoutName="Coupon__c-Coupon Layout"/>
+    <sfLayoutAssignment layoutName="Course_Catalog_Tag__c-Course Catalog Tag Layout"/>
+    <sfLayoutAssignment layoutName="Course_Catalog__c-Course Catalog Layout"/>
+    <sfLayoutAssignment layoutName="Course_Class_Type__c-Course Class Type Layout"/>
+    <sfLayoutAssignment layoutName="Course_Template__c-Course Template Layout"/>
+    <sfLayoutAssignment layoutName="Course__c-Course Layout"/>
+    <sfLayoutAssignment layoutName="Customer-Customer Layout"/>
+    <sfLayoutAssignment layoutName="DFSS_Permissions__c-SnapShot Permissions Layout"/>
+    <sfLayoutAssignment layoutName="DFSS_SnapShot_Item__c-SnapShot Action Layout"/>
+    <sfLayoutAssignment layoutName="DFSS_SnapShot_Push__c-SnapShot Push Layout"/>
+    <sfLayoutAssignment layoutName="DataUseLegalBasis-Data Use Legal Basis Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Data_Set__c-Dataplier__Data Set Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Data_Set__c-Dataplier__Data Set Layout" recordType="Dataplier__Data_Set__c.Dataplier__DataSet"/>
+    <sfLayoutAssignment layoutName="Dataplier__Execution_Sequence_Step__c-Dataplier__Execution Sequence Step Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Execution_Sequence__c-Dataplier__Execution Sequence Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Execution_Sequence__c-Dataplier__Execution Sequence Layout" recordType="Dataplier__Execution_Sequence__c.Dataplier__ExecutionSequence"/>
+    <sfLayoutAssignment layoutName="Dataplier__Execution_Step_Log__c-Dataplier__Execution Step Log Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Execution_Step_Records__c-Dataplier__Execution Step Records Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Execution_Step__c-Dataplier__Execution Step Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Execution_Step__c-Dataplier__Execution Step Layout" recordType="Dataplier__Execution_Step__c.Dataplier__ExecutionStep"/>
+    <sfLayoutAssignment layoutName="Dataplier__Execution__c-Dataplier__Execution Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Execution__c-Dataplier__Execution Layout" recordType="Dataplier__Execution__c.Dataplier__Execution"/>
+    <sfLayoutAssignment layoutName="Dataplier__Filter_Line__c-Dataplier__Filter Line Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Filter__c-Dataplier__Filter Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__IdCache__c-Dataplier__IdCache Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Log__c-Dataplier__Log Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Migration_Job__c-Dataplier__Migration Job Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Migration_Job__c-Dataplier__Migration Job Layout" recordType="Dataplier__Migration_Job__c.Dataplier__Migration_Job"/>
+    <sfLayoutAssignment layoutName="Dataplier__Migration_Step__c-Dataplier__Migration Step Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Object_State__c-Dataplier__Object State Layout"/>
+    <sfLayoutAssignment layoutName="Dataplier__Organisation__c-Dataplier__Org Layout"/>
+    <sfLayoutAssignment layoutName="Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge"/>
+    <sfLayoutAssignment layoutName="Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge" recordType="Dedicated_Internal_Salesforce_Helpdesk__c.Account_Merge_Requests"/>
+    <sfLayoutAssignment layoutName="Dedicated_Internal_Salesforce_Helpdesk__c-Account Merge" recordType="Dedicated_Internal_Salesforce_Helpdesk__c.Skedulo_Issue"/>
+    <sfLayoutAssignment layoutName="Dedicated_Internal_Salesforce_Helpdesk__c-Configuration Request" recordType="Dedicated_Internal_Salesforce_Helpdesk__c.Configuration_Request"/>
+    <sfLayoutAssignment layoutName="Dedicated_Internal_Salesforce_Helpdesk__c-Contact Merge" recordType="Dedicated_Internal_Salesforce_Helpdesk__c.Contact_Merge_Requests"/>
+    <sfLayoutAssignment layoutName="Dedicated_Internal_Salesforce_Helpdesk__c-New User Request" recordType="Dedicated_Internal_Salesforce_Helpdesk__c.User_Creation_Request"/>
+    <sfLayoutAssignment layoutName="Dedicated_Internal_Salesforce_Helpdesk__c-RCLC" recordType="Dedicated_Internal_Salesforce_Helpdesk__c.RCLC"/>
+    <sfLayoutAssignment layoutName="Dedicated_Internal_Salesforce_Helpdesk__c-Report Request" recordType="Dedicated_Internal_Salesforce_Helpdesk__c.Report_Request"/>
+    <sfLayoutAssignment layoutName="Dedicated_Internal_Salesforce_Helpdesk__c-User Deactivation" recordType="Dedicated_Internal_Salesforce_Helpdesk__c.User_Deactivation"/>
+    <sfLayoutAssignment layoutName="DelegatedAccount-External Managed Account Layout"/>
+    <sfLayoutAssignment layoutName="Delivery_Failure_Response_Log__c-Delivery Failure Response Log Layout"/>
+    <sfLayoutAssignment layoutName="DigitalWallet-Digital Wallet Layout"/>
+    <sfLayoutAssignment layoutName="Dupes_Created_Today__c-Dupes Created Today Layout"/>
+    <sfLayoutAssignment layoutName="DuplicateRecordItem-Duplicate Record Item Layout"/>
+    <sfLayoutAssignment layoutName="DuplicateRecordSet-Duplicate Record Set Layout"/>
+    <sfLayoutAssignment layoutName="EmailMessage-Email Message Layout - Email-to-Case"/>
+    <sfLayoutAssignment layoutName="EnhancedLetterhead-Enhanced Letterhead Layout"/>
+    <sfLayoutAssignment layoutName="Entitlement-Entitlement Layout"/>
+    <sfLayoutAssignment layoutName="Event-Event Layout"/>
+    <sfLayoutAssignment layoutName="Facility__c-Facility Layout"/>
+    <sfLayoutAssignment layoutName="FeedItem-Feed Item Layout"/>
+    <sfLayoutAssignment layoutName="Field_Trip__Field_Analysis__c-Field_Trip__Field Analysis Layout"/>
+    <sfLayoutAssignment layoutName="Field_Trip__Object_Analysis__c-Field_Trip__Object Analysis Layout"/>
+    <sfLayoutAssignment layoutName="FlowInterview-Flow Interview Layout"/>
+    <sfLayoutAssignment layoutName="Free_Class__c-Free Class Layout"/>
+    <sfLayoutAssignment layoutName="Free_Class__c-Free Class Layout" recordType="Free_Class__c.Learn_to_Swim_Class"/>
+    <sfLayoutAssignment layoutName="Free_Class__c-Free Class Layout" recordType="Free_Class__c.Safety_Outreach"/>
+    <sfLayoutAssignment layoutName="Fulfillment_Item__c-Fulfillment Item Layout - Read Only"/>
+    <sfLayoutAssignment layoutName="Fulfillment__c-Fulfillment Layout - Read Only"/>
+    <sfLayoutAssignment layoutName="GL_Unit_Code__c-GL Unit Code Layout"/>
+    <sfLayoutAssignment layoutName="Geo_Location__c-Geo Location Layout"/>
+    <sfLayoutAssignment layoutName="GetFeedback_Aut__Answer__c-GetFeedback_Aut__Answer Layout"/>
+    <sfLayoutAssignment layoutName="GetFeedback_Aut__Response__c-GetFeedback_Aut__Response Layout"/>
+    <sfLayoutAssignment layoutName="GetFeedback_Aut__Survey__c-GetFeedback_Aut__Survey Layout"/>
+    <sfLayoutAssignment layoutName="Global-Global Layout"/>
+    <sfLayoutAssignment layoutName="IBP__Ifbyphone_Call__c-IBP__Ifbyphone_Call_Layout"/>
+    <sfLayoutAssignment layoutName="Idea-Idea Layout"/>
+    <sfLayoutAssignment layoutName="IframeWhiteListUrl-Whitelisted Domain for Visualforce Inline Frames Layout"/>
+    <sfLayoutAssignment layoutName="Individual-Individual Layout"/>
+    <sfLayoutAssignment layoutName="Integration_Error_Log__c-Integration Error Log Layout"/>
+    <sfLayoutAssignment layoutName="Integration_Files__c-Integration Files Layout"/>
+    <sfLayoutAssignment layoutName="Integration_Log__c-Integration Log Layout"/>
+    <sfLayoutAssignment layoutName="Job_Attendee__c-Attendee Layout"/>
+    <sfLayoutAssignment layoutName="LTS_Facility__c-LTS Facility Layout"/>
+    <sfLayoutAssignment layoutName="Lead-Lead Layout"/>
+    <sfLayoutAssignment layoutName="Lead__c-BGST Layout"/>
+    <sfLayoutAssignment layoutName="LinkedArticle-Linked Article Layout"/>
+    <sfLayoutAssignment layoutName="ListEmail-List Email Layout"/>
+    <sfLayoutAssignment layoutName="LiveAgentSession-Live Agent Session Layout"/>
+    <sfLayoutAssignment layoutName="LiveChatTranscript-Live Chat Transcript Layout"/>
+    <sfLayoutAssignment layoutName="LiveChatTranscriptActive-Chat Transcript %28In Progress%29 Layout"/>
+    <sfLayoutAssignment layoutName="LiveChatTranscriptEvent-Live Chat Transcript Event Layout"/>
+    <sfLayoutAssignment layoutName="LiveChatTranscriptWaiting-Chat Transcript %28Waiting%29 Layout"/>
+    <sfLayoutAssignment layoutName="LiveChatVisitor-Live Chat Visitor Layout"/>
+    <sfLayoutAssignment layoutName="Location-Location Layout"/>
+    <sfLayoutAssignment layoutName="Logged_Exception__c-Logged Exception Layout"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-0-DEFAULT" recordType="Long_Article__kav.Default"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-0-DEFAULT" recordType="Long_Article__kav.Draft"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-01-Job Aid %7C Short %28DO NOT EDIT%29" recordType="Long_Article__kav.Job_Aid_Short"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-02-Job Aid %7C Long %28DO NOT EDIT%29" recordType="Long_Article__kav.Job_Aid_Long"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-03 - Tool %7C Short %28 DO NOT EDIT%29" recordType="Long_Article__kav.Tool_Short"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-04-Tool %7C Long %28DO NOT EDIT%29" recordType="Long_Article__kav.Tool_Long"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-05-Program %28DO NOT EDIT%29" recordType="Long_Article__kav.Program"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-06-Fact Sheet %28DO NOT EDIT%29" recordType="Long_Article__kav.Fact_Sheet"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-07-Marketing%2FPromotion %28DO NOT EDIT%29" recordType="Long_Article__kav.Marketing_Promotion"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-08-Mobile Application %28DO NOT EDIT%29" recordType="Long_Article__kav.Mobile_Application"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-09-Document %7C General %28DO NOT EDIT%29" recordType="Long_Article__kav.Document_General"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-09-Document %7C General %28DO NOT EDIT%29" recordType="Long_Article__kav.Job_Aid_BGST_Managing_Discounts"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-10-Program Document %28DO NOT EDIT%29" recordType="Long_Article__kav.Program_Document"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-11-Email %28DO NOT EDIT%29" recordType="Long_Article__kav.Email"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-12-Linked Document %28DO NOT EDIT%29" recordType="Long_Article__kav.Linked_Document"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C AP%2FLTP Agreement Cancellations%2FChanges" recordType="Long_Article__kav.Job_Aid_BGST_AP_LTP_Agreement_Cancellations_Changes"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C AP%2FLTP Request to Delay Price Increase" recordType="Long_Article__kav.Job_Aid_BGST_AP_LTP_Request_to_Delay_Price_Increase"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Adding Discounts on Opportunity" recordType="Long_Article__kav.Job_Aid_BGST_Adding_Discounts_on_Opportunity"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Authorized Provider and Licensed Training Provider Agreements" recordType="Long_Article__kav.Job_Aid_BGST_AP_LTP_Agreement_Processing"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Convert FS%2FAP%2FLTP Leads" recordType="Long_Article__kav.Job_Aid_BGST_Convert_FS_AP_LTP_Leads"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Convert an AED Lead to an Account%2FContact%2FOpportunity" recordType="Long_Article__kav.Job_Aid_BGST_Convert_an_AED_Lead_to_an_Account_Contact_Opportunity"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Create AP%2FLTP Agreement" recordType="Long_Article__kav.Job_Aid_BGST_Create_AP_LTP_Agreements"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Create a Full Service Contract" recordType="Long_Article__kav.Job_Aid_BGST_Create_A_Full_Service_Contract"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Create a Lead" recordType="Long_Article__kav.Job_Aid_BGST_Create_a_Lead"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Create a Lead - AED Sales" recordType="Long_Article__kav.Job_Aid_BGST_Create_a_Lead_AED_Sales"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C EnPro Program Management for AEDs Order Form" recordType="Long_Article__kav.Job_Aid_BGST_EnPro_Program_Management_for_AEDs_Order_Form"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C FS Pre-Approval Process for Non-Standard Courses" recordType="Long_Article__kav.Job_Aid_BGST_Full_Service_Pre_Approval_Process_for_Non_Standard_Courses"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Invoicing Requests" recordType="Long_Article__kav.Job_Aid_BGST_Invoicing_Requests"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Navigating in Lightning" recordType="Long_Article__kav.Job_Aid_BGST_Navigating_in_Lightning"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Non-Standard Blanket Approvals by Territory" recordType="Long_Article__kav.Job_Aid_BGST_Non_standard_Product_Blanket_Approvals_by_Territory"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Phillips AED Order Form" recordType="Long_Article__kav.Job_Aid_BGST_Phillips_AED_Order_Form"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Physio Control AED Form" recordType="Long_Article__kav.Job_Aid_BGST_Physio_Control_AED_Form"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Qualify a Lead" recordType="Long_Article__kav.Job_Aid_BGST_Qualify_a_Lead"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Qualify an AED Lead" recordType="Long_Article__kav.Job_Aid_BGST_Qualify_an_AED_Lead"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Request for W-9 or Vendor Forms" recordType="Long_Article__kav.Job_Aid_BGST_Request_for_W_9_or_Vendor_Forms"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Return to Sales %28RTS%29 Follow Up Process" recordType="Long_Article__kav.Job_Aid_BGST_Return_to_Sales_RTS_Follow_Up_Process"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Revisions to Full Service Agreements" recordType="Long_Article__kav.Job_Aid_BGST_Revisions_to_Full_Service_Agreements"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Sales Call Flow" recordType="Long_Article__kav.Job_Aid_BGST_Sales_Call_Flow"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Searching  Existing and Creating New Contacts" recordType="Long_Article__kav.Job_Aid_BGST_Searching_Existing_and_Creating_New_Contacts"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Sending a Proposal" recordType="Long_Article__kav.Job_Aid_BGST_Sending_a_Proposal"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST %7C Zoll AED Order Forms" recordType="Long_Article__kav.Job_Aid_BGST_Zoll_AED_Order_Forms"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST Sales Admin %7C Creating and Updating ORGs in LMS" recordType="Long_Article__kav.Job_Aid_BGST_Sales_Admin_Creating_and_Updating_ORGs_in_LMS"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST Sales Admin %7C Docusign" recordType="Long_Article__kav.Job_Aid_BGST_Sales_Admin_Docusign"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST Sales Admin %7C Managing Full Service Agreements" recordType="Long_Article__kav.Job_Aid_BGST_Sales_Admin_Managing_FS_Agreements"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST Sales Admin %7C Revisions to Full Service Agreements" recordType="Long_Article__kav.Job_Aid_BGST_Sales_Admin_Revisions_to_Full_Service_Agreements"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C BGST%2FRSG %28DO NOT EDIT%29" recordType="Long_Article__kav.Job_Aid_BGST_RSG"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C CTI with Salesforce Lightning" recordType="Long_Article__kav.Job_Aid_CTI_Salesforce_Lightning"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Cancel a Learner" recordType="Long_Article__kav.Job_Aid_Cancel_a_Learner"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Cancel a Product Order" recordType="Long_Article__kav.Job_Aid_Cancel_a_Products_Order"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Community Class %7C Cash%2C Check%2C Money Order Payments for Registrations" recordType="Long_Article__kav.Job_Aid_Community_Class_Cash_Check_Money_Order_Payments_for_Registrations"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Community Offerings %7C Walk Ins" recordType="Long_Article__kav.Job_Aid_Community_Offerings_Walk_Ins"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Create and Edit a Contact in Salesforce for Non-Phone Agents" recordType="Long_Article__kav.Job_Aid_Create_and_Edit_a_Contact_in_Salesforce_for_Non_Phone_Agents"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Handling Non-Training and Certification Calls" recordType="Long_Article__kav.Job_Aid_Handling_Non_Training_and_Certification_Calls_Updated"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Purchase Orders" recordType="Long_Article__kav.Job_Aid_Purchase_Orders"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C Follow up Calls" recordType="Long_Article__kav.Job_Aid_RSG_Follow_Up_Calls_1"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C Handling Customer Credit Card Payment Issues" recordType="Long_Article__kav.Job_Aid_RSG_Handling_Customer_Credit_Card_Payment_Issues"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C Lightning Contacts and Cases" recordType="Long_Article__kav.Job_Aid_RSG_Lightning_Contacts_and_Cases"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C Order Cancellations%2FComplaints that aren%27t Returned" recordType="Long_Article__kav.Job_Aid_RSG_Order_Cancellations_Complaints_that_arent_returned"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C Orders from the %22Original%22 Red Cross Store" recordType="Long_Article__kav.Job_Aid_RSG_Orders_from_the_Original_Red_Cross_Store"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C Prepaid Shipping Labels" recordType="Long_Article__kav.Job_Aid_Prepaid_Shipping_Labels"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C Request to use Retail Purchase Order" recordType="Long_Article__kav.Job_Aid_RSG_Request_to_use_Retail_Purchase_Order"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C Salesforce Lightning Navigation" recordType="Long_Article__kav.Job_Aid_RSG_Salesforce_Lightning_Navigation"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C iCA Basic Navigation and Zones" recordType="Long_Article__kav.Job_Aid_RSG_iCA_Basic_Navigation_and_Zones"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C iCA Ordering" recordType="Long_Article__kav.Job_Aid_RSG_iCA_Ordering"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C iCA Replacement Orders" recordType="Long_Article__kav.Job_Aid_iCA_Replacement_Orders"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C iCA Returns" recordType="Long_Article__kav.Job_Aid_RSG_iCA_Returns"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG %7C iCA WISMO %28Where is my Order%3F%29" recordType="Long_Article__kav.Job_Aid_RSG_iCA_WISMO_Where_is_my_Order"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG Sales Admin %7C FedEx Alerts and Refund Requests" recordType="Long_Article__kav.Job_Aid_RSG_Sales_Admin_FedEx_Alerts_and_Refund_Requests"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RSG Sales Admin %7C Process for PO Retail Orders" recordType="Long_Article__kav.Job_Aid_RSG_Sales_Admin_Process_for_PO_Retail_Orders"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C RedCross%2Eorg %7C Business Manager %7C Cancel a Learner" recordType="Long_Article__kav.Job_Aid_RedCross_org_Business_Manager_Cancel_a_Learner"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Sales - Requests for Group Training%2F AED Sales" recordType="Long_Article__kav.Job_Aid_Sales_Requests_for_Group_Training_AED_Sales"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Search and Register for a Course from Salesforce in Learning Center" recordType="Long_Article__kav.Job_Aid_Search_and_Register_for_a_Course_from_Salesforce_in_Learning_Center"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Searching in LMS" recordType="Long_Article__kav.Job_Aid_Searching_in_LMS"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Job Aid %7C Service %7C Lightning Contacts and Cases" recordType="Long_Article__kav.Job_Aid_Service_Lightning_Contacts_and_Cases"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Long Article Layout"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Program %7C Safety Training for Swim Coaches" recordType="Long_Article__kav.Program_Safety_Training_for_Swim_Coaches"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Tool %7C AP%2FLTP Price Increase Talking Points %26 FAQs" recordType="Long_Article__kav.Tool_AP_LTP_Price_Increase_Talking_Points_FAQs"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Tool %7C ARC %7C Disaster Alerts" recordType="Long_Article__kav.Tool_Disaster_Alerts"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Tool %7C BGST %7C AED State-Specific Requirements" recordType="Long_Article__kav.Tool_BGST_AED_State_Specific_Requirements"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Tool %7C BGST %7C Aquatics Terminology%2C FAQs%2C and Frequent Links" recordType="Long_Article__kav.Tool_BGST_Aquatics_Terminology_FAQs_and_Frequent_Links"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Tool %7C BGST %7C Physio Price List" recordType="Long_Article__kav.Tool_BGST_Physio_Price_List"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Tool %7C BGST %7C Split Class Policies" recordType="Long_Article__kav.Tool_BGST_Split_Class_Policies"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Tool %7C Course Codes" recordType="Long_Article__kav.Tool_Course_Codes"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Tool %7C Sale Case Closed Reasons" recordType="Long_Article__kav.Tool_Sales_Case_Closed_Reasons"/>
+    <sfLayoutAssignment layoutName="Long_Article__kav-Tool %7C Service Case Types" recordType="Long_Article__kav.Tool_Service_Case_Types"/>
+    <sfLayoutAssignment layoutName="Macro-Macro Layout"/>
+    <sfLayoutAssignment layoutName="NAICS__c-NAICS Layout"/>
+    <sfLayoutAssignment layoutName="NSSCCConnector__SCC_LogDetail__c-NSSCCConnector__Log Detail Layout"/>
+    <sfLayoutAssignment layoutName="NSSCCConnector__SCC_Log__c-NSSCCConnector__Log Layout"/>
+    <sfLayoutAssignment layoutName="Offering__c-Offering Layout"/>
+    <sfLayoutAssignment layoutName="Open_Order_Processing__c-Open Order Processing Layout"/>
+    <sfLayoutAssignment layoutName="Opportunity-AED Device" recordType="Opportunity.AED"/>
+    <sfLayoutAssignment layoutName="Opportunity-Opportunity Layout" recordType="Opportunity.Standard"/>
+    <sfLayoutAssignment layoutName="Opportunity-Order Opportunity Layout" recordType="Opportunity.Order_Opportunity"/>
+    <sfLayoutAssignment layoutName="Opportunity-SB Aquatic Examiner Service" recordType="Opportunity.Aquatics_Examiner_Service"/>
+    <sfLayoutAssignment layoutName="Opportunity-SB Opportunity Layout"/>
+    <sfLayoutAssignment layoutName="Opportunity-SB Opportunity Layout - no Contract Pricing" recordType="Opportunity.Contract"/>
+    <sfLayoutAssignment layoutName="Opportunity-Sales Opportunity Layout" recordType="Opportunity.Sales_Opportunity"/>
+    <sfLayoutAssignment layoutName="OpportunityContactRole-Opportunity Contact Role Layout"/>
+    <sfLayoutAssignment layoutName="OpportunityLineItem-Opportunity Product Layout"/>
+    <sfLayoutAssignment layoutName="Order-Order Layout"/>
+    <sfLayoutAssignment layoutName="OrderItem-Order Product Layout"/>
+    <sfLayoutAssignment layoutName="PHSS_Certification_Provisioning_Clone__c-PHSS Certification Provisioning Clone Layout"/>
+    <sfLayoutAssignment layoutName="PHSS_Certification_Provisioning__c-PHSS Certification Provisioning Layout"/>
+    <sfLayoutAssignment layoutName="PHSS_Error_Logger__c-PHSS Error Logger Layout"/>
+    <sfLayoutAssignment layoutName="PHSS_Instructor_Certification__c-PHSS Instructor Certification Layout"/>
+    <sfLayoutAssignment layoutName="PHSS_Material__c-PHSS Material Layout"/>
+    <sfLayoutAssignment layoutName="PHSS_Product_Line__c-PHSS Product Line Layout"/>
+    <sfLayoutAssignment layoutName="PHSS_Program__c-PHSS Program Layout"/>
+    <sfLayoutAssignment layoutName="PHSS_User_Provisioning_Clone__c-PHSS User Provisioning Clone Layout"/>
+    <sfLayoutAssignment layoutName="PHSS_User_Provisioning__c-PHSS User Provisioning Layout"/>
+    <sfLayoutAssignment layoutName="Payment-Payment Layout"/>
+    <sfLayoutAssignment layoutName="PaymentAuthorization-Payment Authorization Layout"/>
+    <sfLayoutAssignment layoutName="PaymentGateway-Payment Gateway Layout"/>
+    <sfLayoutAssignment layoutName="PaymentGatewayLog-Payment Gateway Log Layout"/>
+    <sfLayoutAssignment layoutName="PaymentGroup-Payment Group Layout"/>
+    <sfLayoutAssignment layoutName="Pricebook2-Price Book Layout"/>
+    <sfLayoutAssignment layoutName="PricebookEntry-Price Book Entry Layout"/>
+    <sfLayoutAssignment layoutName="ProcessException-Process Exception Layout"/>
+    <sfLayoutAssignment layoutName="Process_Scheduling__c-Process Scheduling Layout"/>
+    <sfLayoutAssignment layoutName="Product2-Product Layout"/>
+    <sfLayoutAssignment layoutName="Question-Question Layout"/>
+    <sfLayoutAssignment layoutName="QuickText-Quick Text Layout"/>
+    <sfLayoutAssignment layoutName="Quote-Full Service Work Order Layout" recordType="Quote.Appendix_B"/>
+    <sfLayoutAssignment layoutName="Quote-Quote Layout"/>
+    <sfLayoutAssignment layoutName="Quote-Quote Layout" recordType="Quote.Red_Cross_Quote"/>
+    <sfLayoutAssignment layoutName="QuoteLineItem-Quote Line Item Layout"/>
+    <sfLayoutAssignment layoutName="REST_Service_Calls__c-REST Service Call Layout"/>
+    <sfLayoutAssignment layoutName="Refund-Refund Layout"/>
+    <sfLayoutAssignment layoutName="RefundLinePayment-Refund Line Payment Layout"/>
+    <sfLayoutAssignment layoutName="Reply-Reply Layout"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case" recordType="ReportCard__c.Closed_case"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case" recordType="ReportCard__c.Customer_Insight"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case" recordType="ReportCard__c.Customer_satisfaction"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case" recordType="ReportCard__c.Event"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case" recordType="ReportCard__c.PS_Consulting"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case" recordType="ReportCard__c.P_D"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case" recordType="ReportCard__c.Partner_satisfaction"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case" recordType="ReportCard__c.Training"/>
+    <sfLayoutAssignment layoutName="ReportCard__c-Closed case" recordType="ReportCard__c.Win_Loss"/>
+    <sfLayoutAssignment layoutName="Resource_Extension__c-Resource Extension Layout"/>
+    <sfLayoutAssignment layoutName="SABA_AccountRelationship__c-SABA AccountRelationship Layout"/>
+    <sfLayoutAssignment layoutName="SDOC__SDField__c-SDOC__SDoc Field Layout"/>
+    <sfLayoutAssignment layoutName="SDOC__SDJob__c-SDOC__SDJob Layout"/>
+    <sfLayoutAssignment layoutName="SDOC__SDRelationship__c-SDOC__SDoc Relationship Layout"/>
+    <sfLayoutAssignment layoutName="SDOC__SDTemplate__c-SDOC__SDoc Template Layout"/>
+    <sfLayoutAssignment layoutName="SDOC__SDoc__c-SDOC__SDoc Layout"/>
+    <sfLayoutAssignment layoutName="SFDC_Budget_Entry__c-Budget Entry Layout"/>
+    <sfLayoutAssignment layoutName="SFDC_Budget_Entry__c-Budget Entry Layout" recordType="SFDC_Budget_Entry__c.Accrual"/>
+    <sfLayoutAssignment layoutName="SFDC_Budget_Entry__c-Standard Layout" recordType="SFDC_Budget_Entry__c.Standard"/>
+    <sfLayoutAssignment layoutName="SFDC_Budget__c-Co-op" recordType="SFDC_Budget__c.Coop"/>
+    <sfLayoutAssignment layoutName="SFDC_Budget__c-Standard Budget"/>
+    <sfLayoutAssignment layoutName="SFDC_Budget__c-Standard Budget" recordType="SFDC_Budget__c.MDF"/>
+    <sfLayoutAssignment layoutName="SFDC_MDF_Claim__c-Claim Layout"/>
+    <sfLayoutAssignment layoutName="SFDC_MDF__c-Fund Request Layout"/>
+    <sfLayoutAssignment layoutName="SFGA__Ad_Group__c-SFGA__Ad Group Layout"/>
+    <sfLayoutAssignment layoutName="SFGA__Google_Campaign__c-SFGA__Google Campaign Layout"/>
+    <sfLayoutAssignment layoutName="SFGA__Keyword__c-SFGA__Keyword Layout"/>
+    <sfLayoutAssignment layoutName="SFGA__Search_Phrase__c-SFGA__Search Phrase Layout"/>
+    <sfLayoutAssignment layoutName="SFGA__Text_Ad__c-SFGA__Text Ad Layout"/>
+    <sfLayoutAssignment layoutName="SFGA__Version_33_0_3__c-SFGA__Kieden Version Layout"/>
+    <sfLayoutAssignment layoutName="SFSSDupeCatcher__Application_Settings__c-SFSSDupeCatcher__DupeCatcher Application Setting Layout"/>
+    <sfLayoutAssignment layoutName="SFSSDupeCatcher__DcIn__c-SFSSDupeCatcher__DcIn Layout"/>
+    <sfLayoutAssignment layoutName="SFSSDupeCatcher__Duplicate_Warning__c-SFSSDupeCatcher__Duplicate Warning Layout"/>
+    <sfLayoutAssignment layoutName="SFSSDupeCatcher__Override_Cache__c-SFSSDupeCatcher__Override Cache Layout"/>
+    <sfLayoutAssignment layoutName="SFSSDupeCatcher__Potential_Duplicate__c-SFSSDupeCatcher__Potential Duplicate Layout"/>
+    <sfLayoutAssignment layoutName="SFSSDupeCatcher__RequiredFieldSupport__c-SFSSDupeCatcher__DupeCatcher Required Field Support Layout"/>
+    <sfLayoutAssignment layoutName="SFSSDupeCatcher__Scenario_Rule__c-SFSSDupeCatcher__Scenario Rule Layout"/>
+    <sfLayoutAssignment layoutName="SFSSDupeCatcher__Scenario__c-SFSSDupeCatcher__Scenario Layout"/>
+    <sfLayoutAssignment layoutName="SIC__c-SIC Layout"/>
+    <sfLayoutAssignment layoutName="SSign__SSEnvelope_Document__c-SSign__S-Sign Envelope Include Layout"/>
+    <sfLayoutAssignment layoutName="SSign__SSEnvelope__c-SSign__E-Sign Envelope Layout"/>
+    <sfLayoutAssignment layoutName="SSign__SSInput_Response__c-SSign__S-Sign Input Response Layout"/>
+    <sfLayoutAssignment layoutName="SSign__SSTemplate__c-SSign__S-Sign Template Layout"/>
+    <sfLayoutAssignment layoutName="Sales_Tax_Exemption__c-Child Sales Tax Exemption Layout"/>
+    <sfLayoutAssignment layoutName="Sales_Tax_Exemption__c-Child Sales Tax Exemption Layout" recordType="Sales_Tax_Exemption__c.Child_Account_STE"/>
+    <sfLayoutAssignment layoutName="Sales_Tax_Exemption__c-Child Sales Tax Exemption Layout" recordType="Sales_Tax_Exemption__c.Standard_STE"/>
+    <sfLayoutAssignment layoutName="Scorecard-Scorecard Layout"/>
+    <sfLayoutAssignment layoutName="ScorecardAssociation-Scorecard Association Layout"/>
+    <sfLayoutAssignment layoutName="ScorecardMetric-Scorecard Metric Layout"/>
+    <sfLayoutAssignment layoutName="Seller-Seller Layout"/>
+    <sfLayoutAssignment layoutName="ServiceContract-Service Contract Layout"/>
+    <sfLayoutAssignment layoutName="SiteIframeWhiteListUrl-Whitelisted Domains for Inline Frames Layout"/>
+    <sfLayoutAssignment layoutName="Site__c-Site Layout"/>
+    <sfLayoutAssignment layoutName="Skills_Achievement__c-Skill%2FAchievement Layout"/>
+    <sfLayoutAssignment layoutName="SocialPersona-Social Persona Layout"/>
+    <sfLayoutAssignment layoutName="SocialPost-Social Post Layout"/>
+    <sfLayoutAssignment layoutName="Solution-Solution Layout"/>
+    <sfLayoutAssignment layoutName="Student_Bulk_Upload__c-Student Bulk Upload Layout"/>
+    <sfLayoutAssignment layoutName="Sub_class_Setting__c-Sub-class Setting Layout"/>
+    <sfLayoutAssignment layoutName="Survey-Survey Layout"/>
+    <sfLayoutAssignment layoutName="SurveyInvitation-Survey Invitation Layout"/>
+    <sfLayoutAssignment layoutName="SurveyPage-Survey Page Layout"/>
+    <sfLayoutAssignment layoutName="SurveyQuestion-Survey Question Layout"/>
+    <sfLayoutAssignment layoutName="SurveyQuestionChoice-Survey Question Choice Layout"/>
+    <sfLayoutAssignment layoutName="SurveyQuestionResponse-Survey Question Response Layout"/>
+    <sfLayoutAssignment layoutName="SurveyResponse-Survey Response Layout"/>
+    <sfLayoutAssignment layoutName="SurveyVersion-Survey Version Layout"/>
+    <sfLayoutAssignment layoutName="Survey__c-Survey Layout"/>
+    <sfLayoutAssignment layoutName="Task-Task Layout"/>
+    <sfLayoutAssignment layoutName="TempTerritory__c-Temp Territory Layout"/>
+    <sfLayoutAssignment layoutName="Territory__c-Territory Layout"/>
+    <sfLayoutAssignment layoutName="Training_Events__c-AES Training Event Layout" recordType="Training_Events__c.AES_Event"/>
+    <sfLayoutAssignment layoutName="Training_Events__c-Locked Training Event Layout" recordType="Training_Events__c.Locked_Training_Event"/>
+    <sfLayoutAssignment layoutName="Training_Events__c-SB Training Event Layout"/>
+    <sfLayoutAssignment layoutName="Training_Events__c-SB Training Event Layout" recordType="Training_Events__c.SB_Training_Event"/>
+    <sfLayoutAssignment layoutName="Training_Events__c-Training Event Layout" recordType="Training_Events__c.Training_Event"/>
+    <sfLayoutAssignment layoutName="User-User Layout"/>
+    <sfLayoutAssignment layoutName="UserAlt-User Profile Layout"/>
+    <sfLayoutAssignment layoutName="UserAppMenuItem-Application Layout"/>
+    <sfLayoutAssignment layoutName="UserProvisioningRequest-User Provisioning Request Layout"/>
+    <sfLayoutAssignment layoutName="Vendor_Compensation__c-Vendor Compensation Layout"/>
+    <sfLayoutAssignment layoutName="Virtual_Training_Student_Contact__c-Virtual Training - Student Contact Layout"/>
+    <sfLayoutAssignment layoutName="Voucher__c-PHSS Voucher Layout"/>
+    <sfLayoutAssignment layoutName="WorkBadge-Badge Received Layout"/>
+    <sfLayoutAssignment layoutName="WorkBadgeDefinition-Badge Layout"/>
+    <sfLayoutAssignment layoutName="XactlyCorp__XCIncentBusiness__c-XactlyCorp__XCIncentBusiness Layout"/>
+    <sfLayoutAssignment layoutName="XactlyCorp__XactlyUserBusiness__c-XactlyCorp__XactlyUserBusiness Layout"/>
+    <sfLayoutAssignment layoutName="analyticsengine__Setting__c-analyticsengine__Setting Layout"/>
+    <sfLayoutAssignment layoutName="ccpgcs__E_PaymentType__c-ccpgcs__CCPGCS Payment Type Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_AccountAddressBook__c-ccrz__CC Account Address Book Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_AccountGroupPriceList__c-ccrz__CC Account Group Price List Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_AccountGroup__c-ccrz__CC Account Group Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_AccountSetting__c-PHSS CC Account Setting Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_AddressBook__c-ccrz__CC Address Book Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_AttributeI18N__c-ccrz__CC AttributeI18N Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Attribute__c-ccrz__CC Attribute Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_BreadCrumb__c-ccrz__CC BreadCrumb Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_CartCoupon__c-ccrz__CC Cart Coupon Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_CartItemGroup__c-ccrz__Cart Item Group Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_CartItemPricingTier__c-ccrz__CC Cart Item Pricing Tier Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_CartItem__c-PHSS CC Cart Item Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Cart__c-PHSS CC Cart Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_CategoryI18N__c-ccrz__CC CategoryI18N Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_CategoryMedia__c-ccrz__CC Category Media Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_CategorySpec__c-ccrz__CC Category Spec Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Category__c-ccrz__CC Category Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_CompositeProduct__c-PHSS CC Composite Product Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ConfigurationMeta__c-ccrz__CC Configuration Metadata Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ConfigurationModule__c-ccrz__CC Configuration Module Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Configuration__c-ccrz__CC Configuration Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ContactAddr__c-ccrz__CC Contact Address Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Content__c-ccrz__CC Content Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Coupon__c-ccrz__CC Coupon Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_FeaturedProductI18N__c-ccrz__CC FeaturedProductI18N Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_FeaturedProduct__c-ccrz__CC Featured Product Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Foo__c-ccrz__CC Foo Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_HtmlCache__c-ccrz__CC Html Cache Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_InvoiceItem__c-ccrz__CC Invoice Item Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Invoice__c-PHSS CC Invoice Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_LocaleFormatter__c-ccrz__CC Locale Formatter Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_MenuI18N__c-ccrz__CC Menu I18N Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_MenuItemI18N__c-ccrz__CC Menu Item I18N Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_MenuItem__c-ccrz__CC Menu Item Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Menu__c-ccrz__CC Menu Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_OrderItemGroup__c-ccrz__CC Order Item Group Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_OrderItemPricingTier__c-ccrz__CC Order Item Pricing Tier Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_OrderItem__c-No Edit PHSS CC Order Item Layout" recordType="ccrz__E_OrderItem__c.CC_Order_Item"/>
+    <sfLayoutAssignment layoutName="ccrz__E_OrderItem__c-No Edit PHSS CC Order Item Layout" recordType="ccrz__E_OrderItem__c.Course_Credit_Adt_Customer_Service_QA"/>
+    <sfLayoutAssignment layoutName="ccrz__E_OrderItem__c-PHSS CC Order Item Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_OrderShipmentItem__c-ccrz__CC Order Shipment Item Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_OrderShipment__c-ccrz__CC Order Shipment Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_OrderTerm__c-ccrz__CC Order Term Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Order__c-No Edit PHSS CC Order Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PageLabel__c-ccrz__CC Page Label Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PageLabeli18n__c-ccrz__CC PageLabeli18n Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PageSection__c-ccrz__CC Page Section Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PaymentDetail__c-ccrz__CC Payment Detail Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Permissions__c-ccrz__E_Permissions Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PriceGroupAccount__c-PHSS CC Price Group Account Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PriceGroupItem__c-PHSS CC Price Group Item Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PriceGroupPricelist__c-PHSS CC Price Group Pricelist Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PriceGroup__c-PHSS CC Price Group Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PriceListItem__c-PHSS CC Price List Item Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PriceList__c-PHSS CC Price List Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PriceModifier__c-ccrz__CC Price Modifier Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PrivateCacheContent__c-ccrz__CC Private Cache Content Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PrivateCache__c-ccrz__CC Private Cache Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductCategory__c-ccrz__CC Product Category Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductGuide__c-ccrz__CC Product Guide Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductIndex__c-ccrz__CC Product Index Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductInventoryItem__c-ccrz__CC Product Inventory Item Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductItemI18N__c-ccrz__CC Product Item I18N Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductMedia__c-ccrz__CC Product Media Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductMedia__c-ccrz__CC Product Media Layout" recordType="ccrz__E_ProductMedia__c.ccrz__Datasheet"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductMedia__c-ccrz__CC Product Media Layout" recordType="ccrz__E_ProductMedia__c.ccrz__Image"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductSpecIndex__c-ccrz__CC Product Spec Index Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductSpec__c-ccrz__CC Product Spec Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductStorefront__c-ccrz__CC Product Storefront Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ProductTab__c-ccrz__CC Product Tab Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Product__c-PHSS CC Product Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Product__c-ccrz__CC Product Layout" recordType="ccrz__E_Product__c.ccrz__ProductType_Assembly"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Product__c-ccrz__CC Product Layout" recordType="ccrz__E_Product__c.ccrz__ProductType_Config"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Product__c-ccrz__CC Product Layout" recordType="ccrz__E_Product__c.ccrz__ProductType_Normal"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PromoI18n__c-ccrz__CC Promotion i18n Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Promo__c-ccrz__CC Promotion Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PromotionAccountGroupFilter__c-ccrz__CC Promotion Account Group Filter Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PublicCacheContent__c-ccrz__CC Public Cache Content Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_PublicCache__c-ccrz__CC Public Cache Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RecentItem__c-ccrz__CC Recent Item Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RelatedProductGroup__c-ccrz__CC Related Product Group Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RelatedProduct__c-ccrz__CC Related Product Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RequestForQuote__c-ccrz__CC Request For Quote Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ReviewLike__c-ccrz__Review Helpful Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Review__c-ccrz__CC Review Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RichContentI18N__c-ccrz__CC Rich Content I18N Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RichContent__c-ccrz__CC Rich Content Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RulePricingModifier__c-ccrz__CC Rule Pricing Modifier Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RuleSourceSKU__c-ccrz__CC Rule Source SKU Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RuleSourceSpec__c-ccrz__CC Rule Source Spec Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RuleTargetPLI__c-ccrz__CC Rule Target PLI Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RuleTargetSKU__c-ccrz__CC Rule Target SKU Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_RuleTargetSpec__c-ccrz__CC Rule Target Spec Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Rule__c-ccrz__CC Rule Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_SellerI18N__c-ccrz__CC Seller I18N Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Seller__c-ccrz__CC Seller Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_ShippingRate__c-ccrz__CC Shipping Rate Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_SiteIndex__c-ccrz__CC Site Index Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Spec__c-ccrz__CC Spec Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_StoredPayment__c-PHSS CC Stored Payment Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_StorefrontAssociation__c-ccrz__CC StorefrontAssociation Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_StorefrontConfigSettings__c-ccrz__CC Storefront Config Setting Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_SubProdTermI18N__c-ccrz__CC SubProdTerm I18N Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_SubProdTerm__c-ccrz__CC SubProdTerm Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Subscriber_Page__c-ccrz__CC Subscriber Page Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Subscription__c-ccrz__CC Subscription Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_TaxRate__c-ccrz__CC Tax Rate Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_Term__c-ccrz__CC Term Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__E_TransactionPayment__c-PHSS CC Transaction Payment Layout - READ ONLY"/>
+    <sfLayoutAssignment layoutName="ccrz__E_UserInventoryLocation__c-ccrz__CC User Inventory Location Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__L_Exception_Setup_Clone__c-ccrz__L_Exception Setup Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__L_Exception__c-ccrz__L_Exception Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__L_Logger_Setup_Clone__c-ccrz__L_Logger Setup Layout"/>
+    <sfLayoutAssignment layoutName="ccrz__L_Logger__c-ccrz__L_Logger Layout"/>
+    <sfLayoutAssignment layoutName="cloudx_cms__SS_Carousel_Slide__c-cloudx_cms__Image Slide Layout"/>
+    <sfLayoutAssignment layoutName="cloudx_cms__SS_Carousel_Slide__c-cloudx_cms__Image Slide Layout" recordType="cloudx_cms__SS_Carousel_Slide__c.cloudx_cms__image"/>
+    <sfLayoutAssignment layoutName="cloudx_cms__SS_Carousel_Slide__c-cloudx_cms__Video Slide Layout" recordType="cloudx_cms__SS_Carousel_Slide__c.cloudx_cms__video"/>
+    <sfLayoutAssignment layoutName="cloudx_cms__SS_Carousel__c-cloudx_cms__Banner Layout"/>
+    <sfLayoutAssignment layoutName="cwbtool__AnalysisSummary__c-cwbtool__Analysis Summary Layout"/>
+    <sfLayoutAssignment layoutName="cwbtool__Component__c-cwbtool__Component Layout"/>
+    <sfLayoutAssignment layoutName="cwbtool__Connection__c-cwbtool__Connection Layout"/>
+    <sfLayoutAssignment layoutName="cwbtool__ErrorLog__c-cwbtool__Error Log ID Layout"/>
+    <sfLayoutAssignment layoutName="cwbtool__FieldAnalysis__c-cwbtool__Field Analysis Layout"/>
+    <sfLayoutAssignment layoutName="cwbtool__FieldTrack__c-cwbtool__Field Track Layout"/>
+    <sfLayoutAssignment layoutName="cwbtool__MetadataDictionary__c-cwbtool__Metadata Dictionary Layout"/>
+    <sfLayoutAssignment layoutName="cwbtool__ProfileComparison__c-cwbtool__Profile Comparison Layout"/>
+    <sfLayoutAssignment layoutName="dsfs__DocuSignAccountConfiguration__c-dsfs__DocuSignAccountConfiguration Layout"/>
+    <sfLayoutAssignment layoutName="dsfs__DocuSign_Envelope_Document__c-dsfs__DocuSign Envelope Document Layout"/>
+    <sfLayoutAssignment layoutName="dsfs__DocuSign_Envelope_Recipient__c-dsfs__DocuSign Envelope Recipient Layout"/>
+    <sfLayoutAssignment layoutName="dsfs__DocuSign_Envelope__c-dsfs__DocuSign Envelope Layout"/>
+    <sfLayoutAssignment layoutName="dsfs__DocuSign_Recipient_Status__c-dsfs__DocuSign Recipient Status Layout"/>
+    <sfLayoutAssignment layoutName="dsfs__DocuSign_Status__c-dsfs__DocuSign Status With View Button"/>
+    <sfLayoutAssignment layoutName="jurisdiction__c-Jurisdition Layout"/>
+    <sfLayoutAssignment layoutName="ltngsharing__PrivateTestObject__c-ltngsharing__PrivateTestObject Layout"/>
+    <sfLayoutAssignment layoutName="ltngsharing__ReadOnlyTestObject__c-ltngsharing__ReadOnlyTestObject Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Achievement_Assignment__c-PHSS Achievement Assignment Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Achievement_Category__c-redwing__Achivement Category Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Achievement__c-PHSS Achievement Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Answer_Sequence_Item__c-redwing__Answer Sequence Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Answer_Sequence__c-redwing__Answer Sequence Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Auto_Assign_Rule_Bundle__c-redwing__Auto-Assign Rule Bundle Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Auto_Assign_Rule_Item__c-redwing__Auto-Assign Rule Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Auto_Assign_Rule_Processing_Item__c-redwing__Auto-Assign Rule Processing Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Auto_Assign_Rule__c-redwing__Auto-Assign Rule Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Batch_Operation_Record__c-redwing__Batch Operation Record Layout"/>
+    <sfLayoutAssignment layoutName="redwing__CheckIn__c-redwing__CheckIn Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Criteria_Bank__c-redwing__Criteria Bank Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Criterion_Rating__c-redwing__Criterion Rating Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Criterion_Task__c-redwing__Criterion Task Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Criterion__c-redwing__Criterion Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Equivalency_Item__c-redwing__Equivalency Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Equivalency__c-redwing__Equivalency Layout"/>
+    <sfLayoutAssignment layoutName="redwing__ILT_Class__c-PHSS ILT Class Layout - Read Only - 2"/>
+    <sfLayoutAssignment layoutName="redwing__ILT_Event_Class__c-redwing__ILT Event Class Layout"/>
+    <sfLayoutAssignment layoutName="redwing__ILT_Event__c-PHSS ILT Event Layout"/>
+    <sfLayoutAssignment layoutName="redwing__ILT_Instructor__c-PHSS ILT Instructor Layout"/>
+    <sfLayoutAssignment layoutName="redwing__ILT_Location__c-PHSS ILT Location Layout"/>
+    <sfLayoutAssignment layoutName="redwing__ILT_Roster__c-PHSS ILT Roster Layout"/>
+    <sfLayoutAssignment layoutName="redwing__ILT_Session__c-PHSS ILT Session Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Instructor__c-redwing__Instructor Layout"/>
+    <sfLayoutAssignment layoutName="redwing__LMS_Cache__c-redwing__LMS Cache Layout"/>
+    <sfLayoutAssignment layoutName="redwing__LMS_Permission_Rule_PermSet__c-redwing__LMS Permission Rule PermSet Layout"/>
+    <sfLayoutAssignment layoutName="redwing__LMS_Permission_Rule__c-redwing__LMS Permission Rule Layout"/>
+    <sfLayoutAssignment layoutName="redwing__LMS_Plugin__c-redwing__LMS Plugin Layout"/>
+    <sfLayoutAssignment layoutName="redwing__LMS_Sharing_Rule_Item__c-redwing__LMS Sharing Rule Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__LMS_Sharing_Rule__c-redwing__LMS Sharing Rule Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Assignment__c-PHSS Learning Assignment Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Category_Account__c-redwing__Learning Category Account Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Category_Profile__c-redwing__Learning Category Profile Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Category__c-redwing__Learning Category Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Equivalency__c-redwing__Learning Equivalency Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Feed__c-redwing__Learning Feed Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Material__c-redwing__Learning Material Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Prerequisite__c-redwing__Learning Prerequisite Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Search_Category_Item__c-redwing__Learning Search Category Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Search_Category__c-redwing__Learning Search Category Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning_Version__c-redwing__Learning Version Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning__c-PHSS Learning-Course Layout" recordType="redwing__Learning__c.rwscorm__Course"/>
+    <sfLayoutAssignment layoutName="redwing__Learning__c-redwing__Learning-CheckIn Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Learning__c-redwing__Learning-CheckIn Layout" recordType="redwing__Learning__c.redwing__CheckIn"/>
+    <sfLayoutAssignment layoutName="redwing__Learning__c-redwing__Learning-ILT Event Layout" recordType="redwing__Learning__c.redwing__ILT_Event"/>
+    <sfLayoutAssignment layoutName="redwing__Learning__c-redwing__Learning-ILT Layout" recordType="redwing__Learning__c.redwing__ILT"/>
+    <sfLayoutAssignment layoutName="redwing__Learning__c-redwing__Learning-Quiz Layout" recordType="redwing__Learning__c.redwing__Quiz"/>
+    <sfLayoutAssignment layoutName="redwing__Learning__c-redwing__Learning-Resource Layout" recordType="redwing__Learning__c.redwing__Resource"/>
+    <sfLayoutAssignment layoutName="redwing__Learning__c-redwing__Learning-RichText Layout" recordType="redwing__Learning__c.redwing__RichText"/>
+    <sfLayoutAssignment layoutName="redwing__Learning__c-redwing__Learning-Task Layout" recordType="redwing__Learning__c.redwing__Task"/>
+    <sfLayoutAssignment layoutName="redwing__Material_Item__c-redwing__Material Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Material__c-redwing__Material Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Prerequisite_Item__c-redwing__Prerequisite Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Prerequisite__c-redwing__Prerequisite Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Question_Bank_Question__c-redwing__Question Bank Question Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Question_Bank__c-redwing__Question Bank Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Question_Line__c-redwing__Question Line Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Question_Topic__c-redwing__Question Topic Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Question__c-redwing__Question Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Quiz__c-redwing__Quiz Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Rating__c-redwing__Points Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Rating__c-redwing__Points Layout" recordType="redwing__Rating__c.redwing__Boolean"/>
+    <sfLayoutAssignment layoutName="redwing__Rating__c-redwing__Points Layout" recordType="redwing__Rating__c.redwing__Points"/>
+    <sfLayoutAssignment layoutName="redwing__Rating__c-redwing__Points Layout" recordType="redwing__Rating__c.redwing__Stars"/>
+    <sfLayoutAssignment layoutName="redwing__Response_Summary__c-redwing__Response Summary Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Response__c-redwing__Response Layout"/>
+    <sfLayoutAssignment layoutName="redwing__RichText_Content__c-redwing__RichText Content Layout"/>
+    <sfLayoutAssignment layoutName="redwing__RichText__c-redwing__RichText Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Shared_Learning_Assignment__c-redwing__Shared Learning Assignment Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Task_Approver__c-redwing__Task Approver Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Task_Rating__c-redwing__Task Rating Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Task__c-redwing__Task Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Activity_Account__c-redwing__Training Activity Account Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Activity_Category__c-redwing__Training Activity Category Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Activity_Search_Category_Item__c-redwing__Learning Activity Search Category Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Activity__c-redwing__Training Activity Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Access_Request__c-redwing__Training Plan Access Request Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Account__c-redwing__Training Plan Account Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Achievement__c-redwing__Training Plan Achievement Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Assignment__c-PHSS Training Plan Assignment Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Batch_Operation__c-redwing__Training Plan Batch Operation Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Category__c-redwing__Training Plan Category Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Feedback__c-redwing__Training Plan Feedback Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Instructor__c-redwing__Training Plan Instructor Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Search_Category_Item__c-redwing__Learning Plan Search Category Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Section_Assignment__c-redwing__Training Plan Section Assignment Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Section_Item__c-redwing__Training Plan Section Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan_Section__c-redwing__Training Plan Section Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Plan__c-PHSS Training Plan Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Resource__c-redwing__Training Resource Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Track_Account__c-redwing__Training Track Account Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Track_Assignment__c-redwing__Training Track Assignment Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Track_Category__c-redwing__Training Track Category Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Track_Level_Item__c-redwing__Training Track Level Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Track_Level__c-redwing__Training Track Level Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Track_Search_Category_Item__c-redwing__Learning Trac Search Category Item Layout"/>
+    <sfLayoutAssignment layoutName="redwing__Training_Track__c-redwing__Training Track Layout"/>
+    <sfLayoutAssignment layoutName="redwing__User_Certification__c-redwing__User Certification Layout"/>
+    <sfLayoutAssignment layoutName="redwing__vILT_Account_Member__c-redwing__vILT Account Member Layout"/>
+    <sfLayoutAssignment layoutName="redwing__vILT_Account__c-redwing__vILT Account Layout"/>
+    <sfLayoutAssignment layoutName="redwing__vILT_Meeting__c-redwing__vILT Meeting Layout"/>
+    <sfLayoutAssignment layoutName="rwscorm__Learning_Assignment_Course__c-rwscorm__Learning Assignment Course Layout"/>
+    <sfLayoutAssignment layoutName="rwscorm__Learning_Course_Item__c-rwscorm__Learning Course Item Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Catalog_Subscriber__c-scormanywhere__Catalog Subscriber Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Catalog_User__c-scormanywhere__Catalog User Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Catalog__c-scormanywhere__Catalog Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Catalog__c-scormanywhere__Catalog Layout" recordType="scormanywhere__Catalog__c.scormanywhere__Playlist"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Catalog__c-scormanywhere__Catalog Layout" recordType="scormanywhere__Catalog__c.scormanywhere__Standard"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Channel_Course__c-scormanywhere__Course Channel Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Channel__c-scormanywhere__Channel Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Course_Catalog__c-scormanywhere__Course Catalog Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Course_Sharing__c-scormanywhere__Media Sharing Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Course_Version__c-scormanywhere__Course Version Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Course__c-scormanywhere__Course Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Embedded_Catalog__c-scormanywhere__Embedded Catalog Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Media_Sharing_Rule__c-scormanywhere__Media Sharing Rule Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Related_Media__c-scormanywhere__Media Content Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Transcript_Stats__c-scormanywhere__Transcript Stats Layout"/>
+    <sfLayoutAssignment layoutName="scormanywhere__Transcript__c-scormanywhere__Transcript Layout"/>
+    <sfLayoutAssignment layoutName="scss__Root_Post_Generation_Log_Detail__c-scss__Root Post Generation Log Detail Layout"/>
+    <sfLayoutAssignment layoutName="scss__Root_Post_Generation_Log__c-scss__Root Post Generation Log Layout"/>
+    <sfLayoutAssignment layoutName="sked__Account_Resource_Score__c-sked__Account Resource Score Layout"/>
+    <sfLayoutAssignment layoutName="sked__Account_Tag__c-sked__Account Tag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Activity_Resource__c-sked__Activity Resource Layout"/>
+    <sfLayoutAssignment layoutName="sked__Activity__c-sked__Activity Layout"/>
+    <sfLayoutAssignment layoutName="sked__Async_Job__c-sked__Async Job Layout"/>
+    <sfLayoutAssignment layoutName="sked__Attendee__c-sked__Attendee Layout"/>
+    <sfLayoutAssignment layoutName="sked__Availability_Pattern_Resource__c-sked__Availability Pattern Resource Layout"/>
+    <sfLayoutAssignment layoutName="sked__Availability_Pattern__c-sked__Availability Pattern Layout"/>
+    <sfLayoutAssignment layoutName="sked__Availability_Template_Entry__c-sked__Availability Template Entry Layout"/>
+    <sfLayoutAssignment layoutName="sked__Availability_Template_Resource__c-sked__Availability Template Resource Layout"/>
+    <sfLayoutAssignment layoutName="sked__Availability_Template__c-sked__Availability Template Layout"/>
+    <sfLayoutAssignment layoutName="sked__Availability__c-sked__Availability Layout"/>
+    <sfLayoutAssignment layoutName="sked__Client_Availability__c-sked__Client Availability Layout"/>
+    <sfLayoutAssignment layoutName="sked__Contact_Tag__c-sked__Contact Tag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Debug_Log__c-sked__Debug Log Layout"/>
+    <sfLayoutAssignment layoutName="sked__Holiday_Region__c-sked__Holiday Region Layout"/>
+    <sfLayoutAssignment layoutName="sked__Holiday__c-sked__Holiday Layout"/>
+    <sfLayoutAssignment layoutName="sked__Job_Allocation__c-sked__Job Allocation Layout"/>
+    <sfLayoutAssignment layoutName="sked__Job_Contact__c-sked__Job Contact Layout"/>
+    <sfLayoutAssignment layoutName="sked__Job_Dependency__c-sked__Job Dependency Layout"/>
+    <sfLayoutAssignment layoutName="sked__Job_Offer__c-sked__Job Offer Layout"/>
+    <sfLayoutAssignment layoutName="sked__Job_Product__c-sked__Job Product Layout"/>
+    <sfLayoutAssignment layoutName="sked__Job_Tag__c-sked__JobTag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Job_Task__c-sked__Job Task Layout"/>
+    <sfLayoutAssignment layoutName="sked__Job_Time_Constraint__c-sked__Job Time Constraint Layout"/>
+    <sfLayoutAssignment layoutName="sked__Job__c-sked__Job Layout"/>
+    <sfLayoutAssignment layoutName="sked__Location_Resource_Score__c-sked__Location Resource Score Layout"/>
+    <sfLayoutAssignment layoutName="sked__Location__c-sked__Location Layout"/>
+    <sfLayoutAssignment layoutName="sked__Polling_Change_Event__c-sked__Polling Change Event Layout"/>
+    <sfLayoutAssignment layoutName="sked__Recurring_Schedule__c-sked__Recurring Schedule Layout"/>
+    <sfLayoutAssignment layoutName="sked__Region_Area__c-sked__Region Area Layout"/>
+    <sfLayoutAssignment layoutName="sked__Region__c-sked__Region Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Job_Offer__c-sked__Resource Job Offer Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Override_Region__c-sked__Resource Override Region Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Override__c-sked__Resource Override Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Region__c-sked__Resource Region Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Requirement_Tag__c-sked__Resource Requirement Tag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Requirement__c-sked__Resource Requirement Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Shift_Break__c-sked__Resource Shift Break Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Shift_Offer__c-sked__Resource Shift Offer Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Shift__c-sked__Resource Shift Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource_Tag__c-sked__ResourceTag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Resource__c-sked__Resource Layout"/>
+    <sfLayoutAssignment layoutName="sked__Schedule_Template__c-sked__Schedule Template Layout"/>
+    <sfLayoutAssignment layoutName="sked__Shift_Offer_Shift__c-sked__Shift Offer Shift Layout"/>
+    <sfLayoutAssignment layoutName="sked__Shift_Offer__c-sked__Shift Offer Layout"/>
+    <sfLayoutAssignment layoutName="sked__Shift_Tag__c-sked__Shift Tag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Shift__c-sked__Shift Layout"/>
+    <sfLayoutAssignment layoutName="sked__Slot__c-sked__Slot Layout"/>
+    <sfLayoutAssignment layoutName="sked__Tag__c-sked__Tag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Activity_Resource__c-sked__Templated Activity Resource Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Activity__c-sked__Templated Activity Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Attendee__c-sked__Templated Attendee Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Job_Allocation__c-sked__Templated Job Allocation Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Job_Dependency__c-sked__Templated Job Dependency Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Job_Product__c-sked__Templated Job Product Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Job_Tag__c-sked__Templated Job Tag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Job_Task__c-sked__Templated Job Task Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Job_Time_Constraint__c-sked__Templated Job Time Constraint Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Job__c-sked__Templated Job Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Resource_Requirement_Tag__c-sked__Templated Resource Requirement Tag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Resource_Requirement__c-sked__Templated Resource Requirement Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Resource_Shift__c-sked__Templated Resource Shift Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Shift_Tag__c-sked__Templated Shift Tag Layout"/>
+    <sfLayoutAssignment layoutName="sked__Templated_Shift__c-sked__Templated Shift Layout"/>
+    <sfLayoutAssignment layoutName="trailheadapp__Badge__c-trailheadapp__Trailhead Badge Layout"/>
+    <sfLayoutAssignment layoutName="trailheadapp__Debug_Log__c-trailheadapp__Debug Log Layout"/>
+    <sfLayoutAssignment layoutName="trailheadapp__Trail__c-trailheadapp__Trail Layout"/>
+    <sfLayoutAssignment layoutName="trailheadapp__Trailhead_User_Data__c-trailheadapp__Trailhead User Data Layout"/>
+    <sfLayoutAssignment layoutName="trailheadapp__Trailmix_Assignment__c-trailheadapp__Trailmix Assignment Layout"/>
+    <sfLayoutAssignment layoutName="trailheadapp__Trailmix__c-trailheadapp__Trailmix Layout"/>
+    <sfLayoutAssignment layoutName="trailheadapp__User_Badge__c-trailheadapp__Trailhead User Badge Layout"/>
+    <sfLayoutAssignment layoutName="trailheadapp__User_Trailmix__c-trailheadapp__User Trailmix Layout"/>
+    <sfLayoutAssignment layoutName="zConversion__c-zConversion Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__CommercialInvoice__c-zkmulti__FedEx Commercial Invoice Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__DangerousGoodsDetails__c-zkmulti__FedEx Dangerous Goods Details Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__Detail_Field__c-zkmulti__Detail Field Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__EEIForm__c-zkmulti__EEI Form Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__ExportDetails__c-zkmulti__FedEx Export Details Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__FedExSmartPostDetails__c-zkmulti__FedEx SmartPost Details Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__HazMatCommodity__c-zkmulti__FedEx HazMat Commodity Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__HazMatContainer__c-zkmulti__FedEx HazMat Container Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__HazMatDetails__c-zkmulti__FedEx HazMat Details Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCBulk_Shipment_Status__c-zkmulti__Bulk Shipment Status Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCBulk_Shipment__c-zkmulti__Bulk Shipment Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCCheckpoint__c-zkmulti__Checkpoint Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCCustom_Address_Source_Field__c-zkmulti__Custom Address Source Field Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCCustom_Address_Source_Package__c-zkmulti__Custom Address Source Item Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCCustom_Address_Source__c-zkmulti__Custom Address Source Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCCustoms_Item__c-zkmulti__Customs Item Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCPackageCheckpoint__c-zkmulti__Package Checkpoint Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCPackage__c-zkmulti__Package Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCPickup__c-zkmulti__Multi Carrier Pickup Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCQueued_Customs_Item__c-zkmulti__Queued Customs Item Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCQueued_Package__c-zkmulti__Queued Package Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCQueued_Shipment_Special_Services__c-zkmulti__Queued Shipment Special Services Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCQueued_Shipment_Status__c-zkmulti__Queued Shipment Status Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCQueued_Shipment__c-zkmulti__Queued Shipment Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCShipmate_Preference__c-zkmulti__Preference Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCShipmentInfo__c-zkmulti__Shipment Info Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCShipment_Special_Services__c-zkmulti__Shipment Special Services Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCShipment__c-zkmulti__Shipment Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MCUser_Printer__c-zkmulti__User Printer Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MultiPackageShipment__c-zkmulti__Multi Package Shipment Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__MultiPackageShipment__c-zkmulti__Multi Package Shipment Layout" recordType="zkmulti__MultiPackageShipment__c.zkmulti__Consolidation"/>
+    <sfLayoutAssignment layoutName="zkmulti__MultiPackageShipment__c-zkmulti__Multi Package Shipment Layout" recordType="zkmulti__MultiPackageShipment__c.zkmulti__MultiPackage"/>
+    <sfLayoutAssignment layoutName="zkmulti__MultiPackageShipment__c-zkmulti__Multi Package Shipment Layout" recordType="zkmulti__MultiPackageShipment__c.zkmulti__Outbound_And_Return"/>
+    <sfLayoutAssignment layoutName="zkmulti__NaftaCo__c-zkmulti__FedEx NAFTA CO Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__PermissionSetting__c-zkmulti__Restriction Setting Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__Pickup_Custom_Address_Source__c-zkmulti__Pickup Custom Address Source Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__PrintHistory__c-zkmulti__Print History Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__ProFormaInvoice__c-zkmulti__FedEx Pro Forma Invoice Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__RequestedShipmentDocuments__c-zkmulti__Requested Shipment Documents Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__Shipmate_Preference_Info__c-zkmulti__Shipment Parameter Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__Shipment_Field__c-zkmulti__Shipment Field Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__Shipment_Status__c-zkmulti__Shipment Status Layout"/>
+    <sfLayoutAssignment layoutName="zkmulti__Visibility_Suite__c-zkmulti__Visibility Suite Layout"/>
+  </layoutAssignments>
+</metadataProfileLayoutAssignments>

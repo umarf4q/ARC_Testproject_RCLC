@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" keyPrefix="a1O" label="DreamTeam Time" labelPlural="DreamTeam Times" layoutable="true" n="BLND_DFTE_Time__c" queryable="true" readPermission="false" retrieveable="true" s="" t="DreamTeam Time (a1O)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome R00N30000002PYgJEAW__r R00N30000002PYiFEAW__r R00N30000002PYi3EAG__r R00N30000002PYgOEAW__r R00N30000002PYioEAG__r" n="New"/>
+    <sfActionLink modes="View R00N30000002PYgJEAW__r R00N30000002PYiFEAW__r R00N30000002PYi3EAG__r R00N30000002PYgOEAW__r R00N30000002PYioEAG__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View R00N30000002PYgJEAW__r R00N30000002PYiFEAW__r R00N30000002PYi3EAG__r R00N30000002PYgOEAW__r R00N30000002PYioEAG__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View R00N30000002PYgJEAW__r R00N30000002PYiFEAW__r R00N30000002PYi3EAG__r R00N30000002PYgOEAW__r R00N30000002PYioEAG__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View R00N30000002PYgJEAW__r R00N30000002PYiFEAW__r R00N30000002PYi3EAG__r R00N30000002PYgOEAW__r R00N30000002PYioEAG__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

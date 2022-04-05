@@ -1,0 +1,32 @@
+2021/12/23-19:30:26.703 144c Reusing MANIFEST C:\Users\Administrator\Provar\Workspace1\Testproject\.provarCaches\.chromeProfiles\profile2\Default\IndexedDB\https_test-americanredcross.cs63.force.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/12/23-19:30:26.703 144c Recovering log #10
+2021/12/23-19:30:26.706 144c Reusing old log C:\Users\Administrator\Provar\Workspace1\Testproject\.provarCaches\.chromeProfiles\profile2\Default\IndexedDB\https_test-americanredcross.cs63.force.com_0.indexeddb.leveldb/000010.log 
+2021/12/23-19:30:28.481 1634 Compacting 1@1 + 1@2 files
+2021/12/23-19:30:28.541 1634 Generated table #13@1: 972 keys, 2136446 bytes
+2021/12/23-19:30:28.556 1634 Generated table #14@1: 2308 keys, 388703 bytes
+2021/12/23-19:30:28.556 1634 Compacted 1@1 + 1@2 files => 2525149 bytes
+2021/12/23-19:30:28.561 1634 compacted to: files[ 0 0 2 0 0 0 0 ]
+2021/12/23-19:30:29.942 2628 Level-0 table #16: started
+2021/12/23-19:30:29.969 2628 Level-0 table #16: 1787202 bytes OK
+2021/12/23-19:30:29.971 2628 Delete type=2 #9
+2021/12/23-19:30:29.971 2628 Delete type=0 #10
+2021/12/23-19:30:29.971 2628 Delete type=2 #11
+2021/12/23-19:30:29.976 2628 Compacting 1@1 + 2@2 files
+2021/12/23-19:30:30.024 2628 Generated table #17@1: 1438 keys, 2137676 bytes
+2021/12/23-19:30:30.049 2628 Generated table #18@1: 2680 keys, 834153 bytes
+2021/12/23-19:30:30.049 2628 Compacted 1@1 + 2@2 files => 2971829 bytes
+2021/12/23-19:30:30.050 2628 compacted to: files[ 0 0 2 0 0 0 0 ]
+2021/12/23-19:30:30.051 2628 Delete type=2 #13
+2021/12/23-19:30:30.051 2628 Delete type=2 #14
+2021/12/23-19:30:30.051 2628 Delete type=2 #16
+2021/12/23-19:30:32.429 c84 Level-0 table #20: started
+2021/12/23-19:30:32.456 c84 Level-0 table #20: 1699906 bytes OK
+2021/12/23-19:30:32.458 c84 Delete type=0 #15
+2021/12/23-19:30:32.473 2738 Compacting 1@1 + 2@2 files
+2021/12/23-19:30:32.529 2738 Generated table #21@1: 950 keys, 2140248 bytes
+2021/12/23-19:30:32.548 2738 Generated table #22@1: 2772 keys, 456323 bytes
+2021/12/23-19:30:32.548 2738 Compacted 1@1 + 2@2 files => 2596571 bytes
+2021/12/23-19:30:32.549 2738 compacted to: files[ 0 0 2 0 0 0 0 ]
+2021/12/23-19:30:32.550 2738 Delete type=2 #17
+2021/12/23-19:30:32.550 2738 Delete type=2 #18
+2021/12/23-19:30:32.550 2738 Delete type=2 #20

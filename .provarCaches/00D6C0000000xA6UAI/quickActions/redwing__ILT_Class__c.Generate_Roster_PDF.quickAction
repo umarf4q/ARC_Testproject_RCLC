@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><QuickAction xmlns="http://soap.sforce.com/2006/04/metadata"
+   >
+ <fullName>redwing__ILT_Class__c.Generate_Roster_PDF</fullName>
+    <fieldOverrides>
+  <field>Generate_Roster_PDF__c</field>
+  <formula>TRUE</formula>
+   </fieldOverrides>
+  <height>0</height>
+  <isProtected>false</isProtected>
+ <label>Generate Roster PDF</label>
+   <optionsCreateFeedItem>false</optionsCreateFeedItem>
+  <quickActionLayout>
+  <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+  <quickActionLayoutColumns />
+  <quickActionLayoutColumns />
+ </quickActionLayout>
+       <type>Update</type>
+ <width>0</width>
+</QuickAction>

@@ -1,0 +1,295 @@
+<apex:page controller="SSign.SSCreateRequestController" action="{!init}" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false">
+  <html>
+    <!-- START: Code shared by SSCreateRequest[1|2|3|4].page -->
+    <head>
+      <c:SSCreateRequestHead wizardStepNumber="4" />
+    </head>
+    <body>
+      <div class="loading-div background-white">
+        <div class="loading-div-content">
+          <img width="80" id="loading-div-spinner" src="{!URLFOR($Resource.SSign_Images,'lightning_spinner.gif')}" class="undraggable" unselectable="on" />
+        </div>
+      </div>
+      <c:SSCreateRequestWizard wizardStepNumber="4" />
+      <!-- END: Code shared by SSCreateRequest[1|2|3|4].page -->
+
+      <style>
+        .field-input-text {
+          width: 100%;
+        }
+        .message-to-recipient-box-div {
+          padding-top: 1.25em;
+        }
+      </style>
+
+      <script type="text/javascript">
+        HeadUtils.Init.addSharedHTMLBefore = function() {
+          HeadUtils.DocsToBeSent.renderTrashIcon = false;
+          HeadUtils.DocsToBeSent.renderDragHereArea = false;
+        }
+
+        HeadUtils.Init.documentReadyFunctionBefore = function() {
+          /* emailMessage variables are populated before HeadUtils.Init.documentReadyFunction.
+          But we need to populate our <select>'s before populating their variables.
+          Hence we do that in the documentReadyFunctionBefore which HeadUtils runs before
+          it populates any HTML values with data from the database */
+          populateSenderSelectOptions(HeadUtils.Database.options.senders);
+        }
+
+        HeadUtils.Init.documentReadyFunction = function() {
+          HeadUtils.ClickableTab.initClickableTab();
+          HeadUtils.ClickableTab.onclickDict = {
+            '#preview-message-tab' : function() { previewMessageOnclick(); }
+          };
+          HeadUtils.DocRecipients.addRecipients(HeadUtils.Database.state.recipients);
+
+          var emailTemplates = HeadUtils.Database.options.emailTemplates;
+          emailTemplates.unshift(getDefaultEmailTemplateData());
+          setEmailTemplateDataDict(emailTemplates);
+          populateEmailTemplateSelectOptions(emailTemplates);
+          setEmailTemplateSelectOnchange();
+          var emailTemplateIdOnload = HeadUtils.Database.state.emailMessage.emailTemplateId;
+          if (emailTemplateIdOnload == null || emailTemplateIdOnload == '') {
+            emailTemplateIdOnload = 'default';
+          }
+          setEmailFieldsFromTemplate(emailTemplateIdOnload);
+        };
+
+        function previewMessageOnclick() {
+          var emailDataStruct = HeadUtils.DataUtils.getDataStructFromHTML('#compose-message-tab-content');
+          j$('#preview-message-body-container').html(emailDataStruct.body.replaceAll('\n', '<br />'));
+        }
+
+        function populateSenderSelectOptions(senderDataList) {
+          $senderSelect = j$('#sender-select');
+          for (var i = 0; i < senderDataList.length; i++) {
+            var sd = senderDataList[i];
+            $senderSelect.append('<option value="' + sd.senderId + '">' + sd.displayName + '</option>');
+          }
+        }
+
+        function getSenderTestData(numSenders) {
+          var senderDataList = [];
+          senderDataList.push({ // Logged-in User
+            senderId : '1',
+            email : 'zclark@sdocs.com',
+            displayName : 'Zachary Clark (zclark@sdocs.com)'
+          });
+          for (var i = 1; i <= numSenders; i++) {
+            var email = 'zclark+' + i + '@sdocs.com';
+            senderDataList.push({
+              senderId : 'OrgWide-' + i,
+              email : email,
+              displayName : 'Zachary Clark' + i + ' (' + email + ')'
+            });
+          }
+          return senderDataList;
+        }
+
+        function populateEmailTemplateSelectOptions(emailTemplateDataList) {
+          $emailTemplateSelect = j$('#email-template-select');
+          for (var i = 0; i < emailTemplateDataList.length; i++) {
+            var etd = emailTemplateDataList[i];
+            $emailTemplateSelect.append('<option value="' + etd.emailTemplateId + '">' + etd.emailTemplateName + '</option>');
+          }
+        }
+
+        function getNewEmailTemplateData() {
+          return {
+            emailTemplateId : null,
+            emailTemplateName : null,
+            sender : null,
+            subject : null,
+            cc : null,
+            body : null
+          };
+        }
+
+        function getDefaultEmailTemplateData() {
+          return {
+            emailTemplateId : 'default',
+            emailTemplateName : 'Default Email Template',
+            sender : HeadUtils.Database.options.senders[0].senderId, // Logged-In User
+            subject : 'S-Sign E-Signature Request',
+            cc : '',
+            body : 'Hello,\n\nPlease sign the enclosed documents.\n\nThank you!'
+          };
+        }
+
+        function getEmailTemplateTestData(numDocuments) {
+          var emailTemplateDataList = [];
+          for (var i = 1; i <= numDocuments; i++) {
+            var etd = getNewEmailTemplateData();
+            etd.emailTemplateId = "EmailTemplateId-" + i;
+            etd.emailTemplateName = "Email Template " + i;
+            etd.sender = 'zachary@sdocs.com';
+            etd.subject = 'Subject ' + i;
+            etd.cc = 'ccemail+' + i + '@acme.com';
+            etd.body = "This is the body for Email Template " + i;
+            emailTemplateDataList.push(etd);
+          }
+          return emailTemplateDataList;
+        }
+
+        var emailTemplateDataDict = {};
+        function setEmailTemplateDataDict(emailTemplateDataList) {
+          for (var i = 0; i < emailTemplateDataList.length; i++) {
+            var etd = emailTemplateDataList[i];
+            emailTemplateDataDict[etd.emailTemplateId] = etd;
+          }
+        }
+
+        function setEmailTemplateSelectOnchange() {
+          j$('#email-template-select').change(function() {
+            var emailTemplateId = j$(this).val();
+            setEmailFieldsFromTemplate(emailTemplateId);
+          });
+        }
+
+        function setEmailFieldsFromTemplate(emailTemplateId) {
+          /* Specifying j$('#compose-message-tab-content') as the root (rather than j$(document))
+          prevents conflicts with "Documents to be sent" .data-- values */
+          HeadUtils.DataUtils.writeDataToHTML(
+            j$('#compose-message-tab-content'),
+            emailTemplateDataDict[emailTemplateId]
+          );
+        }
+      </script>
+
+      <!-- START: Page 1 main contents container -->
+      <div class="container-fluid w-75 mt-5">
+        <div class="row">
+
+          <!-- Empty spacing column -->
+          <div class="col-xl-1 col-12"></div>
+
+          <!-- START: "Message To Recipients" box -->
+          <div class="col-xl-6 col-12 mr-2">
+            <div class="row pt-2 pb-3">
+              <div class="col pl-0">
+                <style type="text/css">
+                  @media screen and (max-width: 601px) {
+                    .select-documents-text {
+                      font-size: 1.25em;
+                      text-align: center;
+                    }
+                  }
+                </style>
+                <h1 class="select-documents-text font-weight-bolder">Message to Recipients</h1>
+              </div>
+            </div>
+
+            <!-- START: Tabs ("Compose Message" and "Preview Message") -->
+            <div class="row white-block text-center">
+              <div id="compose-message-tab" class="col-xl-4 col-6 py-3 clickable-tab clickable-tab-active" renders="#compose-message-tab-content">
+                <h3 class="font-weight-bolder">Compose Message</h3>
+              </div>
+              <div id="preview-message-tab" class="col-xl-4 col-6 py-3 clickable-tab" renders="#preview-message-tab-content">
+                <h3 class="font-weight-bolder">Preview Message</h3>
+              </div>
+              <div class="col-xl-4 col-12">
+                <!-- Empty spacing column -->
+              </div>
+            </div>
+            <!-- END: Tabs ("Compose Message" and "Preview Message") -->
+
+            <!-- START: Tab content container (holds all tab content blocks) -->
+            <div class="row">
+              <div class="col-12 p-0">
+                <!-- START: Tab content: "Compose Messager" -->
+                <div objectName="HeadUtils.Database.state.emailMessage" id="compose-message-tab-content" class="container-fluid w-100 white-block border-top-0 py-3">
+                  <div class="col-12">
+                    <div class="message-to-recipient-box-div">
+                      <div class="field-label">Email Template</div>
+                      <select variableName="emailTemplateId" id="email-template-select" class="field-input-text">
+                      </select>
+                    </div>
+                    <div class="message-to-recipient-box-div">
+                      <div class="field-label">Sender</div>
+                      <select variableName="sender" id="sender-select" class="field-input-text">
+                      </select>
+                    </div>
+                    <div class="message-to-recipient-box-div">
+                      <div class="field-label">Subject</div>
+                      <input variableName="subject" class="field-input-text" type="text" />
+                    </div>
+                    <div class="message-to-recipient-box-div">
+                      <div class="field-label">CC</div>
+                      <input variableName="cc" class="field-input-text" type="text" />
+                    </div>
+                    <div class="message-to-recipient-box-div">
+                      <div class="field-label">Email Message</div>
+                      <textarea variableName="body" class="field-input-text" type="text" style="height: 10em;" />
+                    </div>
+                    <div class="message-to-recipient-box-div">
+                      <button id="preview-message-btn" onclick="HeadUtils.ClickableTab.runClickableTab('#preview-message-tab');"
+                      class="bg-secondary text-white text-center py-2 w-100" style="cursor:pointer;">
+                        Preview message
+                      </button>
+                    </div>
+                  </div>
+                  <!-- START: "Automatically send reminders" box -->
+                  <!--
+                  <div class="row pt-4">
+                    <div class="col pt-3 white-block" style="border-width: 1px 0 0 0;">
+                      <div class="row">
+                        <div class="col">
+                          <div class="checkbox-label-pair-div">
+                            <input variableName="sendReminders" variableType="boolean" class="checkbox" type="checkbox" checked="true" />
+                            <div class="checkbox-label field-label">Automatically send reminders</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          Send automated email reminders if the recipients don't complete the documents.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  -->
+                  <!-- END: "Automatically send reminders" box -->
+                </div>
+                <!-- END: Tab content: "Compose Message" -->
+
+                <!-- START: Tab content: "Preview Message" -->
+                <div id="preview-message-tab-content" class="container-fluid w-100 white-block border-top-0 py-3">
+                  <div class="row">
+                    <div class="col">
+                      <div id="preview-message-body-container" />
+                      <br />
+                      <apex:dynamicComponent componentValue="{!signHereEmailButton}" invokeAfterAction="true" />
+                    </div>
+                  </div>
+                </div>
+                <!-- END: Tab content: "Preview Message" -->
+              </div>
+            </div>
+            <!-- END: Tab content container (holds all tab content blocks) -->
+            
+          </div>
+          <!-- END: "Message To Recipients" box -->
+
+          <!-- Empty spacing column -->
+          <div class="col-12 d-xl-none d-flex p-4"></div>
+
+          <div class="col-xl-4 col-12 ml-2">
+            <!-- START: "Documents to be sent" box-->
+            <div id="documents-to-be-sent-box-container" />
+            <!-- END: "Documents to be sent" box-->
+
+            <!-- START: "Documents recipients" box-->
+            <div id="document-recipients-box-container" class="mt-4" />
+            <!-- END: "Document recipients" box-->
+          </div>
+
+          <!-- Empty spacing column -->
+          <div class="col-xl-1 col-12"></div>
+
+        </div>
+      </div>
+      <!-- END: Page 1 main contents container -->
+
+    </body>
+  </html>
+</apex:page>

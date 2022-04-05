@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="Fulfillment__c.SYSTEM" deleteable="true" keyPrefix="a7O" label="Fulfillment" labelPlural="Fulfillments" layoutable="true" metadataLabel="Fulfillment" n="Fulfillment__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Fulfillment (a7O)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a7O/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Fulfillment ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="Fulfillment Name" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Order__r.ccrz__Account__r.Name" length="1300" n="Account__c" t="Account" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="CC_Transaction_Payment__r.CreatedDate" n="CC_Transaction_Payment_Date__c" t="CC Transaction Payment Date" type="date" updateable="false"/>
+    <sfField length="18" n="CC_Transaction_Payment__c" relationshipLabel="Fulfillments" relationshipName="CC_Transaction_Payment__r" required="true" t="CC Transaction Payment" type="reference">
+      <referenceTos>
+        <string>ccrz__E_TransactionPayment__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Order__r.FOCIS_Category__c" length="1300" n="FOCIS_Category__c" t="FOCIS Category" updateable="false"/>
+    <sfField n="Fulfillment_Date__c" t="Fulfillment Date" type="date"/>
+    <sfField length="18" n="Order__c" relationshipLabel="Fulfillments" relationshipName="Order__r" t="Order" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Order__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="CC_Transaction_Payment__r.ccrz__AccountType__c" length="1300" n="Payment_Method__c" t="Payment Method" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="CC_Transaction_Payment__r.ccrz__PaymentType__c" length="1300" n="Payment_Type__c" t="Payment Type" updateable="false"/>
+    <sfField length="255" n="Status__c" restrictedPicklist="true" t="Status" type="picklist">
+      <picklistEntryIds>1,2</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="1" n="Open" s=""/>
+        <sfPLE id="2" n="Closed" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="50" n="Supplemental_Information__c" t="Supplemental Information"/>
+    <sfField length="255" n="Type__c" t="Type" type="picklist">
+      <picklistEntryIds>3,4,5</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="3" n="Credit" s=""/>
+        <sfPLE id="4" n="Invoice" s=""/>
+        <sfPLE id="5" n="Receipt" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" n="Open_Fulfillment_Items__c" precision="18" summaryForeignKey="Fulfillment_Item__c.Fulfillment__c" summaryOperation="count" t="Open Fulfillment Items" type="_double" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="(CC_Transaction_Payment__r.ccrz__Contact__r.FirstName + CC_Transaction_Payment__r.ccrz__Contact__r.LastName )" formulaTreatBlanksAs="BlankAsZero" length="1300" n="transaction_Contact_name__c" t="Contact name" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="CC_Transaction_Payment__r.ccrz__StoredPayment__r.Id" length="1300" n="Stored_Payment_Name__c" t="Stored Payment Name" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="CC_Transaction_Payment__r.Merchant_Reference_ID__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Transaction_Reference_ID__c" t="Transaction Reference ID" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF( Order__r.ccrz__Storefront__c  = 'CREStore', '43',\nIF( Order__r.ccrz__Storefront__c  = 'CPS', '45',\nIF( Order__r.ccrz__Storefront__c  = 'GeneralStore',\nIF( Order__r.NSSCCConnector_from_SFCC__c=TRUE, '46',\nIF(  Order__r.Opportunity_Order__r.RecordType.Name = 'Sales Opportunity', '42',\nIF( Order__r.Opportunity_Order__r.RecordType.Name = 'Order Opportunity', '47',\nIF( AND( NOT(ISBLANK(Order__r.Opportunity_Order__c)),Order__r.Opportunity_Order__r.RecordType.Name != 'Sales Opportunity',Order__r.Opportunity_Order__r.RecordType.Name != 'Order Opportunity'), '48',\n'46') ) ) ), '') ) )" length="1300" n="Test_Focus__c" t="Test Focus" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="CASE(  FOCIS_Category__c  , \n'42', 'FS', \n'43', 'AP/LTP', \n'45', 'CPS', \n'46', 'COM-RCO', \n'47', 'COM-ITM', \n'48', 'COM-RCO', \n'Other')" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Channel_Formula__c" t="Channel Formula" updateable="false"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="Fulfillment__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002Ef5e.History"/>
+    <sfObjectRelationship childName="Fulfillment_Item__c" field="Fulfillment__c" n="Fulfillment_Items__r" relationshipName="Fulfillment_Items__r" s="2-" t="01I0V000002Ef5d"/>
+    <sfObjectRelationship childName="ccrz__E_InvoiceItem__c" field="Fulfillment__c" n="CC_Invoice_Items__r" relationshipName="CC_Invoice_Items__r" s="2-" t="01I0V000002N5NN"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome Fulfillments__r List" n="New"/>
+    <sfActionLink modes="View Fulfillments__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Fulfillments__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Fulfillments__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Fulfillments__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="Fulfillments Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>FULFILLMENT__C.NAME</string>
+    <string>Order__c</string>
+    <string>Type__c</string>
+    <string>Status__c</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>FULFILLMENT__C.NAME</string>
+    <string>Order__c</string>
+    <string>Type__c</string>
+    <string>Status__c</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>FULFILLMENT__C.NAME</string>
+    <string>Order__c</string>
+    <string>Type__c</string>
+    <string>Status__c</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

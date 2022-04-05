@@ -1,0 +1,1711 @@
+<apex:page standardcontroller="Dataplier__Execution__c" extensions="Dataplier.ExecutionDetailController" doctype="html-5.0" sideBar="false">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    </head>
+    <c:TrackPanel />
+    <link rel="stylesheet" href="{!URLFOR($Resource.migration, 'css/jquery-ui.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.migration, 'css/datatables.min.css')}"/>
+    <apex:slds />
+    <style>
+        input.text {
+            margin-bottom: 12px;
+            width: 95%;
+            padding: .4em;
+        }
+
+        .table-header {
+            background-color: #f7f9fb !important;
+            height: 30px !important;
+        }
+
+        select {
+            margin-bottom: 12px;
+            width: 98%;
+            padding: .4em;
+        }
+
+        .ui-dialog .ui-state-error {
+            padding: .3em;
+        }
+
+        .msgIcon {
+            display: none !important
+        }
+
+        .customMessage * {
+            color: #fff !important
+        }
+
+        .customMessage {
+            margin: 5px 0 !important;
+            max-width: 100%;
+            opacity: 1 !important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+
+        .message {
+            opacity: 1;
+        }
+    </style>
+    <script>
+        function confirmDelete() {
+            var isDelete = confirm("Are you sure you wish to delete record?");
+            if (isDelete) return true;
+            return false;
+        }
+    </script>
+    <apex:pagemessages id="msg"></apex:pagemessages>
+    <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+        <div class="slds-media__body">
+            <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#logging')}"/>
+							</svg>
+						</span>
+                <span style="font-weight: bolder;" class="slds-m-left--small">Execution</span>
+            </h1>
+        </div>
+    </div>
+
+    <script>
+        function hideShowLog() {
+            let cmp = document.getElementById('logBlok');
+            cmp.style.display = cmp.style.display === 'none' ? 'block' : 'none';
+            let sec = document.getElementById('logSection');
+            for (let i = 0; i < sec.classList.length; i++) {
+                if (sec.classList[i] === 'slds-is-open') {
+                    sec.classList.remove('slds-is-open');
+                    return;
+                }
+            }
+            sec.classList.add('slds-is-open');
+        }
+
+        function hideShowExecute() {
+            let cmp = document.getElementById('executionBlock');
+            cmp.style.display = cmp.style.display === 'none' ? 'block' : 'none';
+            let sec = document.getElementById('executeSection');
+            for (let i = 0; i < sec.classList.length; i++) {
+                if (sec.classList[i] === 'slds-is-open') {
+                    sec.classList.remove('slds-is-open');
+                    return;
+                }
+            }
+            sec.classList.add('slds-is-open');
+        }
+
+        function hideShowObjectInf() {
+            let cmp = document.getElementById('infBlock');
+            cmp.style.display = cmp.style.display === 'none' ? 'block' : 'none';
+            let sec = document.getElementById('dataSection');
+            for (let i = 0; i < sec.classList.length; i++) {
+                if (sec.classList[i] === 'slds-is-open') {
+                    sec.classList.remove('slds-is-open');
+                    return;
+                }
+            }
+            sec.classList.add('slds-is-open');
+        }
+
+        function overridePageMessages() {
+            var textureEffect = '';
+            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage ' + textureEffect);
+            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage ' + textureEffect);
+            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage ' + textureEffect);
+            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage ' + textureEffect);
+
+            $('.errorM3').removeClass('errorM3');
+            $('.confirmM3').removeClass('confirmM3');
+            $('.infoM3').removeClass('infoM3');
+            $('.warningM3').removeClass('warningM3');
+        }
+    </script>
+    <style>
+        .msgIcon {
+            display: none !important
+        }
+
+        .customMessage * {
+            color: #fff !important
+        }
+
+        .customMessage {
+            margin: 5px 0 !important;
+            max-width: 100%;
+            opacity: 1 !important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+
+        .message {
+            opacity: 1;
+        }
+    </style>
+    <apex:form style="">
+        <apex:outputPanel layout="block" id="pblock1">
+            <div class="slds-card slds-m-top--medium">
+                <ul class="slds-accordion">
+                    <li class="slds-accordion__list-item">
+                        <section class="slds-accordion__section slds-is-open" style="padding-bottom: 0 !important;" id="dataSection">
+                            <div class="slds-accordion__summary" style="background-color: #f7f9fb; padding: 9px; margin : -12px -12px 0 -12px">
+                                <h3 class="slds-accordion__summary-heading">
+                                    <button aria-controls="accordion-details-01" type="button" onclick="hideShowObjectInf()" aria-expanded="true" class="slds-button slds-button_reset slds-accordion__summary-action">
+                                        <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                            <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}"/>
+                                            </svg>
+                                        </svg>
+                                        <span class="slds-icon_container slds-icon-standard-account">
+ 							            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#contact_list')}"/>
+							            </svg>
+						                </span>
+                                        <span class="slds-truncate slds-m-left--small" title="">Execution Information</span>
+                                    </button>
+                                </h3>
+                            </div>
+                            <div style="display: block" id="infBlock">
+                                <apex:outputPanel layout="block" title="Execution Information" styleClass="slds-m-top--medium slds-m-bottom--medium" id="execInfo">
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col slds-size--4-of-12">
+                                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12">
+                                                <apex:outputLabel styleClass="slds-form-element__label" for="executionName" value="Execution Name: "/>
+                                                <div class="slds-form-element__control">
+                                                    <apex:outputfield id="executionName" value="{!ex.Name}"/>
+                                                </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12">
+                                                <apex:outputLabel styleClass="slds-form-element__label" for="executionSName" value="Sequence Name: "/>
+                                                <div class="slds-form-element__control">
+                                                    <apex:outputfield id="executionSName" value="{!ex.Execution_Sequence__r.Name}"/>
+                                                </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12">
+                                                <apex:outputLabel styleClass="slds-form-element__label" for="totalRecords" value="Total records: "/>
+                                                <div class="slds-form-element__control">
+                                                    <apex:outputfield id="totalRecords" value="{!ex.Dataplier__Total_Records__c}"/>
+                                                </div>
+                                            </apex:outputPanel>
+                                        </div>
+
+                                        <div class="slds-col slds-size--4-of-12">
+                                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12">
+                                                <apex:outputLabel styleClass="slds-form-element__label" for="totalSpace" value="Space required (KB): "/>
+                                                <div class="slds-form-element__control">
+                                                    <apex:outputfield id="totalSpace" value="{!ex.Dataplier__Space_Required__c}"/>
+                                                </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12">
+                                                <apex:outputLabel styleClass="slds-form-element__label" for="executionStart" value="Started: "/>
+                                                <div class="slds-form-element__control">
+                                                    <apex:outputfield id="executionStart" value="{!ex.Dataplier__Started__c}"/>
+                                                </div>
+                                            </apex:outputPanel>
+                                        </div>
+                                        <div class="slds-col slds-size--4-of-12">
+                                            <apex:outputPanel layout="block" id="btns1" styleClass="slds-float--right">
+                                                <apex:commandbutton action="{!delete}" styleClass="slds-button slds-button_neutral" value="Delete" onclick="return confirmDelete()"/>
+                                                <apex:commandbutton styleClass="slds-button slds-button_neutral button-disable-off" action="{!getExStepsToDelete}" value="Rollback" oncomplete="rollback('{!JSENCODE(RecordsToDelete)}')" disabled="{!isRollBackDisabled}" id="btn2"/>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+            <div class="slds-card slds-m-top--medium">
+                <ul class="slds-accordion">
+                    <li class="slds-accordion__list-item">
+                        <section class="slds-accordion__section slds-is-open" style="padding-bottom: 0 !important;" id="executeSection">
+                            <div class="slds-accordion__summary" style="background-color: #f7f9fb; padding: 9px; margin : -12px -12px 0 -12px">
+                                <h3 class="slds-accordion__summary-heading">
+                                    <button aria-controls="accordion-details-01" type="button" onclick="hideShowExecute()" aria-expanded="true" class="slds-button slds-button_reset slds-accordion__summary-action">
+                                        <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                            <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}"/>
+                                            </svg>
+                                        </svg>
+                                        <span class="slds-icon_container slds-icon-standard-account">
+ 							            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product_required')}"/>
+							            </svg>
+						                </span>
+                                        <span class="slds-truncate slds-m-left--small" title="Accordion summary">Execution Steps</span>
+                                    </button>
+                                </h3>
+                            </div>
+                            <div style="display: block" id="executionBlock">
+                                <apex:outputPanel layout="block" styleClass="slds-m-top--medium slds-m-bottom--medium" title="Execution Steps" id="exStepsSection">
+                                    <apex:dataTable value="{!exSteps}" var="step" headerClass="table-header" styleClass="slds-table slds-table_cell-buffer slds-table_bordered slds-no-row-hover" style="border-top: snow;" width="100%">
+                                        <apex:column width="3%" style="height: 40px !important;">
+                                            <apex:outputlink value="{!URLFOR($Action.Dataplier__Execution_Step__c.View, step.id)}" target="_blank">
+                                                <svg class="slds-button__icon slds-icon-text-error" aria-hidden="true" style="fill: #8dbdf1">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#file')}"/>
+                                                </svg>
+                                            </apex:outputlink>
+                                        </apex:column>
+                                        <apex:column width="4%" value="{!step.Dataplier__Sequence__c}"/>
+                                        <apex:column width="33%">
+                                            <apex:facet name="header">Status</apex:facet>
+                                            <apex:outputtext value="{!step.Dataplier__Status__c}" styleclass="{!step.id}status"/>
+                                        </apex:column>
+                                        <!-- <apex:column value="{!step.Operation__c}"/> -->
+                                        <apex:column width="33%" value="{!step.Dataplier__Object_API_Name__c}">
+                                            <apex:facet name="header">Object API Name</apex:facet>
+                                        </apex:column>
+                                        <apex:column width="10%">
+                                            <apex:facet name="header">Processed</apex:facet>
+                                            <apex:outputtext value="{!step.Dataplier__Records_Processed__c}" styleclass="{!step.id}fetched"/>
+                                        </apex:column>
+                                        <apex:column width="10%">
+                                            <apex:facet name="header">Failed</apex:facet>
+                                            <apex:outputtext value="{!step.Dataplier__Records_Failed__c}" styleclass="{!step.id}failed"/>
+                                        </apex:column>
+                                    </apex:dataTable>
+                                </apex:outputPanel>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+            <div class="slds-card slds-m-top--medium">
+                <ul class="slds-accordion">
+                    <li class="slds-accordion__list-item">
+                        <section class="slds-accordion__section slds-is-open" style="padding-bottom: 0 !important;" id="logSection">
+                            <div class="slds-accordion__summary" style="background-color: #f7f9fb; padding: 9px; margin : -12px -12px 0 -12px">
+                                <h3 class="slds-accordion__summary-heading">
+                                    <button aria-controls="accordion-details-01" type="button" onclick="hideShowLog()" aria-expanded="true" class="slds-button slds-button_reset slds-accordion__summary-action">
+                                        <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                            <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}"/>
+                                            </svg>
+                                        </svg>
+                                        <span class="slds-icon_container slds-icon-standard-account">
+ 							                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#related_list')}"/>
+							                </svg>
+                                            <div id="loadSpinner" class="slds-hidden">
+                                                <div role="status" class="slds-spinner slds-spinner_x-small slds-spinner_brand" style="left:98%">
+                                                    <span class="slds-assistive-text">Loading</span>
+                                                    <div class="slds-spinner__dot-a"></div>
+                                                    <div class="slds-spinner__dot-b"></div>
+                                                </div>
+                                            </div>
+						                </span>
+                                        <span class="slds-truncate slds-m-left--small" title="Accordion summary">Logs</span>
+                                    </button>
+                                </h3>
+                            </div>
+                            <div style="display: block" id="logBlok">
+                                <apex:outputPanel styleClass="slds-m-top--medium slds-m-bottom--medium" layout="block" title="Logs">
+                                    <textarea spellcheck="false" id="logs" class="slds-input" data-scroll="true" rows="13" style="width: 100%; line-height: 1.3rem !important;"></textarea>
+                                </apex:outputPanel>
+                            </div>
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <div class="slds-form-element__control">
+                                    <div class="slds-checkbox">
+                                        <input type="checkbox" name="options" id="checkbox-unique-id-286" value="checkbox-unique-id-286" checked="checked" onclick="disableAutoScroll(this)"/>
+                                        <label class="slds-checkbox__label" for="checkbox-unique-id-286">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">Autoscroll with output</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+        </apex:outputPanel>
+        <apex:actionfunction action="{!setInitData}" name="setStartDate" rerender="execInfo,exStepsSection" immediate="true" oncomplete="cont()">
+        </apex:actionfunction>
+        <apex:actionfunction name="rerenderConnectionPopUp" rerender="popUpPanel"
+            oncomplete="addClass(document.getElementById('pop-up-spinner'), 'slds-hide'); removeClass(document.getElementById('{!$Component.popUpDiaglog.popUpPanelBody}'), 'slds-hide');">
+            <apex:param name="flow" assignTo="{!selectedConnectionFlow}" value=""/>
+        </apex:actionfunction>
+        <apex:actionFunction name="showPageMessage" action="{!showPageMessage}" onComplete="enabledButtonRollback(); overridePageMessages();" rerender="msg,execInfo,btns1">
+            <apex:param name="level" assignTo="{!level}" value=""/>
+            <apex:param name="message" assignTo="{!message}" value=""/>
+        </apex:actionFunction>
+    </apex:form>
+
+
+    <div id="dialog-form" class="slds-scope">
+        <div class="slds-scope">
+            <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+                <div class="slds-media__body">
+                    <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#apex_plugin')}"/>
+							</svg>
+						</span>
+                        <span class="slds-m-left--small">Connect</span>
+                    </h1>
+                </div>
+            </div>
+            <div id="loadingMsg" style="display:none">
+                <p class="validateTips" style="color:yellow">Loading users, please wait</p>
+            </div>
+        </div>
+        <apex:form style="font-size: 100%; !important;" id="popUpDiaglog">
+            <div class="slds-scope">
+
+                <div id="pop-up-spinner" class="slds-hide" style="height:6rem;position:relative;">
+                    <div role="status" class="slds-spinner slds-spinner_medium">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+
+                <apex:outputPanel id="popUpPanelBody" layout="block" styleClass="slds-box slds-m-top--medium">
+                    <fieldset id="pop-up-mode" class="slds-form-element">
+                        <legend class="slds-form-element__legend slds-form-element__label">Select Connection</legend>
+                        <div class="slds-form-element__control">
+                            <apex:repeat value="{!connectionFlows}" var="flow">
+                                <span class="slds-radio">
+                                    <input type="radio" id="{!'connection-mode-' + flow.value}" name="connection-options" value="{!flow.value}" 
+                                            onchange="handleFlowChange(this.value)"/>
+                                    <label class="slds-radio__label" for="{!'connection-mode-' + flow.value}">
+                                        <span class="slds-radio_faux"></span>
+                                        <span class="slds-form-element__label">{!flow.label}</span>
+                                    </label>
+                                </span>
+                            </apex:repeat>
+                        </div>
+                    </fieldset>
+
+                    <apex:outputPanel id="popUpPanel" layout="block" styleClass="slds-m-top--medium">
+                        <fieldset>
+                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-size--12-of-12" rendered="{!selectedConnectionFlow == '1'}">
+                                <apex:outputLabel styleClass="slds-form-element__label" for="env" value="Environment: "/>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-select_container">
+                                        <select name="env" id="env" class="slds-select" onchange="showCustomDomainInput(this);">
+                                            <option selected="selected" value="https://login.salesforce.com">Production/Developer</option>
+                                            <option value="https://test.salesforce.com">Sandbox</option>
+                                            <option value="">Custom Domain</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+
+                            <div id="customDomainContainer" style="display: none;">
+                                <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12">
+                                    <apex:outputLabel styleClass="slds-form-element__label" for="customDomain" value="Custom Domain: "/>
+                                    <div class="slds-form-element__control">
+                                        <apex:outputPanel styleClass="requiredBlock"/>
+                                        <output id="customDomainErr" style="display: none; color: red; margin: 2px 0 4px 0;">Domain should be like https://somethingcool.my.salesforce.com</output>
+                                        <output id="customDomainLightningErr" style="display: none; color: red; margin: 2px 0 4px 0;">URL should NOT be lightning domain like https://somethingcool.lightning.force.com</output>
+                                        <input type="text" name="customDomain" id="customDomain" class="slds-input" onchange="instanceOptionsValue(this);"/>
+                                    </div>
+                                </apex:outputPanel>
+
+                            </div>
+                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12" rendered="{!selectedConnectionFlow == '1'}">
+                                <apex:outputLabel styleClass="slds-form-element__label" for="userName" value="Username: "/>
+                                <div class="slds-form-element__control">
+                                    <apex:outputPanel styleClass="requiredBlock"/>
+                                    <input type="text" name="userName" id="userName" class="slds-input"/>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12" rendered="{!selectedConnectionFlow == '1'}">
+                                <apex:outputLabel styleClass="slds-form-element__label" for="password" value="Password: "/>
+                                <div class="slds-form-element__control">
+                                    <apex:outputPanel styleClass="requiredBlock"/>
+                                    <input type="password" name="password" id="password" class="slds-input"/>
+                                </div>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-m-top_small slds-size_12-of-12" rendered="{!selectedConnectionFlow == '2'}">
+                                <apex:outputLabel styleClass="slds-form-element__label" for="target_org" value="Destination org: "/>
+                                <div class="slds-form-element__control">
+                                    <apex:outputPanel styleClass="required"/>
+                                    <apex:selectList id="target_org" value="{!destId}" styleClass="slds-select" size="1" onchange="handleTargetOrgSelect(this.value)">
+                                        <apex:selectOptions value="{!orgs}"/>
+                                    </apex:selectList>
+                                </div>
+                            </apex:outputPanel>
+                            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
+                        </fieldset>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </div>
+        </apex:form>
+    </div>
+    <div id="dialog-form-valid" title="Validated FLS" style="display:none">
+        <p class="validateTips" style="color:green">FLS validated completed successfully on target org.</p>
+        <p class="validateTips">Do you want to start deploy data?</p>
+    </div>
+    <div id="dialog-form-not-valid" title="Deploy failed" class="slds-scope" style="display:none">
+        <div class="slds-page-header slds-header slds-m-bottom--medium" style="background-color: #f7f9fb !important ;">
+            <div class="slds-media__body">
+                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#unmatched')}"/>
+							</svg>
+						</span>
+                    <span class="slds-m-left--small">Following CRUD/FLS settings on target org are not valid.</span>
+                </h1>
+            </div>
+        </div>
+        <div id="contAccord">
+        </div>
+    </div>
+    <div id="dialog-form-not-mapping-user" title="Setting parameters" style="display:none">
+        <div class="slds-scope">
+            <div id="msgMapUser"></div>
+            <div class="slds-page-header slds-header slds-m-bottom--medium" style="background-color: #f7f9fb !important ;">
+                <div class="slds-media__body">
+                    <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#user_role')}"/>
+							</svg>
+						</span>
+                        <span class="slds-m-left--small">Set parameters for User records.</span>
+                    </h1>
+                </div>
+            </div>
+            <div id="UserDeploy" style="display:none;">
+                <div id="UserDeploys">
+                    <div class="slds-box slds-m-top--medium" id="panelStandardUsers" style="display: none">
+                        <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				            <span class="slds-icon_container slds-icon-standard-account">
+ 					            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#user')}"/>
+					            </svg>
+				            </span>
+                            <span class="slds-truncate slds-m-left--small">Settings Standard Users</span>
+                        </div>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-m-top--medium slds-form-element_horizontal  slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="standardUserProfileOptions" value="User profile (Target Org): "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <select id="standardUserProfileOptions" class="slds-select" name="standardUserProfileOptions" onchange="selectStandardUserProfile()"/>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-box slds-m-top--medium" id="panelPartnerUsers" style="display: none">
+                        <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				            <span class="slds-icon_container slds-icon-standard-account">
+ 					            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#team_member')}"/>
+					            </svg>
+				            </span>
+                            <span class="slds-truncate slds-m-left--small">Settings Partner Users</span>
+                        </div>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-m-top--medium slds-form-element_horizontal  slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="partnerUserProfileOptions" value="User profile (Target Org): "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <select id="partnerUserProfileOptions" class="slds-select" name="partnerUserProfileOptions" onchange="selectPartnerUserProfile()"/>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-box slds-m-top--medium" id="panelCommunityUsers" style="display: none">
+                        <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				            <span class="slds-icon_container slds-icon-standard-account">
+ 					            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#team_member')}"/>
+					            </svg>
+				            </span>
+                            <span class="slds-truncate slds-m-left--small">Settings Community Users</span>
+                        </div>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-m-top--medium slds-form-element_horizontal  slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="communityUserProfileOptions" value="User profile (Target Org): "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <select id="communityUserProfileOptions" class="slds-select" name="communityUserProfileOptions" onchange="selectCommunityUserProfile()"/>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-box slds-m-top--medium" id="panelChatterUsers" style="display: none">
+                        <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				            <span class="slds-icon_container slds-icon-standard-account">
+ 					            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#team_member')}"/>
+					            </svg>
+				            </span>
+                            <span class="slds-truncate slds-m-left--small">Settings Chatter Users</span>
+                        </div>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-m-top--medium slds-form-element_horizontal  slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="chatterUserProfileOptions" value="User profile (Target Org): "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <select id="chatterUserProfileOptions" class="slds-select" name="chatterUserProfileOptions" onchange="selectChatterUserProfile()"/>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div id="mappingUsers" class="slds-box slds-m-top--medium">
+            </div>
+        </div>
+    </div>
+    <div id="dialog-form-campare" title="Deployment failed." style="display:none">
+        <div class="messageOrg">
+            Can't deploy data to the same org.
+        </div>
+    </div>
+
+    <div id="dialog-delete" title="Deleting deployed records." style="display:none">
+        <div class="slds-scope">
+            <div id="errMsg" style="display:block">
+                <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+                    <div class="slds-media__body">
+                        <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#record_delete')}"/>
+							</svg>
+						</span>
+                            <span class="slds-m-left--small">Deleting deployed records</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <form id="form1">
+                <div class="slds-box slds-m-top--medium">
+                    <div style="background-color: #f7f9fb; padding: 9px; margin : -16px -16px 0 -16px">
+                    <span class="slds-icon_container slds-icon-standard-account">
+                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#custom')}"/>
+                    </svg>
+                    </span>
+                        <span class="slds-truncate slds-m-left--small" title="Accordion summary">Settings</span>
+                    </div>
+                    <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-m-top--medium  slds-size--10-of-12">
+                        <div class="slds-form-element">
+                            <label class="slds-checkbox_toggle slds-grid">
+                                <span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Delete inserted records:</span>
+                                <input type="checkbox" id="delInserted" name="checkbox-toggle-15" aria-describedby="checkbox-toggle-15" checked=""/>
+                                <span id="checkbox-toggle-15" class="slds-checkbox_faux_container" aria-live="assertive">
+      								<span class="slds-checkbox_faux"></span>
+   									</span>
+                            </label>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                        <div class="slds-form-element">
+                            <label class="slds-checkbox_toggle slds-grid">
+                                <span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Delete updated records:</span>
+                                <input type="checkbox" id="delUpdated" name="checkbox-toggle-16" aria-describedby="checkbox-toggle-15" checked=""/>
+                                <span id="checkbox-toggle-16" class="slds-checkbox_faux_container" aria-live="assertive">
+      								<span class="slds-checkbox_faux"></span>
+   									</span>
+                            </label>
+                        </div>
+                    </apex:outputPanel>
+                    <input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
+                </div>
+                <div class="slds-m-top--medium slds-box">
+                    <div style="background-color: #f7f9fb; padding: 9px; margin : -16px -16px 0 -16px">
+                    <span class="slds-icon_container slds-icon-standard-account">
+                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#poll')}"/>
+                    </svg>
+                    </span>
+                        <span class="slds-truncate slds-m-left--small" title="Accordion summary">Execution</span>
+                    </div>
+                    <fieldset>
+                        <apex:outputPanel layout="block" styleClass="slds-m-top--medium" style="height : 250px; overflow: scroll">
+                            <table id="tbl" class="slds-table slds-table_cell-buffer slds-no-row-hover" datapagesize="3" cellspacing="5" width="100%">
+                            </table>
+                        </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+    </div>
+    <style>
+        .requiredBlock {
+            background-color: #c00;
+            position: absolute;
+            border-radius: 35%;
+            left: 33%;
+            width: 3px;
+            height: 31px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            let connectionFlows = document.getElementsByName('connection-options');
+            for(let i = 0; i < connectionFlows.length; i++){
+                if(connectionFlows[i].value === '1'){
+                    connectionFlows[i].checked = true;
+                }
+            }
+        }
+
+        Visualforce.remoting.timeout = 120000;
+        const GET_BLOB = '{!$RemoteAction.ExecutionDetailController.getBlob}';
+        const PERSIST_IDS = '{!$RemoteAction.ExecutionDetailController.saveIds}';
+        const ANALYTICS_ACTION = '{!$RemoteAction.ExecutionDetailController.analyticsTrack}';
+        const AUTH_ACTION = '{!$RemoteAction.ExecutionDetailController.accessToTarget}';
+        const gs = '{!globalSettings}';
+        let selectedConnectionMode = '1';
+        let selectedTargetOrgId;
+        let globalSettings;// global var, used to hold values of global settings in  migrator
+
+        if (gs) globalSettings = JSON.parse(gs);
+
+        setCurrentDate(globalSettings.currentDate);
+        const exId = '{!JSENCODE(exId)}';
+        let StandardPriceBookMaster = '{!StandartPriceBook}';
+        let StandardPriceBookTarget;
+        const orgId = '{!$Organization.Id}';
+        const isUserObjectExist = '{!isUserObjectExist}' === 'true' || '{!isUserObjectExist}' === true;
+        const sessionId = '{!$Api.Session_Id}';
+        const sequenceId = '{!JSENCODE(ex.Dataplier__Execution_Sequence__c)}';
+        let isStarted = '{!isStarted}';
+        const isAsyncMode = '{!isUseBulkApi}',
+          isAdvancedLogs = '{!isAdvancedLogs}';
+        isStarted = isStarted === 'true';
+        const sourceConn = new jsforce.Connection({
+            accessToken: sessionId,
+            proxyUrl: "/services/proxy",
+            version: '51.0'
+        });
+    </script>
+
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-1.10.2.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-ui.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jsforce.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/dataObfuscator.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/utilities5.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jszip.min.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/datatables.js')}"/>
+
+    <!-- CSVToJSON parser   -->
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/csvtojson/csvtojson.min.js')}"/>
+
+    <!-- The order of inclusion is important -->
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/const.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/utils.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/logger.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/thread.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/block.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/binaryblock.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/step.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/idcache.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/cache.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/cachemanager.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/ioservice.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__execution, 'js/migration.js')}"/>
+
+    <script type="text/javascript" src="{!URLFOR($Resource.execution, 'js/execution.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.execution, 'js/executionDetailScript.js')}"></script>
+
+    <script type="text/javascript">
+        function handleTargetOrgSelect(value){
+            selectedTargetOrgId = value;
+        }
+        function handleFlowChange(value){
+            selectedConnectionMode = value;
+            let spinner = document.getElementById('pop-up-spinner');
+            removeClass(spinner, 'slds-hide');
+            let popUpBody = document.getElementById('{!$Component.popUpDiaglog.popUpPanelBody}');
+            addClass(popUpBody, 'slds-hide');
+            rerenderConnectionPopUp(value);
+        }
+
+        function addClass(elem, className){
+            if(elem) elem.classList.add(className);
+        }
+
+        function removeClass(elem, className){
+            if(elem) elem.classList.remove(className);
+        }
+
+        function loadStep(stepString, parentStepsString) {
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.ExecutionDetailController.loadExecutionStep}',
+                stepString,
+                parentStepsString,
+                function (res, ev) {
+                    handleStepLoading(res, ev)
+                },
+                {escape: false, buffer: true}
+            );
+        }
+
+        function loadExStepsLogs() {
+          const allPromises = [],
+            stepsIds = JSON.parse('{!JSENCODE(stepsIds)}');
+          for (const stepId of stepsIds) {
+            allPromises.push(new Promise((res, rej) => {
+              Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.ExecutionDetailController.getExStepLog}',
+                stepId, (result, e) => {
+                  res(result);
+                },
+                {escape: false, buffer: true}
+              )
+            }))
+          }
+
+          Promise.all(allPromises).then((logs) => {
+            $('#logs').val(logs.join('\n'));
+          })
+        }
+
+        const standardUserLicense = ['Standard'],
+          communityUserLicense = ['CspLitePortal', 'PowerCustomerSuccess', 'CustomerSuccess'],
+          partnerUserLicense = ['PowerPartner'], chatterUserLicense = ['CsnOnly'], usersMapRole = {},
+          usersMapProfile = {}, notMappingUsers = {}, query_string = {}, query = window.location.search.substring(1),
+          vars = query.split("&");
+
+        let standardUserProfile, partnerUserProfile, communityUserProfile, chatterUserProfile, isDeleteMode = false,
+          isMappingPrefix = true;
+
+        for (let i = 0; i < vars.length; i++) {
+            let pair = vars[i].split("=");
+            // If first entry with this name
+            if (typeof query_string[pair[0]] === "undefined") {
+                query_string[pair[0]] = decodeURIComponent(pair[1]);
+                // If second entry with this name
+            } else if (typeof query_string[pair[0]] === "string") {
+                query_string[pair[0]] = [query_string[pair[0]], decodeURIComponent(pair[1])];
+                // If third or later entry with this name
+            } else {
+                query_string[pair[0]].push(decodeURIComponent(pair[1]));
+            }
+        }
+
+        var dryrun = query_string.dryrun === "true";
+        exOrderWrapJSON = jQuery.parseJSON('{!JSENCODE(exOrderWrapJSON)}');
+        <!--$('#logs').val("{!JSENCODE(latestLog)}");-->
+
+        init();
+
+        function cont() {
+            startMigration();
+        }
+
+        function enabledButtonRollback() {
+            $(".button-disable-off").attr("disabled", false).removeClass("btnDisabled").addClass('btn');
+        }
+
+        function ParamMapping(param) {
+            if (param) {
+                $("#paramMap").show();
+                isMappingPrefix = true;
+            } else {
+                $("#paramMap").hide();
+                isMappingPrefix = false;
+            }
+        }
+
+        var MapSourceUsers = {};
+        var MapUsers = {};
+        var SourceUsers = [];
+        var TargetUsers = [];
+        var UserPrefixForMap;
+        var UserTargetId;
+        var UserQuery;
+
+
+        function loadUsers() {
+            if (isUserObjectExist) {// load source and target users details
+                $("#loadingMsg").show();
+                checkSourceUserDescribe((field) => {
+                  getSourceUsers(field);
+                })
+            } else {// close connect dialog, continue
+                validateSuccessful();
+            }
+        }
+
+        function checkSourceUserDescribe(cb) {
+          sourceConn.describe('User', (err, meta) => {
+            if (err) { return console.error(err); }
+            if (meta.fields.find(field => field.name === 'IsPortalEnabled')) {
+              cb('IsPortalEnabled,');
+            } else cb('');
+          })
+        }
+
+        function selectStandardUserProfile() {
+            $("#msgMapUser").hide();
+            let e = document.getElementById('standardUserProfileOptions');
+            standardUserProfile = e.options[e.selectedIndex].value;
+            if (standardUserProfile === '') standardUserProfile = null;
+        }
+
+        function selectPartnerUserProfile() {
+            $("#msgMapUser").hide();
+            let e = document.getElementById('partnerUserProfileOptions');
+            partnerUserProfile = e.options[e.selectedIndex].value;
+            if (partnerUserProfile === '') partnerUserProfile = null;
+        }
+
+        function selectCommunityUserProfile() {
+            $("#msgMapUser").hide();
+            let e = document.getElementById('communityUserProfileOptions');
+            communityUserProfile = e.options[e.selectedIndex].value;
+            if (communityUserProfile === '') communityUserProfile = null;
+        }
+
+        function selectChatterUserProfile() {
+            $("#msgMapUser").hide();
+            let e = document.getElementById('chatterUserProfileOptions');
+            chatterUserProfile = e.options[e.selectedIndex].value;
+            if (chatterUserProfile === '') chatterUserProfile = null;
+        }
+
+
+        let userQueryTarget;
+
+        function getSourceUsers(field) {
+            for (let index = 0; index < exOrderWrapJSON.length; index++) {
+                if (exOrderWrapJSON[index].objectName === 'User') {
+                    if (exOrderWrapJSON[index].query.indexOf('where') > -1) {
+                        if (typeof UserQuery === 'undefined' || !UserQuery.includes('where')) {
+                            UserQuery = `SELECT Id,Name,UserName,${field}IsActive,ProfileId,Profile.UserType,Profile.Name,UserRoleId,UserRole.Name,LastName, FirstName FROM User ${exOrderWrapJSON[index].query.substring(exOrderWrapJSON[index].query.indexOf('where'), exOrderWrapJSON[index].query.length)} AND Profile.Id != null`;
+                            if(exOrderWrapJSON[index].filterTargetRecords && exOrderWrapJSON[index].filterTargetRecords === 'All'){
+                                userQueryTarget = `SELECT Id,Name,UserName,IsActive,ProfileId,Profile.Name,UserRoleId,UserRole.Name,LastName,FirstName FROM User WHERE Profile.Id != null`;
+                            } else {
+                                userQueryTarget = `SELECT Id,Name,UserName,IsActive,ProfileId,Profile.Name,UserRoleId,UserRole.Name,LastName,FirstName FROM User  ${exOrderWrapJSON[index].query.substring(exOrderWrapJSON[index].query.indexOf('where'), exOrderWrapJSON[index].query.length)} AND Profile.Id != null`;
+                            }
+                        } else {
+                            UserQuery += ' OR ' + exOrderWrapJSON[index].query.substring(exOrderWrapJSON[index].query.indexOf('where') + 5, exOrderWrapJSON[index].query.length);
+                            if(!(exOrderWrapJSON[index].filterTargetRecords && exOrderWrapJSON[index].filterTargetRecords === 'All')){
+                                userQueryTarget += ' OR ' + exOrderWrapJSON[index].query.substring(exOrderWrapJSON[index].query.indexOf('where') + 5, exOrderWrapJSON[index].query.length);
+                            }
+                        }
+                    } else {
+                        UserQuery = `SELECT Id,Name,UserName,${field}IsActive,ProfileId,Profile.UserType,Profile.Name,UserRoleId,UserRole.Name,LastName,FirstName FROM User WHERE Profile.Id != null`;
+                        userQueryTarget = 'SELECT Id,Name,UserName,IsActive,ProfileId,Profile.Name,UserRoleId,UserRole.Name,LastName,FirstName FROM User WHERE Profile.Id != null';
+                    }
+                }
+            }
+            if (UserQuery == null) {
+                UserQuery = `SELECT Id,Name,UserName,IsActive,${field}ProfileId,Profile.UserType,Profile.Name,UserRoleId,UserRole.Name,LastName,FirstName FROM User WHERE Profile.Id != null`;
+                userQueryTarget = 'SELECT Id,Name,UserName,IsActive,ProfileId,Profile.Name,UserRoleId,UserRole.Name,LastName,FirstName FROM User WHERE Profile.Id != null';
+            }
+            sourceConn.query(UserQuery)
+                .on("record", function (record) {
+                    SourceUsers.push(record);
+                })
+                .on("end", function (result) {
+                    onRetrieveSoursEnd(result);
+                })
+                .on("error", function (err) {
+                    console.error(err);
+                })
+                .run({autoFetch: false});
+        }
+
+        function onRetrieveSoursEnd(result) {
+            if (result._finished) {
+                getTargetUsers();
+            } else {
+                getMoreSours(result._locator);
+            }
+        }
+
+        function getMoreSours(locator) {
+            sourceConn.queryMore(locator)
+                .on("record", function (record) {
+                    SourceUsers.push(record);
+                })
+                .on("end", function (result) {
+                    onRetrieveSoursEnd(result);
+                })
+                .on("error", function (err) {
+                    console.error(err);
+                })
+                .run({autoFetch: false});
+        }
+
+        function getTargetUsers() {
+            targetConn.query(userQueryTarget)
+                .on("record", function (record) {
+                    TargetUsers.push(record);
+                })
+                .on("end", function (result) {
+                    onRetrieveTargetEnd(result);
+                })
+                .on("error", function (err) {
+                    console.error(err);
+                })
+                .run({autoFetch: false});
+        }
+
+        function onRetrieveTargetEnd(result) {
+            if (result._finished) {
+                getTargetData();
+            } else {
+                getMoreTarget(result._locator);
+            }
+        }
+
+        function getMoreTarget(locator) {
+            targetConn.queryMore(locator)
+                .on("record", function (record) {
+                    TargetUsers.push(record);
+                })
+                .on("end", function (result) {
+                    onRetrieveTargetEnd(result);
+                })
+                .on("error", function (err) {
+                    console.error(err);
+                })
+                .run({autoFetch: false});
+        }
+
+        let objIndex = 0;
+        const objList = [[],[]];
+        // objList[0] = [];
+        // objList[1] = [];
+        const queries = ['SELECT Id, Name, UserType FROM Profile', 'SELECT Id, Name, PortalType FROM UserRole'];
+
+        function getTargetData() {
+            if (objList.length > objIndex) {
+                targetConn.query(queries[objIndex])
+                    .on("record", function (record) {
+                        objList[objIndex].push(record);
+                    })
+                    .on("end", function (result) {
+                        onRetrieveDataEnd(result);
+                    })
+                    .on("error", function (err) {
+                        console.error(err);
+                    })
+                    .run({autoFetch: false});
+            } else {// all got
+                objIndex = 0;
+                mapps();
+            }
+        }
+
+        function onRetrieveDataEnd(result) {
+            if (result._finished) {
+                objIndex++;
+                getTargetData();
+            } else {
+                getMoreData(result._locator);
+            }
+        }
+
+        function getMoreData(locator) {
+            targetConn.queryMore(locator)
+                .on("record", function (record) {
+                    objList[objIndex].push(record);
+                })
+                .on("end", function (result) {
+                    onRetrieveDataEnd(result);
+                })
+                .on("error", function (err) {
+                    console.error(err);
+                })
+                .run({autoFetch: false});
+        }
+
+
+        function getOption(text, value) {
+            var option = document.createElement("option");
+            option.text = text;
+            option.value = value;
+            return option;
+        }
+
+        let nikNameCommunityTargetUsers = [];
+
+        // TODO: sort list
+        function mapps() {
+            let showMapUser = false;
+            $("#loadingMsg").hide();
+            for (let i = 0; i < SourceUsers.length; i++) {
+                for (let y = 0; y < TargetUsers.length; y++) {
+                    let sUser = SourceUsers[i];
+                    let tUser = TargetUsers[y];
+                    let sName = sUser.FirstName + '.' + sUser.LastName;
+                    let tName = tUser.FirstName + '.' + tUser.LastName;
+                    if (sName === tName) {
+                        MapUsers[sUser.Id] = tUser.Id;
+                    }
+                }
+            }
+            for (let i = 0; i < SourceUsers.length; i++) {
+                for (let x = 0; x < objList[0].length; x++) {
+                    if (SourceUsers[i].Profile && SourceUsers[i].Profile.Name === objList[0][x].Name) {
+                        usersMapProfile[SourceUsers[i].Id] = objList[0][x].Id;
+                        if (SourceUsers[i].Profile.UserType && standardUserLicense.includes(SourceUsers[i].Profile.UserType)) {
+                            for (let e = 0; e < objList[1].length; e++) {
+                                if (SourceUsers[i].UserRole) {
+                                    if (SourceUsers[i].UserRole.Name === objList[1][e].Name) {
+                                        usersMapRole[SourceUsers[i].Id] = objList[1][e].Id
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!usersMapProfile.hasOwnProperty(SourceUsers[i].Id)) {
+                    if (!MapUsers.hasOwnProperty(SourceUsers[i].Id)) {
+                        if (SourceUsers[i].Profile.UserType && standardUserLicense.includes(SourceUsers[i].Profile.UserType)) {
+                            document.getElementById('panelStandardUsers').style.display = 'block';
+                            notMappingUsers[SourceUsers[i].Username] = 'Standard User';
+                            showMapUser = true;
+                        }
+                        if (SourceUsers[i].Profile.UserType && communityUserLicense.includes(SourceUsers[i].Profile.UserType)) {
+                            document.getElementById('panelCommunityUsers').style.display = 'block';
+                            notMappingUsers[SourceUsers[i].Username] = 'Community User';
+                            showMapUser = true;
+                        }
+                        if (SourceUsers[i].Profile.UserType && partnerUserLicense.includes(SourceUsers[i].Profile.UserType)) {
+                            document.getElementById('panelPartnerUsers').style.display = 'block';
+                            notMappingUsers[SourceUsers[i].Username] = 'Partner User';
+                            showMapUser = true;
+                        }
+                        if (SourceUsers[i].Profile.UserType && chatterUserLicense.includes(SourceUsers[i].Profile.UserType)) {
+                            document.getElementById('panelChatterUsers').style.display = 'block';
+                            notMappingUsers[SourceUsers[i].Username] = 'Chatter User';
+                            showMapUser = true;
+                        }
+                    }
+                }
+            }
+
+            let standardUserProfileOptions = document.getElementById('standardUserProfileOptions');
+            let communityUserProfileOptions = document.getElementById('communityUserProfileOptions');
+            let partnerUserProfileOptions = document.getElementById('partnerUserProfileOptions');
+            let chatterUserProfileOptions = document.getElementById('chatterUserProfileOptions');
+
+            standardUserProfileOptions.add(getOption('-- select one --', ''));
+            communityUserProfileOptions.add(getOption('-- select one --', ''));
+            partnerUserProfileOptions.add(getOption('-- select one --', ''));
+            chatterUserProfileOptions.add(getOption('-- select one --', ''));
+
+            for (let i = 0; i < objList[0].length; i++) {
+                if (objList[0][i].UserType && standardUserLicense.includes(objList[0][i].UserType)) {
+                    standardUserProfileOptions.add(getOption(objList[0][i].Name, objList[0][i].Id));
+                }
+                if (objList[0][i].UserType && communityUserLicense.includes(objList[0][i].UserType)) {
+                    communityUserProfileOptions.add(getOption(objList[0][i].Name, objList[0][i].Id));
+                }
+                if (objList[0][i].UserType && partnerUserLicense.includes(objList[0][i].UserType)) {
+                    partnerUserProfileOptions.add(getOption(objList[0][i].Name, objList[0][i].Id));
+                }
+                if (objList[0][i].UserType && chatterUserLicense.includes(objList[0][i].UserType)) {
+                    chatterUserProfileOptions.add(getOption(objList[0][i].Name, objList[0][i].Id));
+                }
+            }
+            if (showMapUser) {
+                let us = '';
+                for (let p in notMappingUsers) {
+                    us += '\n' + p + ' ;';
+                }
+                logger.appendLogs(`Warning: No Mapping for ${Object.keys(notMappingUsers).length} User(s): ` + us);
+                saveLogsCustom(`Warning: No Mapping for ${Object.keys(notMappingUsers).length} User(s): ` + us);
+                var dialogNotSuccessful = $("#dialog-form-not-mapping-user").dialog({
+                    autoOpen: false,
+                    width: 700,
+                    height: 600,
+                    modal: true,
+                    buttons: {
+                        "Cancel": function () {
+                            dialogNotSuccessful.dialog("close");
+                            if (sequenceId) window.location.href = "/" + sequenceId;
+                        },
+                        "Continue": function () {
+                            if ($('#panelStandardUsers').css('display') === 'block') {
+                                if (standardUserProfile === null || typeof standardUserProfile === 'undefined') {
+                                    $("#msgMapUser").show();
+                                    showMessageJS('Please select profile for Standard Users', 'ERROR', 'red', '[id$=msgMapUser]');
+                                    overridePageMessages();
+                                    return;
+                                }
+                            }
+                            if ($('#panelCommunityUsers').css('display') === 'block') {
+                                if (communityUserProfile === null || typeof communityUserProfile === 'undefined') {
+                                    $("#msgMapUser").show();
+                                    showMessageJS('Please select profile for Community Users', 'ERROR', 'red', '[id$=msgMapUser]');
+                                    overridePageMessages();
+                                    return;
+                                }
+                            }
+                            if ($('#panelPartnerUsers').css('display') === 'block') {
+                                if (partnerUserProfile === null || typeof partnerUserProfile === 'undefined') {
+                                    $("#msgMapUser").show();
+                                    showMessageJS('Please select profile for Partner Users', 'ERROR', 'red', '[id$=msgMapUser]');
+                                    overridePageMessages();
+                                    return;
+                                }
+                            }
+                            if ($('#panelChatterUsers').css('display') === 'block') {
+                                if (chatterUserProfile === null || typeof chatterUserProfile === 'undefined') {
+                                    $("#msgMapUser").show();
+                                    showMessageJS('Please select profile for Chatter Users', 'ERROR', 'red', '[id$=msgMapUser]');
+                                    overridePageMessages();
+                                    return;
+                                }
+                            }
+
+                            dialogNotSuccessful.dialog("close");
+                            logger.appendLogs('Continue.....');
+                            validateSuccessful();
+                        }
+                    },
+                    open: function () {
+                        $('.ui-dialog-buttonpane').find('button').removeAttr('class');
+                        $('.ui-dialog-buttonpane').addClass('slds-scope');
+                        $('.ui-dialog-buttonpane').find('button:contains("Continue")').addClass('slds-button slds-button--brand');
+                        $('.ui-dialog-buttonpane').find('button:contains("Cancel")').addClass('slds-button slds-button_neutral');
+                    },
+                    close: function () {
+                        form[0].reset();
+                        allFields.removeClass("ui-state-error");
+                    }
+                });
+                $(".ui-dialog-titlebar").hide();
+
+                let AcordionTemp = `
+                <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+                    <span class="slds-icon_container slds-icon-standard-account">
+                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#groups')}"/>
+                    </svg>
+                    </span>
+                    <span class="slds-truncate slds-m-left--small">Cannot associate the following ${Object.keys(notMappingUsers).length} user(s) from the source org:</span>
+                </div>
+                <table border="0" cellpadding="0" cellspacing="0" class="slds-m-top--medium">
+                    <tbody>`;
+                for (let p in notMappingUsers) {
+                    AcordionTemp += `<tr><td style="padding-top :6px; width: 75%; padding-bottom : 6px; vertical-align: middle;">${p}</td>
+                        <td style="padding-top :6px; width: 25%; padding-bottom : 6px; vertical-align: middle;"> ${notMappingUsers[p]}</td></tr>`;
+                }
+                AcordionTemp += `</tbody></table>`;
+                $("#mappingUsers").append(AcordionTemp);
+                dialogNotSuccessful.dialog("open");
+            } else {
+                logger.appendLogs('Mapping Users successful');
+                saveLogsCustom('Mapping Users successful');
+                validateSuccessful();
+            }
+
+        }
+
+        function saveLogsCustom(Log) {
+          const step = PKG_PREF + 'Execution_Step__c',
+            logs = PKG_PREF + 'Logs__c',
+            batch = PKG_PREF + 'Batch_Id__c',
+            job = PKG_PREF + 'Job_Id__c';
+			sourceConn.sobject(PKG_PREF + "Execution_Step_Log__c").insert({
+					[step]: exOrderWrapJSON[0].exStepId,
+					[logs]: Log,
+					[batch]: '',
+					[job]: ''
+		   }, function (err, ret) {
+                if (err || !ret.success) {
+                    logger.appendLogs("Save Execution Step Log ERROR");
+                } else {
+                    logger.appendLogs("Save Execution Step Log End");
+                }
+            });
+
+        }
+
+        function DiscribeSobjects(listObject, conn) {
+            if (listObject != null && listObject.length > 0) {
+                var Object = listObject.splice(0, 1)[0];
+                var ObjectName = Object.objectName;
+                conn.sobject(ObjectName).describe(function (err, meta) {
+                    if (err) {
+                        conn.sobject(ObjectName).describe(function (err, meta) {
+                            if (err) {
+                                logger.appendLogs('An error occurred while validation an object ' + ObjectName + '\n' + err.message);
+                                validObject({ 'name': ObjectName, 'valid': false, error: err.message }, Object, listObject, conn);
+                            } else {
+                                validObject(meta, Object, listObject, conn);
+                            }
+                        });
+                    } else {
+                        validObject(meta, Object, listObject, conn);
+                    }
+                });
+            } else {
+                if (!ValidAllMetaData) {
+                    validateNotSuccessful();
+                } else {
+                    if (isUserObjectExist) {
+                        loadUsers();
+                    } else {
+                        validateSuccessful();
+                    }
+
+                }
+            }
+        }
+
+        function validObject(meta, Object, listObjectName, conn) {
+            if (meta.valid == false) {
+                var Obj = {};
+                Obj.objectName = meta.name;
+                Obj.label = Object.ObjectLabel;
+                Obj.valid = false;
+                Obj.createable = false;
+                Obj.listFields = [];
+                Obj.error = meta.error;
+                FLSValidate.push(Obj);
+                ValidAllMetaData = false;
+            } else {
+                var Obj = {};
+                Obj.objectName = meta.name;
+                Obj.label = Object.ObjectLabel;
+                Obj.valid = meta.createable;
+                if (!meta.createable) {
+                    ValidAllMetaData = false;
+                }
+                Obj.createable = meta.createable;
+                Obj.listFields = [];
+                if (Object.listFields != null && Object.listFields.length > 0) {
+                    for (var x = 0; x < Object.listFields.length; x++) {
+                        var checkField = false;
+                        for (var y = 0; y < meta.fields.length; y++) {
+                            if (Object.listFields[x] == meta.fields[y].name) {
+                                checkField = true;
+                                var fieldObject = {};
+                                fieldObject.fieldName = meta.fields[y].name;
+                                fieldObject.label = meta.fields[y].label;
+                                fieldObject.createable = meta.fields[y].createable;
+                                Obj.listFields.push(fieldObject);
+                                if (!meta.fields[y].createable) {
+                                    ValidAllMetaData = false;
+                                }
+                                break;
+                            }
+                        }
+                        if (!checkField) {
+                            var fieldObject = {};
+                            fieldObject.fieldName = Object.listFields[x];
+                            fieldObject.label = Object.MapLabelFields[Object.listFields[x]];
+                            fieldObject.createable = false;
+                            Obj.listFields.push(fieldObject);
+                            ValidAllMetaData = false;
+                        }
+                    }
+                }
+                FLSValidate.push(Obj);
+            }
+            DiscribeSobjects(listObjectName, conn);
+        }
+
+        function disableAutoScroll(elem) {
+            if (elem.checked) {
+              $('#logs').attr('data-scroll', true);
+            } else {
+              $('#logs').attr('data-scroll', false);
+            }
+        }
+
+        function showCustomDomainInput(elem) {
+
+            if (elem.options[elem.selectedIndex].text === 'Custom Domain') {
+                document.getElementById('customDomainContainer').style.display = 'block';
+            } else {
+                document.getElementById('customDomainContainer').style.display = 'none';
+            }
+        }
+
+        function instanceOptionsValue(elem) {
+
+            var domain = elem.value;
+
+            domain = (domain.indexOf('https://') > -1 ? domain : 'https://' + domain);
+
+            if (domain.slice(-1) === '/') {
+                domain = domain.substr(0, domain.length - 1);
+            }
+
+            document.getElementById('customDomainErr').style.display = 'none';
+            var select = document.getElementById('env');
+            select.options[select.selectedIndex].value = domain;
+
+            if (domain.indexOf('.lightning.force') > -1) {
+                document.getElementById('customDomainLightningErr').style.display = 'block';
+            } else {
+                document.getElementById('customDomainLightningErr').style.display = 'none';
+            }
+        }
+
+        var table;
+        var pageRef = '{!exPageRef}';
+        var dialogDelete = $("#dialog-delete").dialog({
+            autoOpen: false,
+            width: 900,
+            height: 700,
+            modal: true,
+            open: function () {
+                $(".ui-dialog-titlebar").hide();
+                $('.ui-dialog-buttonset').addClass('slds-scope');
+                $('.ui-dialog-buttonpane').find('button:contains("Delete")').removeAttr('class');
+                $('.ui-dialog-buttonpane').find('button:contains("Delete")').addClass('slds-button slds-button--brand');
+                table = $('#tbl').DataTable({
+                    "info": false,
+                    "paging": false,
+                    "lengthChange": false,
+                    "searching": false,
+                    "sorting": false,
+                    data: getTableData(),
+                    columns: [
+                        {title: "Object Name"},
+                        {title: "Operation state"},
+                        {title: "Deleted records"}
+                    ]
+                });
+                $('#tbl').find('th').addClass('table-header');
+                $('#tbl').find('td').attr('style', 'padding-top :7px; padding-bottom : 7px; vertical-align: middle;');
+                $('#tbl').find('th').attr('style', 'padding-top :0px; padding-bottom : 0px; border-top:1px solid #ffffff');
+                $('#tbl').find('th:contains("Deleted records")').attr('style', 'padding-top :0px; padding-bottom : 0px; border-top:1px solid #ffffff; width : 10%');
+            },
+            buttons: {
+                "Cancel": function () {
+                    dialogDelete.dialog("close");
+                },
+                "Delete": function () {
+                    startDelete();
+                }
+            },
+            close: function () {
+                if (exId) window.location.href = '/' + exId;
+            }
+        });
+
+        var deletedForm = dialogDelete.find("form").on("submit", function (event) {
+            event.preventDefault();
+            startDelete();
+        });
+
+        var delList = [];
+
+        function getTableData() {
+            var table = [];
+            for (var x = 0; x < delList.length; x++) {
+                if (typeof delList[x] === "undefined") continue;
+                for (var i = x + 1; i < delList.length; i++) {
+                    if (typeof delList[i] === "undefined") continue;
+                    if (delList[x].objectName === delList[i].objectName) {
+                        delete delList[i]
+                    }
+                }
+                var row = [];
+                row.push(delList[x].objectName);
+                row.push(delList[x].state);
+                row.push('' + delList[x].deleted);
+                table.push(row);
+            }
+
+            var newDeList = [];
+            delList.forEach((item, index) => {
+                if (item) {
+                    newDeList.push(item);
+                }
+            });
+            delList = newDeList;
+            table.reverse();
+            return table;
+        }
+
+        function disableEnableBtn(disable) {
+            if (disable) {
+                $(".ui-dialog-buttonpane button:contains('Delete')").attr("disabled", true).addClass("ui-state-disabled");
+            } else {
+                $(".ui-dialog-buttonpane button:contains('Delete')").attr("disabled", false).removeClass("ui-state-disabled");
+            }
+        }
+
+        function startDelete() {
+            var delInserted = ($('#delInserted').is(":checked"));
+            var delUpdated = ($('#delUpdated').is(":checked"));
+            var alreadyDeleted = 0;
+            targetConn.bulk.pollInterval = 5000;
+            targetConn.bulk.pollTimeout = 36000000;
+
+            showMessageJS('Deleting records...', 'INFO', 'black', '[id$=errMsg]');
+            overridePageMessages();
+
+            disableEnableBtn(true);
+
+            var deletedRecords = {};
+            deletedRecords.counter = 0;
+            deletedRecords.completed = {};
+
+            var delObject = function (row) {
+                delList.reverse();
+                deletedRecords.counter = 0;
+                if (row < delList.length) {
+                    var obj = delList[row];
+                    var superBlock = function (name, blocks) {
+                        if (blocks.length > 0) {
+                            // get ids from attachment
+                            var attId = blocks.shift();
+                            // for each att: split all ids on blocks 9k
+                            Visualforce.remoting.Manager.invokeAction(
+                                '{!$RemoteAction.ExecutionDetailController.getIds}',
+                                attId,
+                                name,
+                                function (result, event) {
+                                    if (event.status) {
+                                        var block = new Block(row, name, delInserted, delUpdated, table, deletedRecords, result);
+                                        block.del(function (deleted, err) {
+                                            if (err) {
+                                                showMessageJS(err, 'ERROR', 'red', '[id$=errMsg]');
+                                                overridePageMessages();
+                                                disableEnableBtn(false);
+                                                return;
+                                            }
+                                            alreadyDeleted += deleted;
+                                            setTimeout(function () {
+                                                superBlock(name, blocks);
+                                            }, 10);
+                                        });
+                                    } else {
+                                        setTimeout(function () {
+                                            superBlock(name, blocks);
+                                        }, 10);
+                                        disableEnableBtn(false);
+                                    }
+                                }
+                            );
+                        } else {
+                            // update state
+                            updateCell(row, 1, 'Complete');
+                            setTimeout(function () {
+                                delObject(row + 1);
+                            }, 10);
+                        }
+                    }
+                    superBlock(obj.objectName, obj.attWithIds);
+                } else {
+                    var finMessage = 'Deletion complete.\n';
+                    if (alreadyDeleted == 1) finMessage += '1 record from requested set has been already deleted';
+                    if (alreadyDeleted > 1) finMessage += (alreadyDeleted + ' records from requested set have been already deleted');
+                    showMessageJS(finMessage, 'CONFIRM', 'green', '[id$=errMsg]');
+                    overridePageMessages();
+                    disableEnableBtn(true);
+
+                }
+            }
+            delObject(0);
+        }
+
+        function updateCell(r, c, newData) {
+            var temp = table.row(r).data();
+            temp[c] = '' + newData;
+            table.row(r).data(temp).draw();//invalidate();
+        }
+
+        function rollback(migratedRecordsWrapperLi) {
+            delList = JSON.parse(migratedRecordsWrapperLi);
+            isDeleteMode = true;
+            start();
+
+        }
+
+        var Block = function (row, objName, delInserted, delUpdated, table, deletedRecords, jsonB) {
+            this.MAX_SIZE = 9000;
+            this.row = row;
+            this.objName = objName;
+            this.blocks = [];
+            this.blocks.push([]);
+            this.table = table;
+            this.alreadyDeleted = 0;
+            this.deletedRecords = deletedRecords;
+
+            if (jsonB) {
+                var arr = [];
+                if (delInserted == true) {
+                    arr = (jsonB['inserted'] == undefined) ? arr : arr.concat(jsonB['inserted']);
+                }
+                if (delUpdated == true) {
+                    arr = (jsonB['updated'] == undefined) ? arr : arr.concat(jsonB['updated']);
+                }
+                var index = 0;
+                var counter = 0;
+                for (var x = 0; x < arr.length; x++) {
+                    if (counter > this.MAX_SIZE) {
+                        this.blocks.push([]);
+                        index++;
+                        counter = 0;
+                    }
+                    if (this.deletedRecords.completed[arr[x]] == undefined) {
+                        this.blocks[index].push({Id: arr[x]});
+                        counter++;
+                        this.deletedRecords.completed[arr[x]] = true;
+                    }
+                }
+            }
+        }
+
+        Block.prototype.del = function (callback) {
+            var self = this;
+            if (this.blocks.length > 0) {
+                var blk = this.blocks.shift();
+                if (blk.length > 0) {
+                    var batch = targetConn.bulk.load(this.objName, "delete", {contentType: 'CSV'}, blk /*CSV*/, function (error, res) {
+                        var counter = 0;
+                        if (error) {
+                            var errorMessage = "DEPLOY ERROR \n";
+                            if (error.errorCode) {
+                                errorMessage += "ERROR CODE : " + error.errorCode + "\n";
+                            }
+                            if (error.message) {
+                                errorMessage += "ERROR MESSAGE : " + error.message + "\n";
+                            }
+                            callback(this.alreadyDeleted, errorMessage);
+                        } else {
+                            counter = 0;
+                            for (var x = 0; x < res.length; x++) {
+                                if (res[x].success == false) {
+                                    var msg;
+                                    if (res[x].errors != undefined && res[x].errors.length > 0) {
+                                        msg = res[x].errors[0]
+                                    } else {
+                                        msg = 'Fail to delete record Id=' + res[x].id;
+                                    }
+                                    if (msg.indexOf('ENTITY_IS_DELETED') == -1) {// ignore deleted entity error
+                                        callback(self.alreadyDeleted, msg);
+                                        return;
+                                    } else {
+                                        self.alreadyDeleted++;
+                                    }
+                                } else {
+                                    counter++;
+                                }
+                            }
+                            self.deletedRecords.counter += counter;
+                            updateCell(self.row, 2, '' + self.deletedRecords.counter);
+                            setTimeout(function () {
+                                self.del(callback);
+                            }, 10);
+                        }
+                    });
+                    batch.on("queue", function (batchInfo) { // fired when batch request is queued in server.
+                    });
+                } else {
+                    callback(this.alreadyDeleted);
+                }
+            } else {
+                callback(this.alreadyDeleted);
+            }
+        }
+
+        function clearMessage(formId) {
+            var parentVal = $("[id$='msg']");
+            if (formId != undefined) {
+                parentVal = $(formId);
+            }
+            if (parentVal != undefined) {
+                parentVal.html('');
+            }
+        }
+
+        function showMessageJS(Message_Str, Message_Type, fontColor, formId) {
+            var parentVal = $("[id$='msg']");
+            if (formId != undefined) {
+                parentVal = $(formId);
+            }
+            if (parentVal != undefined) {
+                parentVal.html('');
+                if (Message_Str != '') {
+                    if (Message_Type == 'ERROR') {
+                        var childVal = '<span id="j_id0:msg:j_id19:j_id20:0:j_id21">' +
+                            '<div class="message errorM3" role="alert">' +
+                            '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                            '<tbody>' +
+                            '<tr valign="top">' +
+                            '<td><img alt="ERROR" class="msgIcon" src="/s.gif" title="ERROR"></td>' +
+                            '<td class="messageCell">' +
+                            '<div id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id24" class="messageText">' +
+                            '<span id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id25" style="color:#cc0000">' +
+                            '<h4>Error:</h4>' +
+                            '</span>' + Message_Str + '<br>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td></td>' +
+                            '<td></td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</span>';
+                        parentVal.append(childVal);
+                    } else if (Message_Type == 'INFO') {
+                        var childVal = '<span id="j_id0:msg:j_id19:j_id20:0:j_id21">' +
+                            '<div class="message infoM3" role="alert">' +
+                            '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                            '<tbody>' +
+                            '<tr valign="top">' +
+                            '<td><img alt="INFO" class="msgIcon" src="/s.gif" title="INFO"></td>' +
+                            '<td class="messageCell">' +
+                            '<div id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id24" class="messageText">' +
+                            '<span id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id25">' +
+                            '<h4></h4>' +
+                            '</span>' + Message_Str + '<br>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td></td>' +
+                            '<td></td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</span>';
+                        parentVal.append(childVal);
+                    } else if (Message_Type == 'CONFIRM') {
+                        var childVal = '<span id="j_id0:msg:j_id15:j_id16:0:j_id17">' +
+                            '<div class="message confirmM3" role="alert">' +
+                            '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                            '<tbody>' +
+                            '<tr valign="top">' +
+                            '<td><img alt="CONFIRM" class="msgIcon" src="/s.gif" title="CONFIRM"></td>' +
+                            '<td class="messageCell">' +
+                            '<div id="j_id0:msg:j_id15:j_id16:0:j_id17:j_id18:j_id20" class="messageText">' +
+                            '<span id="j_id0:msg:j_id15:j_id16:0:j_id17:j_id18:j_id21">' +
+                            '<h4>Success:</h4>' +
+                            '</span>' +
+                            '<font >' + Message_Str + '</font>' +
+                            '<br>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td></td>' +
+                            '<td></td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</span>';
+                        parentVal.append(childVal);
+                    }
+                }
+            }
+        }
+
+
+    </script>
+
+</apex:page>

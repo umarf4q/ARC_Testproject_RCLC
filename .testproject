@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testProject selectedBrowserProviderDeviceName="Full Screen" selectedBrowserProviderName="Desktop" selectedEnvironment="TEST">
+  <title>/Testproject/.testproject</title>
+  <configPath>config</configPath>
+  <testsPath>tests</testsPath>
+  <testPlansPath>plans</testPlansPath>
+  <templatesPath>templates</templatesPath>
+  <sourcePath>src</sourcePath>
+  <secureStoragePath>.secrets</secureStoragePath>
+  <browserDebugPort>0</browserDebugPort>
+  <environments>
+    <environment name="QA">
+      <summary/>
+    </environment>
+    <environment name="TEST">
+      <summary/>
+    </environment>
+    <environment name="STtest">
+      <summary/>
+    </environment>
+    <environment name="Training">
+      <summary/>
+    </environment>
+  </environments>
+  <connectionClasses>
+    <connectionClass name="sf">
+      <connections>
+        <connection name="QAtest">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl secureStorageNodeId="152391c0-91ca-4c94-8013-e6a166533392" url="sf:user=umar.farooq@redcross.org.test;password={password};securityToken={securityToken};environment=SANDBOX;lightningMode=true"/>
+          </connectionUrls>
+        </connection>
+        <connection id="21342b40-b99c-49ca-85be-dc9f0ad54be5" name="TSCAgent">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl url="sf:user=amber.chick@redcross.org.test;environment=PROD_DEV;logonAsConnection=QAtest;lightningMode=true"/>
+          </connectionUrls>
+        </connection>
+        <connection id="64e794c5-ba72-4e60-9f82-40bee444abdd" name="SB_ARC_Service_Delivery">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl url="sf:user=debra.adrian3@redcross.org.test;environment=PROD_DEV;logonAsConnection=Admin;lightningMode=true"/>
+            <connectionUrl envName="QA" url="sf:user=debra.adrian3@redcross.org.qa;environment=PROD_DEV;logonAsConnection=Admin;lightningMode=true"/>
+          </connectionUrls>
+        </connection>
+        <connection id="cc464de8-66ac-48d4-9cc4-a410e78eab38" name="Admin">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl secureStorageNodeId="244b6210-c9d5-45bd-8616-b9c7bfe4f207" url="sf:user=consulting@redcross.org.test;password={password};environment=SANDBOX;lightningMode=true"/>
+            <connectionUrl envName="QA" secureStorageNodeId="6df3ea3e-fcfc-4c30-b421-c85251d36f4e" url="sf:user=provar.tester2@redcross.org.qa;password={password};securityToken={securityToken};environment=SANDBOX;lightningMode=true"/>
+            <connectionUrl envName="STtest" secureStorageNodeId="d28b86b4-367a-4801-95fb-838a389960cd" url="sf:user=provar.tester2@redcross.org.sttest;password={password};securityToken={securityToken};environment=SANDBOX;lightningMode=true"/>
+            <connectionUrl envName="Training" secureStorageNodeId="aa94c79b-d032-4569-a3f1-d90a98ee5c7b" url="sf:user=provar.tester2@redcross.org.training;password={password};securityToken={securityToken};environment=SANDBOX;lightningMode=true"/>
+          </connectionUrls>
+        </connection>
+        <connection id="551a0067-81c1-48b9-b768-a718f6e7183d" name="AdminQA">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl secureStorageNodeId="db48e3cf-7bad-4a2e-8f8b-44a09ccdd325" url="sf:user=provar.tester2@redcross.org.qa;password={password};securityToken={securityToken};environment=SANDBOX;lightningMode=true"/>
+            <connectionUrl envName="TEST" secureStorageNodeId="b46f8d24-a559-4cfe-a174-865ad0416ec7" url="sf:user=umar.farooq@redcross.org.test;password={password};securityToken={securityToken};environment=SANDBOX;lightningMode=true"/>
+          </connectionUrls>
+        </connection>
+        <connection id="17ea91b3-16f8-436a-bd8b-50b55b11ef83" name="SalesTaxEnteryPermission">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl url="sf:user=margaret.hales2@redcross.org.test;environment=PROD_DEV;logonAsConnection=QAtest;lightningMode=true"/>
+          </connectionUrls>
+        </connection>
+      </connections>
+    </connectionClass>
+    <connectionClass name="webservice">
+      <connections>
+        <connection id="08e7c1f1-5d05-4113-adc4-9fc797da87d5" name="MulesoftAPI">
+          <summary>\t</summary>
+          <connectionUrls>
+            <connectionUrl secureStorageNodeId="ca51e0b1-6b37-47b4-9df2-e9b8cb0e28e4" url="restservice:url=https://arc-learning-track-sf-eapi-test.us-e1.cloudhub.io;authenticationType=NO_AUTHENTICATION">
+              <customHeaders/>
+            </connectionUrl>
+          </connectionUrls>
+        </connection>
+      </connections>
+    </connectionClass>
+  </connectionClasses>
+  <tagTypes>
+    <tagType name="functionalarea" tagClass="functionalarea" title="Functional Area">
+      <summary>The functional area that a Test Item belongs to</summary>
+      <tags>
+        <tag name="TestTag1">
+          <summary/>
+        </tag>
+      </tags>
+    </tagType>
+  </tagTypes>
+  <browserConfigurations>
+    <browserConfiguration adjustBrowserWidthForChromeIde="true" browserHeight="0" browserWidth="0" name="Full Screen">
+      <summary>Full screen with Test Builder adjustment</summary>
+    </browserConfiguration>
+    <browserConfiguration browserHeight="768" browserHeightType="Pixels" browserWidth="1024" browserWidthType="Pixels" name="1024x768">
+      <summary>Fixed 1024x768</summary>
+    </browserConfiguration>
+    <browserConfiguration browserHeight="800" browserHeightType="Pixels" browserWidth="1280" browserWidthType="Pixels" name="1280x800">
+      <summary>Fixed 1280x800</summary>
+    </browserConfiguration>
+    <browserConfiguration browserHeight="768" browserHeightType="Pixels" browserWidth="1366" browserWidthType="Pixels" name="1366x768">
+      <summary>Fixed 1366x768</summary>
+    </browserConfiguration>
+    <browserConfiguration browserHeight="1080" browserHeightType="Pixels" browserWidth="1920" browserWidthType="Pixels" name="1920x1080">
+      <summary>Fixed 1920x1080</summary>
+    </browserConfiguration>
+  </browserConfigurations>
+  <browserApplications>
+    <browserApplication connectionTypes="sf" name="Salesforce1">
+      <properties>
+        <browserPlatformProperty name="browserName" platform="IOS" type="DesiredCapability" value="Safari"/>
+        <browserPlatformProperty name="browserName" platform="ANDROID" type="DesiredCapability" value="Chrome"/>
+      </properties>
+    </browserApplication>
+    <browserApplication connectionTypes="sf" name="ServiceMax FSA">
+      <properties>
+        <browserPlatformProperty name="bundleId" platform="IOS" type="DesiredCapability" value="com.servicemaxinc.svmxfieldserviceapp"/>
+        <browserPlatformProperty name="app" platform="DESKTOP" type="DesiredCapability" value="C:\\Program Files\\ServiceMax\\ServiceMax Field Service\\Laptop Mobile.exe"/>
+      </properties>
+    </browserApplication>
+  </browserApplications>
+  <browserProviders>
+    <browserProvider name="Desktop" type="SeleniumLocal">
+      <devices>
+        <browserProviderDevice name="Full Screen">
+          <properties>
+            <browserPlatformProperty name="summary" value="Full screen with Test Builder adjustment"/>
+            <browserPlatformProperty name="browserHeightType" value="Full"/>
+            <browserPlatformProperty name="browserWidthType" value="Full"/>
+            <browserPlatformProperty name="adjustBrowserWidthForChromeIde" value="true"/>
+          </properties>
+        </browserProviderDevice>
+        <browserProviderDevice name="1024x768">
+          <properties>
+            <browserPlatformProperty name="summary" value="Fixed 1024x768"/>
+            <browserPlatformProperty name="browserHeightType" value="Pixels"/>
+            <browserPlatformProperty name="browserWidthType" value="Pixels"/>
+            <browserPlatformProperty name="browserHeight" value="768"/>
+            <browserPlatformProperty name="browserWidth" value="1024"/>
+          </properties>
+        </browserProviderDevice>
+        <browserProviderDevice name="1280x800">
+          <properties>
+            <browserPlatformProperty name="summary" value="Fixed 1280x800"/>
+            <browserPlatformProperty name="browserHeightType" value="Pixels"/>
+            <browserPlatformProperty name="browserWidthType" value="Pixels"/>
+            <browserPlatformProperty name="browserHeight" value="800"/>
+            <browserPlatformProperty name="browserWidth" value="1280"/>
+          </properties>
+        </browserProviderDevice>
+        <browserProviderDevice name="1366x768">
+          <properties>
+            <browserPlatformProperty name="summary" value="Fixed 1366x768"/>
+            <browserPlatformProperty name="browserHeightType" value="Pixels"/>
+            <browserPlatformProperty name="browserWidthType" value="Pixels"/>
+            <browserPlatformProperty name="browserHeight" value="768"/>
+            <browserPlatformProperty name="browserWidth" value="1366"/>
+          </properties>
+        </browserProviderDevice>
+        <browserProviderDevice name="1920x1080">
+          <properties>
+            <browserPlatformProperty name="summary" value="Fixed 1920x1080"/>
+            <browserPlatformProperty name="browserHeightType" value="Pixels"/>
+            <browserPlatformProperty name="browserWidthType" value="Pixels"/>
+            <browserPlatformProperty name="browserHeight" value="1080"/>
+            <browserPlatformProperty name="browserWidth" value="1920"/>
+          </properties>
+        </browserProviderDevice>
+      </devices>
+    </browserProvider>
+  </browserProviders>
+</testProject>

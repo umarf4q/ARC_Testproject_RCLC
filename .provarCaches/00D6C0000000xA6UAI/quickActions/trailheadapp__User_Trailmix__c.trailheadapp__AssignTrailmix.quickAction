@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><QuickAction xmlns="http://soap.sforce.com/2006/04/metadata"
+   >
+ <fullName>trailheadapp__User_Trailmix__c.trailheadapp__AssignTrailmix</fullName>
+     <height>300</height>
+  <isProtected>false</isProtected>
+ <label>Assign Trailmix</label>
+ <lightningComponent>trailheadapp__AssignTrailmix</lightningComponent>
+  <optionsCreateFeedItem>false</optionsCreateFeedItem>
+         <type>LightningComponent</type>
+ <width>-100</width>
+</QuickAction>

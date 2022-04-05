@@ -1,0 +1,13 @@
+<apex:page tabStyle="IBPAdmin__tab" title="DialogTech Admin" sidebar="false">
+    <apex:includeLightning />
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    
+    <div id="lightning" />
+    <script>
+        $Lightning.use("IBP:IBPAdminApp", function() {
+            $Lightning.createComponent("IBP:IBPAdminBody",
+                {label: ""}, "lightning", function(cmp) {});
+        });
+    </script>
+
+</apex:page>

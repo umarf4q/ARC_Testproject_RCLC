@@ -1,0 +1,2187 @@
+<apex:page standardStylesheets="false" applyBodyTag="false" sidebar="false"  standardController="Dataplier__Execution_Sequence__c" extensions="Dataplier.SequenceAutoGenerateController" title="Manage Deploy">
+<head>
+	<apex:stylesheet value="{!URLFOR($Resource.Dataplier__migration, 'css/jquery-ui.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Dataplier__migration, 'css/bootstrapSF.min.css')}" />
+	<!--<apex:stylesheet value="{!URLFOR($Resource.migration, 'css/common.css')}" />-->
+	<apex:stylesheet value="{!URLFOR($Resource.Dataplier__migration, 'css/ui.multiselect.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Dataplier__migration, 'css/joint.min.css')}" />
+</head>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-2.1.4.min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-ui.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/bootstrap.min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/angular.min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery.scrollTo-min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/ui.multiselect.js')}"/>
+	<apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jsforce-1.7.0.min.js')}" />
+	
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/lodash.min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/backbone-min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/joint.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/highlight.min.js')}"/>
+	
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/graphlib.min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/dagre.core.min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/joint.layout.DirectedGraph.js')}"/>
+
+	<script>
+
+		Visualforce.remoting.timeout = 120000; // Set timeout at page level
+		function getId() {
+			var result = '{!JSENCODE($Currentpage.Parameters.id)}';
+			return result;
+		}
+		
+		const DEBUG_MODE = false;
+		const ADDED_OBJ = 'Added object';
+		const CYCLIC_DEP = 'Removed cyclic dependences';
+		var globalScope = 50;
+		
+		function debug(msg){
+			if (DEBUG_MODE){
+				console.log(msg);
+			}
+		}
+		
+		var app = angular.module("ManageDeployApp", []);
+		
+		// global variables
+		var bExludeSelfLookups = false;
+	
+		
+		app.service('dataManager', function($q) {
+			return {
+				getInfo : function(param) {
+					var deferred = $q.defer();
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.SequenceAutoGenerateController.getInfo}',
+						param,
+						function(result, event) {
+							if (event.status) {
+								deferred.resolve(result);
+							}
+							else {
+								deferred.reject(event);
+							}
+						});
+					return deferred.promise;
+				},
+				getDSInfo : function(param) {
+					var deferred = $q.defer(param);
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.SequenceAutoGenerateController.getDSInfo}',
+						 param,
+						function(result, event) {
+							if (event.status) {
+								deferred.resolve(result);
+							}
+							else {
+								deferred.reject(event);
+							}
+						});
+					return deferred.promise;
+				},
+				getDSFields: function(param) {
+					var deferred = $q.defer(param);
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.SequenceAutoGenerateController.getDSFields}',
+						 param,
+						function(result, event) {
+							if (event.status) {
+								deferred.resolve(result);
+							}
+							else {
+								deferred.reject(event);
+							}
+						});
+					return deferred.promise;
+				},
+				Save : function(param1, param2) {
+					var deferred = $q.defer();
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.SequenceAutoGenerateController.SaveSequence}',
+						param1, param2,
+						function(result, event) {
+							if (event.status) {
+								deferred.resolve(result);
+							}
+							else {
+								deferred.reject(event);
+							}
+						});
+					return deferred.promise;
+				},
+				SaveInit : function(param1, param2) {
+					var deferred = $q.defer();
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.SequenceAutoGenerateController.SaveInit}',
+						param1, param2,
+						function(result, event) {
+							if (event.status) {
+								deferred.resolve(result);
+							}
+							else {
+								deferred.reject(event);
+							}
+						});
+					return deferred.promise;
+				},
+				SaveDataSet : function(param1, param2) {
+					var deferred = $q.defer();
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.SequenceAutoGenerateController.SaveDataSet}',
+						param1, param2,
+						function(result, event) {
+							if (event.status) {
+								deferred.resolve(result);
+							}
+							else {
+								deferred.reject(event);
+							}
+						});
+					return deferred.promise;
+				}
+			}
+		});
+		
+	
+		app.factory('TreeService', function($q) {
+			var Model;
+			var Maxlevel = 1;
+			var LookupLength = {'1':0};
+			var LevelIter = {'1':0};
+			var finalObjectsHierarchy = [];
+			var globalobjectsHierarchy = [];
+			var conn;
+			var globalDis = {};
+			var globalDisMeta = {};
+			var progressMax = 0;
+			var progressNow = 0;
+			var ObjectListEtalon =[]; //= ['UserRole' , 'RecordType', 'Group', 'GroupMember', 'DandBCompany', 'CallCenter'];
+			var forbiddenFields = ['CreatedById', 'CreatedDate' , 'LastModifiedById',  'LastModifiedDate', 'SystemModstamp', 'OwnerId'];
+			var forbiddenObjects = ['UserRole' , 'RecordType', 'Group', 'GroupMember', 'Attachment', 'ContentFolder', 'FeedAttachment', 'MacroInstruction', 'UserAppMenuCustomization'];
+			var callback;
+			var objScopeMap = {};
+			var objCompletedMap = {}; 
+			var objPredefinedFields = {};
+			var queue = [];
+			var scopes = [];
+			var partialOrderedList = [];
+			
+			function _initTreeService(ApiSessionId) {
+				conn = new jsforce.Connection({ accessToken: ApiSessionId, maxRequest: 5000});
+				
+			}
+			
+			
+			// create a hierarchy of interconnected objects; listObject - list of {objName:oName, scope:oScope, fields:listoffieldnames} 
+			function _getModel(listObject,  callback2) {
+				debug('listObject:'+JSON.stringify(listObject));
+				debug('ObjectListEt:'+JSON.stringify(listObject));
+				progressMax = listObject.length + 1;
+				globalobjectsHierarchy = [];
+				finalObjectsHierarchy = []; // hierarchy after clean up
+				partialOrderedList = [];
+				ObjectListEtalon = listObject;
+				callback = callback2; // set function to return data
+				
+				objScopeMap = {}; //     map [objectName] => scope ; by default set to global constant
+				objCompletedMap = {}; // map[ objectName] => {refObjects = [], listFields = [], createable = meta.createable,  queryable = meta.queryable, idx = 0}
+				
+				queue = [];
+				for (var x = 0; x < listObject.length; x++){
+					var descr = listObject[x];
+					objScopeMap[descr.objName] = globalScope;//descr.scope;
+					objPredefinedFields[descr.objName] = descr.fields;  
+				}
+				index = 0;
+				listName = listObject;
+				progressNow = 0;
+ 
+				getAllTree();
+				
+			};
+			
+			var listName;
+			
+			function getAllTree() {
+				if (listName.length > index) {
+					var name = listName[index].objName;
+					var scope = globalScope;//listName[index].scope;
+					// inject objects name into spinner
+					progressNow = index;
+					var pr = Math.floor(progressNow * 100/progressMax);
+					  $( "#progressbar" ).progressbar({
+							  value: pr
+					  });
+					
+					//building the  tree for object name
+					getOneTree(name,scope);
+				}else{// the tree is built
+					var datareq ={};
+					var returnObjectsHierarchy = [];
+					var returnObjectsHierarchyMap = {};
+					var counter = 0;
+					for (var x = partialOrderedList.length - 1; x > -1; x--){//reverse order
+						var objectName = partialOrderedList[x];
+						var objWrapper = getInfo(counter,objectName);
+						console.log('objWrapper:'+JSON.stringify(objWrapper));
+						console.log('objCompletedMap:'+JSON.stringify(objCompletedMap));
+						if (objCompletedMap[objectName].createable && objCompletedMap[objectName].queryable){// do not add non-creatable objects
+							purifyLookUps(objWrapper);
+							returnObjectsHierarchy.push(objWrapper);
+							returnObjectsHierarchyMap[objectName] = true;
+							counter++;
+						}
+					}
+					// counter now has a number of objects in Hierarchy
+					
+ //                 debug('partialOrderedList:'+ JSON.stringify(partialOrderedList)+' size='+partialOrderedList.length);
+ //                 debug('returnObjectsHierarchy:'+ JSON.stringify(returnObjectsHierarchy) +' size=' + returnObjectsHierarchy.length);
+					var uMap = {};
+					
+					for (var y = 0; y < returnObjectsHierarchy.length; y++){
+						var levelRecord =  returnObjectsHierarchy[y];
+						if (levelRecord.lookupFields != undefined && levelRecord.lookupFields.length > 0){
+							for( var x =0; x <levelRecord.lookupFields.length; x++){
+								if (uMap[levelRecord.lookupFields[x].objName] == undefined){
+									uMap[levelRecord.lookupFields[x].objName] = true;
+								}
+								if (returnObjectsHierarchyMap[levelRecord.lookupFields[x].objName] == undefined){
+									debug('wrong link:'+levelRecord.lookupFields[x].objName);
+								}
+							}
+						}
+					}
+					var um = Object.keys(uMap);
+					debug('uniquefields='+ JSON.stringify(um));
+					debug('no of uniquefields='+um.length);
+					finalObjectsHierarchy = [];
+					var cumulativeObjectMap = {};
+					var removedItems = {};
+					counter = 0;
+					var breakCounter = 1000;
+					var bExit = false;
+					while(counter < returnObjectsHierarchy.length && !bExit){
+
+						bExit = true;
+						for (var y = 0; y < returnObjectsHierarchy.length; y++){
+							var levelRecord =  returnObjectsHierarchy[y];
+							if (removedItems[y] == undefined && arrayCovering(cumulativeObjectMap,levelRecord.lookupFields,levelRecord.objectName) == undefined){
+								levelRecord.level = counter++;
+								removedItems[y] = true;
+								cumulativeObjectMap[levelRecord.objectName] = true;
+//                              debug(JSON.stringify(cumulativeObjectMap));
+//                              debug(JSON.stringify(levelRecord.lookupFields));
+								finalObjectsHierarchy.push(levelRecord);
+								bExit = false;
+							}
+						}
+					}
+					var notRemovableMap  = {};
+					var cyclicObjMap = {};
+					for (var x = 0; x < ObjectListEtalon.length; x++){
+						notRemovableMap[ObjectListEtalon[x].objName] = true;
+					}
+					// now removedItems contains keys for all normally ordered objects, the rest - have cycles
+					// process cyclic dependences
+					if (counter != returnObjectsHierarchy.length){
+						debug('cyclic objects exist');
+						var cyclicObj = [];
+						var removedObjMap = {}
+						for (var y = 0; y < returnObjectsHierarchy.length; y++){
+							if (removedItems[y] == undefined){// get subset of objects with cycles; purify notRemovable; del added
+								var levelRecord =  returnObjectsHierarchy[y];// get record  for object which has cyclic dep
+								if (notRemovableMap[levelRecord.objectName] != undefined){
+									cyclicObj.push(y); // add ref for this obj, purify it later
+									removedObjMap[levelRecord.objectName] = true;
+								}else{
+									removedObjMap[levelRecord.objectName] = true;
+									cyclicObj.push(y); // add ref for this obj, purify it later
+ //                                 removedItems[y] = true; // update removed map for this object
+								}
+							}
+						}
+						console.log('cyclic:'+cyclicObj.length);
+						if (cyclicObj.length > 0){
+							for (var y = 0; y < cyclicObj.length; y++){
+								var objWrap = returnObjectsHierarchy[cyclicObj[y]];
+								removeCyclicLookUps(objWrap, removedObjMap);
+								cyclicObjMap[objWrap.objectName] = true;
+							}
+						}
+					}
+					
+					bExit = false;
+					while(counter < returnObjectsHierarchy.length && !bExit){
+
+						bExit = true;
+						for (var y = 0; y < returnObjectsHierarchy.length; y++){
+							var levelRecord =  returnObjectsHierarchy[y];
+							if (removedItems[y] == undefined && arrayCovering(cumulativeObjectMap,levelRecord.lookupFields,levelRecord.objectName) == undefined){
+								levelRecord.level = counter++;
+								removedItems[y] = true;
+								cumulativeObjectMap[levelRecord.objectName] = true;
+								debug(JSON.stringify(cumulativeObjectMap));
+								debug(JSON.stringify(levelRecord.lookupFields));
+								finalObjectsHierarchy.push(levelRecord);
+								bExit = false;
+							}
+						}
+					}
+					// extract self-lookups, form set consisting from self-lookups
+					if (!bExludeSelfLookups){
+						for (var y = 0; y < returnObjectsHierarchy.length; y++){
+							var rec = returnObjectsHierarchy[y];
+							if (rec.lookupFields != undefined && rec.lookupFields.length > 0){
+								for (var x = 0; x <  rec.lookupFields.length; x++){
+									if (rec.lookupFields[x].objName == rec.objectName){// found a self-lookup
+										rec.selfLookups = rec.lookupFields[x].fName;
+										x = rec.lookupFields.length;// set condition to exit cycle
+									}
+								}
+							}
+						}
+					}
+					
+					objectsHierarchy = [];// create hierarchy to display
+					if (finalObjectsHierarchy != undefined && finalObjectsHierarchy.length > 0){
+						for (var x = 0; x < finalObjectsHierarchy.length;x++){
+							var descr = {};
+							descr.level = finalObjectsHierarchy[x].level;
+							descr.objectName = finalObjectsHierarchy[x].objectName;
+							if (notRemovableMap[descr.objectName] == undefined){
+								addComment(descr, ADDED_OBJ);
+								finalObjectsHierarchy[x].isAdded = true;
+								addComment(finalObjectsHierarchy[x], ADDED_OBJ);
+							} 
+							if (cyclicObjMap[descr.objectName] != undefined){
+								addComment(descr, CYCLIC_DEP);
+								addComment(finalObjectsHierarchy[x], CYCLIC_DEP);
+							}
+							objectsHierarchy.push(descr);
+						}
+					}
+					
+					
+					debug('counter='+counter);
+					debug('finalObjectsHierarchy.length='+finalObjectsHierarchy.length);
+					console.log('finalObjectsHierarchy.length='+JSON.stringify(finalObjectsHierarchy));
+					datareq.objectsHierarchy = finalObjectsHierarchy;
+					callback(datareq,objectsHierarchy);
+				}
+			}
+			
+			function addComment(obj, text){
+				if (obj != undefined){
+					if (obj.comment == undefined){
+						obj.comment = text;
+					}else{
+						obj.comment += ',' + text;
+					}
+				}
+			}
+			
+			function arrayCovering(map,array,excludedObjName){//returns map's covering for array 
+				if (array == undefined || array.length == 0) return undefined;
+				for (var x = 0; x < array.length; x++){
+					if (map[array[x].objName] == undefined && array[x].objName != excludedObjName){//array[x].objName have not added yet
+						return array[x].objName;
+					}
+				}
+				return undefined;//all objects in array covered by map, excluding excludedObjName (have not incl in map yet)
+			}
+			
+			function removeCyclicLookUps(objWrap, map){
+				var newLookupFields = [];
+				if (objWrap.excludedFields == undefined){
+					objWrap.excludedFields = [];
+				}
+				if (objWrap.lookupFields != undefined && objWrap.lookupFields.length > 0){
+					for (var x = 0; x < objWrap.lookupFields.length; x++){
+						if (map[objWrap.lookupFields[x].objName] == undefined || objWrap.lookupFields[x].objName == objWrap.objectName){// if self-lookup OR not in danger objects, then add to copy set
+							newLookupFields.push(objWrap.lookupFields[x]);
+						}else{
+							objWrap.excludedFields.push(objWrap.lookupFields[x].fName);
+						}
+					}
+				}
+				objWrap.lookupFields = newLookupFields;
+			}
+			
+			function purifyLookUps(objWrap){
+				var newLookupFields = [];
+				console.log('purify:'+objWrap.objectName);
+				if (objWrap.lookupFields != undefined && objWrap.lookupFields.length > 0){
+					for (var x = 0; x < objWrap.lookupFields.length; x++){
+						var field = objWrap.lookupFields[x];
+						console.log('inspecting:'+field.objName);
+						if ($.inArray(field.objName,forbiddenObjects) != -1){// add links to forbidden objects (obj themselves will not be copied)
+							newLookupFields.push(field);
+							continue;
+						}
+						if (objCompletedMap[field.objName].createable && objCompletedMap[field.objName].queryable){
+							newLookupFields.push(field);
+						}
+					}
+				}
+				objWrap.lookupFields = newLookupFields;
+			}
+			
+			// this function walk recursively through the tree
+			function getOneTree(nameO,scope){
+				setLoaderText('processing '+nameO);
+				debug('nameO='+nameO + ' scope='+scope);
+				if (objCompletedMap[nameO] == undefined){// analyse only if obj does not marked as completed (i.e. exists in objCompletedMap)
+					conn.describeSObject(nameO, function(err, meta) {
+							if (err) { // call twice if error  
+								conn.describeSObject(nameO, function(err, meta) {
+									if (err) { 
+										debug(err);
+									}
+									else {
+										debug('1describeSObject: '+nameO);
+										analyseFields(nameO, meta,scope);
+									}
+								});
+							}
+							else {
+								 debug('2describeSObject: '+nameO);
+								 analyseFields(nameO, meta,scope);
+							}
+					 });
+				}else{// process next object in queue
+					if (queue.length > 0){
+						var nextName = queue.pop();
+						var nextScope =  scopes.pop();
+						getOneTree(nextName,nextScope);
+					}else{// all done on this level
+						index++;
+						getAllTree();
+					}            
+				}
+			}
+			
+			// analyse scope, queue for object nameO
+			// if scope == 0, do not extract ref, else 
+			function analyseFields(nameO, meta, scope){
+				if (objCompletedMap[nameO] == undefined) {//freshly created obj record
+					var objDescriptor = {};
+					objDescriptor.refObjects = [];
+					objDescriptor.listFields = [];
+					objDescriptor.createable = meta.createable;
+					objDescriptor.queryable = meta.queryable;
+					objDescriptor.idx = 0;
+					if (objScopeMap[nameO] != undefined){// rewrite scope with user's value
+						scope = objScopeMap[nameO];
+					}
+					objDescriptor.scope = scope;
+					if (scope > 0){ // analyse lookups only if scope != 0 
+						analizeRelations(nameO, meta, objDescriptor,scope);
+						objCompletedMap[nameO] = objDescriptor;
+					}else{// append the array 'removedLookups' which contains fields to remove from generated/existing Data set
+						cleanUpFields(nameO,meta, objDescriptor);
+						objCompletedMap[nameO] = objDescriptor;
+					}
+					partialOrderedList.push(nameO);// partialOrderedList always has the same set of objects as objCompletedMap 
+//                  debug('result:'+JSON.stringify(objDescriptor));
+					
+				}
+				// verify stack: if non-empty, call getOneTree with scope from objScopeMap | globalScope
+				// else inc index and getAllTree
+//              debug('queue:'+JSON.stringify(queue));
+				if (queue.length > 0){
+					var nextName = queue.pop();
+					var nextScope =  scopes.pop();
+					getOneTree(nextName,nextScope);
+				}else{
+					debug('go to next level');
+					index++;
+					getAllTree();
+				}
+			}
+			
+			function cleanUpFields(nameO, meta, descr){
+				if (meta.fields != null && meta.fields.length > 0) {
+						for (var x=0; x<meta.fields.length; x++ ) {
+							var onefield = meta.fields[x];
+							var currFieldName = onefield.name;
+							if (onefield.referenceTo != null && onefield.referenceTo.length > 0 && onefield.createable  && $.inArray(currFieldName, forbiddenFields) == -1) {
+								for (var y=0; y<onefield.referenceTo.length; y++) {
+									var refNameObject = onefield.referenceTo[y];
+									if (refNameObject != nameO) {
+										if (descr.removedLookups == undefined){
+											descr.removedLookups = [];
+										}
+										descr.removedLookups.push(currFieldName);
+									}else{
+										if (bExludeSelfLookups){
+											if (descr.removedLookups == undefined){
+												descr.removedLookups = [];
+											}
+											descr.removedLookups.push(currFieldName);
+										}
+									}
+								}
+							 }
+						}
+				   }
+				debug('cleanUpFields:'+JSON.stringify(descr));
+				   
+			}
+			
+			function analizeRelations(nameO, meta,descr,scope) {
+				  if (meta.fields != null && meta.fields.length > 0) {
+						for (var x=0; x<meta.fields.length; x++ ) {
+							var onefield = meta.fields[x];
+							var currFieldName = onefield.name;
+							// process field only if 
+							var predefinedFields = objPredefinedFields[nameO];
+							if (predefinedFields != undefined && $.inArray(currFieldName, predefinedFields) == -1){
+								// field not in predefined list, do nothing
+							}else if (onefield.referenceTo != null && onefield.referenceTo.length > 0 && onefield.createable  && $.inArray(currFieldName, forbiddenFields) == -1) {
+								for (var y=0; y<onefield.referenceTo.length; y++) {
+									var refNameObject = onefield.referenceTo[y];// get the name of obj to which lookup links
+									if (refNameObject == nameO){// selflookup
+									console.log('selflookup:'+currFieldName);
+									console.log('bExludeSelfLookups:'+bExludeSelfLookups);
+										if (bExludeSelfLookups){
+											if (descr.removedLookups == undefined){
+												descr.removedLookups = [];
+											}
+											descr.removedLookups.push(currFieldName);
+										}else{// add selflookup TODO - add listParentFields
+											descr.listFields.push({fName : currFieldName, objName: refNameObject});
+										}
+									}else{// not selflookup
+										descr.listFields.push({fName : currFieldName, objName: refNameObject});
+										// do not process forbidden objects
+										if (objCompletedMap[refNameObject] == undefined && $.inArray(refNameObject, forbiddenObjects) == -1) {// condition: obj not compeleted
+											if ($.inArray(refNameObject, queue) == -1){// add obj if only it does exist in queue
+												queue.push(refNameObject);// candidates  for next scope
+												scopes.push(scope - 1);// with lower scope
+											}
+										}
+									}
+								}
+							 }
+						}
+				   }
+			}
+			
+			function getInfo (lvl,objectName) {
+					var objWrap = {};
+					objWrap.level = lvl;
+					objWrap.objectName = objectName;
+					objWrap.lookupFields = objCompletedMap[objectName].listFields;
+					objWrap.removedLookups = objCompletedMap[objectName].removedLookups;
+					return objWrap;
+			}   
+ 
+			return {
+				getModel: function(listObject, check, callback) {
+					if (Model == null || check) {
+						_getModel(listObject,  function(data, data2){
+							callback(data,data2);
+						});
+					}
+					else {
+						callback(Model);
+					}
+				},
+				initTreeService: function(ApiSessionId) {
+					if (conn == null) {
+						_initTreeService(ApiSessionId);
+					}
+				}
+	
+			};
+			
+		});
+		
+		function setLoaderText(txt){
+			var elem = $( "#progressbar1" );
+			var prev = $( "#loaderText" );
+			if (prev != undefined){
+				prev.remove();
+			}
+			elem.append("<span id = 'loaderText' style='text-align: center;'>" + txt +"</span>");
+		}
+
+		
+		app.controller('ManageDeployCtrl', function ($scope, $timeout, dataManager, TreeService) {
+			$scope.Page0 = false;
+			$scope.Page1 = true;
+			$scope.Page2 = true;
+			$scope.Page3 = true;
+			$scope.CheckFier = false;
+			$scope.Error = false;
+			$scope.ErrorM = '';
+			$scope.pageJump = 0;
+			$scope.CheckList  = false;
+			$scope.model = {};
+			$scope.SequenceName = '';
+			$scope.model.graph = new joint.dia.Graph;
+			$scope.ExtId = getId();
+			$scope.Prefixselect = 'All';
+			$scope.listDescr = [];
+			$scope.opTypes = [{'id':'INSERT','name':'Insert'},{'id':'UPSERT','name':'Upsert'}];
+			$scope.objScope = [{'val':0,'name':'No lookups'},{'val':1,'name':'level 1'},{'val':2,'name':'level 2'},{'val':3,'name':'level 3'},{'val':4,'name':'level 4'},{'val':5,'name':'level 5'}];
+			$scope.question = {
+				questionText: "If coexist more than 1 record for composite key:",
+				selected: 2,
+				choices:[{
+							id: 1,
+							text: "perform insert for such records "
+						},{
+							id: 2,
+							text: "apply additional filter with LastModifiedDate field and perform update for this record  "
+						}]
+			};
+			
+			$scope.dsMap = {};
+			$scope.dsIdMap = {};
+			$scope.isUpsert = false;
+			$scope.listNameDescr = [];
+			$scope.loaderText = '';
+			$scope.objectsHierarchy = [];
+			$scope.bExludeSelfLookups = false;
+			$scope.globalScope = 50;
+			
+			
+			dataManager.getInfo($scope.ExtId).then(
+				function(data) {
+					$scope.labelMap = data.labelMap;
+					$scope.selectList = data.selectList;
+					$scope.prefixList = data.prefixList;
+					$scope.ObjectListEtalon = data.ObjectList;
+					$scope.ObjectList = data.ObjectList;
+					setTimeout(function() {
+						$scope.CreateMultiselect();
+					}, 200);
+					
+					
+	
+				},
+				function (error) {
+					$scope.errorMessage = error.message;
+				
+				}
+			);
+			
+			$scope.checkExludeSL = function() {
+				$scope.bExludeSelfLookups = ($scope.bExludeSelfLookups)? false:true;
+				bExludeSelfLookups = $scope.bExludeSelfLookups;
+			}
+			
+			$scope.SelectPackage  = function() {
+				if ($scope.Prefixselect == 'All') {
+					$scope.ObjectList = $scope.ObjectListEtalon;
+					debug('clicked: All');
+					debug('ObjectList'+JSON.stringify($scope.ObjectList));
+					debug('ObjectListEtalon'+JSON.stringify($scope.ObjectListEtalon));
+				}
+				else {
+					debug('clicked: SelectPackage');
+					var newlist = [];
+					for (var x= 0 ; x< $scope.ObjectListEtalon.length ; x++) {
+						if ($scope.ObjectListEtalon[x].indexOf($scope.Prefixselect) > -1) {
+							newlist.push($scope.ObjectListEtalon[x]);
+						}
+					}
+					$scope.ObjectList = newlist;
+				}
+				setTimeout(function() {
+					$(".multiselect").multiselect("destroy");
+					$scope.CreateMultiselect();
+				}, 200);
+				
+				 
+			}
+			
+			$scope.ZoomP = function() {
+				var delta = 0.05;
+				var newScale = V($scope.paper.viewport).scale().sx + delta;
+				var p = $scope.paper.svg.createSVGPoint();
+				if (newScale > 0.05 && newScale < 2) {
+					$scope.paper.setOrigin(0, 0); 
+					$scope.paper.scale(newScale, newScale, p.x, p.y);
+				}
+				
+			}
+			
+			$scope.ZoomM = function() {
+				var delta = -0.05;
+				var newScale = V($scope.paper.viewport).scale().sx + delta;
+				var p = $scope.paper.svg.createSVGPoint();
+				if (newScale > 0.05 && newScale < 2) {
+					$scope.paper.setOrigin(0, 0); 
+					$scope.paper.scale(newScale, newScale, p.x, p.y);
+				}
+			}
+			
+			$scope.Shift = function(valX,valY) {
+				  V($scope.paper.viewport).translate(valX, valY);
+			}
+			
+			$scope.CreateGraph = function(dataObjectsHierarchy) {
+				var w = $("#graphIdgraphId")[0].offsetWidth;
+				var graph = new joint.dia.Graph;
+				$('#graphIdgraphId').empty();
+				$scope.paper = new joint.dia.Paper({
+					el: $('#graphIdgraphId'),
+					width: screen.width,
+					height: screen.height,
+					model: graph,
+					gridSize: 1
+				});
+				
+				$scope.paper.$el.on('mousewheel DOMMouseScroll', onMouseWheel);
+ 
+				function onMouseWheel(e) {
+				
+					e.preventDefault();
+					e = e.originalEvent;
+				
+					var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail))) / 50;
+					var offsetX = e.offsetX //(e.offsetX || e.clientX - $(this).offset().left); 
+					var offsetY = e.offsetY //(e.offsetY || e.clientY - $(this).offset().top); 
+					var p = offsetToLocalPoint(offsetX, offsetY);
+					var newScale = V($scope.paper.viewport).scale().sx + delta; 
+					if (newScale > 0.05 && newScale < 2) {
+						$scope.paper.setOrigin(0, 0); 
+						$scope.paper.scale(newScale, newScale, p.x, p.y);
+					}
+				}
+				
+				function offsetToLocalPoint(x, y) {
+					var svgPoint = $scope.paper.svg.createSVGPoint();
+					svgPoint.x = x;
+					svgPoint.y = y;
+					var pointTransformed = svgPoint.matrixTransform($scope.paper.viewport.getCTM()/*.inverse()*/);
+					return pointTransformed;
+				}
+				
+				//create ObjectDATA
+				var ListObject = [];
+				var ListLink = [];
+				var CheckObjectName = [];
+				var CheckLink = []
+				var SizeObject = 0;
+				// create the rectangles which will model the sObjects
+				// distribute them on the whole area
+				var maxWidth = screen.width;
+				var maxHeight = screen.height;
+				debug('maxWidth='+maxWidth);
+				debug('maxHeight='+maxHeight);
+				const MAX_ITEMS = 20;//total number of blocks in 1 line
+				const MAX_ITEMS_GROUP = 3;//number of blocks in 1 group; if more line splits
+				const MAX_GROUPS_ON_LAYER = 4;
+				const BLOCK_HEIGHT = 50;
+				const BLOCK_WIDTH = 180;
+				const BLOCK_WIDTH_SPACE = BLOCK_WIDTH + 20;
+				
+				var itemsInLine = Math.sqrt(dataObjectsHierarchy.length);
+				if (itemsInLine < 1 ) itemsInLine = 1;
+				debug('itemsInLine='+itemsInLine);
+				var counter = itemsInLine;
+				
+				descriptorsMap = {};
+				layers = {};
+				groups = {};
+				for (var i = 0; i < dataObjectsHierarchy.length; i++) {
+					var objRec = dataObjectsHierarchy[i];
+					var name = objRec.objectName;
+					var objDescr;
+					if (descriptorsMap[name] != undefined){
+						objDescr =  descriptorsMap[name];
+					}else{
+						objDescr = {};
+						objDescr.name = name;
+						objDescr.childs = [];
+						objDescr.parents = [];
+						objDescr.layer = 10000;
+						objDescr.group = name;//initial value - for the case 'no parents, so form group from itself'
+						objDescr.x;
+						descriptorsMap[name] = objDescr; 
+					}
+					
+					if (objRec.lookupFields != undefined && objRec.lookupFields.length > 0){
+						objDescr.group = objRec.lookupFields[0].objName;
+						for (var x = 0; x < objRec.lookupFields.length; x++){
+							var childName = objRec.lookupFields[x].objName;
+							if (childName != name){//exclude self-lookups
+								objDescr.parents.push(childName);
+								if (descriptorsMap[childName] == undefined){
+									var objDescr2 = {};
+									objDescr2.name = childName;
+									objDescr2.childs = [];
+									objDescr2.parents = [];
+									objDescr2.layer = 10000;
+									objDescr2.group = name;//initial value - for the case 'no parents, so form group from itself'
+									objDescr2.x;
+									descriptorsMap[childName] = objDescr2; 
+								}
+								descriptorsMap[childName].childs.push(name);
+								descriptorsMap[childName].layer += 1; 
+							}
+						}
+					}else{// no parents, so form group from itself
+						objDescr.group = name;
+					}
+					
+				}
+				debug('descriptorsMap: '+JSON.stringify(descriptorsMap));
+				// form layers
+				//create rankList
+				var rankedList = [];
+				var rankMap = {};// map: rankIndex#objName => objDescr
+				for (var key in descriptorsMap) {
+					if (descriptorsMap.hasOwnProperty(key)) {
+						var compKey = descriptorsMap[key].layer + '#' + key;
+						rankedList.push(compKey);
+						rankMap[compKey] = descriptorsMap[key];
+					}
+				}
+				rankedList.sort().reverse();// descending order
+				// form strats of objDescr with the same rank
+				debug('ranks:'+JSON.stringify(rankedList));
+				var strats = {};
+				var verticalIndex = [];
+				for (var x = 0; x < rankedList.length; x++){
+					var objDescr = rankMap[rankedList[x]];
+					var rankIndex = objDescr.layer;
+					if (strats[rankIndex] == undefined){
+						var stratDescr = {};
+						stratDescr.rankIndex = rankIndex;
+						stratDescr.layers = 1;// the thickness of layers in lines
+						stratDescr.groups = [];// array of unique groups (names) on the layer 
+						verticalIndex.push(stratDescr);// this array will contain only 1 exempliar of rankIndex - the final ver of stratification 
+						strats[rankIndex] = [];
+					}
+					strats[rankIndex].push(objDescr); // form layer with rank= rankIndex NB: map strats is not sorted!
+				}
+				debug('strats:'+JSON.stringify(strats));
+				// iterate over all  objDescr in each layer and form units and single elems, add them to groups, add the groups to map
+				for (var z = 0; z <   verticalIndex.length;z++){
+						var objsOnLayer = strats[verticalIndex[z].rankIndex];
+						var processedObjsMap = {};
+						var uniquesMap = {};
+						for (var x = 0; x < objsOnLayer.length; x++){
+							var objDescr = objsOnLayer[x];
+							if (processedObjsMap[objDescr.name] == undefined){
+								var unit = [];
+								unit.push(objDescr);
+								processedObjsMap[objDescr.name];
+								// add to unit: childs on the same layer, add them also to processedObjs
+								if (objDescr.parents != undefined && objDescr.parents.length > 0){
+									for (var y = 0; y < objDescr.parents.length; y++){
+										var testObj = descriptorsMap[objDescr.parents[y]];
+										if (testObj.layer == verticalIndex[z].rankIndex){// found also 1 unit member, regardless of group
+											unit.push(testObj);
+											processedObjsMap[testObj.name];
+										}
+									}
+								}
+								if (groups[objDescr.group] == undefined){
+									groups[objDescr.group] = [];
+								}
+								groups[objDescr.group].push(unit);
+								uniquesMap[objDescr.group] = true;
+							} 
+						}
+						verticalIndex[z].groups = Object.keys(uniquesMap); 
+				}
+				debug('groups:'+JSON.stringify(groups));
+				// add x value to each layers objDescr
+				if (verticalIndex.length > 0){  // process the 1st line
+					var firstLine = verticalIndex[0].rankIndex;
+
+					var objsOnLayer = strats[firstLine];
+					var nHighestItems = objsOnLayer.length;
+					var xStep = maxWidth/(nHighestItems + 1);
+//                    var xStep = BLOCK_WIDTH_SPACE;//first line: side by side
+					for (var x = 0; x < nHighestItems; x++){
+						objsOnLayer[x].x = (x+1)*xStep;
+						objsOnLayer[x].y = 0;
+					}
+				}
+				if (verticalIndex.length > 1){// process the rest lines
+					var yPosLayer  = 2*BLOCK_HEIGHT; // initial value of vertical position in terms of height of blocks
+					var lines = 1;
+					for (var x = 1; x < verticalIndex.length; x++){
+						var objsOnLayer = strats[verticalIndex[x].rankIndex];
+						var layerGroups = verticalIndex[x].groups; // array of names of the groups on the current layer
+						var xPos = 0; // initial position
+						var xIdent = (x % 2 == 0)?BLOCK_WIDTH_SPACE:0;
+//                        var xStep = maxWidth/(layerGroups.length + 1);//max width of each group
+						var groupsCounter = 0;
+						var xStep = MAX_ITEMS_GROUP*BLOCK_WIDTH_SPACE;
+						var yStep = yPosLayer*lines;
+						var t_lines = lines;
+						for (var g = 0; g < layerGroups.length; g++){
+							var yPos = yStep;// reset x and y positions for each group
+							xPos = groupsCounter*xStep+xIdent;
+							var vlines = t_lines;
+							var counter = MAX_ITEMS_GROUP;
+							var units = groups[layerGroups[g]];
+							for (var u = 0; u < units.length; u++){
+								var unit = units[u];
+								for (var elem = 0; elem < unit.length; elem++){// process only elements of group on the current layer
+									if (unit[elem].layer != verticalIndex[x].rankIndex) continue;
+									unit[elem].x = xPos;
+									unit[elem].y = yPos;
+									xPos += BLOCK_WIDTH_SPACE;
+									if (counter-- < 0){
+										counter = MAX_ITEMS_GROUP;
+										yPos += 2*BLOCK_HEIGHT;
+										xPos = groupsCounter*xStep;
+										vlines++;
+									}
+
+								}
+
+							}
+							if (groupsCounter++ > MAX_GROUPS_ON_LAYER){
+							   groupsCounter = 0;
+							   vlines++; 
+							}
+							// update lines, if new max established  - for group
+							t_lines  = t_lines < vlines ? vlines:t_lines; 
+						}// update lines, if new max established  - for layer
+						lines  = lines < t_lines ? t_lines:lines;
+						lines++; 
+					}
+				}
+				
+				 debug('descriptorsMap: '+JSON.stringify(descriptorsMap)); 
+				CheckObjectName = [];               
+				
+				for (var index = 0; index < dataObjectsHierarchy.length; index++) {
+					var p = Math.floor(index/(dataObjectsHierarchy.length + 1));
+					setLoaderText('creating graph... '+p+' %');
+					if ($.inArray(dataObjectsHierarchy[index].objectName, CheckObjectName) == -1) {
+						SizeObject++;
+						var objDescr = descriptorsMap[dataObjectsHierarchy[index].objectName];
+						x = 0;
+						y = 0;
+						if (objDescr != undefined){
+							x = objDescr.x;
+							y = objDescr.y;
+						}
+						debug('('+x+','+y+')');
+						var colorofBlock = dataObjectsHierarchy[index].isAdded ? '#D05020':'#099AD6';
+						var rect = new joint.shapes.basic.Rect({
+							id: dataObjectsHierarchy[index].objectName,
+							position: { x: x, y: y }, 
+							size: { width: BLOCK_WIDTH, height: BLOCK_HEIGHT },
+							attrs: { rect: { fill: colorofBlock, rx: 5, ry: 5, stroke: '#098DC3' },
+									 text: { text: $scope.labelMap[dataObjectsHierarchy[index].objectName]+'\n('+dataObjectsHierarchy[index].objectName+')',
+									 fill: 'white' } }
+						});
+						CheckObjectName.push(dataObjectsHierarchy[index].objectName);
+						ListObject.push(rect);
+					}
+				}
+				
+				//create links
+				for (var index2 = 0; index2 < dataObjectsHierarchy.length; index2++) {
+					if (dataObjectsHierarchy[index2].lookupFields != null && dataObjectsHierarchy[index2].lookupFields.length > 0) {
+						var LinkList = dataObjectsHierarchy[index2].lookupFields;
+						for (var index3 = 0; index3 < LinkList.length; index3++) {
+							if ($.inArray(dataObjectsHierarchy[index2].objectName + LinkList[index3].objName, CheckLink) == -1) {
+								var link = new joint.dia.Link({
+									source: { id: dataObjectsHierarchy[index2].objectName },
+									target: { id: LinkList[index3].objName }
+								});
+								link.attr({
+									'.marker-target': { fill: 'black', d: 'M 10 0 L 0 5 L 10 10 z' }
+								});
+								link.set('smooth', true);
+								ListLink.push(link);
+								CheckLink.push(dataObjectsHierarchy[index2].objectName + LinkList[index3].objName);
+							}
+						}
+					}
+				}
+				
+				var FinishList = ListObject.concat(ListLink);
+
+				$scope.LoadOffBar();
+				
+				V($scope.paper.viewport).translate(20, 20);
+				graph.addCells(FinishList);
+				
+			}
+			
+			$scope.LoadOn = function() {
+				$( ".bodyDis" ).hide();
+				$( ".loader" ).show();
+			}
+			$scope.LoadOnBar = function() {
+				$( ".bodyDis" ).hide();
+				$( ".loaderBar" ).show();
+			}
+			$scope.LoadOffBar = function() {
+				$scope.loaderText = '';
+				var e = $( '#loaderText' );
+				if (e != undefined){ 
+					e.remove();
+				}
+				
+				$( ".bodyDis" ).show();
+				$( ".loaderBar" ).hide();
+			}
+			
+			$scope.LoadOff = function() {
+				$( ".loader" ).hide();
+				$( ".bodyDis" ).show();
+			}
+			
+			$scope.CreateMultiselect = function() {
+				$(".multiselect").multiselect({sortable: false, searchable: true});
+				$(".ui-multiselect").css( "width", "70%");
+				$("div.selected").css( "width", "50%");
+				$("div.available").css( "width", "50%");
+				$(".connected-list").css( "height", "600px");
+				$scope.LoadOff();
+				
+			}
+			
+			$scope.checkSelect = function(param) {
+				var returnVar = $.inArray(param, $scope.selectList) == -1;
+				return !returnVar;
+			}
+			
+			var objDescriptorMap;
+			
+			$scope.Save = function() {
+				$scope.Error = false;
+				objDescriptorMap = {}; // map for nonremovable map
+				
+				for (var x = 0; x < $scope.listDescr.length; x++){
+					objDescriptorMap[$scope.listDescr[x].Name] = $scope.listDescr[x];
+				}
+				
+				if ($scope.SequenceName == '' && $scope.ExtId == '' || $scope.returnObjectsHierarchy == null || $scope.returnObjectsHierarchy.length == 0) {
+					$scope.Error = true;
+				}
+				else {
+					$scope.LoadOnBar();
+					$( "#progressbar" ).progressbar({
+						value: 0
+					});
+					dataManager.SaveInit($scope.ExtId, $scope.SequenceName).then(
+						function(data) {
+							$scope.CloneHierarchy = angular.copy($scope.returnObjectsHierarchy);
+							$( "#progressbar" ).progressbar({
+								value: 10
+							});
+							$scope.saveDS(data);
+							
+						},
+						function (error) {
+							$scope.errorMessage = error.message;
+						}
+					 );
+				}
+			}
+			$scope.saveDS = function(SecId) {
+				var msa = []
+				if ($scope.CloneHierarchy.length > 10) {
+					msa = $scope.CloneHierarchy.splice(0,10);
+				}
+				else if ($scope.CloneHierarchy.length > 0) {
+					msa = $scope.CloneHierarchy.splice(0, $scope.CloneHierarchy.length);
+				}
+				if (msa.length > 0) {
+					var listobject = [];
+					//list of  DescriptorWrapper:
+					//      public String Name;
+					//      public String selectedType;
+					//      public String selectedDS;
+					//      public List<String> excludedFields;
+					//      public List<String> removedLookups;
+					 
+					for (var x=0;x< msa.length ;x++) {
+						if (objDescriptorMap[msa[x].objectName] != undefined){
+							var descriptor = objDescriptorMap[msa[x].objectName];
+							descriptor.excludedFields =  msa[x].excludedFields;
+							descriptor.removedLookups = msa[x].removedLookups;
+							descriptor.selfLookups = msa[x].selfLookups;
+							listobject.push(descriptor);
+						}else{
+							listobject.push({"Name":msa[x].objectName,"selectedType":msa[x].Operation,"selectedDS":msa[x].DSId,"removedLookups":msa[x].removedLookups,"selfLookups":msa[x].selfLookups});
+						}
+					}
+					var index = ($scope.returnObjectsHierarchy.length - $scope.CloneHierarchy.length)*100/$scope.returnObjectsHierarchy.length;
+					if (index > 90) {
+						index = 90;
+					}
+					else if (index < 10) {
+						index = 10;
+					}
+					$( "#progressbar" ).progressbar({
+						value: index
+					});
+					setLoaderText('Saving generated Data Sets: '+ Math.floor(index) +' %');
+					debug(JSON.stringify(listobject));
+					
+					dataManager.SaveDataSet(SecId, JSON.stringify(listobject)).then(
+							function(data) {
+								var upsObjMap = {};
+								for (var i=0;i<listobject.length;i++){
+									if (listobject[i].selectedType == 'UPSERT'){
+										upsObjMap[listobject[i].Name] = listobject[i].selectedDS;
+									}
+								}
+								for (var x=0;x< $scope.returnObjectsHierarchy.length ;x++) {
+									var objectName = $scope.returnObjectsHierarchy[x].objectName;
+									if (data[objectName] != null) {
+										$scope.returnObjectsHierarchy[x].DSId = data[objectName];
+									}
+									if (upsObjMap[objectName] != null) {
+										$scope.returnObjectsHierarchy[x].DSId = upsObjMap[objectName];
+										$scope.returnObjectsHierarchy[x].Operation = 'UPSERT';
+										if ($scope.question.selected == 1){
+											$scope.returnObjectsHierarchy[x].Filter = '';
+										}else if ($scope.question.selected == 2){
+											$scope.returnObjectsHierarchy[x].Filter = 'LastModifiedDate';
+										}else{
+											$scope.returnObjectsHierarchy[x].Filter = '';
+										}   
+									}else{
+										$scope.returnObjectsHierarchy[x].Operation = 'INSERT';
+									}
+								}
+								$scope.saveDS(SecId);
+								
+							},
+							function (error) {
+								$scope.errorMessage = error.message;
+							}
+				   );
+				}
+				else {
+					$( "#progressbar" ).progressbar({
+						value: 95
+					});
+					setLoaderText('Saving sequence...');
+					debug('Save: length='+JSON.stringify($scope.returnObjectsHierarchy).length);
+					debug('Save: length='+JSON.stringify($scope.returnObjectsHierarchy));
+					dataManager.Save(SecId, JSON.stringify($scope.returnObjectsHierarchy)).then(
+						function(data) {
+							window.open('/' + data,'_self');
+						},
+						function (error) {
+							$scope.errorMessage = error.message;
+						}
+					 );
+					//finish save
+				}
+			
+			}
+			
+			$scope.validateTable = function(){
+				for (var x=0; x < $scope.listDescr.length; x++){
+					debug('DSId'+$scope.listDescr[x].selectedDS);
+					if ($scope.listDescr[x].selectedType == undefined || $scope.listDescr[x].selectedType == null) // error situation
+								return 0;
+				}
+				return -1;
+			}
+			
+			var dsArray = [];
+			
+			$scope.ChangeMenuItem = function(var1, var2,reset) {
+				if (var2) {
+					if (var1 == 0) {
+						$scope.Error = false;
+						$scope.Page1 = true;
+						$scope.Page2 = true;
+						$scope.Page3 = true;
+						$scope.Page4 = true;
+						$scope.pageJump = var1;
+					}
+					else if (var1 == 1) {
+						$scope.Error = false;
+						
+						if (reset){ // reset all variables in table only if button 'Next' is pressed 
+							var listObjDescr = [];
+							var listObjNames = [];
+							$scope.dsMap = {}; // contains all available Data Sets as map objectName => DS
+							$scope.dsIdMap = {};
+							
+							var secetCont = $("div.selected");
+							var Items = secetCont.find("li.ui-state-default.ui-element");
+							$scope.LoadOnBar();
+							$( "#progressbar" ).progressbar({
+								 value: 0
+							});
+							setLoaderText('Loading data sets...');
+							
+							if (Items != 0 && Items.length > 0) {
+								for (var x =0 ; x < Items.length ; x++) {
+									if (Items[x].title != null) {
+										var descr = {};
+										var t1 = Items[x].title.split('(')[1];
+										descr.Name = t1.substring(0, t1.length - 1);
+										descr.scope = 1; // default scope = 1 
+										descr.selectedType = 'INSERT';
+										descr.selectedDS = '0';
+										listObjNames.push(descr.Name);
+										listObjDescr.push(descr);
+										if ($scope.dsMap[descr.Name] == undefined){// for the case if not any ds for this type of object was defined add at least 1 default type (All fields)
+											$scope.dsMap[descr.Name] = [];
+											$scope.dsMap[descr.Name].push({'DSId':'0','DSName':'Autogenerate','DSType':'INSERT', 'AvailableOps': ['INSERT'],'ObjAPIName':descr.Name});
+										}
+									}
+								}
+							}
+							$scope.listDescr = listObjDescr;
+							debug('listDescr:'+JSON.stringify(listObjDescr));
+							// loading data for mentioned sobjects
+							$( "#progressbar" ).progressbar({
+							  value: 50
+							});
+							// download all ds for initial set of objects ()
+							dataManager.getDSInfo(JSON.stringify(listObjNames)).then(
+								function(data) {
+									if (data != null && data.length > 0){
+										for (var x = 0; x < data.length; x++){
+											var descriptor = data[x];
+											debug(JSON.stringify(data));
+											if ($scope.dsMap[descriptor.ObjAPIName] == undefined){
+												$scope.dsMap[descriptor.ObjAPIName] = [];
+												$scope.dsMap[descriptor.ObjAPIName].push({'DSId':'0','DSName':'Autogenerate','DSType':'INSERT','AvailableOps': ['INSERT'], 'ObjAPIName':descriptor.ObjAPIName});
+											}
+											$scope.dsMap[descriptor.ObjAPIName].push(descriptor);
+											$scope.dsIdMap[descriptor.DSId] = descriptor.AvailableOps; 
+										}
+									}
+									$scope.dsIdMap[0] = ['INSERT'];
+									debug(JSON.stringify($scope.dsIdMap));
+									
+									$timeout(function() {
+										$scope.LoadOffBar();
+									}, 300);
+								}
+							);
+							
+						}
+						debug('listDescr.length='+$scope.listDescr.length);
+						$scope.Page1 = false;
+						$scope.Page2 = true;
+						$scope.Page3 = true;
+						$scope.Page4 = true;
+						$scope.pageJump = var1;
+					}
+					else if (var1 == 2) {
+						$scope.Error = false;
+						if ($scope.validateTable() == 0){
+							$scope.Error = true;
+							$scope.ErrorM = 'Select the operation type';
+							return;
+						}
+						
+							$scope.LoadOnBar();
+							dsArray = [];
+							// first, download (by 10 items) all fields for selected DS - (actually   only lookups are needed)
+							for (var x = 0; x < $scope.listDescr.length; x++){
+								var DSId = $scope.listDescr[x].selectedDS;
+								if (DSId != undefined && DSId != '0'){
+									dsArray.push({DSId:DSId,oName:$scope.listDescr[x].Name});
+								}
+							}
+							loadDataSets(dsArray);
+							
+						
+					}
+					else if (var1 == 3) {
+						$scope.Error = false;
+						$scope.Page3 = false;
+						$scope.Page2 = false;
+						$scope.Page1 = false;
+						$scope.pageJump = 3;
+					}
+					
+				}
+			};
+			
+			$scope.deleteObj = function(param){// param is a pointer to returnObjectsHierarchy record
+				 //iterate over all list returnObjectsHierarchy (except current rec): 1) update lookupFields array for this rec, 2) add linked fieldName to removedLookups (create this arr if not ex)
+				 var removedObj = param.objectName;
+				 updateLookupsHierarchy(removedObj);
+				 rebuildHierarchy(removedObj);
+				 console.log(JSON.stringify($scope.returnObjectsHierarchy));
+			}
+			
+			
+			$scope.rowselected = function(rowIdx,type)
+			{
+				$scope.returnObjectsHierarchy[rowIdx].style = type;
+				if (!type){
+				var lookupFields = $scope.returnObjectsHierarchy[rowIdx].lookupFields;
+				if (lookupFields != undefined){
+					var selected = [];
+					selected.push($scope.returnObjectsHierarchy[rowIdx].objectName);
+					for (var x = 0; x < lookupFields.length; x++){
+						selected.push(lookupFields[x].objName);
+					}
+					console.log(JSON.stringify(selected));
+					for (var x = 0; x < $scope.returnObjectsHierarchy.length; x++){
+						var rec = $scope.returnObjectsHierarchy[x];
+						rec.style = ($.inArray(rec.objectName,selected) != -1);
+					}
+				}
+				}else{// reset all styles
+					for (var x = 0; x < $scope.returnObjectsHierarchy.length; x++){
+						$scope.returnObjectsHierarchy[x].style = false;
+					}
+				}
+			}
+			
+			function updateLookupsHierarchy(oName){// update lookups after object removal
+				for (var x = 0; x < $scope.returnObjectsHierarchy.length; x++){
+					var rec = $scope.returnObjectsHierarchy[x];
+					if (rec.objectName !== oName){// do not process current
+						var lookupFields = rec.lookupFields;
+						var newLookups = [];
+						if (lookupFields != undefined && lookupFields.length > 0){
+							for (var y = 0; y < lookupFields.length; y++){
+								if (lookupFields[y].objName != oName){
+									newLookups.push(lookupFields[y]);
+								}
+							}
+							rec.lookupFields = newLookups;
+						}
+					}
+				}
+			}
+			
+			function rebuildHierarchy(oName){// exclude object, correct numbering
+				var lvl = 0;
+				var newHierarchy = [];
+				for (var x = 0; x < $scope.returnObjectsHierarchy.length; x++){
+					var rec = $scope.returnObjectsHierarchy[x]; 
+					if (rec.objectName != oName){
+						rec.level = lvl++;
+						newHierarchy.push(rec);
+					}
+				}
+				$scope.returnObjectsHierarchy = newHierarchy;
+			}
+			
+			
+			var dsIndex = 0;
+			var maxIndex = 0;
+			var mapF = {};// map id => fields for all DS in dataSetArray
+			
+			function loadDataSets(dataSetArray){
+				$( "#progressbar" ).progressbar({
+					 value: 0
+				});
+				setLoaderText('Loading data sets...');
+				dsIndex = 0;
+				maxIndex =  dataSetArray.length;
+				loader(dataSetArray);
+				
+			}
+			
+			function loader(dataSetArray){
+				if (dsIndex < maxIndex){
+					$( "#progressbar" ).progressbar({
+						value: Math.floor(100*dsIndex/(maxIndex + 1))
+					});
+					loadDataSetsChunck(dataSetArray);
+				}else{// all done, all data in mapF;
+					var retMap = {};
+					for (var x = 0; x < dataSetArray.length; x++){
+						retMap[dataSetArray[x].oName] = mapF[dataSetArray[x].DSId];
+					}
+					generateSequence(retMap); 
+				}
+			}
+			
+			function loadDataSetsChunck(dataSetArray){
+				 var ids = []; 
+				 for (var x = 0; x < 10; x++){// form pack from 10 rows each
+					if (dsIndex < maxIndex){
+						ids.push(dataSetArray[dsIndex].DSId);
+						dsIndex++;
+					}else{
+						break;
+					}
+				 }
+				 if (ids.length > 0){
+					dataManager.getDSFields(JSON.stringify(ids)).then(
+						function(data) {
+							if (data != null && data.length > 0){
+								for (var x = 0; x < data.length; x ++){
+									mapF[data[x].id] = data[x].fields;
+								}
+							}
+							loader(dataSetArray);
+						}
+					);
+				 }else{
+					loader(dataSetArray);
+				 }
+				 
+			}
+			
+			function generateSequence(mapObjFields){
+			// generate sequence
+				$( "#progressbar" ).progressbar({
+					 value: 0
+				});
+				setLoaderText('Creating sequence...');
+			   
+				globalScope = $scope.globalScope;
+				listName = [];
+				$scope.listNameDescr = [];
+				debug('listDescr.length='+$scope.listDescr.length);
+				for (var x = 0; x < $scope.listDescr.length; x++){
+					var oName = $scope.listDescr[x].Name;
+					listName.push(oName);
+					var oScope = $scope.listDescr[x].scope;//reserved : separate scope for each obj
+					//each descriptor includes              list of fields from non-zero DS; 
+					//                                      for autogenerated DS: fields == undefined
+					//                                                      \|/
+					$scope.listNameDescr.push({objName:oName,scope:oScope,fields:mapObjFields[oName]});
+				}
+				debug('listNameDescr.length='+$scope.listNameDescr.length);
+							
+				var sessionId = "{!$Api.Session_Id}";
+				TreeService.initTreeService(sessionId);
+				TreeService.getModel( $scope.listNameDescr,  true, function(data, data2){
+					$scope.Page4 = true;
+					$scope.Page3 = true;
+					$scope.Page2 = false;
+					$scope.Page1 = false;
+					$scope.pageJump = 2;
+							  
+						$scope.returnObjectsHierarchy = data.objectsHierarchy; // detail descriptions
+						var listAddedObjects = [];
+						var objMap = {};
+						for (var x =0; x < $scope.listDescr.length; x++){
+							objMap[$scope.listDescr[x].Name] = $scope.listDescr[x]; 
+						}
+						
+						for (var x = 0; x < $scope.returnObjectsHierarchy.length; x++){// 
+							var rec =  $scope.returnObjectsHierarchy[x];
+							if (rec.comment != undefined && rec.comment.indexOf(ADDED_OBJ)  != -1){
+								if ($scope.dsMap[rec.objectName] == undefined){
+												$scope.dsMap[rec.objectName] = [];
+												$scope.dsMap[rec.objectName].push({'DSId':'0','DSName':'Autogenerate','DSType':'INSERT','AvailableOps': ['INSERT'], 'ObjAPIName':rec.objectName});
+								}
+								listAddedObjects.push(rec.objectName);
+								rec.DSId = '0';
+								rec.Operation = 'INSERT';
+							}else{
+								rec.DSId = objMap[rec.objectName].selectedDS;
+								rec.Operation = objMap[rec.objectName].selectedType;
+							}
+						}
+						if (listAddedObjects.length > 0){// load all added objects
+							dataManager.getDSInfo(JSON.stringify(listAddedObjects)).then(
+								function(data) {
+									console.log('get additional ds:'+JSON.stringify(data));
+									if (data != null && data.length > 0){
+										for (var x = 0; x < data.length; x++){
+											var descriptor = data[x];
+											debug(JSON.stringify(data));
+											if ($scope.dsMap[descriptor.ObjAPIName] == undefined){
+												$scope.dsMap[descriptor.ObjAPIName] = [];
+											}
+											$scope.dsMap[descriptor.ObjAPIName].push(descriptor);
+											$scope.dsIdMap[descriptor.DSId] = descriptor.AvailableOps; 
+										}
+									}
+									$scope.dsIdMap[0] = ['INSERT'];
+									debug(JSON.stringify($scope.dsIdMap));
+									
+									$timeout(function() {
+										$scope.LoadOffBar();
+									}, 300);
+								}
+							);
+						}
+						$scope.objectsHierarchy =    data2; // for displaying   - deprecated         
+						$timeout(function() {
+							$scope.LoadOffBar();
+						}, 300);
+			   });
+			}
+			
+			$scope.$watch('listDescr', function() {
+				var isUpsert = false;
+				for (var x = 0; x < $scope.listDescr.length; x++ ){
+					if ($scope.listDescr[x].selectedType == 'UPSERT'){
+						isUpsert = true;
+						break;
+					}
+				}
+				$scope.isUpsert = isUpsert;
+			}, true); 
+			
+			/*************      Utility methods         ***************/
+			
+			//  {
+			//  "level":2,"objectName":"Account","childObjectNames":["Contact","Contact","Account","DandBCompany"],
+			//  "lookupFields":[{"fName":"DandbCompanyId","objName":"DandBCompany"}],
+			//  "DSId":"a0B2800000I8yh3EAB","Operation":"UPSERT", Opt["selfLookups": parentId]
+			//  },
+			
+			function cleanRecords(hierarchyLi){
+				if (hierarchyLi != undefined && hierarchyLi.length > 0){
+					for(var x = 0; x < hierarchyLi.length; x++ ){
+						var rec = hierarchyLi[x];
+						// clean childObjectNames
+						if (rec.childObjectNames != undefined && rec.childObjectNames.length > 0 ){
+							var newChildObjectNames = [];
+							var set = new Set(rec.childObjectNames);
+							set.forEach(v => newChildObjectNames.push(v));
+							hierarchyLi[x].childObjectNames = newChildObjectNames;
+						}
+						// clean lookupFields
+						if (rec.lookupFields != undefined && rec.lookupFields.length > 0){
+							var newLookupFields = [];
+							var lookupFieldsMap = {};
+							for (var i = 0; i < rec.lookupFields.length; i++){
+								var field = rec.lookupFields[i];
+								if (lookupFieldsMap[field.fName] == undefined){
+									lookupFieldsMap[field.fName] = 1;
+									newLookupFields.push(field);
+								}
+							}
+							hierarchyLi[x].lookupFields = newLookupFields;
+						}
+					}
+				}
+			}
+			
+		});
+	</script>
+	<style>
+		
+.g-container .g-cwp .g-cwp--app-title__h1 { margin: 0 0 10px 0; font-size: 20px; font-weight: 500; }
+.g-container .g-cwp .g-cwp--nav__c:before, .g-container .g-cwp .g-cwp--nav__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--nav__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item { float: left; padding: 20px; width: 24%; height: 62px; box-sizing: border-box; position: relative; background: #cecece; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item:after, .g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item:before { border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; visibility: visible; z-index: 2; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item:after { border-width: 29px; border-left-color: #cecece; right: -58px; top: 50%; margin-top: -29px; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item:before { border-width: 30px; border-left-color: #b6b6b6; right: -60px; top: 50%; margin-top: -30px; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item:last-child:after, .g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item:last-child:before { display: none; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item:hover { }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item:not(:first-child) { padding-left: 50px; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item .g-cwp--nav--item--counter { float: left; margin-right: 10px; border: 3px solid #aaa; color: #aaa; padding: 5px 10px; box-sizing: border-box; border-radius: 50%; margin-top: -7px; position: relative; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item .g-cwp--nav--item--counter span { font-size: 16px; display: inline-block; width: 9px; height: 16px; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item .g-cwp--nav--item--counter i { position: relative; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item .g-cwp--nav--item--counter i:after { content: ''; background: url("../jqModal/images/icon-check.png") no-repeat top center; background-size: 100% auto; top: 0; left: -12px; position: absolute; width: 15px; height: 15px; color: #fff; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item .g-cwp--nav--item--title { float: left; font-size: 16px; color: #aaa; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.active { background: #587390; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.active:after, .g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.active:before { border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; visibility: visible; z-index: 2; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.active:after { border-width: 29px; border-left-color: #587390; right: -58px; top: 50%; margin-top: -29px; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.active:before { border-width: 31px; border-left-color: #587390; right: -62px; top: 50%; margin-top: -31px; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.active .g-cwp--nav--item--title { color: #fff; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.active .g-cwp--nav--item--counter { border-color: #92a6bc; color: #fff; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.completed { background: #0C9F76; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.completed:after, .g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.completed:before { border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; visibility: visible; z-index: 2; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.completed:after { border-width: 29px; border-left-color: #0C9F76; right: -58px; top: 50%; margin-top: -29px; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.completed:before { border-width: 31px; border-left-color: #23eeb6; right: -62px; top: 50%; margin-top: -31px; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.completed .g-cwp--nav--item--title { color: #fff; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.completed .g-cwp--nav--item--counter { color: #fff; border-color: #10ce99; }
+.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item.completed .g-cwp--nav--item--counter span { visibility: hidden; }
+.g-container .g-cwp .g-cwp--wrapper__c { font-size: 14px; }
+.g-container .g-cwp .g-cwp--wrapper__c:before, .g-container .g-cwp .g-cwp--wrapper__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--progressbar__c { margin-bottom: 15px;background: rgba(0, 0, 0, 0.5); }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--progressbar__c .g-cwp--progressbar--title { background: #ededed; text-align: center; font-size: 12px; padding: 2px 0; font-weight: 500; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--progressbar__c .g-cwp--progressbar { background: rgba(128, 128, 128, 0.5); }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--progressbar__c .g-cwp--progressbar .g-cwp--progressbar--fill { width: 50%; height: 18px; background-size: 30px 30px; background: rgba(255, 255, 255, 0.5);  }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--sidebar__c { float: left; width: 24.2%; background: #f2f2f2; border: 1px solid #cecece; box-sizing: border-box; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--sidebar__c .g-cwp--sidebar--title { text-align: center; padding: 2px 0; box-sizing: border-box; background: #4b6a89; color: #fff; margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--sidebar__c .g-cwp--sidebar--block { padding: 10px; margin-top: 5px; margin-bottom: 5px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--sidebar__c .g-cwp--sidebar--block .g-cwp--sidebar--block--title { font-weight: 500; margin-bottom: 5px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c { width: 99%; background: #f5f5f5; box-sizing: border-box; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c { border: 1px solid #cecece; box-sizing: border-box; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--steps__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--steps__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--steps__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--steps__c .g-cwp--steps--item { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; float: left; width: 25%; text-align: center; padding: 2px 0; background: #cecece; margin-bottom: 1px; color: #aaa; box-sizing: border-box; border-right: 1px solid #ededed; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--steps__c .g-cwp--steps--item:last-child { border-right: 0; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--steps__c .g-cwp--steps--item:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--steps__c .g-cwp--steps--item.active { background: #4b6a89; color: #fff; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--steps__c .g-cwp--steps--item.completed { background: #0C9F76; color: #fff; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c { padding: 15px 20px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp-pre-configuration--description__c { float: left; width: 75%; box-sizing: border-box; padding-top: 0; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp-pre-configuration--description__c h3 { font-size: 16px; margin: 0; margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp-pre-configuration--description__c ol, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp-pre-configuration--description__c ul { padding: 0; list-style-position: inside; counter-reset: item; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp-pre-configuration--description__c ol { list-style-type: none; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp-pre-configuration--description__c ol li:before { content: counter(item) ") "; counter-increment: item; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c { float: right; width: 20%; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--title { text-align: center; margin-bottom: 10px; font-weight: 500; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--image__c { margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--image__c .g-cwp--support--image { max-width: 100%; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--name { text-align: center; margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c { padding-left: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #f39c12; color: #fff; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; display: block; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.disabled { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; color: #585858; background: #c7c7c7; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(0, 0, 0, 0.3); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); border: 1px solid #a3a3a3; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.disabled:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.disabled:hover { cursor: not-allowed; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.blocked { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #587390; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp-pre-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.blocked:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--rating__c { margin-bottom: 15px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--rating__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--rating__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--rating__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--rating__c .g-cwp--rating--title { float: left; font-weight: 500; margin-top: 10px; margin-right: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--rating__c .g-cwp--rating { float: left; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--button__c .g-cwp--button { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #f39c12; color: #fff; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; display: block; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--button__c .g-cwp--button:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--button__c .g-cwp--button.disabled { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; color: #585858; background: #c7c7c7; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(0, 0, 0, 0.3); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); border: 1px solid #a3a3a3; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--button__c .g-cwp--button.disabled:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--button__c .g-cwp--button.disabled:hover { cursor: not-allowed; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--button__c .g-cwp--button.blocked { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #587390; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--pre-configuration__c .g-cwp--button__c .g-cwp--button.blocked:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c { border: 1px solid #cecece; box-sizing: border-box; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c { padding: 15px 20px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c { float: left; width: 75%; box-sizing: border-box; padding-top: 0; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c h3 { font-size: 16px; margin: 0; margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c ol, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c ul { padding: 0; list-style-position: inside; counter-reset: item; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c ol { list-style-type: none; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c ol li:before { content: counter(item) ") "; counter-increment: item; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c .g-cwp--installation-instructions--title { font-weight: bold; font-size: 16px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c .g-cwp--input-fields__c .g-cwp--input { width: 400px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c .g-cwp--input-fields__c .g-cwp--button { display: inline-block; width: auto; padding: 3px; min-width: 50px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c .g-cwp--label-checkbox__c .g-cwp--checkbox { margin-right: 3px; width: 20px; height: 20px; vertical-align: bottom; }
+@-moz-document url-prefix() { .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--installation-instructions__c .g-cwp--label-checkbox__c .g-cwp--checkbox { margin-right: 0; } }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c { float: right; width: 20%; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--title { text-align: center; margin-bottom: 10px; font-weight: 500; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--image__c { margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--image__c .g-cwp--support--image { max-width: 100%; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--name { text-align: center; margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--button__c { padding-left: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #f39c12; color: #fff; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; display: block; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.disabled { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; color: #585858; background: #c7c7c7; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(0, 0, 0, 0.3); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); border: 1px solid #a3a3a3; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.disabled:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.disabled:hover { cursor: not-allowed; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.blocked { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #587390; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp-installation--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.blocked:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--rating__c { margin-bottom: 15px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--rating__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--rating__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--rating__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--rating__c .g-cwp--rating--title { float: left; font-weight: 500; margin-top: 10px; margin-right: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--rating__c .g-cwp--rating { float: left; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--button { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #f39c12; color: #fff; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; display: block; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--button:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--button.disabled { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; color: #585858; background: #c7c7c7; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(0, 0, 0, 0.3); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); border: 1px solid #a3a3a3; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--button.disabled:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--button.disabled:hover { cursor: not-allowed; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--button.blocked { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #587390; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--installation__c .g-cwp--button.blocked:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c { border: 1px solid #cecece; box-sizing: border-box; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--steps__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--steps__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--steps__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--steps__c .g-cwp--steps--item { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; float: left; width: 25%; text-align: center; padding: 2px 0; background: #cecece; margin-bottom: 1px; color: #aaa; box-sizing: border-box; border-right: 1px solid #ededed; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--steps__c .g-cwp--steps--item:last-child { border-right: 0; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--steps__c .g-cwp--steps--item:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--steps__c .g-cwp--steps--item.active { background: #4b6a89; color: #fff; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--steps__c .g-cwp--steps--item.completed { background: #0C9F76; color: #fff; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c { padding: 15px 20px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp-post-configuration--description__c { float: left; width: 75%; box-sizing: border-box; padding-top: 0; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp-post-configuration--description__c h3 { font-size: 16px; margin: 0; margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp-post-configuration--description__c ol, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp-post-configuration--description__c ul { padding: 0; list-style-position: inside; counter-reset: item; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp-post-configuration--description__c ol { list-style-type: none; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp-post-configuration--description__c ol li:before { content: counter(item) ") "; counter-increment: item; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c { float: right; width: 20%; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--title { text-align: center; margin-bottom: 10px; font-weight: 500; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--image__c { margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--image__c .g-cwp--support--image { max-width: 100%; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--name { text-align: center; margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c { padding-left: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #f39c12; color: #fff; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; display: block; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.disabled { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; color: #585858; background: #c7c7c7; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(0, 0, 0, 0.3); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); border: 1px solid #a3a3a3; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.disabled:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.disabled:hover { cursor: not-allowed; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.blocked { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #587390; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp-post-configuration--content__c .g-cwp--support__c .g-cwp--support--button__c .g-cwp--button.blocked:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--rating__c { margin-bottom: 15px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--rating__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--rating__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--rating__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--rating__c .g-cwp--rating--title { float: left; font-weight: 500; margin-top: 10px; margin-right: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--rating__c .g-cwp--rating { float: left; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--button { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #f39c12; color: #fff; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; display: block; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--button:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--button.disabled { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; color: #585858; background: #c7c7c7; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(0, 0, 0, 0.3); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); border: 1px solid #a3a3a3; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--button.disabled:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--button.disabled:hover { cursor: not-allowed; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--button.blocked { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #587390; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--post-configuration__c .g-cwp--button.blocked:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c { border: 1px solid #cecece; box-sizing: border-box; padding: 15px 20px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--finished--content__c { box-sizing: border-box; padding-top: 0; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--finished--content__c h3 { font-size: 16px; margin: 0; margin-bottom: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--finished--content__c ol, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--finished--content__c ul { padding: 0; list-style-position: inside; counter-reset: item; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--finished--content__c ol { list-style-type: none; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--finished--content__c ol li:before { content: counter(item) ") "; counter-increment: item; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--finished--content__c textarea { width: 100%; padding: 5px; box-sizing: border-box; margin-bottom: 10px; border-radius: 4px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--button__c { float: left; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--button__c .g-cwp--button { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #f39c12; color: #fff; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; display: block; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--button__c .g-cwp--button:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--button__c .g-cwp--button.disabled { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; color: #585858; background: #c7c7c7; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(0, 0, 0, 0.3); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); border: 1px solid #a3a3a3; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--button__c .g-cwp--button.disabled:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--button__c .g-cwp--button.disabled:hover { cursor: not-allowed; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--button__c .g-cwp--button.blocked { padding: 8px; min-width: 125px; box-sizing: border-box; border-radius: 4px; text-align: center; background: #587390; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), inset 0px 1px 1px rgba(255, 255, 255, 0.58); text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3); border: 1px solid #cacaca; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--button__c .g-cwp--button.blocked:hover { cursor: pointer; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c { margin-bottom: 15px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c:after { clear: both; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c .g-cwp--rating--title { float: left; font-weight: 500; margin-top: 10px; margin-right: 10px; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c .g-cwp--rating { float: left; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c { float: right; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c:before, .g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c:after { content: ""; display: table; }
+.g-container .g-cwp .g-cwp--wrapper__c .g-cwp--content__c .g-cwp--finished__c .g-cwp--footer .g-cwp--rating__c:after { clear: both; }
+		.g-container .g-cwp .g-cwp--nav__c .g-cwp--nav--item .g-cwp--nav--item--counter i:after {
+			content: '';
+			background: url({!URLFOR($Resource.migration, 'images/icon-check.png')}) no-repeat top center;
+			background-size: 100% auto;
+			top: 0;
+			left: -12px;
+			position: absolute;
+			width: 15px;
+			height: 15px;
+			color: #fff;
+		}
+		.block_content {
+			height: 35px; 
+			text-align: right;
+			vertical-align: middle;
+			margin-top: 10px;
+	   }
+		.boxM {
+			height:10px;
+			width:40%;
+			margin-left: 50%;
+		}
+		.pagination{height:40px;margin:20px 0;}
+		.pagination ul{display:inline-block;*display:inline;*zoom:1;margin-left:0;margin-bottom:0;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);}
+		.pagination li{display:inline;}
+		.pagination a,.pagination span{float:left;padding:0 14px;line-height:38px;text-decoration:none;background-color:#ffffff;border:1px solid #dddddd;border-left-width:0;}
+		.pagination a:hover,.pagination .active a,.pagination .active span{background-color:#f5f5f5;}
+		.pagination .active a,.pagination .active {color:#999999;cursor:pointer;}
+		.pagination .disabled span,.pagination .disabled a,.pagination .disabled a:hover{color:#999999;background-color:transparent;cursor:default;}
+		.pagination li:first-child a,.pagination li:first-child span{border-left-width:1px;-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;border-radius:3px 0 0 3px;}
+		.pagination li:last-child a,.pagination li:last-child span{-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;}
+		.pagination-centered{text-align:center;}
+		.pagination-right{text-align:right;}
+		.pull-right{right:0;left:auto;}
+		.checkbox {
+		  vertical-align: top;
+		  margin: 0 3px 0 0;
+		  width: 17px;
+		  height: 17px;
+		}
+		.checkbox + label {
+		  cursor: pointer;
+		}
+		.checkbox:not(checked) {
+		  position: absolute;
+		  opacity: 0;
+		}
+		.checkbox:not(checked) + label {
+		  position: relative; 
+		  padding: 0 0 0 60px; 
+		}
+		.checkbox:not(checked) + label:before {
+		  content: '';
+		  position: absolute;
+		  top: -4px;
+		  left: 0;
+		  width: 50px;
+		  height: 26px;
+		  border-radius: 13px;
+		  background: #CDD1DA;
+		  box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+		}
+		.checkbox:not(checked) + label:after {
+		  content: '';
+		  position: absolute;
+		  top: -2px;
+		  left: 2px;
+		  width: 22px;
+		  height: 22px;
+		  border-radius: 10px;
+		  background: #FFF;
+		  box-shadow: 0 2px 5px rgba(0,0,0,.3);
+		  transition: all .2s; 
+		}
+		.checkbox:checked + label:before {
+		  background: #9FD468;
+		}
+		.checkbox:checked + label:after {
+		  left: 26px;
+		}
+		.checkbox:focus + label:before {
+		  box-shadow: 0 0 0 3px rgba(255,255,0,.5);
+		}
+		
+		.link-tools .tool-remove { display: none }
+		.marker-arrowhead { display: none }
+		.marker-vertex-group { display: none }
+		
+		.loader {
+			margin-left: 49%;
+			margin-top: 280px;
+			width: 35px;
+			height: 35px;
+			border: 6px solid #000;
+			border-left-color: #333;
+			border-bottom-color: #555;
+			border-right-color: transparent;
+			border-radius: 100%;
+			-webkit-animation: loader 0.5s infinite linear;
+			-moz-animation: loader 0.5s infinite linear;
+			animation: loader 0.5s infinite linear;
+		}
+		.Panel {
+			height:32px;
+		}
+		.ButtonCustom {
+			height:30px;
+			width:65px;
+		}
+		.boxM {
+			height:10px;
+			width:40%;
+			margin-left: 50%;
+		}
+
+		@-webkit-keyframes loader {
+			100% {
+				-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+
+		@-moz-keyframes loader {
+			100% {
+				-moz-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes loader {
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+		.widget-zoom-button {
+			background-color: rgba(255,255,255,1);
+			border-radius: 2px;
+			display: block;
+			height: 29px;
+			left: 0px;
+			overflow: hidden;
+			position: absolute;
+			cursor: pointer;
+			width: 29px;
+			z-index: 2;
+			box-sizing: border-box;
+			transition: background-color 0.16s ease-out;
+		}
+		.widget-arrow-button {
+			background-color: rgba(255,255,255,1);
+			border-radius: 2px;
+			display: block;
+			height: 29px;
+			top: 15px;
+			overflow: hidden;
+			position: absolute;
+			cursor: pointer;
+			width: 29px;
+			z-index: 2;
+			box-sizing: border-box;
+			transition: background-color 0.16s ease-out;
+		}
+		
+		
+		
+		.widget-zoom-slider-invisible {
+			height: 57px;
+			box-shadow: 0px 1px 4px rgba(0,0,0,0.3);
+		}
+		
+		.widget-zoom {
+			background-clip: padding-box;
+			width: 29px;
+			z-index: 0;
+			position: relative;
+			outline: none;
+			cursor: pointer;
+			float: right;
+			margin-top: 10px;
+			margin-right: 30px;
+		}
+		
+		.popover {
+			position: absolute;
+			z-index: 10;
+			display: block;
+		}
+		.gap{
+			margin: 13px 12px 12px 10px;
+		}
+		.btn-group.input-space {
+			padding-left: 15px;
+			bottom:   0;
+		}
+		
+		.box {
+			padding: 2%;
+			text-align: center;
+			vertical-align: bottom;
+			bottom:   0;
+		}
+		
+		.highlight{
+			background-color: bisque;
+			display: block;
+			width: 100%;
+		}
+		
+		
+		 .form-control-highlight{
+			
+			display: block;
+			width: 100%;
+			height: 34px;
+			padding: 6px 12px;
+			font-size: 14px;
+			line-height: 1.42857143;
+			color: #555;
+			background-color: yellow;
+			background-image: none;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+			-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+			transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		}
+		
+	</style>
+	<body class="sf-inner-container">
+	<div ng-app = "ManageDeployApp" class="g-container sf-inner-container">
+		<div ng-controller="ManageDeployCtrl" class="g-cwp" style="min-height: 500px;">
+			<div id="contentBlock" class="bodyDis2" style="display: none; width: 100%;text-align: center;margin-top: 100px;font-size: 25px;">
+				Please select an empty Sequence
+			</div>
+			<div class="loader"></div>
+			<div class="loaderBar" style="display: none;text-align: center;" id="progressbar1">
+				<div style="margin-top: 15%;text-align: center;" id="progressbar"></div>
+			</div>
+			<div id="contentBlock" class="bodyDis" style="display: none; width: 100%;">
+				<div class="g-cwp--nav__c" >
+					<div class="g-cwp--nav--item {{pageJump == 0 ? 'active' : (Page0 == false ? 'completed' : '')}}">
+						<div class="g-cwp--nav--item--counter"><span><div ng-show="Page0 == true">1</div></span><i style="position: absolute;" ng-show="Page0 == false"></i></div>
+						<div class="g-cwp--nav--item--title">
+							Select Object
+						</div>
+					</div>
+					<div class="g-cwp--nav--item {{pageJump == 1 ? 'active' : (Page1 == false ? 'completed' : '')}}">
+						<div class="g-cwp--nav--item--counter"><span><div ng-show="Page1 == true">2</div></span><i style="position: absolute;" ng-show="Page1 == false"></i></div>
+						<div class="g-cwp--nav--item--title">
+							Set Details
+						</div>
+					</div>
+					<div class="g-cwp--nav--item {{pageJump == 2 ? 'active' : (Page2 == false ? 'completed' : '')}}">
+						<div class="g-cwp--nav--item--counter"><span><div ng-show="Page2 == true">3</div></span><i style="position: absolute;" ng-show="Page2 == false"></i></div>
+						<div class="g-cwp--nav--item--title textdecor">
+							View Sequence
+						</div>
+					</div>
+					<div class="g-cwp--nav--item {{pageJump == 3 ? 'active' : (Page3 == false ? 'completed' : '')}}">
+						<div class="g-cwp--nav--item--counter"><span><div ng-show="Page3 == true">4</div></span><i style="position: absolute;" ng-show="Page3 == false"></i></div>
+						<div class="g-cwp--nav--item--title">
+							Save Sequences Steps
+						</div>
+					</div>
+				</div>
+				<div class="g-cwp--wrapper__c">
+					<div class="g-cwp--content__c">
+						<!-- Pre-Configuration -->
+						<div ng-show="pageJump==0" class="g-cwp--pre-configuration__c" style="min-height: 500px;vertical-align: bottom;">
+							<div style="margin-left: 20%;">
+								<select ng-change="SelectPackage()" style="width: 70%;" ng-model="Prefixselect" class="form-control" ng-options="row for row in prefixList">
+								</select>
+								<select id="countries" class="multiselect" multiple="multiple" name="selectList[]">
+								  <option value="row" ng-selected="checkSelect(row)" ng-repeat="row in ObjectList">{{labelMap[row]}} ({{row}})</option>
+								</select>
+								<button  style="width: 80px;height: 32px;margin-left: 32%;margin-top: 10px;margin-bottom: 10px;" type="button"  ng-click="ChangeMenuItem(1, !Page0, true)" class="btn btn-success">Next</button>
+							</div>    
+						</div>
+						<div ng-show="pageJump==1" class="g-cwp--pre-configuration__c" style="min-height: 500px;">
+							<div style="width: 100%;float: center; padding: 5px;text-align: center;">
+								<div ng-show="Error" style="text-align: center;">
+									<p style="height: 40px;font-size: 18px;" class="message fadein fadeout">{{ErrorM}}</p>
+								</div>
+							
+								<table ng-show="listDescr.length > 0" class="list" style="width: 90%;margin-left:5%; float: center; padding: 5px;text-align: center;">
+									<thead>
+										<tr class="headerRow">
+											<th style = "width: 4%;text-align: center;">No.</th>
+											<th style = "width: 24%;text-align: center;">Objects name</th>
+											<th style = "width: 24%;text-align: center;">Data Set</th>
+											<th style = "width: 20%;text-align: center;">Operation type</th>
+										   
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat = "row in listDescr" class="dataRow">
+											<td>{{ $index+1 }}</td>
+											<td>
+											   {{row['Name']}}
+											</td>
+											<td>
+												<div style="background: #cecece;">
+													<select id="dataset"  ng-model="row['selectedDS']" class="form-control">
+														<option value="{{ds.DSId}}" ng-repeat="ds  in dsMap[row['Name']]"
+															  ng-selected="row['selectedDS'] == ds.DSId">{{ds.DSName}}</option> 
+													</select>
+												</div>
+											</td>
+										   
+											<td>
+												<div style="background: #cecece;">
+													<select id="optype"  ng-model="row['selectedType']"   class="form-control">
+														<option value="{{type}}" ng-repeat="type  in dsIdMap[row['selectedDS']]" 
+															ng-selected="row['selectedType'] == type">{{type}}</option>
+													</select>
+												</div>
+											</td>
+										   
+										</tr>
+									</tbody>
+								</table>
+								 
+						  <!--       <div style="width: 100%;float: left; margin-left:20%; padding: 5px;text-align: left;" ng-show="isUpsert">
+									<label>{{question.questionText}}</label>
+									<div ng-init="question.selected = 1">
+									<label data-ng-repeat="choice in question.choices">
+										 <input type="radio" name="response" data-ng-model="question.selected" data-ng-value="{{choice.id}}" />
+										 {{choice.text}}
+										 <br/>
+									</label>
+									</div>
+								</div>
+							-->               
+								<div style="width: 100%;float: center; padding: 5px;text-align: center;" ng-show="listDescr.length == 0">
+								  <strong>No objects to display</strong>
+								</div>
+							</div>
+							<div class="box">
+								<div class="text-center">
+									<div class="btn-group row">    
+										<span class="btn-group input-space"><button type="button"  ng-click="ChangeMenuItem(0, true)" class="btn btn-success center-block">Previous</button></span>
+										<span style="width:3em;">  </span>
+										<span class="btn-group input-space"><button type="button"  ng-click="ChangeMenuItem(2, !Page1)" class="btn btn-success center-block">Next</button></span>
+									</div>
+								</div>
+							</div>
+						</div>
+  
+						<div ng-show="pageJump==2" class="g-cwp--pre-configuration__c" style="min-height: 500px;">
+							<div style="width: 100%;float: center; padding: 5px;text-align: center;">
+								<div ng-show="Error" style="text-align: center;">
+									<p style="height: 40px;font-size: 18px;" class="message fadein fadeout">{{ErrorM}}</p>
+								</div>
+							
+								<table ng-show="objectsHierarchy.length > 0" class="list" style="width: 90%;margin-left:5%; float: center; padding: 5px;text-align: center;">
+									<thead>
+										<tr class="headerRow">
+											<th style = "width: 4%;text-align: center;"></th>
+											<th style = "width: 5%;text-align: center;">Level</th>
+											<th style = "width: 24%;text-align: center;">Objects name</th>
+											<th style = "width: 20%;text-align: center;">Dataset</th>
+											<th style = "width: 14%;text-align: center;">Operation</th>
+											<th style = "width: 30%;text-align: center;">Comment</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat = "row in returnObjectsHierarchy track by $index"  ng-mouseover="rowselected($index,false)" ng-mouseout="rowselected($index,true)" ng-class="dataRow">
+											<td> <button  type="submit" class="btn btn-danger btn-xs" ng-click="deleteObj(row)">Delete</button></td>
+											<td>{{ row.level  + 1}}</td>
+											<td> <div ng-class="row.style? 'highlight':''">{{ row.objectName }}</div></td>
+											<td>
+												<div style="background: #cecece;">
+													<select id="dataset"  ng-model="row['DSId']" class="form-control">
+														<option value="{{ds.DSId}}" ng-repeat="ds  in dsMap[row['objectName']]"
+															  ng-selected="row['DSId'] == ds.DSId">{{ds.DSName}}</option> 
+													</select>
+												</div>
+											</td>
+											<td>
+												<div style="background: #cecece;">
+													<select id="optype"  ng-model="row['Operation']"   class="form-control">
+														<option value="{{type}}" ng-repeat="type  in dsIdMap[row['DSId']]" 
+															ng-selected="row['Operation'] == type">{{type}}</option>
+													</select>
+												</div>
+											</td>
+											<td style="color:red;">{{ row.comment }}</td>
+										</tr>
+									</tbody>
+								</table>
+											
+								<div style="width: 100%;float: center; padding: 5px;text-align: center;" ng-show="returnObjectsHierarchy.length == 0">
+								  <strong>No objects to display</strong>
+								</div>
+							</div>
+							<div class="box">
+								<div class="text-center">
+									<div class="btn-group row">    
+										<span class="btn-group input-space"><button type="button"  ng-click="ChangeMenuItem(1, true, false)" class="btn btn-success center-block">Previous</button></span>
+										<span style="width:3em;">  </span>
+										<span class="btn-group input-space"><button type="button"  ng-click="ChangeMenuItem(3, !Page2)" class="btn btn-success center-block">Next</button></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					   
+						<div ng-show="pageJump==3" class="g-cwp--pre-configuration__c" style="height: 500px;">
+							<div style="margin-top: 100px; text-align: center;">
+								<p ng-show="Error" class="bg-danger" style="width: 48%;margin-left: 25%;height: 30px;font-size: 20px;">Please fill out the field.</p>
+								<div ng-show="ExtId == ''" style="width: 50%;margin-left: 25%;">
+									<label for="MeetingName">Sequence Name</label><br/>
+									<div  style="width: 5px;height: 34px;float: left;background-color: red;">
+									</div>
+									<input style="width: 95%;"  type="text" id="SequenceName" class="form-control" autofocus="" ng-model="SequenceName"/>
+								</div>
+								
+							</div>
+							<div>
+								<div class="g-cwp--button__c" style="margin-left: 45%;margin-top: 50px;">
+									<button  style="" type="button"  ng-click="Save()" class="btn btn-success btn-lg">Save Sequences Steps</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	   
+		
+</body>
+</apex:page>

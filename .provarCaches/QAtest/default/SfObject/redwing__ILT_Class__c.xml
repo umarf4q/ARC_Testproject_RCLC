@@ -1,0 +1,1726 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="redwing__ILT_Class__c.SYSTEM" defaultFlexipageId="ILT_Class_Record_Page" deleteable="true" keyPrefix="a65" label="ILT Class" labelPlural="ILT Classes" layoutable="true" metadataLabel="ILT Class" n="redwing__ILT_Class__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="ILT Class (a65)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a65/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="ILT Class ID" type="id" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField length="80" n="Name" nameField="true" t="ILT Class Name"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField isMasterDetail="true" length="18" n="redwing__Learning__c" relationshipLabel="ILT Classes" relationshipName="redwing__Learning__r" required="true" t="Learning" type="reference" updateable="false">
+      <referenceTos>
+        <string>redwing__Learning__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__Cancelled__c" t="Cancelled" type="_boolean"/>
+    <sfField extraTypeInfo="richtextarea" filterable="false" length="32768" n="redwing__Description__c" t="Description" type="textarea"/>
+    <sfField n="redwing__Enable_Waitlist__c" t="Enable Waitlist" type="_boolean"/>
+    <sfField n="redwing__End_Date__c" required="true" t="End Date" type="date"/>
+    <sfField length="5" n="redwing__End_Time__c" t="End Time"/>
+    <sfField n="redwing__Enroll_In_Optional_Sessions__c" t="Auto Enroll in Optional ILT Sessions" type="_boolean"/>
+    <sfField length="18" n="redwing__Location__c" relationshipLabel="ILT Classes" relationshipName="redwing__Location__r" t="Location" type="reference">
+      <referenceTos>
+        <string>redwing__ILT_Location__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="redwing__Max_Seats__c" precision="18" t="Max Seats" type="_double"/>
+    <sfField n="redwing__Max_Waitlist_Seats__c" precision="18" t="Max Waitlist Seats" type="_double"/>
+    <sfField n="redwing__Min_Seats__c" precision="18" t="Min Seats" type="_double"/>
+    <sfField n="redwing__Start_Date__c" required="true" t="Start Date" type="date"/>
+    <sfField length="5" n="redwing__Start_Time__c" t="Start Time"/>
+    <sfField length="255" n="redwing__Timezone__c" restrictedPicklist="true" t="Timezone" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Pacific/Kiritimati" s=""/>
+        <sfPLE id="2" n="Pacific/Enderbury" s=""/>
+        <sfPLE id="3" n="Pacific/Tongatapu" s=""/>
+        <sfPLE id="4" n="Pacific/Chatham" s=""/>
+        <sfPLE id="5" n="Pacific/Auckland" s=""/>
+        <sfPLE id="6" n="Pacific/Fiji" s=""/>
+        <sfPLE id="7" n="Asia/Kamchatka" s=""/>
+        <sfPLE id="8" n="Pacific/Norfolk" s=""/>
+        <sfPLE id="9" n="Australia/Lord_Howe" s=""/>
+        <sfPLE id="10" n="Pacific/Guadalcanal" s=""/>
+        <sfPLE id="11" n="Australia/Adelaide" s=""/>
+        <sfPLE id="12" n="Australia/Sydney" s=""/>
+        <sfPLE id="13" n="Australia/Brisbane" s=""/>
+        <sfPLE id="14" n="Australia/Darwin" s=""/>
+        <sfPLE id="15" n="Asia/Seoul" s=""/>
+        <sfPLE id="16" n="Asia/Tokyo" s=""/>
+        <sfPLE id="17" n="Asia/Hong_Kong" s=""/>
+        <sfPLE id="18" n="Asia/Kuala_Lumpur" s=""/>
+        <sfPLE id="19" n="Asia/Manila" s=""/>
+        <sfPLE id="20" n="Asia/Shanghai" s=""/>
+        <sfPLE id="21" n="Asia/Singapore" s=""/>
+        <sfPLE id="22" n="Asia/Taipei" s=""/>
+        <sfPLE id="23" n="Australia/Perth" s=""/>
+        <sfPLE id="24" n="Asia/Bangkok" s=""/>
+        <sfPLE id="25" n="Asia/Ho_Chi_Minh" s=""/>
+        <sfPLE id="26" n="Asia/Jakarta" s=""/>
+        <sfPLE id="27" n="Asia/Rangoon" s=""/>
+        <sfPLE id="28" n="Asia/Dhaka" s=""/>
+        <sfPLE id="29" n="Asia/Kathmandu" s=""/>
+        <sfPLE id="30" n="Asia/Colombo" s=""/>
+        <sfPLE id="31" n="Asia/Kolkata" s=""/>
+        <sfPLE id="32" n="Asia/Karachi" s=""/>
+        <sfPLE id="33" n="Asia/Tashkent" s=""/>
+        <sfPLE id="34" n="Asia/Yekaterinburg" s=""/>
+        <sfPLE id="35" n="Asia/Kabul" s=""/>
+        <sfPLE id="36" n="Asia/Baku" s=""/>
+        <sfPLE id="37" n="Asia/Dubai" s=""/>
+        <sfPLE id="38" n="Asia/Tbilisi" s=""/>
+        <sfPLE id="39" n="Asia/Yerevan" s=""/>
+        <sfPLE id="40" n="Asia/Tehran" s=""/>
+        <sfPLE id="41" n="Africa/Nairobi" s=""/>
+        <sfPLE id="42" n="Asia/Baghdad" s=""/>
+        <sfPLE id="43" n="Asia/Kuwait" s=""/>
+        <sfPLE id="44" n="Asia/Riyadh" s=""/>
+        <sfPLE id="45" n="Europe/Minsk" s=""/>
+        <sfPLE id="46" n="Europe/Moscow" s=""/>
+        <sfPLE id="47" n="Africa/Cairo" s=""/>
+        <sfPLE id="48" n="Asia/Beirut" s=""/>
+        <sfPLE id="49" n="Asia/Jerusalem" s=""/>
+        <sfPLE id="50" n="Europe/Athens" s=""/>
+        <sfPLE id="51" n="Europe/Bucharest" s=""/>
+        <sfPLE id="52" n="Europe/Helsinki" s=""/>
+        <sfPLE id="53" n="Europe/Istanbul" s=""/>
+        <sfPLE id="54" n="Africa/Johannesburg" s=""/>
+        <sfPLE id="55" n="Europe/Amsterdam" s=""/>
+        <sfPLE id="56" n="Europe/Berlin" s=""/>
+        <sfPLE id="57" n="Europe/Brussels" s=""/>
+        <sfPLE id="58" n="Europe/Paris" s=""/>
+        <sfPLE id="59" n="Europe/Prague" s=""/>
+        <sfPLE id="60" n="Europe/Rome" s=""/>
+        <sfPLE id="61" n="Europe/Lisbon" s=""/>
+        <sfPLE id="62" n="Africa/Algiers" s=""/>
+        <sfPLE id="63" n="Europe/London" s=""/>
+        <sfPLE id="64" n="Atlantic/Cape_Verde" s=""/>
+        <sfPLE id="65" n="Africa/Casablanca" s=""/>
+        <sfPLE id="66" n="Europe/Dublin" s=""/>
+        <sfPLE id="67" n="GMT" s=""/>
+        <sfPLE id="68" n="America/Scoresbysund" s=""/>
+        <sfPLE id="69" n="Atlantic/Azores" s=""/>
+        <sfPLE id="70" n="Atlantic/South_Georgia" s=""/>
+        <sfPLE id="71" n="America/St_Johns" s=""/>
+        <sfPLE id="72" n="America/Sao_Paulo" s=""/>
+        <sfPLE id="73" n="America/Argentina/Buenos_Aires" s=""/>
+        <sfPLE id="74" n="America/Santiago" s=""/>
+        <sfPLE id="75" n="America/Halifax" s=""/>
+        <sfPLE id="76" n="America/Puerto_Rico" s=""/>
+        <sfPLE id="77" n="Atlantic/Bermuda" s=""/>
+        <sfPLE id="78" n="America/Caracas" s=""/>
+        <sfPLE id="79" n="America/Indiana/Indianapolis" s=""/>
+        <sfPLE id="80" n="America/New_York" s=""/>
+        <sfPLE id="81" n="America/Bogota" s=""/>
+        <sfPLE id="82" n="America/Lima" s=""/>
+        <sfPLE id="83" n="America/Panama" s=""/>
+        <sfPLE id="84" n="America/Mexico_City" s=""/>
+        <sfPLE id="85" n="America/Chicago" s=""/>
+        <sfPLE id="86" n="America/El_Salvador" s=""/>
+        <sfPLE id="87" n="America/Denver" s=""/>
+        <sfPLE id="88" n="America/Mazatlan" s=""/>
+        <sfPLE id="89" n="America/Phoenix" s=""/>
+        <sfPLE id="90" n="America/Los_Angeles" s=""/>
+        <sfPLE id="91" n="America/Tijuana" s=""/>
+        <sfPLE id="92" n="Pacific/Pitcairn" s=""/>
+        <sfPLE id="93" n="America/Anchorage" s=""/>
+        <sfPLE id="94" n="Pacific/Gambier" s=""/>
+        <sfPLE id="95" n="America/Adak" s=""/>
+        <sfPLE id="96" n="Pacific/Marquesas" s=""/>
+        <sfPLE id="97" n="Pacific/Honolulu" s=""/>
+        <sfPLE id="98" n="Pacific/Niue" s=""/>
+        <sfPLE id="99" n="Pacific/Pago_Pago" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(redwing__End_Time__c != &quot;&quot;, \nIF( VALUE( LEFT( redwing__End_Time__c, 2 ) ) = 12 , &quot;12&quot; + RIGHT( redwing__End_Time__c, 3 ) + &quot; PM&quot;, \nIF( VALUE( LEFT( redwing__End_Time__c, 2 ) ) = 0 , &quot;12&quot; + RIGHT( redwing__End_Time__c, 3 ) + &quot; AM&quot;, \nIF( VALUE( LEFT( redwing__End_Time__c, 2 ) ) &gt; 12, \nIF( VALUE( LEFT( redwing__End_Time__c, 2 ) ) &lt; 22, \n&quot;0&quot; + TEXT( VALUE( LEFT( redwing__End_Time__c, 2 ) ) - 12 ) + RIGHT( redwing__End_Time__c, 3 ) + &quot; PM&quot;, \nTEXT( VALUE( LEFT( redwing__End_Time__c, 2 ) ) - 12 ) + RIGHT( redwing__End_Time__c, 3 ) + &quot; PM&quot; ), \nredwing__End_Time__c+ &quot; AM&quot; ) ) ) , &quot;&quot;)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="ltui__End_Time_Formatted__c" t="End Time" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(redwing__Start_Time__c != &quot;&quot;,\nIF( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) = 12 , &quot;12&quot; + RIGHT( redwing__Start_Time__c, 3 ) + &quot; PM&quot;, \nIF( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) = 0 , &quot;12&quot; + RIGHT( redwing__Start_Time__c, 3 ) + &quot; AM&quot;, \nIF( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) &gt; 12, \nIF( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) &lt; 22, \n&quot;0&quot; + TEXT( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) - 12 ) + RIGHT( redwing__Start_Time__c, 3 ) + &quot; PM&quot;, \nTEXT( VALUE( LEFT( redwing__Start_Time__c, 2 ) ) - 12 ) + RIGHT( redwing__Start_Time__c, 3 ) + &quot; PM&quot; ), \nredwing__Start_Time__c+ &quot; AM&quot; ) ) ), &quot;&quot;)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="ltui__Start_Time_Formatted__c" t="Start Time" updateable="false"/>
+    <sfField length="18" n="Skedulo_Account__c" relationshipLabel="ILT Classes" relationshipName="Skedulo_Account__r" t="Account" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Account__c" relationshipLabel="ILT Classes" relationshipName="Account__r" t="Facility" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Available_Seats__c" precision="6" t="Available Seats" type="_double"/>
+    <sfField length="18" n="CC_Order_Number__c" relationshipLabel="ILT Classes" relationshipName="CC_Order_Number__r" t="Cloud Craze Order" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Order__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" n="CPS_Approval_Date__c" t="CPS Approval Date" type="date"/>
+    <sfField length="255" n="CPS_Approval_Status__c" restrictedPicklist="true" t="CPS Approval Status" type="picklist">
+      <picklistEntryIds>100,101,102</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="100" n="Submitted" s=""/>
+        <sfPLE id="101" n="Approved" s=""/>
+        <sfPLE id="102" n="Rejected" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="80" n="CPS_Registration_Email__c" t="CPS Registration Email" type="email"/>
+    <sfField length="40" n="CPS_Registration_Phone__c" t="CPS Registration Phone" type="phone"/>
+    <sfField length="255" n="CPS_Registration_URL__c" t="CPS Registration URL" type="url"/>
+    <sfField n="Class_Closed_Date__c" t="Class Closed Date" type="datetime"/>
+    <sfField editPermission="false" n="Class_Online_From__c" t="Class Online From (RCO)" type="date"/>
+    <sfField editPermission="false" n="Class_Online_To__c" t="Class Online To (RCO)" type="date"/>
+    <sfField editPermission="false" n="Class_Online__c" t="Class Online (RCO)" type="_boolean"/>
+    <sfField editPermission="false" n="Class_Searchable_If_Unavailable__c" t="Class Searchable If Unavailable (RCO)" type="_boolean"/>
+    <sfField editPermission="false" n="Class_Searchable__c" t="Class Searchable (RCO)" type="_boolean"/>
+    <sfField length="255" n="Classroom_Setting__c" restrictedPicklist="true" t="Classroom Setting" type="picklist">
+      <picklistEntryIds>103,104,105</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="103" n="Online" s=""/>
+        <sfPLE id="104" n="Classroom" s=""/>
+        <sfPLE id="105" n="Online + Classroom" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="18" n="Cloud_Craze_Product__c" relationshipLabel="ILT Classes" relationshipName="Cloud_Craze_Product__r" t="Cloud Craze Product" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Product__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Course_Class_Type__c" restrictedPicklist="true" t="Course Class Type" type="picklist">
+      <picklistEntryIds>106,107,108,109,110,111,112,113</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="106" n="Orientation" s=""/>
+        <sfPLE id="107" n="CPR" s=""/>
+        <sfPLE id="108" n="Theory" s=""/>
+        <sfPLE id="109" n="Lab" s=""/>
+        <sfPLE id="110" n="Clinical" s=""/>
+        <sfPLE id="111" n="Make Up" s=""/>
+        <sfPLE id="112" n="Graduation" s=""/>
+        <sfPLE id="113" n="Review Day" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="18" n="Dev_External_ID__c" t="Dev External ID"/>
+    <sfField n="Generate_CRE_List__c" t="Generate CRE List" type="_boolean"/>
+    <sfField editPermission="false" n="Generate_Roster_PDF__c" t="Generate Roster PDF" type="_boolean"/>
+    <sfField editPermission="false" n="Is_Master_Class__c" t="Is Master Class" type="_boolean"/>
+    <sfField editPermission="false" n="Is_Stacked_Class__c" t="Is Stacked Class" type="_boolean"/>
+    <sfField editPermission="false" length="18" n="Learning_Plan__c" relationshipLabel="ILT Classes" relationshipName="Learning_Plan__r" t="Course Name" type="reference">
+      <referenceTos>
+        <string>redwing__Training_Plan__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="redwing__Location__r.redwing__Postal_Code__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Location_ZIP_Code__c" t="Location ZIP Code" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="30" n="Offering_Id__c" t="Class Id" updateable="false"/>
+    <sfField length="18" n="Opportunity__c" relationshipLabel="ILT Classes" relationshipName="Opportunity__r" t="Opportunity" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" n="Price_Override__c" precision="14" scale="2" t="Price Override" type="_double"/>
+    <sfField editPermission="false" n="Registration_Fee__c" precision="18" t="Registration Fee" type="currency"/>
+    <sfField length="255" n="Request_Type__c" restrictedPicklist="true" t="Request Type" type="picklist">
+      <picklistEntryIds>114,115,116,117,118,119,120,121,122</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="114" n="Community" s=""/>
+        <sfPLE id="115" n="Full Service" s=""/>
+        <sfPLE id="116" n="LTP/AP" s=""/>
+        <sfPLE id="117" n="Nurse Assistant Training" s=""/>
+        <sfPLE id="118" n="Nurse Assistant Testing" s=""/>
+        <sfPLE id="119" n="Nurse Assistant Training - Full Service" s=""/>
+        <sfPLE id="120" n="Nurse Assistant Testing - Full Service" s=""/>
+        <sfPLE id="121" n="CPS" s=""/>
+        <sfPLE id="122" n="Class Posting" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="128" n="Site_Address_1__c" t="Address 1"/>
+    <sfField length="128" n="Site_Address_2__c" t="Address 2"/>
+    <sfField length="40" n="Site_City__c" t="City"/>
+    <sfField length="80" n="Site_Name__c" t="Site Name"/>
+    <sfField length="9" n="Site_Postal_Code__c" t="Zip"/>
+    <sfField editPermission="false" n="Skedulo_Job_Active__c" t="Skedulo Job Active" type="_boolean"/>
+    <sfField editPermission="false" length="18" n="Skedulo_Job_Id_External__c" t="Skedulo Job Id"/>
+    <sfField editPermission="false" length="18" n="Skedulo_Job_Id__c" relationshipLabel="ILT Classes" relationshipName="Skedulo_Job_Id__r" t="Skedulo Job Id" type="reference">
+      <referenceTos>
+        <string>sked__Job__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="32" n="Skedulo_Job_Number__c" t="Skedulo Job Number"/>
+    <sfField length="255" n="Skedulo_Job_Status__c" restrictedPicklist="true" t="Skedulo Job Status" type="picklist">
+      <picklistEntryIds>123,124,125,126,127,128,129,130,131,132</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="123" n="Queued" s=""/>
+        <sfPLE id="124" n="Pending Allocation" s=""/>
+        <sfPLE id="125" n="Pending Dispatch" s=""/>
+        <sfPLE id="126" n="Dispatched" s=""/>
+        <sfPLE id="127" n="Ready" s=""/>
+        <sfPLE id="128" n="En Route" s=""/>
+        <sfPLE id="129" n="On Site" s=""/>
+        <sfPLE id="130" n="In Progress" s=""/>
+        <sfPLE id="131" n="Complete" s=""/>
+        <sfPLE id="132" n="Cancelled" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="18" n="Skedulo_Parent_Job__c" relationshipLabel="ILT Classes (Skedulo Parent Job)" relationshipName="Skedulo_Parent_Job__r" t="Skedulo Parent Job" type="reference">
+      <referenceTos>
+        <string>sked__Job__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Skedulo_Training_Event__c" relationshipLabel="ILT Classes" relationshipName="Skedulo_Training_Event__r" t="Training Event" type="reference">
+      <referenceTos>
+        <string>Training_Events__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="2" n="State__c" t="State"/>
+    <sfField length="50" n="Supplemental_Information__c" t="Supplemental Information"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="redwing__Location__r.redwing__City__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Location_Mailing_City__c" t="Location Mailing City" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Text(redwing__Location__r.redwing__State__c)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Location_State__c" t="Location State" updateable="false"/>
+    <sfField n="Not_Evaluated__c" precision="18" t="Not Evaluated" type="_double"/>
+    <sfField editPermission="false" n="Ready_to_Publish__c" t="Ready to Publish" type="_boolean"/>
+    <sfField editPermission="false" n="Successful_Evaluations__c" precision="18" t="Successful Evaluations" type="_double"/>
+    <sfField editPermission="false" n="Unsuccessful_Evaluations__c" precision="18" t="Unsuccessful Evaluations" type="_double"/>
+    <sfField length="18" n="CPS_Order_Item__c" relationshipLabel="ILT Classes" relationshipName="CPS_Order_Item__r" t="CPS Order Item" type="reference">
+      <referenceTos>
+        <string>ccrz__E_OrderItem__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="CPS_Order__c" relationshipLabel="ILT Classes (CPS Order)" relationshipName="CPS_Order__r" t="CPS Order" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Order__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="redwing__Max_Seats__c - Available_Seats__c" formulaTreatBlanksAs="BlankAsZero" n="Total_Enrollment__c" precision="18" t="Total Enrollment" type="_double" updateable="false"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Notes__c" t="Notes" type="textarea"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Skedulo_Training_Event__r.Number_in_Class__c" formulaTreatBlanksAs="BlankAsZero" n="TE_Number_in_Class__c" precision="18" t="TE Number in Class" type="_double" updateable="false"/>
+    <sfField n="Class_Cancelled_Date__c" t="Class Cancelled Date" type="date"/>
+    <sfField n="Canceled_After_Closed__c" t="Canceled After Closed" type="_boolean"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Class_Cancellation_Reason__c" t="Class Cancellation Reason" type="textarea"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="!ISNULL(Class_Closed_Date__c)" n="Is_Closed__c" t="Is Closed" type="_boolean" updateable="false"/>
+    <sfField editPermission="false" n="redwing__Registration_Cutoff__c" precision="5" readPermission="false" t="Registration Cutoff" type="_double"/>
+    <sfField editPermission="false" n="redwing__Withdraw_Cutoff__c" readPermission="false" t="Withdraw Cutoff" type="date"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Skedulo_Training_Event__r.Virtual_Learning__c" formulaTreatBlanksAs="BlankAsZero" n="Virtual_Skills_Training__c" t="Virtual Skills Training" type="_boolean" updateable="false"/>
+    <sfField editPermission="false" n="Automatically_Closed__c" t="Automatically Closed" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(redwing__Location__r.redwing__State__c)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Class_State_Formula__c" readPermission="false" t="Class State Formula" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="redwing__Location__r.redwing__Postal_Code__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Class_Zip_Formula__c" readPermission="false" t="Class Zip Formula" updateable="false"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="redwing__ILT_Class__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002N5PQ.History"/>
+    <sfObjectRelationship childName="Fulfillment_Item__c" field="ILT_Class__c" n="Fulfillment_Items__r" relationshipName="Fulfillment_Items__r" s="2-" t="01I0V000002Ef5d"/>
+    <sfObjectRelationship childName="Voucher__c" field="ILT_Class__c" n="Voucher__r" relationshipName="Voucher__r" s="2-" t="01I0V000002Ef5r"/>
+    <sfObjectRelationship childName="01I0V000002EfVv" field="ILT_Class__c" n="Cases__r_hpr" relationshipName="Cases__r_hpr" s="2-" t="01I0V000002EfVv"/>
+    <sfObjectRelationship childName="01I0V000002EfVv" field="ILT_Class__c" n="Cases__r_hst" relationshipName="Cases__r_hst" s="2-" t="01I0V000002EfVv"/>
+    <sfObjectRelationship childName="ccrz__E_CartItem__c" field="ILT_Class__c" n="CC_Cart_Items__r" relationshipName="CC_Cart_Items__r" s="2-" t="01I0V000002N5N4"/>
+    <sfObjectRelationship childName="ccrz__E_OrderItem__c" field="ILT_Class__c" n="CC_Order_Items__r" relationshipName="CC_Order_Items__r" s="2-" t="01I0V000002N5NY"/>
+    <sfObjectRelationship childName="ccrz__E_OrderShipmentItem__c" field="ILT_Class__c" n="CC_Order_Shipment_Items__r" relationshipName="CC_Order_Shipment_Items__r" s="2-" t="01I0V000002N5NZ"/>
+    <sfObjectRelationship childName="redwing__Achievement_Assignment__c" field="ILT_Class__c" n="Achievement_Assignments__r" relationshipName="Achievement_Assignments__r" s="2-" t="01I0V000002N5PF"/>
+    <sfObjectRelationship childName="redwing__ILT_Instructor__c" field="redwing__ILT_Class__c" n="redwing__ILT_Instructors__r" relationshipName="redwing__ILT_Instructors__r" s="2-" t="01I0V000002N5PT"/>
+    <sfObjectRelationship childName="redwing__ILT_Roster__c" field="redwing__ILT_Class__c" n="redwing__ILT_Rosters__r" relationshipName="redwing__ILT_Rosters__r" s="2-" t="01I0V000002N5PV"/>
+    <sfObjectRelationship childName="redwing__ILT_Session__c" field="redwing__ILT_Class__c" n="redwing__ILT_Sessions__r" relationshipName="redwing__ILT_Sessions__r" s="2-" t="01I0V000002N5PW"/>
+    <sfObjectRelationship childName="redwing__Learning_Version__c" field="redwing__ILT__c" n="redwing__Learning_Versions__r" relationshipName="redwing__Learning_Versions__r" s="2-" t="01I0V000002N5Pl"/>
+    <sfObjectRelationship childName="Student_Bulk_Upload__c" field="ILT_Class__c" n="Student_Bulk_Uploads__r" relationshipName="Student_Bulk_Uploads__r" s="2-" t="01I3o000002dqWP"/>
+    <sfObjectRelationship childName="CCS_Batch_Class__c" field="ILT_Class__c" n="Batch_Classes__r" relationshipName="Batch_Classes__r" s="2-" t="01I3o000002dqqu"/>
+    <sfObjectRelationship childName="Case" field="ILT_Class__c" n="Cases__r" relationshipName="Cases__r" s="2-" t="Case"/>
+    <sfObjectRelationship childName="Case" field="ILT_CLS_xxxxx__c" n="Cases1__r" relationshipName="Cases1__r" s="2-" t="Case"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType n="&lt;default&gt;" t="Web Record Type Mapping">
+      <children>
+        <sfLayout layoutFileName="redwing__ILT_Class__c-PHSS ILT Class Layout - Read Only - 2" n="Primary" profileLayout="false" s="" t="Page Layout">
+          <layoutTypes>
+            <sfLayoutType layoutType="Edit" n="Edit" t="Web Layout Type">
+              <children>
+                <sfLayoutSection customLabel="false" detailHeading="false" n="Information" s="" seqNum="0" style="TwoColumnsTopToBottom" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI label="ILT Class Name" n="ILT Class Name" required="true" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Name" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Id" n="Class Id" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Offering_Id__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI label="Learning" n="Learning" required="true" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Learning__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Course Class Type" n="Course Class Type" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Course_Class_Type__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Description" n="Description" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Description__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Classroom Setting" n="Classroom Setting" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Classroom_Setting__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="3">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="emptySpace" s="" seqNum="0" t="Web Layout Field" type="EmptySpace"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Request Type" n="Request Type" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Request_Type__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="4">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="emptySpace" s="" seqNum="0" t="Web Layout Field" type="EmptySpace"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Min Seats" n="Min Seats" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Min_Seats__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="5">
+                      <children>
+                        <sfLI label="Start Date" n="Start Date" required="true" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Start_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Max Seats" n="Max Seats" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Max_Seats__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="6">
+                      <children>
+                        <sfLI label="End Date" n="End Date" required="true" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__End_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Available Seats" n="Available Seats" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Available_Seats__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="7">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Start Time" n="Start Time" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Start_Time__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Total Enrollment" n="Total Enrollment" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Total_Enrollment__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="8">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="End Time" n="End Time" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__End_Time__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="emptySpace" s="" seqNum="0" t="Web Layout Field" type="EmptySpace"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="9">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Timezone" n="Timezone" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Timezone__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Enable Waitlist" n="Enable Waitlist" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Enable_Waitlist__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="10">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Closed Date" n="Class Closed Date" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Closed_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Max Waitlist Seats" n="Max Waitlist Seats" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Max_Waitlist_Seats__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="11">
+                      <children>
+                        <sfLI label="Automatically Closed" n="Automatically Closed" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Automatically_Closed__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Account" n="Account" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Account__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="12">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Price Override" n="Price Override" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Price_Override__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Job Number" n="Skedulo Job Number" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Job_Number__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="13">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Job Active" n="Skedulo Job Active" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Job_Active__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Job Id" n="Skedulo Job Id" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Job_Id__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="14">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ready to Publish" n="Ready to Publish" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Ready_to_Publish__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Training Event" n="Training Event" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Training_Event__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="15">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Job Status" n="Skedulo Job Status" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Job_Status__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="TE Number in Class" n="TE Number in Class" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="TE_Number_in_Class__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="16">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Cloud Craze Product" n="Cloud Craze Product" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Cloud_Craze_Product__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Virtual Skills Training" n="Virtual Skills Training" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Virtual_Skills_Training__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="17">
+                      <children>
+                        <sfLI label="Is Stacked Class" n="Is Stacked Class" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Is_Stacked_Class__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Supplemental Information" n="Supplemental Information" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Supplemental_Information__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="18">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Is Master Class" n="Is Master Class" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Is_Master_Class__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Location" n="Location" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Location__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="19">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Parent Job" n="Skedulo Parent Job" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Parent_Job__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Location ZIP Code" n="Location ZIP Code" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Location_ZIP_Code__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="20">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Location State" n="Location State" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Location_State__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Facility" n="Facility" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Account__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="21">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Notes" n="Notes" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Notes__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Course Name" n="Course Name" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Learning_Plan__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="22">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Cancellation Reason" n="Class Cancellation Reason" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Cancellation_Reason__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Cloud Craze Order" n="Cloud Craze Order" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CC_Order_Number__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="23">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Canceled After Closed" n="Canceled After Closed" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Canceled_After_Closed__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Opportunity" n="Opportunity" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Opportunity__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="24">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="0" t="Web Layout Item"/>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Cancelled Date" n="Class Cancelled Date" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Cancelled_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" n="Learn to Swim" s="" seqNum="1" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Successful Evaluations" n="Successful Evaluations" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Successful_Evaluations__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Not Evaluated" n="Not Evaluated" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Not_Evaluated__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Unsuccessful Evaluations" n="Unsuccessful Evaluations" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Unsuccessful_Evaluations__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" n="RCO Listing Info" s="" seqNum="2" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Online (RCO)" n="Class Online (RCO)" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Online__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Searchable (RCO)" n="Class Searchable (RCO)" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Searchable__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Online From (RCO)" n="Class Online From (RCO)" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Online_From__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Searchable If Unavailable (RCO)" n="Class Searchable If Unavailable (RCO)" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Searchable_If_Unavailable__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Online To (RCO)" n="Class Online To (RCO)" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Online_To__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" detailHeading="false" n="CPS Listing Info" s="" seqNum="3" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Approval Status" n="CPS Approval Status" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Approval_Status__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Registration Phone" n="CPS Registration Phone" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Registration_Phone__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Approval Date" n="CPS Approval Date" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Approval_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="City" n="City" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_City__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Site Name" n="Site Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_Name__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Address 1" n="Address 1" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_Address_1__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="3">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Registration URL" n="CPS Registration URL" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Registration_URL__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Address 2" n="Address 2" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_Address_2__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="4">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Registration Fee" n="Registration Fee" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Registration_Fee__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="State" n="State" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="State__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="5">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Order" n="CPS Order" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Order__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Zip" n="Zip" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_Postal_Code__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="6">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Order Item" n="CPS Order Item" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Order_Item__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+              </children>
+            </sfLayoutType>
+            <sfLayoutType layoutType="Detail" n="Detail" s="2-" t="Web Layout Type">
+              <children>
+                <sfLayoutSection customLabel="false" detailHeading="false" editHeading="false" n="Information" s="" seqNum="0" style="TwoColumnsTopToBottom" t="Web Layout Section - false">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI label="ILT Class Name" n="ILT Class Name" required="true" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Name" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Id" n="Class Id" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Offering_Id__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI label="Learning" n="Learning" required="true" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Learning__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Course Class Type" n="Course Class Type" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Course_Class_Type__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Description" n="Description" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Description__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Classroom Setting" n="Classroom Setting" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Classroom_Setting__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="3">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="emptySpace" s="" seqNum="0" t="Web Layout Field" type="EmptySpace"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Request Type" n="Request Type" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Request_Type__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="4">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="emptySpace" s="" seqNum="0" t="Web Layout Field" type="EmptySpace"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Min Seats" n="Min Seats" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Min_Seats__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="5">
+                      <children>
+                        <sfLI label="Start Date" n="Start Date" required="true" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Start_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Max Seats" n="Max Seats" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Max_Seats__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="6">
+                      <children>
+                        <sfLI label="End Date" n="End Date" required="true" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__End_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Available Seats" n="Available Seats" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Available_Seats__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="7">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Start Time" n="Start Time" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Start_Time__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Total Enrollment" n="Total Enrollment" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Total_Enrollment__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="8">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="End Time" n="End Time" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__End_Time__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="emptySpace" s="" seqNum="0" t="Web Layout Field" type="EmptySpace"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="9">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Timezone" n="Timezone" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Timezone__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Enable Waitlist" n="Enable Waitlist" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Enable_Waitlist__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="10">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Closed Date" n="Class Closed Date" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Closed_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Max Waitlist Seats" n="Max Waitlist Seats" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Max_Waitlist_Seats__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="11">
+                      <children>
+                        <sfLI label="Automatically Closed" n="Automatically Closed" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Automatically_Closed__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Account" n="Account" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Account__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="12">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Price Override" n="Price Override" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Price_Override__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Job Number" n="Skedulo Job Number" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Job_Number__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="13">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Job Active" n="Skedulo Job Active" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Job_Active__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Job Id" n="Skedulo Job Id" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Job_Id__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="14">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Ready to Publish" n="Ready to Publish" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Ready_to_Publish__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Training Event" n="Training Event" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Training_Event__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="15">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Job Status" n="Skedulo Job Status" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Job_Status__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="TE Number in Class" n="TE Number in Class" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="TE_Number_in_Class__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="16">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Cloud Craze Product" n="Cloud Craze Product" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Cloud_Craze_Product__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Virtual Skills Training" n="Virtual Skills Training" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Virtual_Skills_Training__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="17">
+                      <children>
+                        <sfLI label="Is Stacked Class" n="Is Stacked Class" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Is_Stacked_Class__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Supplemental Information" n="Supplemental Information" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Supplemental_Information__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="18">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Is Master Class" n="Is Master Class" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Is_Master_Class__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Location" n="Location" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="redwing__Location__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="19">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Skedulo Parent Job" n="Skedulo Parent Job" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Skedulo_Parent_Job__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Location ZIP Code" n="Location ZIP Code" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Location_ZIP_Code__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="20">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Location State" n="Location State" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Location_State__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Facility" n="Facility" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Account__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="21">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Notes" n="Notes" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Notes__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Course Name" n="Course Name" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Learning_Plan__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="22">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Cancellation Reason" n="Class Cancellation Reason" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Cancellation_Reason__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Cloud Craze Order" n="Cloud Craze Order" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CC_Order_Number__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="23">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Canceled After Closed" n="Canceled After Closed" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Canceled_After_Closed__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Opportunity" n="Opportunity" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Opportunity__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="24">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="0" t="Web Layout Item"/>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Cancelled Date" n="Class Cancelled Date" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Cancelled_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" editHeading="false" n="Learn to Swim" s="" seqNum="1" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Successful Evaluations" n="Successful Evaluations" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Successful_Evaluations__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Not Evaluated" n="Not Evaluated" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Not_Evaluated__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Unsuccessful Evaluations" n="Unsuccessful Evaluations" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Unsuccessful_Evaluations__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" editHeading="false" n="RCO Listing Info" s="" seqNum="2" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Online (RCO)" n="Class Online (RCO)" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Online__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Searchable (RCO)" n="Class Searchable (RCO)" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Searchable__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Online From (RCO)" n="Class Online From (RCO)" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Online_From__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Searchable If Unavailable (RCO)" n="Class Searchable If Unavailable (RCO)" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Searchable_If_Unavailable__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Class Online To (RCO)" n="Class Online To (RCO)" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Class_Online_To__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="true" editHeading="false" n="CPS Listing Info" s="" seqNum="3" style="TwoColumnsLeftToRight" t="Web Layout Section - true">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Approval Status" n="CPS Approval Status" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Approval_Status__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Registration Phone" n="CPS Registration Phone" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Registration_Phone__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="1">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Approval Date" n="CPS Approval Date" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Approval_Date__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="City" n="City" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_City__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="2">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Site Name" n="Site Name" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_Name__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Address 1" n="Address 1" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_Address_1__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="3">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Registration URL" n="CPS Registration URL" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Registration_URL__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Address 2" n="Address 2" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_Address_2__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="4">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Registration Fee" n="Registration Fee" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Registration_Fee__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="State" n="State" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="State__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="5">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Order" n="CPS Order" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Order__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Zip" n="Zip" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="Site_Postal_Code__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="6">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="CPS Order Item" n="CPS Order Item" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CPS_Order_Item__c" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="" n="" s="" seqNum="1" t="Web Layout Item"/>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+                <sfLayoutSection customLabel="false" detailHeading="false" editHeading="false" n="System Information" s="" seqNum="4" style="TwoColumnsTopToBottom" t="Web Layout Section - false">
+                  <children>
+                    <sfLayoutRow n="LayoutRow" s="" seqNum="0">
+                      <children>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Created By" n="Created By" s="" seqNum="0" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="CreatedById" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                        <sfLI editableForNew="false" editableForUpdate="false" label="Last Modified By" n="Last Modified By" s="" seqNum="1" t="Web Layout Item">
+                          <children>
+                            <sfLIC n="LastModifiedById" s="" seqNum="0" t="Web Layout Field" type="Field"/>
+                          </children>
+                        </sfLI>
+                      </children>
+                    </sfLayoutRow>
+                  </children>
+                </sfLayoutSection>
+              </children>
+            </sfLayoutType>
+          </layoutTypes>
+          <relatedLists>
+            <sfRelatedList fieldName="redwing__ILT_Class__c" label="ILT Sessions" n="redwing__ILT_Sessions__r" nameAlias="redwing__ILT_Session__c.redwing__ILT_Class__c" relationshipName="redwing__ILT_Sessions__r" s="3-" t="ILT Sessions (redwing__ILT_Class__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="ILT Session Name"/>
+                <sfRelatedListColumn alias="redwing__Description__c" n="redwing__Description__c" s="" seq="1" t="Description"/>
+                <sfRelatedListColumn alias="redwing__Date__c" n="redwing__Date__c" s="" seq="2" t="Date"/>
+                <sfRelatedListColumn alias="redwing__Optional__c" n="redwing__Optional__c" s="" seq="3" t="Optional"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ILT_Class__c" label="Voucher" n="Voucher__r" nameAlias="Voucher__c.ILT_Class__c" relationshipName="Voucher__r" s="3-" t="Voucher (ILT_Class__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Voucher Number"/>
+                <sfRelatedListColumn alias="User__c" n="User__c" s="" seq="1" t="User"/>
+                <sfRelatedListColumn alias="Learning_Plan__c" n="Learning_Plan__c" s="" seq="2" t="Learning Plan"/>
+                <sfRelatedListColumn alias="toLabel(Status__c)" n="Status__c" s="" seq="3" t="Status"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="redwing__ILT_Class__c" label="ILT Rosters" n="redwing__ILT_Rosters__r" nameAlias="redwing__ILT_Roster__c.redwing__ILT_Class__c" relationshipName="redwing__ILT_Rosters__r" s="3-" t="ILT Rosters (redwing__ILT_Class__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="ILT Roster Name"/>
+                <sfRelatedListColumn alias="toLabel(redwing__Status__c)" n="redwing__Status__c" s="" seq="1" t="Status"/>
+                <sfRelatedListColumn alias="redwing__User__c" n="redwing__User__c" s="" seq="2" t="User"/>
+                <sfRelatedListColumn alias="redwing__ILT_Session__c" n="redwing__ILT_Session__c" s="" seq="3" t="ILT Session"/>
+                <sfRelatedListColumn alias="redwing__Attended__c" n="redwing__Attended__c" s="" seq="4" t="Attended"/>
+              </children>
+              <customActions>
+                <sfActionLink n="ltui__View_All_Rosters" s=""/>
+              </customActions>
+              <excludeButtons>
+                <string>New</string>
+              </excludeButtons>
+              <customButtons>
+                <string>ltui__View_All_Rosters</string>
+              </customButtons>
+            </sfRelatedList>
+            <sfRelatedList fieldName="redwing__ILT_Class__c" label="ILT Instructors" n="redwing__ILT_Instructors__r" nameAlias="redwing__ILT_Instructor__c.redwing__ILT_Class__c" relationshipName="redwing__ILT_Instructors__r" s="3-" t="ILT Instructors (redwing__ILT_Class__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="ILT Instructor Name"/>
+                <sfRelatedListColumn alias="redwing__Instructor__c" n="redwing__Instructor__c" s="" seq="1" t="Instructor"/>
+                <sfRelatedListColumn alias="redwing__Primary__c" n="redwing__Primary__c" s="" seq="2" t="Primary"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ILT_Class__c" label="CC Order Items" n="CC_Order_Items__r" nameAlias="ccrz__E_OrderItem__c.ILT_Class__c" relationshipName="CC_Order_Items__r" s="3-" t="CC Order Items (ILT_Class__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="OrderItemAutoNumber"/>
+                <sfRelatedListColumn alias="Opportunity__c" n="Opportunity__c" s="" seq="1" t="Opportunity"/>
+                <sfRelatedListColumn alias="ccrz__Order__c" n="ccrz__Order__c" s="" seq="2" t="Order"/>
+                <sfRelatedListColumn alias="toLabel(ccrz__OrderItemStatus__c)" n="ccrz__OrderItemStatus__c" s="" seq="3" t="Order Item Status"/>
+                <sfRelatedListColumn alias="ccrz__Product_Name__c" n="ccrz__Product_Name__c" s="" seq="4" t="Product Name"/>
+                <sfRelatedListColumn alias="ccrz__Quantity__c" n="ccrz__Quantity__c" s="" seq="5" t="Quantity"/>
+                <sfRelatedListColumn alias="ccrz__Price__c" n="ccrz__Price__c" s="" seq="6" t="Price"/>
+              </children>
+              <customActions/>
+              <excludeButtons>
+                <string>MassChangeOwner</string>
+                <string>New</string>
+              </excludeButtons>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ILT_Class__c" label="Fulfillment Items" n="Fulfillment_Items__r" nameAlias="Fulfillment_Item__c.ILT_Class__c" relationshipName="Fulfillment_Items__r" s="3-" t="Fulfillment Items (ILT_Class__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Fulfillment Item Name"/>
+                <sfRelatedListColumn alias="Fulfillment__c" n="Fulfillment__c" s="" seq="1" t="Fulfillment"/>
+                <sfRelatedListColumn alias="CC_Product__c" n="CC_Product__c" s="" seq="2" t="CC Product"/>
+                <sfRelatedListColumn alias="Fulfillment_Date__c" n="Fulfillment_Date__c" s="" seq="3" t="Fulfillment Date"/>
+                <sfRelatedListColumn alias="Order__c" n="Order__c" s="" seq="4" t="Order"/>
+                <sfRelatedListColumn alias="Order_Item__c" n="Order_Item__c" s="" seq="5" t="Order Item"/>
+                <sfRelatedListColumn alias="Supplemental_Information__c" n="Supplemental_Information__c" s="" seq="6" t="Supplemental Information"/>
+                <sfRelatedListColumn alias="Training_Event__c" n="Training_Event__c" s="" seq="7" t="Training Event"/>
+                <sfRelatedListColumn alias="Transaction_Date__c" n="Transaction_Date__c" s="" seq="8" t="Transaction Date"/>
+              </children>
+              <customActions/>
+              <excludeButtons>
+                <string>MassChangeOwner</string>
+                <string>New</string>
+              </excludeButtons>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="redwing__ILT__c" label="Learning Versions" n="redwing__Learning_Versions__r" nameAlias="redwing__Learning_Version__c.redwing__ILT__c" relationshipName="redwing__Learning_Versions__r" s="3-" t="Learning Versions (redwing__ILT__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Learning Version ID"/>
+                <sfRelatedListColumn alias="redwing__Learning__c" n="redwing__Learning__c" s="" seq="1" t="Learning"/>
+                <sfRelatedListColumn alias="redwing__Version__c" n="redwing__Version__c" s="" seq="2" t="Version"/>
+                <sfRelatedListColumn alias="toLabel(redwing__Version_selection_behavior__c)" n="redwing__Version_selection_behavior__c" s="" seq="3" t="Version selection behavior"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="LinkedEntityId" label="Notes" n="AttachedContentNotes" nameAlias="RelatedContentNoteList" relationshipName="RelatedContentNoteList" s="3-" t="Notes (ParentId)">
+              <children>
+                <sfRelatedListColumn n="Title" s="" seq="0"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="1" t="Content Modified Date"/>
+                <sfRelatedListColumn n="CreatedById" s="" seq="2" t="Created By"/>
+                <sfRelatedListColumn n="TextPreview" s="" seq="3" t="Text Preview"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+              <lightningColumns>
+                <sfRelatedListColumn n="Title" s="" seq="0"/>
+                <sfRelatedListColumn n="TextPreview" s="" seq="1" t="Text Preview"/>
+                <sfRelatedListColumn n="CreatedById" s="" seq="2" t="Created By"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="3" t="Content Modified Date"/>
+                <sfRelatedListColumn n="LastModifiedBy" s="" seq="4" t="Last Modified By"/>
+              </lightningColumns>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ParentId" label="Notes &amp; Attachments" n="CombinedAttachments" nameAlias="RelatedNoteList" relationshipName="CombinedAttachments" s="3-" t="Notes &amp; Attachments (ParentId)">
+              <children>
+                <sfRelatedListColumn n="RecordType" s="" seq="0" t="Type"/>
+                <sfRelatedListColumn n="Title" s="" seq="1"/>
+                <sfRelatedListColumn n="RelatedTo" s="" seq="2" t="Related To"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="3" t="Last Modified"/>
+                <sfRelatedListColumn alias="CreatedBy.Name" n="CreatedById" s="" seq="4" t="Created By"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+              <lightningColumns>
+                <sfRelatedListColumn n="Title" s="" seq="0"/>
+                <sfRelatedListColumn n="CreatedById" s="" seq="1" t="Created By"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="2" t="Last Modified"/>
+                <sfRelatedListColumn n="ContentSize" s="" seq="3" t="Size"/>
+                <sfRelatedListColumn n="FileExtension" s="" seq="4" t="File Extension"/>
+              </lightningColumns>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ParentId" label="ILT Class History" n="Histories" nameAlias="RelatedEntityHistoryList" relationshipName="Histories" s="3-" t="Entity History (ParentId)">
+              <children>
+                <sfRelatedListColumn n="CreatedDate" s="" seq="0" t="Date"/>
+                <sfRelatedListColumn alias="User" n="CreatedById" s="" seq="1" t="User"/>
+                <sfRelatedListColumn n="Action" s="" seq="2"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+              <lightningColumns>
+                <sfRelatedListColumn n="CreatedDate" s="" seq="0" t="Date"/>
+                <sfRelatedListColumn n="Field" s="" seq="1"/>
+                <sfRelatedListColumn alias="User" n="CreatedById" s="" seq="2" t="User"/>
+                <sfRelatedListColumn n="OldValue" s="" seq="3" t="Original Value"/>
+                <sfRelatedListColumn n="NewValue" s="" seq="4" t="New Value"/>
+              </lightningColumns>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ILT_Class__c" label="Achievement Assignments" n="Achievement_Assignments__r" nameAlias="redwing__Achievement_Assignment__c.ILT_Class__c" relationshipName="Achievement_Assignments__r" s="3-" t="Achievement Assignments (ILT_Class__c)">
+              <children>
+                <sfRelatedListColumn alias="Name" n="NAME" s="" seq="0" t="Achievement Assignment ID"/>
+                <sfRelatedListColumn alias="Firstname__c" n="Firstname__c" s="" seq="1" t="Student Firstname"/>
+                <sfRelatedListColumn alias="Lastname__c" n="Lastname__c" s="" seq="2" t="Student Lastname"/>
+                <sfRelatedListColumn alias="Email__c" n="Email__c" s="" seq="3" t="Student Email"/>
+                <sfRelatedListColumn alias="toLabel(redwing__Status__c)" n="redwing__Status__c" s="" seq="4" t="Status"/>
+                <sfRelatedListColumn alias="Achievement_Type__c" n="Achievement_Type__c" s="" seq="5" t="Achievement Type"/>
+                <sfRelatedListColumn alias="redwing__Achievement__c" n="redwing__Achievement__c" s="" seq="6" t="Achievement"/>
+                <sfRelatedListColumn alias="redwing__Acquisition_Date__c" n="redwing__Acquisition_Date__c" s="" seq="7" t="Acquisition Date"/>
+                <sfRelatedListColumn alias="redwing__Expiration_Date__c" n="redwing__Expiration_Date__c" s="" seq="8" t="Expiration Date"/>
+                <sfRelatedListColumn alias="QR_Code_Web_Address__c" n="QR_Code_Web_Address__c" s="" seq="9" t="QR Code Web Address"/>
+              </children>
+              <customActions/>
+              <excludeButtons>
+                <string>MassChangeOwner</string>
+                <string>New</string>
+              </excludeButtons>
+              <customButtons/>
+            </sfRelatedList>
+            <sfRelatedList fieldName="LinkedEntityId" label="Files" n="AttachedContentDocuments" nameAlias="RelatedFileList" relationshipName="AttachedContentDocuments" s="3-" t="Files (LinkedEntityId)">
+              <children>
+                <sfRelatedListColumn n="Title" s="" seq="0"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="1" t="Last Modified"/>
+                <sfRelatedListColumn alias="CreatedBy.Name" n="CreatedById" s="" seq="2" t="Created By"/>
+                <sfRelatedListColumn n="ContentSize" s="" seq="3" t="Content Size"/>
+                <sfRelatedListColumn n="FileType" s="" seq="4" t="File Type"/>
+                <sfRelatedListColumn n="FileExtension" s="" seq="5" t="File Extension"/>
+                <sfRelatedListColumn n="ContentUrl" s="" seq="6" t="Content URL"/>
+                <sfRelatedListColumn n="ExternalDataSourceName" s="" seq="7" t="External Data Source"/>
+                <sfRelatedListColumn n="ExternalDataSourceType" s="" seq="8" t="Class ID"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+              <lightningColumns>
+                <sfRelatedListColumn n="Title" s="" seq="0"/>
+                <sfRelatedListColumn n="CreatedById" s="" seq="1" t="Created By"/>
+                <sfRelatedListColumn n="LastModifiedDate" s="" seq="2" t="Last Modified"/>
+                <sfRelatedListColumn n="ContentSize" s="" seq="3" t="Content Size"/>
+                <sfRelatedListColumn n="FileExtension" s="" seq="4" t="File Extension"/>
+              </lightningColumns>
+            </sfRelatedList>
+            <sfRelatedList fieldName="ILT_Class__c" label="Cases" n="Cases__r" nameAlias="Case.ILT_Class__c" relationshipName="Cases__r" s="3-" t="Cases (ILT_Class__c)">
+              <children>
+                <sfRelatedListColumn alias="CaseNumber" n="CASES.CASE_NUMBER" s="" seq="0" t="Case"/>
+                <sfRelatedListColumn alias="toLabel(Type)" n="CASES.TYPE" s="" seq="1" t="Type"/>
+                <sfRelatedListColumn alias="toLabel(Case_Sub_Type__c)" n="Case_Sub_Type__c" s="" seq="2" t="Case Sub-Type"/>
+                <sfRelatedListColumn alias="Subject" n="CASES.SUBJECT" s="" seq="3" t="Subject"/>
+                <sfRelatedListColumn alias="toLabel(Status)" n="CASES.STATUS" s="" seq="4" t="Status"/>
+                <sfRelatedListColumn alias="Case_Record_Type__c" n="Case_Record_Type__c" s="" seq="5" t="Case Record Type"/>
+                <sfRelatedListColumn alias="OwnerId" n="OWNER_NAME" s="" seq="6" t="Owner"/>
+                <sfRelatedListColumn alias="Account.Name" n="ACCOUNT.NAME" s="" seq="7" t="Account Name"/>
+                <sfRelatedListColumn alias="ContactId" n="NAME" s="" seq="8" t="Contact Name"/>
+                <sfRelatedListColumn alias="Contact.AccountId" n="CONTACT.ACCOUNT" s="" seq="9" t="Account Name"/>
+              </children>
+              <customActions/>
+              <excludeButtons/>
+              <customButtons/>
+            </sfRelatedList>
+          </relatedLists>
+          <actionLinks>
+            <sfActionLink n="S_Docs" s=""/>
+          </actionLinks>
+          <excludeButtons>
+            <string>Clone</string>
+            <string>Edit</string>
+            <string>Submit</string>
+          </excludeButtons>
+          <customTags/>
+          <quickActionNames/>
+          <consoleComponents/>
+          <platformActionNames>
+            <string>FeedItem.TextPost</string>
+            <string>FeedItem.ContentPost</string>
+            <string>FeedItem.RypplePost</string>
+            <string>FeedItem.LinkPost</string>
+            <string>FeedItem.PollPost</string>
+          </platformActionNames>
+        </sfLayout>
+      </children>
+    </sfRecordType>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome ILT_Classes1__r ILT_Classes__r CPS_Class__r List redwing__ILT_Classes__r CPS_Class_Item__r" n="New"/>
+    <sfActionLink modes="View ILT_Classes1__r ILT_Classes__r CPS_Class__r redwing__ILT_Classes__r CPS_Class_Item__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View ILT_Classes1__r ILT_Classes__r CPS_Class__r redwing__ILT_Classes__r CPS_Class_Item__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View ILT_Classes1__r ILT_Classes__r CPS_Class__r redwing__ILT_Classes__r CPS_Class_Item__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ILT_Classes1__r ILT_Classes__r CPS_Class__r redwing__ILT_Classes__r CPS_Class_Item__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="ILT Classes Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink buttonName="Add_Vouchers" n="Add_Vouchers" s="" t="Add Vouchers"/>
+    <sfActionLink buttonName="Cancel_Class" n="Cancel_Class" s="" t="Cancel Class"/>
+    <sfActionLink buttonName="Email_Class_Roster" n="Email_Class_Roster" s="" t="Email Class Roster"/>
+    <sfActionLink buttonName="Email_Voucher_List" n="Email_Voucher_List" s="" t="Email Voucher List"/>
+    <sfActionLink buttonName="ltui__Manage_Class_Assignments" n="ltui__Manage_Class_Assignments" s="" t="Manage Class Assignments"/>
+    <sfActionLink buttonName="TEMP_Voucher_Creation" n="TEMP_Voucher_Creation" s="" t="TEMP Voucher Creation"/>
+    <sfActionLink buttonName="Print_Wallet_Cards" n="Print_Wallet_Cards" s="" t="Print Wallet Cards"/>
+    <sfActionLink buttonName="Roster_PDF" n="Roster_PDF" s="" t="Roster PDF"/>
+    <sfActionLink buttonName="S_Docs" n="S_Docs" s="" t="S-Docs"/>
+    <sfActionLink buttonName="Print_Cert_and_CEU" n="Print_Cert_and_CEU" s="" t="Print Cert and CEU"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>REDWING__ILT_CLASS__C.NAME</string>
+    <string>Skedulo_Account__c</string>
+    <string>redwing__Start_Date__c</string>
+    <string>redwing__End_Date__c</string>
+    <string>Site_City__c</string>
+    <string>State__c</string>
+    <string>Total_Enrollment__c</string>
+    <string>CREATED_DATE</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>REDWING__ILT_CLASS__C.NAME</string>
+    <string>CPS_Order__c</string>
+    <string>CPS_Order_Item__c</string>
+    <string>Skedulo_Account__c</string>
+    <string>redwing__Start_Date__c</string>
+    <string>redwing__End_Date__c</string>
+  </lookupColumns>
+  <weblinks>
+    <sfWeblink displayType="link" linkType="url" n="return" s="" url="https://transdev1-americanredcross.cs52.force.com/learner/s/ilt-detail?recordId={!redwing__ILT_Class__c.Id}&amp;pId={!redwing__ILT_Class__c.Learning_PlanId__c}"/>
+  </weblinks>
+  <searchResultColumns>
+    <string>REDWING__ILT_CLASS__C.NAME</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

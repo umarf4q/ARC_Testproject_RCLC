@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="PurchaseQuantityRule" IsAvailableInAloha="true" IsAvailableInLightning="true" Label="Quantity Rules" Name="standard-PurchaseQuantityRule" SobjectName="PurchaseQuantityRule" Url="https://arc-phss--test.my.salesforce.com/0lK/o"/>
+</toolingTabInfo>

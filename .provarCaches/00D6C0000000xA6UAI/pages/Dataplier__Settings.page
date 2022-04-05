@@ -1,0 +1,722 @@
+<apex:page standardcontroller="Dataplier__Organisation__c" extensions="Dataplier.SettingsController" doctype="html-5.0" sidebar="false">
+    <c:TrackPanel />
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-1.10.2.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jsforce.js')}"/>
+    <apex:slds />
+    <style>
+        .table-header {
+            background-color: #f7f9fb !important;
+            height: 30px !important;
+        }
+
+        /* Absolute Center Spinner */
+        .loadingCenterSpinner {
+            position: absolute;
+            z-index: 99999;
+            height: 2em;
+            width: 2em;
+            overflow: show;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .requiredBlock {
+            background-color: #c00;
+            position: absolute;
+            border-radius: 35%;
+            left: 33%;
+            width: 3px;
+            height: 31px;
+        }
+
+        /* Transparent Overlay */
+        .loadingCenterSpinner:before {
+            content: '';
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        /* :not(:required) hides these rules from IE9 and below */
+        .loadingCenterSpinner:not(:required) {
+            /* hide "loading..." text */
+            font: 0/0 a;
+            color: transparent;
+            text-shadow: none;
+            background-color: transparent;
+            border: 0;
+        }
+
+        .loadingCenterSpinner:not(:required):after {
+            content: '';
+            display: block;
+            font-size: 10px;
+            width: 1em;
+            height: 1em;
+            margin-top: -0.5em;
+            -webkit-animation: spinner 1500ms infinite linear;
+            -moz-animation: spinner 1500ms infinite linear;
+            -ms-animation: spinner 1500ms infinite linear;
+            -o-animation: spinner 1500ms infinite linear;
+            animation: spinner 1500ms infinite linear;
+            border-radius: 0.5em;
+            -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+            box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+        }
+
+        .customMessage * {
+            color: #fff !important
+        }
+
+        .customMessage {
+            margin: 5px 0 !important;
+            max-width: 100%;
+            opacity: 1 !important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+
+        .message {
+            opacity: 1;
+        }
+
+        /* Animation */
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-moz-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-o-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+
+    </style>
+    <apex:outputLabel id="nonevalue">
+    </apex:outputLabel>
+    <!--        	<div class="slds-scope">-->
+    <!--        		<c:Wait/>-->
+    <!--        	</div>-->
+    <apex:form >
+
+        <apex:pagemessages id="msg"/>
+        <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+            <div class="slds-media__body">
+                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#maintenance_plan')}"/>
+							</svg>
+						</span>
+                    <span style="font-weight: bolder;" class="slds-m-left--small">Settings
+					</span>
+                </h1>
+            </div>
+        </div>
+        <apex:actionfunction action="{!showMessage2}" reRender="msg" name="showMessage" immediate="true">
+            <apex:param assignTo="{!message}" value="" name="newstr"/>
+        </apex:actionfunction>
+
+        <div class="slds-box slds-m-top--medium">
+            <apex:outputPanel layout="block" id="authBlock">
+                <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				<span class="slds-icon_container slds-icon-standard-account">
+ 					<svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#connected_apps')}"/>
+					</svg>
+				</span>
+                    <span class="slds-truncate slds-m-left--small">OAuth Settings</span>
+                </div>
+                <div class="slds-grid slds-gutters slds-m-top--medium">
+                    <div class="slds-col slds-size--10-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--4-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="appName" value="Connected App Name: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <apex:inputText value="{!appName}" styleClass="slds-input" required="false" id="appName"/>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-col slds-size--2-of-12">
+                        <apex:outputPanel styleClass="slds-float--right">
+                            <apex:commandbutton value="Cancel" immediate="true" action="{!cancelSave}" styleClass="slds-button slds-button_neutral"/>
+                            <apex:commandbutton value="Create" onClick="listConnectedAppDetails();return false;" reRender="none" styleClass="slds-button slds-button_neutral"/>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+        <div class="slds-box slds-m-top--medium">
+            <apex:outputPanel layout="block" id="orgForm">
+                <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				<span class="slds-icon_container slds-icon-standard-account">
+ 					<svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#link')}"/>
+					</svg>
+				</span>
+                    <span class="slds-truncate slds-m-left--small">Register Destination Org</span>
+                </div>
+                <div class="slds-grid slds-gutters slds-m-top--medium">
+                    <div class="slds-col slds-size--10-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--4-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="orgName" value="{!$ObjectType.Dataplier__Organisation__c.fields.Name.label}: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <apex:inputField styleClass="slds-input" id="orgName" value="{!organizationRecord.Name}"/>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--4-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="authType" value="Authentication Type: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <apex:selectList value="{!selectedAuthType}" id="authType" styleClass="slds-select selectedAuthType" onchange="checkGovtOrg();" multiselect="false" size="1">
+                                    <apex:selectOptions value="{!authOptions}"/>
+                                </apex:selectList>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--4-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="orgType" value="{!$ObjectType.Dataplier__Organisation__c.fields.Dataplier__Organisation_Type__c.label}: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <apex:selectList value="{!organizationRecord.Dataplier__Organisation_Type__c}" id="orgType" styleClass="slds-select" onchange="checkGovtOrg();" multiselect="false" size="1" disabled="{!isUpdatePage}">
+                                    <apex:selectOption itemValue="Developer/Production" itemLabel="Developer/Production"/>
+                                    <apex:selectOption itemValue="Sandbox" itemLabel="Sandbox"/>
+                                    <apex:selectOption itemValue="Government cloud org" itemLabel="Government cloud org"/>
+                                </apex:selectList>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--4-of-12" rendered="{!If(organizationRecord.Dataplier__Organisation_Type__c == 'Government cloud org',true,false)}">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="govOrg" value="{!$ObjectType.Dataplier__Organisation__c.fields.Dataplier__HostName__c.label}: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <apex:outputPanel id="govOrg">
+                                    <apex:inputField styleClass="slds-input" value="{!organizationRecord.Dataplier__HostName__c}" rendered="{!!isUpdatePage}"/>
+                                    <apex:outputField styleClass="slds-input" value="{!organizationRecord.Dataplier__HostName__c}" rendered="{!isUpdatePage}"/>
+                                </apex:outputPanel>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--4-of-12" rendered="{!selectedAuthType == MANUAL_AUTH}">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="passBlock" value="Authorization Code: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <apex:outputPanel id="passBlock" rendered="{!selectedAuthType == MANUAL_AUTH}">
+                                    <apex:inputsecret value="{!password}" styleclass="slds-input" redisplay="true"/>
+                                </apex:outputPanel>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-col slds-size--2-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-float--right">
+                            <apex:commandbutton styleClass="slds-button slds-button_neutral" action="{!cancelSave}" value="Cancel"/>
+                            <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Authorize" onclick="auth(); return false;"/>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+        <apex:outputPanel layout="block" rendered="{!OrgList.size > 0}">
+            <div class="slds-box slds-m-top--medium" id="orgList">
+                <apex:outputPanel layout="block">
+                    <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				<span class="slds-icon_container slds-icon-standard-account">
+ 					<svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#work_queue')}"/>
+					</svg>
+				</span>
+                        <span class="slds-truncate slds-m-left--small">Destination Orgs</span>
+                    </div>
+                    <div class="slds-grid slds-gutters slds-m-top--small">
+                        <div class="slds-col slds-size--12-of-12">
+                            <apex:dataTable style="border-top : snow;" headerClass="table-header" styleClass="slds-table slds-table_cell-buffer slds-table_bordered slds-no-row-hover slds-m-top--medium" value="{!OrgList}" var="item" rendered="{!OrgList.size > 0}">
+                                <apex:column style="padding-top: 7px; padding-bottom: 7px" value="{!item.Name}">
+                                    <apex:facet name="header"> Organization Name</apex:facet>
+                                </apex:column>
+                                <apex:column value="{!item.Dataplier__Username__c}">
+                                    <apex:facet name="header"> Username</apex:facet>
+                                </apex:column>
+                                <apex:column value="{!item.Dataplier__HostName__c}">
+                                    <apex:facet name="header"> HostName</apex:facet>
+                                </apex:column>
+                                <apex:column value="{!item.Dataplier__Organisation_ID__c}">
+                                    <apex:facet name="header"> HostName</apex:facet>
+                                </apex:column>
+                            </apex:dataTable>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </div>
+        </apex:outputPanel>
+        <div class="slds-box slds-m-top--medium">
+            <apex:outputPanel layout="block">
+                <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				<span class="slds-icon_container slds-icon-standard-account">
+ 					<svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product_transfer')}"/>
+					</svg>
+				</span>
+                    <span class="slds-truncate slds-m-left--small">Reset Dataplier Settings</span>
+                </div>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size--12-of-12">
+                        <apex:outputPanel styleClass="slds-float--right slds-m-top--medium" layout="block">
+                            <apex:commandbutton value="Reset" styleClass="slds-button slds-button_neutral" action="{!redirectToDMPostInstallScript}" rerender="msg"/>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+        <apex:actionfunction name="checkGovtOrg" rerender="creds,msg,nonevalue,orgForm"/>
+
+        <apex:outputPanel layout="block">
+            <div class="slds-box slds-m-top--medium">
+                <apex:outputPanel layout="block">
+                    <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				<span class="slds-icon_container slds-icon-standard-account">
+ 					<svg class="slds-icon slds-icon_small" aria-hidden="true">
+    					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#visit_templates')}"/>
+					</svg>
+				</span>
+                        <span class="slds-truncate slds-m-left--small">Templates</span>
+                    </div>
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size--8-of-12">
+                            <apex:outputPanel layout="block" styleClass="slds-m-top--medium">
+                                After finish creating the template, please follow a few steps:
+                                <ul class="slds-list_dotted">
+                                    <li>Make additional settings for "Data Sets" if necessary. (add/remove fields, add filters, set a limit);</li>
+                                    <li>Update the sequence (Sequence tab -> "Name Sequence" -> Edit).</li>
+                                </ul>
+                            </apex:outputPanel>
+                        </div>
+                        <div class="slds-col slds-size--4-of-12">
+                            <apex:outputPanel styleClass="slds-float--right" layout="block">
+                                <ul class="slds-button-group-row slds-m-top--medium">
+                                    <li class="slds-button-group-item">
+                                        <apex:commandbutton styleClass="slds-button_neutral slds-button"
+                                                            disabled="{!CPQTemplateDisabled}" value="CPQ"
+                                                            action="{!startCreateCPQData}"
+                                                            onComplete="overridePageMessages();" reRender="msg"/>
+                                    </li>
+                                    <li class="slds-button-group-item">
+                                        <apex:commandbutton styleClass="slds-button_neutral slds-button"
+                                                            disabled="{!nCinoTemplateDisabled}" value="nCino"
+                                                            action="{!nCinoTemplate}"
+                                                            onComplete="overridePageMessages();" reRender="msg"/>
+                                    </li>
+                                    <li class="slds-button-group-item">
+                                        <apex:commandbutton styleClass="slds-button_neutral slds-button"
+                                                            disabled="{!FinancialCloudTemplateDisabled}"
+                                                            value="Financial Cloud" action="{!FinancialCloudTemplate}"
+                                                            onComplete="overridePageMessages();" reRender="msg"/>
+                                    </li>
+                                </ul>
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </div>
+        </apex:outputPanel>
+
+        <apex:actionfunction name="checkAndSave" action="{!checkAndSave}" rerender="creds,msg" oncomplete="afterSave('{!remoteSiteSettingURL}','{!PlaceOfException}');"/>
+        <apex:actionfunction name="authorize" action="{!processLogin}" oncomplete="promptLink('{!JSENCODE(loginUrl)}','{!JSENCODE(organizationRecord.Name)}');" rerender="msg,nonevalue"></apex:actionfunction>
+        <apex:actionfunction name="completeRegisterOrg" action="{!completeRegisterOrg}" oncomplete="redirect('{!isErrors}')" rerender="msg,nonevalue,orgList,orgForm"></apex:actionfunction>
+        <apex:actionfunction action="{!showMessage}" reRender="creds,msg" name="showMessage">
+            <apex:param assignTo="{!message}" value="" name="newstr"/>
+        </apex:actionfunction>
+        <apex:actionfunction action="{!showMessage2}" reRender="creds,msg" name="showMessage2">
+            <apex:param assignTo="{!message}" value="" name="newstr"/>
+        </apex:actionfunction>
+        <apex:actionfunction name="autoAuth" action="{!autoAuth}" rerender="registerBlock,msg" oncomplete="afterSave('{!remoteSiteSettingURL}','{!PlaceOfException}');"/>
+        <apex:actionfunction name="refreshPage" action="{!refreshPage}"/>
+    </apex:form>
+    <script>
+        window.onload = function () {
+            overridePageMessages();
+        };
+
+        function overridePageMessages() {
+            var textureEffect = '';
+            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage ' + textureEffect);
+            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage ' + textureEffect);
+            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage ' + textureEffect);
+            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage ' + textureEffect);
+
+            $('.errorM3').removeClass('errorM3');
+            $('.confirmM3').removeClass('confirmM3');
+            $('.infoM3').removeClass('infoM3');
+            $('.warningM3').removeClass('warningM3');
+        }
+
+        var url = '{!baseUrl}';
+        var flosumsf = jsforce;
+        $(document).ready(function () {
+            var code = '{!JSENCODE($CurrentPage.parameters.code)}';
+            console.log(code);
+            if (code != '') {
+                autoAuth();
+            }
+        });
+
+        function redirect(b) {
+            console.log('b=' + b);
+            if (b == false || b == 'false') {
+                console.log('b=' + b);
+                refreshPage();
+                //window.location.reload();
+            }
+        }
+
+        function promptLink(linkUrl, organizationName) {
+            if (linkUrl != '' && $(".selectedAuthType").val() != '{!AUTO_AUTH}') {
+                prompt('Copy the following link and open in other browser or in incognito mode to get autorization code', linkUrl);
+            }
+        }
+
+        function auth() {
+            if ($(".pkp").val() == '' || $(".selectedAuthType").val() == '{!AUTO_AUTH}') {
+                authorize();
+            } else {
+                checkAndSave();
+            }
+            return false;
+        }
+
+        function afterSave(remoteSiteSettingURL, placeOfEX) {
+            console.log(remoteSiteSettingURL);
+            console.log(placeOfEX);
+            if (remoteSiteSettingURL != '' && (placeOfEX == 'ID' || placeOfEX == 'AUTHORIZATION')) {
+                listRemoteSiteSetting(remoteSiteSettingURL, placeOfEX);
+            } else {
+                refreshPage();
+            }
+        }
+
+        function listRemoteSiteSetting(RSURL, placeOfEX) {
+            var reg = /[^a-zA-Z0-9]+/g
+            var host = RSURL;
+            var fullName = RSURL.slice(8, RSURL.indexOf('.salesforce.com'));
+            fullName = fullName.replace(reg, '');
+            var firstChar = fullName.charAt(0);
+            if (firstChar >= 0 && firstChar <= 9) {
+                fullName = 'A' + fullName;
+            }
+
+            var ExistingNames = {};
+            var selfConn = new flosumsf.Connection({accessToken: '{!$Api.Session_Id}'});
+            var queryLi = [];
+            var query = new Object();
+            query.folder = '';
+            query.type = 'RemoteSiteSetting';
+            queryLi.push(query);
+            console.log(ExistingNames);
+            selfConn.metadata.list(queryLi, '34.0', function (err, result) {
+                if (err) {
+                    console.log(err);
+                    if (err != undefined && err.errorCode == 'sf:INSUFFICIENT_ACCESS')
+                        showMessage('INSUFFICIENT_ACCESS: use of the Metadata API requires a user with the ModifyAllData permission. Add remote site setting with url(' + host + ').');
+                    else
+                        showMessage(JSON.stringify(err));
+                } else {
+                    if (Array.isArray(result)) {
+                        for (var index in result) {
+                            if (index < result.length) {
+                                var mi = result[index];
+                                ExistingNames[mi.fullName] = mi.fullName;
+                            }
+                        }
+                    } else {
+                        ExistingNames[result.fullName] = result.fullName;
+                    }
+                    var remoteSite = new Object();
+                    remoteSite.fullName = ExistingNames[fullName] != undefined ? getRemoteSiteName(fullName + '1', ExistingNames) : fullName;
+                    remoteSite.description = 'Metadata API Remote Site Setting for Dataplier Application';
+                    remoteSite.isActive = true;
+                    remoteSite.url = host;
+                    console.log(remoteSite);
+                    selfConn.metadata.create('RemoteSiteSetting', remoteSite, function (err2, result2) {
+                        if (err2) {
+                            console.log(err2);
+                            if (err2 != undefined && err2.errorCode == 'sf:INSUFFICIENT_ACCESS')
+                                showMessage('INSUFFICIENT_ACCESS: use of the Metadata API requires a user with the ModifyAllData permission. Add remote site setting with url(' + host + ').');
+                            else
+                                showMessage(JSON.stringify(err2));
+                        } else {
+                            if (result2 != undefined && result2.success) {
+                                if (placeOfEX == 'AUTHORIZATION') {
+                                    checkAndSave();
+                                } else if (placeOfEX == 'ID') {
+                                    completeRegisterOrg();
+                                } else {
+                                }
+                            } else {
+                                console.log(JSON.stringify(result2.errors));
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        function getRemoteSiteName(fullName, ExistingNames) {
+            if (ExistingNames[fullName] != undefined) {
+                fullName = calculateName(fullName);
+                return getRemoteSiteName(fullName, ExistingNames);
+            } else {
+                return fullName;
+            }
+        }
+
+        function calculateName(input) {
+            var result = input;
+            var i = input.length;
+            var last = input.charAt(--i);
+            if (isNaN(last)) {
+                return result + '1';
+            } else {
+                last = parseInt(last) + 1;
+                result = result.slice(0, result.length - 1);
+                return result + '' + last;
+            }
+        }
+
+        function listConnectedAppDetails() {
+            var appName = $("[id$='appName']").val();
+            console.log('appName:-' + appName);
+            if (appName != undefined && appName.trim() != '') {
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.SettingsController.getAppDetails}',
+                    appName,
+                    function (r, e) {
+                        if (e.status && r) {
+                            console.log(r);
+                            createNewApp(r);
+                        } else {
+                            console.log('E:' + JSON.stringify(e.message));
+                            showMessage(e.message);
+                        }
+                    }
+                );
+            } else {
+                showMessage('Connected App Name is required field');
+            }
+        }
+
+        function createNewApp(app) {
+            console.log(app);
+            var selfConn = new flosumsf.Connection({accessToken: '{!$Api.Session_Id}'});
+            selfConn.metadata.pollTimeout = 300000;
+            selfConn.metadata.pollInterval = 30000;
+            if (app != undefined) {
+                selfConn.metadata.create('ConnectedApp', app, function (err2, result2) {
+                    if (err2) {
+                        console.log(err2);
+                        if (err2.message != undefined) {
+                            console.log(err2.message);
+                            showMessage(err2.message);
+                        }
+                    } else {
+                        console.log(result2);
+                        if (result2 != undefined && result2.success) {
+                            console.log('Created Successfully.');
+                            Visualforce.remoting.Manager.invokeAction(
+                                '{!$RemoteAction.SettingsController.updateAuthDetails}',
+                                app.fullName,
+                                app.oauthConfig.consumerKey,
+                                app.oauthConfig.consumerSecret,
+                                function (r, e) {
+                                    console.log(r);
+                                    if (e.status) {
+                                        if (r != undefined && r.length > 1) {
+                                            console.log('Updated Successfully.');
+                                            //Allow from 2-10 minutes for your changes to take effect on the server before using the connected app.
+                                            //showMessage('Connected app created successfully on '+r+'. It will take 2-10 minutes for your changes to take effect on the server before using the connected app.#confirm');
+                                            var messageSTR1 = 'Connected App ' + app.fullName + ' was created at ' + r[0] + '. Please wait for 10 mins (till ' + r[1] + ') before destination orgs registration';
+                                            var messageSTR2 = 'Connected App ' + app.fullName + ' was created at ' + r[0] + '.';
+                                            showMessageJS(messageSTR1, 'CONFIRM', 'red');
+                                            setTimeout(function () {
+                                                showMessageJS(messageSTR2, 'CONFIRM', 'black');
+                                            }, 600000);
+                                        }
+                                    } else {
+                                        console.log(e.message);
+                                        showMessage(e.message);
+                                    }
+                                }
+                            );
+                        } else {
+                            if (result2 != undefined && result2.errors != undefined) {
+                                if (result2.errors.message != undefined) {
+                                    console.log(result2.errors.message);
+                                    var errorMsg = result2.errors.message;
+                                    var msg = 'duplicate value found: <unknown> duplicates value on record with id: <unknown>';
+                                    if (errorMsg.indexOf(msg) > -1)
+                                        showMessage('A connected app with the same name already exists. Please create a connected app with the new name.');
+                                    else
+                                        showMessage(errorMsg);
+                                } else {
+                                    console.log(JSON.stringify(result2.errors));
+                                    showMessage(JSON.stringify(result2.errors));
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function showMessageJS(Message_Str, Message_Type, fontColor) {
+            var parentVal = $("[id$='msg']");
+            if (parentVal != undefined) {
+                parentVal.html('');
+                if (Message_Str != '') {
+                    if (Message_Type == 'ERROR') {
+                        var childVal = '<span id="j_id0:msg:j_id19:j_id20:0:j_id21">' +
+                            '<div class="message errorM3" role="alert">' +
+                            '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                            '<tbody>' +
+                            '<tr valign="top">' +
+                            '<td><img alt="ERROR" class="msgIcon" src="/s.gif" title="ERROR"></td>' +
+                            '<td class="messageCell">' +
+                            '<div id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id24" class="messageText">' +
+                            '<span id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id25" style="color:#cc0000">' +
+                            '<h4>Error:</h4>' +
+                            '</span>' + Message_Str + '<br>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td></td>' +
+                            '<td></td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</span>';
+                        parentVal.append(childVal);
+                    } else if (Message_Type == 'INFO') {
+                        var childVal = '<span id="j_id0:msg:j_id19:j_id20:0:j_id21">' +
+                            '<div class="message infoM3" role="alert">' +
+                            '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                            '<tbody>' +
+                            '<tr valign="top">' +
+                            '<td><img alt="INFO" class="msgIcon" src="/s.gif" title="INFO"></td>' +
+                            '<td class="messageCell">' +
+                            '<div id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id24" class="messageText">' +
+                            '<span id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id25">' +
+                            '<h4></h4>' +
+                            '</span>' + Message_Str + '<br>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td></td>' +
+                            '<td></td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</span>';
+                        parentVal.append(childVal);
+                    } else if (Message_Type == 'CONFIRM') {
+                        var childVal = '<span id="j_id0:msg:j_id15:j_id16:0:j_id17">' +
+                            '<div class="message confirmM3" role="alert">' +
+                            '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                            '<tbody>' +
+                            '<tr valign="top">' +
+                            '<td><img alt="CONFIRM" class="msgIcon" src="/s.gif" title="CONFIRM"></td>' +
+                            '<td class="messageCell">' +
+                            '<div id="j_id0:msg:j_id15:j_id16:0:j_id17:j_id18:j_id20" class="messageText">' +
+                            '<span id="j_id0:msg:j_id15:j_id16:0:j_id17:j_id18:j_id21">' +
+                            '<h4>Success:</h4>' +
+                            '</span>' +
+                            '<font color="' + fontColor + '">' + Message_Str + '</font>' +
+                            '<br>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td></td>' +
+                            '<td></td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</span>';
+                        parentVal.append(childVal);
+                    }
+                    overridePageMessages();
+                }
+            }
+        }
+
+
+    </script>
+</apex:page>

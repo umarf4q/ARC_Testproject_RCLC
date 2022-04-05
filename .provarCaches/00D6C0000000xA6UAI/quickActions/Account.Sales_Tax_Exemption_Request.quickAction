@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><QuickAction xmlns="http://soap.sforce.com/2006/04/metadata"
+   >
+ <fullName>Account.Sales_Tax_Exemption_Request</fullName>
+    <fieldOverrides>
+  <field>Created_From_Button_on_Account__c</field>
+  <formula>true</formula>
+   </fieldOverrides>
+  <height>0</height>
+  <isProtected>false</isProtected>
+ <label>Sales Tax Exemption Request</label>
+   <optionsCreateFeedItem>true</optionsCreateFeedItem>
+  <quickActionLayout>
+  <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+  <quickActionLayoutColumns>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>Certificate_Number_ID__c</field>
+    <uiBehavior>Required</uiBehavior>
+   </quickActionLayoutItems>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>Exemption_Category__c</field>
+    <uiBehavior>Required</uiBehavior>
+   </quickActionLayoutItems>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>Exemption_Category_Other__c</field>
+    <uiBehavior>Edit</uiBehavior>
+   </quickActionLayoutItems>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>State__c</field>
+    <uiBehavior>Required</uiBehavior>
+   </quickActionLayoutItems>
+   <quickActionLayoutItems>
+    <emptySpace>false</emptySpace>
+    <field>Send_Notifications_To__c</field>
+    <uiBehavior>Edit</uiBehavior>
+   </quickActionLayoutItems>
+  </quickActionLayoutColumns>
+  <quickActionLayoutColumns />
+ </quickActionLayout>
+    <targetObject>Sales_Tax_Exemption__c</targetObject>
+ <targetParentField>Account__c</targetParentField>
+ <targetRecordType>Sales_Tax_Exemption__c.Standard_STE</targetRecordType>
+ <type>Create</type>
+ <width>0</width>
+</QuickAction>

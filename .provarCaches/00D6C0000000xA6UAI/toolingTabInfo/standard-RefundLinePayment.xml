@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="RefundLinePayment" IsAvailableInAloha="true" IsAvailableInLightning="true" Label="Refund Line Payments" Name="standard-RefundLinePayment" SobjectName="RefundLinePayment" Url="https://arc-phss--test.my.salesforce.com/0dR/o"/>
+</toolingTabInfo>

@@ -1,0 +1,2472 @@
+<apex:page sidebar="true" lightningStylesheets="true" sideBar="false" standardController="Dataplier__Execution_Sequence__c" docType="html-5.0" extensions="Dataplier.DefineSequenceController" title="Define Sequence">
+    <head>
+        <apex:stylesheet value="{!URLFOR($Resource.Dataplier__migration, 'css/jquery-ui.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Dataplier__migration, 'css/bootstrapSF.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Dataplier__migration, 'ngDialog/ngDialog.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Dataplier__migration, 'ngDialog/ngDialog-theme-default.css')}"/>
+
+    </head>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-2.1.4.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-ui.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/angular.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'ngDialog/ngDialog.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/jsforce-1.7.0.min.js')}"/>
+    <div class="1"></div>
+
+    <apex:slds />
+    <c:TrackPanel />
+    <div class="2"></div>
+
+    <style>
+
+    </style>
+
+    <script>
+        function getId() {
+            var result = '{!JSENCODE($Currentpage.Parameters.id)}';
+            return result;
+        }
+
+        function CheckNew() {
+            var result = '{!JSENCODE($Currentpage.Parameters.save_new)}';
+            var ret = result == 1;
+            return ret;
+        }
+
+        function getretUrl() {
+            var result = '{!JSENCODE($Currentpage.Parameters.retUrl)}';
+            return result;
+        }
+
+
+        var app = angular.module("DefineSequenceApp", ['ngDialog']);
+        app.service('dataManager', function ($q) {
+            return {
+                getInfo: function (param) {
+                    var deferred = $q.defer();
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.DefineSequenceController.getInfo}',
+                        param,
+                        function (result, event) {
+                            if (event.status) {
+                                deferred.resolve(result);
+                            } else {
+                                deferred.reject(event);
+                            }
+                        });
+                    return deferred.promise;
+                },
+                getDescriptor: function (param) {
+                    var deferred = $q.defer();
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.DefineSequenceController.getDescriptor}',
+                        param,
+                        function (result, event) {
+                            if (event.status) {
+                                deferred.resolve(result);
+                            } else {
+                                deferred.reject(event);
+                            }
+                        });
+                    return deferred.promise;
+                },
+                getAllObjList: function () {
+                    var deferred = $q.defer();
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.DefineSequenceController.getAllObjList}',
+                        function (result, event) {
+                            if (event.status) {
+                                deferred.resolve(result);
+                            } else {
+                                deferred.reject(event);
+                            }
+                        });
+                    return deferred.promise;
+                },
+                getFullInfo: function (param) {
+                    var deferred = $q.defer();
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.DefineSequenceController.getFullInfo}',
+                        function (result, event) {
+                            if (event.status) {
+                                deferred.resolve(result);
+                            } else {
+                                deferred.reject(event);
+                            }
+                        });
+                    return deferred.promise;
+                },
+                deleteSS: function (SSId) {
+                    var deferred = $q.defer();
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.DefineSequenceController.deleteSS}',
+                        SSId,
+                        function (result, event) {
+                            if (event.status) {
+                                deferred.resolve(result);
+                            } else {
+                                deferred.reject(event);
+                            }
+                        });
+                    return deferred.promise;
+                },
+                Save: function (SId, Sname, SSJSON) {
+                    var deferred = $q.defer();
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.DefineSequenceController.Save}',
+                        SId, Sname, SSJSON,
+                        function (result, event) {
+                            if (event.status) {
+                                deferred.resolve(result);
+                            } else {
+                                deferred.reject(event);
+                            }
+                        });
+                    return deferred.promise;
+                },
+                SaveDataSet: function (SETJSON) {
+                    var deferred = $q.defer();
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.DefineSequenceController.SaveDataSet}',
+                        SETJSON,
+                        function (result, event) {
+                            if (event.status) {
+                                deferred.resolve(result);
+                            } else {
+                                deferred.reject(event);
+                            }
+                        });
+                    return deferred.promise;
+                }
+
+            }
+        });
+
+
+        const threads = 7;
+        app.service('MigratorManager', function ($q) {
+            var conn;
+            var globalDATA = {};
+            var status = {};
+
+            function getSobjectsInfo(listSobject, callback) {
+                var etallon = angular.copy(listSobject);
+                status.Start = true;
+                status.All = etallon.length;
+                getInfoObjectgetInfoObjectMultiThread(listSobject, function (res) {
+                    callback(res);
+                });
+            }
+
+            var left_to_resolve = 0;
+
+            // divide list on independent threads, execute them async
+            function getInfoObjectgetInfoObjectMultiThread(listS, callback) {
+                var blocks = [];//array of arrays of objects
+                if (listS.length < threads) {// form 1 block
+                    blocks.push(listS);
+                } else {// form
+                    var blockSize = Math.floor(listS.length / threads) + 1;
+                    var counter = 0;
+                    var index = blockSize;
+                    var block = [];
+                    while (counter < listS.length) {
+                        block.push(listS[counter]);
+                        index--;
+                        counter++;
+                        if (index == 0) {
+                            index = blockSize;
+                            blocks.push(block);
+                            block = [];
+                        }
+                    }
+                }
+                // execute all threads
+                left_to_resolve = blocks.length;
+
+                for (var x = 0; x < blocks.length; x++) {
+                    getInfoObjectOneThread(blocks[x], function (res) {
+                        joinThreads(callback(res));
+                    });
+
+                }
+
+            }
+
+            // Joining threads, meaning that the callback only will
+            // be performed when ALL parallel threads have executed
+            function joinThreads(callback) {
+                left_to_resolve--;
+
+                if ((left_to_resolve == 0) && (callback !== null)) {
+                    callback();
+                }
+            }
+
+
+            function getInfoObjectOneThread(listS, callback) {
+                if (listS != null && listS.length > 0) {
+                    var nameObject = listS.splice(0, 1);// remove the 1st elem in list
+                    if (globalDATA[nameObject] != null) {
+                        getInfoObjectOneThread(listS, function (res) {
+                            if (callback !== null) {
+                                callback(res);
+                            }
+                        });//object's meta in cache, get next
+                    } else {
+                        conn.sobject(nameObject).describe(function (err, meta) {
+                            if (err) {
+                                globalDATA[nameObject] = 'ERROR';
+                            } else {
+                                globalDATA[nameObject] = meta;
+                            }
+                            status.pr = Math.round(((status.All - listS.length) * 100) / status.All);
+                            setLoaderText('Analysing ' + nameObject);
+                            getInfoObjectOneThread(listS, function (res) {
+                                if (callback !== null) {
+                                    callback(res);
+                                }
+                            });
+                        });
+                    }
+                } else {
+                    if (callback !== null) {
+                        callback(globalDATA);
+                    }
+                }
+            }
+
+
+            return {
+                getSobjectsInfo: function (listSobject, callback) {
+                    if (conn == null) {//set max wait time 10s
+                        conn = new jsforce.Connection({accessToken: '{!$Api.Session_Id}', maxRequest: 10000});
+                    }
+                    getSobjectsInfo(listSobject, callback);
+                },
+                checkStatus: function () {
+                    return status;
+                }
+            }
+        });
+
+        app.controller('DefineSequenceCtrl', function ($scope, $timeout, dataManager, MigratorManager, ngDialog, $interval) {
+            $scope.Error = false;
+            $scope.SaveButton = false;
+            $scope.GlobalRecursive = true;
+            $scope.forbiddenFields = ['CreatedById', 'CreatedDate', 'LastModifiedById', 'LastModifiedDate', 'SystemModstamp', 'OwnerId'];
+            $scope.opTypes;
+            var opTypes1 = [{'id': 'INSERT', 'name': 'Insert'}];
+            var opTypes2 = [{'id': 'INSERT', 'name': 'Insert'}, {'id': 'UPSERT', 'name': 'Upsert'}];
+            $scope.DSSelect;
+            $scope.stepsToDeleteQueue = [];
+            $scope.autonumber = 0;
+
+            $scope.getUID = function () {
+                return 's' + $scope.autonumber++;
+            }
+
+            $scope.questionCompositeKey = {
+                questionText: "If coexist more than 1 record for composite key:",
+                selected: 1,
+                choices: [{
+                    id: 1,
+                    text: "perform insert for such records "
+                }, {
+                    id: 2,
+                    text: "apply additional filter with LastModifiedDate field and perform update only for this record  "
+                }]
+            };
+
+            $scope.questionIsUseFilterOnTargetOrg = {
+                questionText: "Compare records for upsert with:",
+                selected: 3,
+                choices: [{
+                    id: 3,
+                    text: "with filtered by query "
+                }, {
+                    id: 4,
+                    text: "with all "
+                }]
+            };
+
+            $scope.$watch('DSSelect', function (value) {
+                if ($scope.DSSelect != undefined) {
+                    if ($scope.DSSelect.ListKeyFields == undefined || $scope.DSSelect.ListKeyFields == '') {
+                        $scope.opTypes = opTypes1;
+                    } else {
+                        $scope.opTypes = opTypes2;
+                    }
+                }
+            }, true);
+
+            var objLabelsMap = {};
+            var objNames = [];
+            var totalObjects = 0;
+            var objDescriptorsMap = {};
+            var objectsInSequence = {};
+            var failsCounter = 10;
+            var loaded = 0;
+
+            function initVars() {
+                objLabelsMap = {};
+                objNames = [];
+                totalObjects = 0;
+                objDescriptorsMap = {};
+                objectsInSequence = {};
+                failsCounter = 10;
+            }
+
+            function updateGlobalData() {
+
+                dataManager.getAllObjList().then(// returns sequence structure if exists; called once
+                    function (data) {
+                        initVars();
+                        if (data == undefined) {
+                            return;
+                        }
+                        for (var x = 0; x < data.length; x++) {
+                            objNames.push(data[x].name);
+                            objLabelsMap[data[x].name] = data[x].label;
+                        }
+                        totalObjects = objNames.length;
+                        if (totalObjects > 0) {
+                            leftObjects = totalObjects;
+                            $('#modalProgressBar').modal('show');
+                            chainLoadingMultiThread(objNames, function () {
+                                $('#modalProgressBar').modal('hide');
+                                // update indecies in sequence - for the case if user delete forcefully 1 step
+                                $scope.reIndexSequence();
+                                $scope.updateSequence();
+                                $scope.SaveButton = true;
+                            });
+                        } else {
+                            // no objects
+                        }
+                    },
+                    function (error) {
+                        $('#modalProgressBar').modal('hide');
+                    }
+                );
+            }
+
+            // Joining threads, meaning that the callback only will
+            // be performed when ALL parallel threads have executed
+            function joinThreads(callback) {
+                left_to_resolve--;
+
+                if ((left_to_resolve == 0) && (callback !== null)) {
+                    callback();
+                }
+            }
+
+
+            function chainLoadingMultiThread(objNamesFullLi, callback) {
+                var blocks = [];//array of arrays of objects
+                if (objNamesFullLi.length < threads) {// form 1 block
+                    blocks.push(objNamesFullLi);
+                } else {// form
+                    var blockSize = Math.floor(objNamesFullLi.length / threads) + 1;
+                    var counter = 0;
+                    var index = blockSize;
+                    var block = [];
+                    while (counter < objNamesFullLi.length) {
+                        block.push(objNamesFullLi[counter]);
+                        index--;
+                        counter++;
+                        if (index == 0) {
+                            index = blockSize;
+                            blocks.push(block);
+                            block = [];
+                        }
+                    }
+                    if (index != 0) {
+                        index = blockSize;
+                        blocks.push(block);
+                    }
+                }
+                // execute all threads
+                left_to_resolve = blocks.length;
+
+                for (var x = 0; x < blocks.length; x++) {
+                    chainLoadingOneThread(x, blocks[x], function () {
+                        joinThreads(callback);
+                    });
+
+                }
+
+            }
+
+            function chainLoadingOneThread(nThread, objNamesLi, callback) {
+                if (objNamesLi != undefined && objNamesLi.length > 0) {
+                    var curLoad = objNamesLi.splice(0, 10);
+
+                    downloadData(nThread, failsCounter, curLoad, objNamesLi, callback)
+                } else {
+                    if (callback !== null) {
+                        callback();
+                    }
+                }
+            }
+
+
+            function downloadData(nThread, counter, namesList, objNamesLi, callback) {
+                dataManager.getDescriptor(JSON.stringify(namesList)).then(// returns sequence structure if exists; called once
+                    function (data) {
+                        if (data != undefined && data.length > 0) {
+                            for (var x = 0; x < data.length; x++) {
+                                objDescriptorsMap[data[x].name] = data[x];
+                                loaded++;
+                            }
+                            updateProgressBar(data.length);
+                            setTimeout(function () {
+                                chainLoadingOneThread(nThread, objNamesLi, callback);
+                            }, 5);
+                        } else {
+
+                            if (counter-- > 0) {//try once again
+                                setTimeout(function () {
+                                    downloadData(nThread, counter, namesList, objNamesLi, callback);
+                                }, 5);
+                            }
+                        }
+                    },
+                    function (error) {
+                        if (counter-- > 0) {//try once again
+                            setTimeout(function () {
+                                downloadData(nThread, counter, namesList, objNamesLi, callback);
+                            }, 5);
+                        }
+                    }
+                );
+            }
+
+            var leftObjects = 0;
+
+            function updateProgressBar(value) {
+                let body = document.body;
+                let height = document.getElementById('mainBlock').clientHeight;
+                let elem = document.getElementById('loader');
+                elem.style.height = height - 35 + 'px';
+                leftObjects -= value;
+                var pr = Math.round(((totalObjects - leftObjects) * 100) / (totalObjects + 1));
+                $('#progressBar').css('width', pr + '%');
+                $('#progressBar').html('Analyzing org, please wait. ' + pr + ' %');
+            }
+
+            $scope.reIndexSequence = function () {
+                for (var x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    $scope.DATA.SequenceSteps[x].Sequence = x + 1;
+                }
+            }
+
+            $scope.updateSequence = function () {
+                // create a map of objects in sequence
+                objectsInSequence = {};
+                for (var x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    var objApiName = $scope.DATA.SequenceSteps[x].APIName;
+                    objectsInSequence[objApiName] = $scope.DATA.SequenceSteps[x].SSId;
+                }
+                for (var x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    var step = $scope.DATA.SequenceSteps[x];
+                    var objDescr = objDescriptorsMap[step.APIName];
+                    if (objDescr == undefined) {
+                        step.Error += 'Object is not Found\n';
+                        continue;
+                    }
+                    if (!objDescr.isCreateable) {
+                        step.Error += 'Object is not createable\n';
+                        continue;
+                    }
+                    if (!objDescr.isQueryable) {
+                        step.Error += 'Object is not queryable\n';
+                        continue;
+                    }
+                    if (!objDescr.isAccessible) {
+                        step.Error += 'Object is not accessible\n';
+                        continue;
+                    }
+                    step.label = objDescr.label;
+                    verifyFLS(step);
+                    if (step.Error == '' || step.Error == undefined) {//process only if no errors
+                        step.fieldsMap = parseFieldDescriptorArray(objDescr.fields, true);
+                        updateSelfLookups(step);
+                        updateNotPopulatedLookups(step);// order important!
+                        updateMasters(step);// updateMasters must go after updateNotPopulatedLookups
+                        updateDetails(step);
+                        syncFieldsWithDS(step);
+                        updateParentSteps(step);
+
+                        updateButtonFlags(step);
+                    }
+                }
+
+                //Update Button Flags Child Overlay
+                for (let x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    $scope.DATA.SequenceSteps[x].isChildOverlay = isChildOverlay($scope.DATA.SequenceSteps[x], $scope.DATA.SequenceSteps);
+                }
+
+
+                // added
+                $scope.sortArray();
+            }
+
+
+            function syncFieldsWithDS(step) {// sync only for non-empty ListFields array, because for newly generated this array IS empty
+                if (step.ListFields != undefined && step.ListFields.length > 0) {
+                    var fieldInDSMap = {};
+                    for (var x = 0; x < step.ListFields.length; x++) {
+                        var fieldInDS = step.ListFields[x];
+                        fieldInDSMap[fieldInDS] = true;
+                    }
+                    // selfLookups
+                    // first, update lookupsMap, lookups
+                    filterByMap(step.selfLookups, fieldInDSMap);
+                    filterByMap(step.selfLookupsMap, fieldInDSMap);
+                    filterByMap(step.lookups, fieldInDSMap);
+                    filterByMap(step.lookupsMap, fieldInDSMap);
+                    filterByMap(step.NotPopulatedLookupsMap, fieldInDSMap);
+                    // update masters - iterate over all lookups and form set of masters object after filtering
+                    var keySet = Object.keys(step.lookups);
+                    if (keySet != undefined && keySet.length > 0) {// update only if keySet not empty
+                        var availableMastersMap = {}
+                        for (var x = 0; x < keySet.length; x++) {
+                            var listOfRefObject = step.lookupsMap[keySet[x]].refObj;
+                            if (listOfRefObject != undefined && listOfRefObject.length > 0) {
+                                for (var y = 0; y < listOfRefObject.length; y++) {
+                                    availableMastersMap[listOfRefObject[y]] = true;
+                                }
+                            }
+                        }
+                        filterByMap(step.masters, availableMastersMap);
+                    }
+                }
+            }
+
+            // remove from the 1st map all keys which are not present in the 2nd
+            function filterByMap(cleanedMap, fileterMap) {
+                var keySet = Object.keys(cleanedMap);
+                if (keySet != undefined && keySet.length > 0) {
+                    for (var x = 0; x < keySet.length; x++) {
+                        if (fileterMap[keySet[x]] == undefined) {
+                            delete cleanedMap[keySet[x]];
+                        }
+                    }
+                }
+            }
+
+            function updateButtonFlags(step) {
+                step.Autocomplete = !isMapEmpty(step.lookupsMap);
+                step.Overlay = isOverlayPossible(step);
+                step.Recursive = !isMapEmpty(step.selfLookups);
+                step.isMasterObjects = !isMapEmpty(step.masters);
+                step.isDetailObjects = !isMapEmpty(step.details);
+            }
+
+            function isChildOverlay(step, scope) {
+                for (let x = 0; x < scope.length; x++) {
+                    let fieldKey = Object.keys(scope[x]['lookupsMap']);
+                    for (let i = 0; i < fieldKey.length; i++) {
+                        let fieldValue = scope[x]['lookupsMap'][fieldKey[i]];
+                        for (let relationChipObjectName of fieldValue['refObj']) {
+                            if (step.APIName === relationChipObjectName && scope[x].Sequence > step.Sequence) {
+                               return true;
+                            }
+                        }
+                    }
+
+                }
+                return false;
+            }
+
+            function isOverlayPossible(step) {
+                var previousList = [];
+
+//              for (var x = 0; x < step.Sequence - 1; x++){
+                var totalSteps = $scope.DATA.SequenceSteps.length;
+                for (var x = 0; x < totalSteps; x++) {
+                    previousList.push($scope.DATA.SequenceSteps[x].APIName);
+                }
+
+                var keys = Object.keys(step.masters);
+                if (keys != undefined && keys.length > 0) {
+                    for (var x = 0; x < keys.length; x++) {//to return true  at least 1 master which is in seq needed
+                        if (step.masters[keys[x]] && $.inArray(keys[x], previousList) != -1) return true;
+                    }
+                }
+                return false;
+            }
+
+
+            function updateSelfLookups(step) {
+                // first, create a map of all possible selflookups
+                // set map value to false (i.e. not to copy)
+                step.selfLookupsMap = {};
+                step.selfLookups = {};
+                var objDescr = objDescriptorsMap[step.APIName];
+                if (objDescr != undefined) {
+                    if (objDescr.refs != undefined && objDescr.refs.length > 0) {
+                        for (var x = 0; x < objDescr.refs.length; x++) {
+                            var ref = objDescr.refs[x];
+                            if (size(ref.refObj) > 0) {
+                                for (var y = 0; y < ref.refObj.length; y++) {
+                                    if (step.APIName === ref.refObj[y]) {
+                                        step.selfLookupsMap[ref.name] = ref;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                // next, create a map of established self-lookups from sequence str
+                step.selfLookups = parseStr(step.ParentIdField, true);
+                updateMap(step.selfLookups, step.selfLookupsMap, step.DSId == '0');// by default set all selfLookups to copy
+            }
+
+            function updateMasters(step) {
+                step.masters = {};
+                step.lookupsMap = {};
+                step.lookups = {};
+                step.lookups2Map = {};// second-level lookups - used to work with circ dependencies
+                step.lookups2 = {};
+                // map lookup name => lookup descriptor
+                var objDescr = objDescriptorsMap[step.APIName];
+                if (objDescr != undefined) {
+                    if (objDescr.refs != undefined && objDescr.refs.length > 0) {
+                        for (var x = 0; x < objDescr.refs.length; x++) {
+                            var ref = objDescr.refs[x];
+                            if (size(ref.refObj) > 0) {
+                                // iterate over all links
+                                for (var y = 0; y < ref.refObj.length; y++) {
+                                    var masterObjName = ref.refObj[y];
+                                    if (step.APIName !== masterObjName) {// omit self-lookups
+                                        if (objectsInSequence[masterObjName] != undefined) {
+                                            step.masters[masterObjName] = true;
+                                        } else {
+                                            step.masters[masterObjName] = true;
+                                        }
+                                        step.lookupsMap[ref.name] = ref;
+                                        step.lookups[ref.name] = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                updateMap(step.NotPopulatedLookupsMap, step.lookups, false);
+            }
+
+            function updateDetails(step) {
+                // map objName => true == inSeq, false == outSeq
+                step.details = {};
+                // collect the names of all objects which have refs to current object
+                for (var objName in objDescriptorsMap) {
+                    if (objDescriptorsMap.hasOwnProperty(objName)) {// omit descriptor for current step
+                        var objDescr = objDescriptorsMap[objName];
+                        if (objDescr != undefined) {
+                            if (objDescr.refs != undefined && objDescr.refs.length > 0) {
+                                for (var x = 0; x < objDescr.refs.length; x++) {
+                                    var ref = objDescr.refs[x];
+                                    if (size(ref.refObj) > 0) {
+                                        // iterate over all links
+                                        for (var y = 0; y < ref.refObj.length; y++) {
+                                            var masterObjName = ref.refObj[y];
+                                            if (step.APIName === masterObjName) {// ref to current steps object
+                                                step.details[objName] = objectsInSequence[objName] != undefined ? true : false;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            function updateNotPopulatedLookups(step) {
+                step.NotPopulatedLookupsMap = parseArray(step.NotPopulatedLookups, true);
+            }
+
+            // updates parent steps, create a second-level parent array (ParentSteps2)
+            function updateParentSteps(step) {
+                step.ParentSteps2 = [];
+                let arraySSId = [];
+//              for (var x = 0; x < step.Sequence - 1; x++){
+                for (let x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    arraySSId.push($scope.DATA.SequenceSteps[x].SSId);
+                }
+
+                let updatedParentSteps = [];
+                for (let x = 0; x < step.ParentSteps.length; x++) {
+                    if (arraySSId.includes(step.ParentSteps[x].split(':')[1])) {
+                        updatedParentSteps.push(step.ParentSteps[x]);
+                    }
+                }
+                step.ParentSteps = updatedParentSteps;
+            }
+
+            function verifyFLS(step) {
+                var objDescr = objDescriptorsMap[step.APIName];
+                if (objDescr != undefined) {
+                    if (step.ListFields != undefined) {
+                        for (var x = 0; x < step.ListFields.length; x++) {
+                            if (objDescr.forbiden[step.ListFields[x]]) {
+                                step.Error += 'Field ' + step.ListFields[x] + ' is forbiden for copying\n';
+                            }
+                        }
+                    }
+                }
+            }
+
+            function notEmpty(str) {
+                return str != undefined && str != '';
+            }
+
+            function isMapEmpty(map) {
+                if (map == undefined) return true;
+                return Object.keys(map).length == 0;
+            }
+
+            function getKeysByFilter(map, filter) {
+                var array = [];
+                if (map != undefined) {
+                    var keys = Object.keys(map);
+                    for (var x = 0; x < keys.length; x++) {
+                        if (map[keys[x]] == filter) {
+                            array.push(keys[x]);
+                        }
+                    }
+                }
+                return array;
+            }
+
+
+            function size(array) {
+                if (array == undefined) return 0;
+                return array.length;
+            }
+
+            //converts any string in the form value1;value2 into map[value1] = value;
+            function parseStr(str, value) {
+                var lookupsMap = {};
+                if (notEmpty(str)) {
+                    var newStr = str.replace(/\s/g, '');
+                    if (newStr.substr(-1) === ';') {
+                        newStr = newStr.substring(0, newStr.length - 1);
+                    }
+                    var array = newStr.split(';')
+                    for (var x = 0; x < array.length; x++) {
+                        lookupsMap[array[x]] = value;
+                    }
+                }
+                return lookupsMap;
+            }
+
+            function parseArray(array, value) {
+                var lookupsMap = {};
+                if (array != undefined && array.length > 0) {
+                    for (var x = 0; x < array.length; x++) {
+                        lookupsMap[array[x]] = value;
+                    }
+                }
+                return lookupsMap;
+            }
+
+            function parseFieldDescriptorArray(array, value) {
+                var fieldsMap = {};
+                if (array != undefined && array.length > 0) {
+                    for (var x = 0; x < array.length; x++) {
+                        fieldsMap[array[x].name] = value;
+                    }
+                }
+                return fieldsMap;
+            }
+
+            //check is key from the 2nd map exists in the 1st, and updates the 1st map with key set to false if not
+            function updateMap(map1, map2, value) {
+                for (var key in map2) {
+                    if (map2.hasOwnProperty(key)) {
+                        if (!map1.hasOwnProperty(key)) {
+                            map1[key] = value;
+                        }
+                    }
+                }
+            }
+
+            dataManager.getInfo(getId()).then(// returns sequence structure if exists; called once
+                function (data) {
+                    $scope.DATA = data;
+                    $scope.Select($scope.DATA.SequenceSteps, false);// clear all selections
+                    updateGlobalData();
+                },
+                function (error) {
+                    $scope.errorMessage = error.message;
+
+                }
+            );
+
+
+            var stop = $interval(function () {
+                var status = MigratorManager.checkStatus();
+                if (status.pr != null) {
+                    $("#progressbar").progressbar({
+                        value: status.pr
+                    });
+                }
+            }, 500);
+            $scope.stopFight = function () {
+                if (angular.isDefined(stop)) {
+                    $interval.cancel(stop);
+                    $("#progressbar").progressbar("destroy");
+                    stop = undefined;
+                    $("#progressbar").hide();
+                }
+                setLoaderText('');
+
+            };
+            $scope.descrMap = {};
+
+
+            $scope.Select = function (array, action) {
+                if (array != undefined) {
+                    for (var x = 0; x < array.length; x++) {
+                        array[x].selected = action;
+                    }
+                }
+            }
+
+            function clearMsg() {
+                $scope.Error = false;
+                $scope.ErrorM = '';
+            }
+
+            // sort all sequence steps in specific order
+            $scope.sortArray = function () {
+                var sortedSequence = [];
+                var orderedSet = {};// set of indecies pointed to already added steps
+                var currentSet = {};
+                var totalLength = $scope.DATA.SequenceSteps.length;
+
+                for (var y = 0; y < totalLength; y++) {
+                    var step = $scope.DATA.SequenceSteps[y];
+                    currentSet[step.DSName] = step;
+                }
+                var stepsWithoutRequiredLookups = getStepsWithoutRequiredLookups(currentSet);
+
+                if (sizeOf(stepsWithoutRequiredLookups) == 0 && sizeOf(currentSet) > 0) {
+                    $scope.Error = true;
+                    $scope.ErrorM = 'The object(s) have too complex dependencies to resolve, try to create a more simple sequence';
+                    $scope.restoreFromBkUp();
+                    return;
+                }
+
+                // get list of all steps without required ref
+                var initList = Object.keys(stepsWithoutRequiredLookups);
+                orderSet(stepsWithoutRequiredLookups, initList.length);
+                if (sizeOf(orderedSet) < initList.length) {
+                    for (var x = 0; x < initList.length; x++) {
+                        var objName = initList[x];
+                        if (orderedSet[objName] == undefined) {
+                            sortedSequence.push(stepsWithoutRequiredLookups[objName]);
+                            orderedSet[objName] = true;
+                        }
+                    }
+                }
+
+                for (var objName in orderedSet) {
+                    if (currentSet[objName] != undefined) delete currentSet[objName];
+                }
+                var secondList = Object.keys(currentSet);
+                orderSet(currentSet, secondList.length);
+                if (sizeOf(orderedSet) < totalLength) {
+                    for (var x = 0; x < secondList.length; x++) {
+                        var objName = secondList[x];
+                        if (orderedSet[objName] == undefined) {
+                            sortedSequence.push(currentSet[objName]);
+                            orderedSet[objName] = true;
+                        }
+                    }
+                }
+
+
+                reIndex(sortedSequence);
+
+                // update flags
+                for (var x = 0; x < sortedSequence.length; x++) {
+                    var step = sortedSequence[x];
+                    updateParentSteps(step);
+                    updateButtonFlags(step);
+
+                }
+                //Update Button Flags Child Overlay
+                for (let x = 0; x < sortedSequence.length; x++) {
+                    sortedSequence[x].isChildOverlay = isChildOverlay(sortedSequence[x], sortedSequence);
+                }
+
+                $scope.DATA.SequenceSteps = [];
+                angular.extend($scope.DATA.SequenceSteps, sortedSequence);
+
+                function orderSet(subSet, nIterations) {
+                    for (var i = 0; i < nIterations; i++) {
+                        if (sizeOf(subSet) == 0) return;
+                        var toAdd = getStepsWithoutLookups(subSet);
+                        for (var objName in toAdd) {
+                            sortedSequence.push(toAdd[objName]);
+                            orderedSet[objName] = true;
+                            delete subSet[objName];
+                        }
+                    }
+                }
+
+                // analyse set and return from it the subset of steps without lookups
+                function getStepsWithoutLookups(set) {
+                    var result = {};
+                    if (set == undefined) return result;
+                    for (var objName in set) {
+                        var step = set[objName];
+                        if (inClosure(set, step.lookupsMap)) {
+                            result[objName] = step;
+                        }
+                    }
+                    return result;
+                }
+
+                function getStepsWithoutRequiredLookups(set) {
+                    var result = {};
+                    for (var objName in set) {
+                        var bNonRequired = isNonRequired(set[objName].lookupsMap);
+                        if (bNonRequired == true) {
+                            result[objName] = set[objName];
+                        }
+                    }
+                    return result;
+                }
+
+                // used to detect the edge object
+                // return true if all lookups ref to objects already in orderedSet OR to objects out of closure
+                function inClosure(closure, lookUpMap) {
+                    for (var fieldName in lookUpMap) {// if map of lookups empty, always return true
+                        var field = lookUpMap[fieldName];
+                        var refs = field.refObj;
+                        if (refToOrderedSet(refs)) continue;// if map of lookups contains only pointers to ordered set, return true
+                        // check is ref point to object outside
+                        if (refToOutSet(refs, closure)) continue;// if map of lookups contains only pointers to objects out of  set or there are no references, return true
+                        // at least 1 ref exists which points to some object in analysed set
+                        return false;
+                    }
+                    return true;
+                }
+
+                // return true if no references or all references point  outside analysed set
+                function refToOutSet(refs, set) {
+                    if (refs == undefined || refs.length == 0) return true;//ref to nowhere
+                    for (var x = 0; x < refs.length; x++) {
+                        var objName = refs[x];
+                        for (var obj in set) {
+                            if (set[obj].APIName === objName) {
+                                return false;
+                            }
+                        }
+                        //if (set[objName] != undefined) return false;
+                    }
+                    return true;
+                }
+
+                // return true if all references point to objects in ordered set
+                function refToOrderedSet(refs) {
+                    if (refs == undefined || refs.length == 0) return true;//ref to nowhere
+                    for (var x = 0; x < refs.length; x++) {
+                        var objName = refs[x];
+                        for (var obj in orderedSet) {
+                            if (orderedSet[obj].APIName === objName) {
+                                break;
+                            }
+                        }
+                        return false;
+                        // if (orderedSet[objName] == undefined) return false;
+                    }
+                    return true;
+                }
+
+                function isNonRequired(lookUpMap) {
+                    if (lookUpMap == undefined) return true;
+                    for (var fieldName in lookUpMap) {// iterate over all fields in map
+                        var field = lookUpMap[fieldName];
+                        var refObjects = field.refObj;
+                        if (field.isRequired == true && refObjects != undefined) {
+                            for (var x = 0; x < refObjects.length; x++) {
+                                var objName = refObjects[x];
+                                for (var obj in currentSet) {
+                                    if (currentSet[obj].APIName === objName) {// always demand the presence of Required object in sequence, else:  ignore this ref
+                                        return false;//object with required links in analysed set, so it's NOT NonRequired
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                    return true;
+                }
+
+                function sizeOf(obj) {
+                    if (obj == undefined) return 0;
+                    return Object.keys(obj).length;
+                }
+
+                function reIndex(sequence) {
+                    for (var x = 0; x < sequence.length; x++) {
+                        sequence[x].Sequence = (x + 1);
+                    }
+                }
+
+            }
+
+            // iterate over all sequence and fill lookups2 & lookups2Map maps with all lookups which ref back in sequence, at index > current
+            $scope.generateSecondStageLookups = function () {
+                var allStepsMap = {};// map object => index
+
+                for (var y = 0; y < $scope.DATA.SequenceSteps.length; y++) {
+                    var step = $scope.DATA.SequenceSteps[y];
+                    allStepsMap[step.APIName] = y;
+                }
+                for (var y = 0; y < $scope.DATA.SequenceSteps.length; y++) {
+                    var step = $scope.DATA.SequenceSteps[y];
+                    var lookups = step.lookups;
+                    var lookupsMap = step.lookupsMap;
+                    var lookups2 = {};
+                    var lookups2Map = {};
+                    for (var field in lookups) {
+                        if (lookups[field] == true) {// process only if overlay set for this field
+                            if (lookupsMap[field] != undefined && lookupsMap[field].isRequired != true) {
+                                if (isBackRef(y, lookupsMap[field].refObj)) {
+                                    lookups2[field] = true;
+                                    lookups2Map[field] = lookupsMap[field];
+                                }
+                            }
+                        }
+                    }
+                    step.lookups2 = lookups2;
+                    step.lookups2Map = lookups2Map;
+                }
+
+
+                function isBackRef(currentIndex, refObjects) {
+                    if (refObjects == undefined || refObjects.length == 0) return false;
+                    for (var x = 0; x < refObjects.length; x++) {
+                        if (allStepsMap[refObjects[x]] > currentIndex) {// referenced object has an index > current
+                            return true;
+                        }
+                    }
+                    return false;// all ordered
+                }
+            }
+
+            // sort all sequence steps in specific order
+            $scope.sortArray2 = function () {
+                var orderedSet = {};
+                var removedItems = {};// map of removed indecies of steps in $scope.DATA.SequenceSteps
+                var sortedSequence = [];
+                var bExit = false;
+                var counter = 0;
+
+                while (counter < $scope.DATA.SequenceSteps.length && !bExit) {
+                    bExit = true;
+                    for (var y = 0; y < $scope.DATA.SequenceSteps.length; y++) {
+                        var step = $scope.DATA.SequenceSteps[y];
+                        if (removedItems[y] == undefined && allMastersIn(orderedSet, step.masters, step.APIName)) {
+                            removedItems[y] = true;
+                            orderedSet[step.APIName] = true;
+                            sortedSequence.push($scope.DATA.SequenceSteps[y]);
+                            bExit = false;
+                            counter++;
+                        }
+                    }
+                }
+                if (counter != $scope.DATA.SequenceSteps.length) {
+                    $scope.Error = true;
+                    $scope.ErrorM = 'The object(s) you want to add, have a circular dependency from objects  in sequence, current version of Dataplier can not process them automatically. Use manual addition of such objects through Add button.';
+                    $scope.restoreFromBkUp();
+                    return;
+                }
+
+
+                reIndex(sortedSequence);
+
+                for (var x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    var step = $scope.DATA.SequenceSteps[x];
+                    updateParentSteps(step);
+                    updateButtonFlags(step);
+                }
+
+                //Update Button Flags Child Overlay
+                for (let x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    $scope.DATA.SequenceSteps[x].isChildOverlay = isChildOverlay($scope.DATA.SequenceSteps[x], $scope.DATA.SequenceSteps);
+                }
+
+                $scope.DATA.SequenceSteps = [];
+                angular.extend($scope.DATA.SequenceSteps, sortedSequence);
+
+                // returns obj name which is in _arrays but not in _map (i.e. not added)
+                // analyse only ref defined in arrayIn
+                function allMastersIn(map, masterObjectsMap, excludedObjName) {
+                    if (map == undefined || masterObjectsMap == undefined) return false;
+                    var mastersSet = getKeysByFilter(masterObjectsMap, true);
+                    if (mastersSet.length == 0) return true;// no ref
+                    for (var x = 0; x < mastersSet.length; x++) {
+                        if (map[mastersSet[x]] == undefined && excludedObjName != mastersSet[x]) return false;// at least 1 obj not in order set
+                    }
+                    return true;//all objects in array covered by map, excluding excludedObjName (have not incl in map yet)
+                }
+
+                function reIndex(sequence) {
+                    for (var x = 0; x < sequence.length; x++) {
+                        sequence[x].Sequence = (x + 1);
+                    }
+                }
+
+
+            }
+
+            $scope.CheckStepByParent = function (param) {
+                var index = $scope.DATA.SequenceSteps.indexOf(param);
+                var Check = false;
+                for (var indFDes = 0; indFDes < param.FieldsDis.length; indFDes++) {
+                    for (var ref = 0; ref < param.FieldsDis[indFDes].referenceTo.length; ref++) {
+                        for (var x = 0; x < index; x++) {
+                            if ($scope.DATA.SequenceSteps[x].APIName == param.FieldsDis[indFDes].referenceTo[ref]) {
+                                Check = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                return Check;
+            }
+
+            $scope.DeleteStep = function (param) {
+                clearMsg();
+                var index = $scope.DATA.SequenceSteps.indexOf(param);
+                var ObjectName = param.APIName; // object to be deleted
+                var SSId = param.SSId;// its SS
+                if (SSId != undefined && SSId != '' && SSId.length > 4) {// record must exists in DB in order to  delete it
+                    $scope.stepsToDeleteQueue.push(SSId);
+                }
+                $scope.DATA.SequenceSteps.splice(index, 1);
+                var Index = 0;
+                // remake indecies
+                for (var x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    $scope.DATA.SequenceSteps[x].Sequence = (x + 1);
+                }
+                $scope.updateSequence();
+
+            }
+
+
+            $scope.EditDS = function (param) {
+                var win = window.open('/' + param.DSId, '_blank');
+                win.focus();
+            }
+
+            $scope.AutocompleteF = function (param) {
+                clearMsg();
+                var ObjectAutocomplete = [];
+                var lookupArray = Object.keys(param.NotPopulatedLookupsMap);
+                for (var ind = 0; ind < lookupArray.length; ind++) {
+                    var key = lookupArray[ind];
+                    ObjectAutocomplete.push({
+                        'Name': param.lookupsMap[key].label + ' (' + param.lookupsMap[key].name + ')',
+                        'ApiName': param.lookupsMap[key].name, 'Check': param.NotPopulatedLookupsMap[key]
+                    });
+                }
+                $scope.ObjectAutocomplete = ObjectAutocomplete;
+                var dialog = ngDialog.open({
+                    template: 'AutocompleteId',
+                    scope: $scope
+                });
+                dialog.closePromise.then(function (data) {
+                    param.NotPopulatedLookups = [];
+                    for (var x = 0; x < $scope.ObjectAutocomplete.length; x++) {
+                        if ($scope.ObjectAutocomplete[x].Check) {
+                            param.NotPopulatedLookups.push($scope.ObjectAutocomplete[x].ApiName);
+                        }
+                        param.NotPopulatedLookupsMap[$scope.ObjectAutocomplete[x].ApiName] = $scope.ObjectAutocomplete[x].Check;
+                    }
+                });
+            }
+
+
+            $scope.RecursiveF = function (param) {
+                clearMsg();
+                var ApiNameObject = param.APIName;
+                var ObjectRecursive = [];
+                var lookupArray = Object.keys(param.selfLookups);
+                for (var ind = 0; ind < lookupArray.length; ind++) {
+                    var key = lookupArray[ind];
+                    ObjectRecursive.push({
+                        'Name': param.selfLookupsMap[key].label + ' (' + param.selfLookupsMap[key].name + ')',
+                        'ApiName': param.selfLookupsMap[key].name, 'Check': param.selfLookups[key], 'Key': key
+                    });
+                }
+                $scope.ObjectRecursive = ObjectRecursive;
+                var dialog = ngDialog.open({
+                    template: 'RecursiveId',
+                    className: 'ngdialog-theme-default custom-width-660 slds-scope',
+                    scope: $scope
+                });
+                dialog.closePromise.then(function (data) {
+                    param.ParentIdField = '';
+                    for (var x = 0; x < $scope.ObjectRecursive.length; x++) {//compose string
+                        if ($scope.ObjectRecursive[x].Check) {
+                            param.ParentIdField += ($scope.ObjectRecursive[x].ApiName) + '; ';
+                        }
+                        param.selfLookups[$scope.ObjectRecursive[x].Key] = $scope.ObjectRecursive[x].Check;
+                    }
+                });
+
+
+            }
+
+
+
+            $scope.OverlayChildF = function (param) {
+                clearMsg();
+                $scope.OverlayChild = {};
+                $scope.OverlayChild.listSelect = [];
+                $scope.OverlayChild.listNotSelect = [];
+                for (let x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    let fieldKey = Object.keys($scope.DATA.SequenceSteps[x]['lookupsMap']);
+                    for (let i = 0; i < fieldKey.length; i++) {
+                        let fieldValue = $scope.DATA.SequenceSteps[x]['lookupsMap'][fieldKey[i]];
+                        for (let relationChipObjectName of fieldValue['refObj']) {
+                            if (param.APIName === relationChipObjectName && $scope.DATA.SequenceSteps[x].Sequence > param.Sequence) {
+                                let step = $scope.DATA.SequenceSteps[x];
+                                let optName = 'Step ' + step.Sequence + ' ' + step.label + ' (' + step.DSName + ')';
+                                optName += ' :' + fieldKey[i];
+                                if(param.hasOwnProperty('ChildSteps') && param.ChildSteps.includes(fieldKey[i] + ':' + step['SSId'])){
+                                    $scope.OverlayChild.listSelect.push({'Name': optName, 'SSId': step['SSId']});
+                                }else{
+                                    $scope.OverlayChild.listNotSelect.push({'Name': optName, 'SSId': step['SSId']});
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                let dialog = ngDialog.open({
+                    template: 'OverlayChildId',
+                    className: 'ngdialog-theme-default custom-width-660 slds-scope',
+                    scope: $scope
+                });
+                dialog.closePromise.then(function (data) {
+                    var Option = $('#selectedFields').find('option');
+                    param.ChildSteps = [];
+                    if (Option != null && Option.length > 0) {
+                        for (var x = 0; x < Option.length; x++) {
+                            if (Option[x].value !== '') {
+                                param.ChildSteps.push(Option[x].textContent.split(':')[1] + ':' + Option[x].value);
+                            }
+                        }
+                    }
+                });
+
+            }
+
+            $scope.OverlayF = function (param) {
+                clearMsg();
+                var index = $scope.DATA.SequenceSteps.indexOf(param);
+                var listApiName = [];
+                var mapSS = [];// map SSId => step from all objects in sequence
+//                for (var x=0; x< index; x++) {
+                index = $scope.DATA.SequenceSteps.length;
+                for (var x = 0; x < index; x++) {
+                    listApiName.push($scope.DATA.SequenceSteps[x].APIName);
+                    mapSS.push($scope.DATA.SequenceSteps[x]);
+                }
+                $scope.Overlay = {};
+                $scope.Overlay.listSelect = [];
+                $scope.Overlay.listNotSelect = [];
+                let lookupArray = Object.keys(param.lookups);
+                for (let x = 0; x < lookupArray.length; x++) {
+                    let lookupDescriptor = param.lookupsMap[lookupArray[x]];
+                    for (let y = 0; y < lookupDescriptor.refObj.length; y++) {
+                        let refObjName = lookupDescriptor.refObj[y];
+                        for (let i = 0; i < mapSS.length; i++) {
+                            if (refObjName === mapSS[i].APIName) {
+                                let step = mapSS[i];
+                                let SSId = step.SSId;
+                                let optName = 'Step ' + step.Sequence + ' ' + step.label + ' (' + step.DSName + ')';
+                                optName += ' :' + lookupArray[x];
+                                if (param.ParentSteps.includes(lookupArray[x] + ':' + SSId)) {
+                                    $scope.Overlay.listSelect.push({'Name': optName, 'SSId': SSId});
+                                } else {
+                                    $scope.Overlay.listNotSelect.push({'Name': optName, 'SSId': SSId});
+                                }
+                            }
+                        }
+
+                    }
+                }
+                var dialog = ngDialog.open({
+                    template: 'OverlayId',
+                    className: 'ngdialog-theme-default custom-width-660 slds-scope',
+                    scope: $scope
+                });
+                dialog.closePromise.then(function (data) {
+                    var Option = $('#selectedFields').find('option');
+                    param.ParentSteps = [];
+                    if (Option != null && Option.length > 0) {
+                        for (var x = 0; x < Option.length; x++) {
+                            if (Option[x].value != '') {
+                                param.ParentSteps.push(Option[x].textContent.split(':')[1] + ':' + Option[x].value);
+                            }
+                        }
+                    }
+                    if (param.ParentSteps.length > 0) {
+                        param.DSOption = 'Overlay this data set by parent records';
+                    } else {
+                        param.DSOption = 'Use this data set independently';
+                    }
+
+                });
+            }
+
+            $scope.saveToBkUp = function () {
+                $scope.bkUp = [];
+                for (var x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    $scope.bkUp.push(JSON.stringify($scope.DATA.SequenceSteps[x]));
+                }
+            }
+
+            $scope.restoreFromBkUp = function () {
+                if ($scope.bkUp != undefined && $scope.bkUp.length > 0) {
+                    var temp = [];
+                    for (var x = 0; x < $scope.bkUp.length; x++) {
+                        if ($scope.bkUp[x] != undefined) {
+                            temp.push(JSON.parse($scope.bkUp[x]));
+                        }
+                    }
+                    $scope.DATA.SequenceSteps = [];
+                    angular.extend($scope.DATA.SequenceSteps, temp);
+                }
+            }
+
+            $scope.getChilds = function (param) {
+                clearMsg();
+                $scope.DetailObjects = {};
+                $scope.DetailObjects.notInSeq = [];
+                $scope.DetailObjects.inSeq = [];
+                $scope.bkUp = [];
+                $scope.saveToBkUp();
+
+                var objNamesArray = Object.keys(param.details);
+
+                if (objNamesArray != undefined && objNamesArray.length > 0) {
+                    for (var x = 0; x < objNamesArray.length; x++) {
+                        var key = objNamesArray[x];
+                        var objDescr = {'name': key, 'label': objLabelsMap[key]};
+                        // if (param.details[key]){
+                        // 	$scope.DetailObjects.inSeq.push(objDescr);
+                        // }else{
+                        $scope.DetailObjects.notInSeq.push(objDescr);
+                        // }
+                    }
+                    $scope.DetailObjects.inSeq.sort(function (a, b) {
+                        return (a.label < b.label) ? -1 : (a.label === b.label) ? 0 : 1;
+                    });
+                    $scope.DetailObjects.notInSeq.sort(function (a, b) {
+                        return (a.label < b.label) ? -1 : (a.label === b.label) ? 0 : 1;
+                    });
+                }
+
+                function compareDetails(a, b) {
+                    return (a.name < b.name) ? -1 : (a.name === b.name) ? 0 : 1;
+                }
+
+                // panel to edit ref objects
+                var dialog = ngDialog.open({
+                    template: 'ChildsId',
+                    className: 'ngdialog-theme-default custom-width-660 slds-scope',
+                    scope: $scope
+                });
+
+                dialog.closePromise.then(function (data) {
+                    var Option = $('#inSeqC').find('option');
+                    param.addedObj = [];
+                    if (Option != null && Option.length > 0) {
+                        for (var x = 0; x < Option.length; x++) {// iterate over all added lookups
+                            var objName = Option[x].value;
+                            if (objName !== '') {// add ref obj to list, if it new [relatively objInSeq list]
+                                param.addedObj.push(objName);
+                            }
+                        }
+                    }
+
+                    if (param.addedObj.length > 0) {
+                        for (var x = 0; x < param.addedObj.length; x++) {
+                            var detailObjName = param.addedObj[x];
+                            var step = createStepRecord(detailObjName, param, false);
+
+                            updateSelfLookups(step);
+                            updateNotPopulatedLookups(step);// order important!
+                            updateMasters(step);// updateMasters must go after updateNotPopulatedLookups
+                            updateDetails(step);
+                            var position = getMaxIndex(step);
+                            $scope.insertSS(position, step);
+                            updateButtonFlags(step);
+                        }
+
+                        //Update Button Flags Child Overlay
+                        for (let x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                            $scope.DATA.SequenceSteps[x].isChildOverlay = isChildOverlay($scope.DATA.SequenceSteps[x], $scope.DATA.SequenceSteps);
+                        }
+
+                        $scope.updateSequence();
+//                          $scope.sortArray();
+                    }
+
+                });
+
+                // this function defines the position, after which all links to objName is fullfilled
+                function getMaxIndex(step) {
+                    objIdxMap = {};
+                    for (var x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                        objIdxMap[$scope.DATA.SequenceSteps[x].APIName] = x;
+                    }
+                    // get list of details for added master
+                    var masters = getKeysByFilter(step.masters, true);
+                    var idx = step.Sequence;
+                    // set position = MIN(get the indecies for details)
+                    for (var x = 0; x < masters.length; x++) {
+                        var masterObjName = masters[x];
+                        if (objIdxMap[masterObjName] != undefined && idx < objIdxMap[masterObjName]) {
+                            idx = objIdxMap[masterObjName];
+                        }
+                    }
+                    return idx;
+                }
+
+
+            }
+
+
+            $scope.getParents = function (param) {
+
+                clearMsg();
+                $scope.MasterObjects = {};
+                $scope.MasterObjects.notInSeq = [];
+                $scope.MasterObjects.inSeq = [];
+                $scope.bkUp = [];
+                $scope.saveToBkUp();
+
+                var objNamesArray = Object.keys(param.masters);
+
+                if (objNamesArray != undefined && objNamesArray.length > 0) {
+                    for (var x = 0; x < objNamesArray.length; x++) {
+                        var key = objNamesArray[x];
+                        var objDescr = {'name': key, 'label': objLabelsMap[key]};
+                        // if (param.masters[key]){
+                        // 	$scope.MasterObjects.inSeq.push(objDescr);
+                        // }else{
+                        $scope.MasterObjects.notInSeq.push(objDescr);
+                        // }
+                    }
+                    $scope.MasterObjects.inSeq.sort(function (a, b) {
+                        return (a.label < b.label) ? -1 : (a.label === b.label) ? 0 : 1;
+                    });
+                    $scope.MasterObjects.notInSeq.sort(function (a, b) {
+                        return (a.label < b.label) ? -1 : (a.label === b.label) ? 0 : 1;
+                    });
+
+                }
+
+                // panel to edit ref objects
+                var dialog = ngDialog.open({
+                    template: 'ParentsId',
+                    className: 'ngdialog-theme-default custom-width-660 slds-scope',
+                    scope: $scope
+                });
+
+                dialog.closePromise.then(function (data) {
+                    var Option = $('#inSeq').find('option');
+                    param.addedObj = [];
+                    if (Option != null && Option.length > 0) {
+                        for (var x = 0; x < Option.length; x++) {// iterate over all added lookups
+                            var objName = Option[x].value;
+                            if (objName != '') {// add ref obj to list, if it new [relatively objInSeq list]
+                                param.addedObj.push(Option[x].value);
+                            }
+                        }
+                    }
+                    if (param.addedObj.length > 0) {
+                        for (var x = 0; x < param.addedObj.length; x++) {
+                            var masterObjName = param.addedObj[x];
+                            var step = createStepRecord(masterObjName, param, true);
+
+                            updateSelfLookups(step);
+                            updateNotPopulatedLookups(step);// order important!
+                            updateMasters(step);// updateMasters must go after updateNotPopulatedLookups
+                            updateDetails(step);
+                            var position = getMinIndex(step);
+                            $scope.insertSS(position, step);
+                            updateButtonFlags(step);
+                        }
+
+                        //Update Button Flags Child Overlay
+                        for (let x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                            $scope.DATA.SequenceSteps[x].isChildOverlay = isChildOverlay($scope.DATA.SequenceSteps[x], $scope.DATA.SequenceSteps);
+                        }
+                        // sort sequence
+                        $scope.updateSequence();
+//                      $scope.sortArray();
+                    }
+
+
+                });
+
+                function getMinIndex(step) {
+                    objIdxMap = {};
+                    for (var x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                        objIdxMap[$scope.DATA.SequenceSteps[x].APIName] = x;
+                    }
+                    // get list of details for added master
+                    var details = getKeysByFilter(step.details, true);
+                    var idx = step.Sequence - 1;
+                    if (idx < 0) idx = 0;
+                    // set position = MIN(get the indecies for details)
+                    for (var x = 0; x < details.length; x++) {
+                        var detailObjName = details[x];
+                        if (objIdxMap[detailObjName] != undefined && idx > objIdxMap[detailObjName]) {
+                            idx = objIdxMap[detailObjName];
+                        }
+                    }
+                    return idx;
+                }
+
+            }
+
+            function createStepRecord(objectName, relatedStep, isMaster) {
+                var NewSS = {};
+                NewSS.Operation = 'INSERT';
+                NewSS.SSId = $scope.getUID();// generate a short id (as mock, to be replaced next)
+                NewSS.DSId = '0';
+                //	NewSS.DSName = objectName + '('+$scope.DATA.Sequence.Name+')';
+                NewSS.DSName = objectName + ' (' + relatedStep.DSName + ')';
+                NewSS.keyFields = '';// for autogenerated seq set null
+                NewSS.Filter = '';
+                NewSS.DSOption = 'Use this data set independently';
+                NewSS.ExecutionCondition = 'Run on success of the previous step';
+                NewSS.HierarchyLevels = 0;
+                NewSS.NotPopulatedLookups = [];
+                NewSS.ListFields = '';// for autogenerated seq set null
+                NewSS.ParentIdField = '';
+                NewSS.Lookups2 = '';
+                NewSS.ParentSteps = [];
+                NewSS.Sequence = relatedStep.Sequence;// set initial index equal to related rec
+                NewSS.StepNumber;
+                NewSS.APIName = objectName;
+                NewSS.Error = '';
+
+                // update ref to related sequences
+                if (!isMaster) {
+                    NewSS.ParentSteps.push(relatedStep.SSId);
+                } else {
+                    relatedStep.ParentSteps.push(NewSS.SSId); // for master object add link to it into previous step
+                }
+                return NewSS;
+            }
+
+
+            $scope.insertSS = function (atPosition, NewSS) {
+                var position = atPosition;
+
+                var newSequence = [];
+                if (position > 0) {
+                    newSequence = $scope.DATA.SequenceSteps.slice(0, position);// get all array until (i = position)
+                }
+                newSequence.push(NewSS);// add a new step
+
+                var tailSequence = $scope.DATA.SequenceSteps.slice(position, $scope.DATA.SequenceSteps.length);// get all  the rest array
+                // add all the rest
+                if (tailSequence != undefined && tailSequence.length > 0) {
+                    for (var x = 0; x < tailSequence.length; x++) {
+                        newSequence.push(tailSequence[x]);
+                    }
+                }
+                // remake indecies
+                for (var x = 0; x < newSequence.length; x++) {
+                    newSequence[x].Sequence = x + 1;
+                }
+                $scope.DATA.SequenceSteps = newSequence;
+            }
+
+            // add a new SequenceStep to table
+            // left SSId blank, if the record is new
+            // if ListFields has a [parent field], automatically copy it to ParentIdField
+            // param is a pointer of DS type
+
+            function overridePageMessages() {
+                var textureEffect = '';
+                $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage ' + textureEffect);
+                $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage ' + textureEffect);
+                $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage ' + textureEffect);
+                $('.infoM3').addClass('slds-notify slds-notify--toast customMessage ' + textureEffect);
+
+                $('.errorM3').removeClass('errorM3');
+                $('.confirmM3').removeClass('confirmM3');
+                $('.infoM3').removeClass('infoM3');
+                $('.warningM3').removeClass('warningM3');
+            }
+
+            $scope.AddSS = function (param) {
+                clearMsg();
+                $scope.Error = false;
+                if (param == undefined) {
+                    $scope.Error = true;
+                    $scope.ErrorM = 'Choose the Data Set from list';
+                    overridePageMessages();
+                    return;
+                }
+                if (param !== undefined && $scope.DATA.Sequence.Name != '') {
+                    var Sec = $scope.DATA.SequenceSteps.length + 1;
+                    if ($scope.DATA.Sequence.SId == null || $scope.DATA.Sequence.SId == undefined) {
+                        $scope.DATA.Sequence.SId = '';
+                    }
+                    var NewSS = {};
+                    NewSS.Operation = param.Operation;
+                    NewSS.SSId = $scope.getUID();// generate a short id (as mock, to be replaced next)
+                    NewSS.DSId = param.DSId;
+                    NewSS.DSName = param.Name;
+                    NewSS.keyFields = param.ListKeyFields;
+                    NewSS.Filter = '';
+
+                    if (param.Operation == 'UPSERT') {
+                        if ($scope.questionCompositeKey.selected == 1) {
+                            NewSS.Filter = '';
+                        } else if ($scope.questionCompositeKey.selected == 2) {
+                            NewSS.Filter = 'LastModifiedDate';
+                        } else {//reserved
+                            NewSS.Filter = '';
+                        }
+                    }
+
+                    if (param.Operation == 'UPSERT') {
+                        if ($scope.questionIsUseFilterOnTargetOrg.selected == 3) {
+                            NewSS.FilterTargetRecords = 'ByQuery';
+                        } else if ($scope.questionIsUseFilterOnTargetOrg.selected == 4) {
+                            NewSS.FilterTargetRecords = 'All';
+                        } else {//reserved
+                            NewSS.FilterTargetRecords = 'ByQuery';
+                        }
+                    }
+
+                    console.log('--- params')
+                    console.log($scope.questionCompositeKey)
+                    console.log($scope.questionIsUseFilterOnTargetOrg)
+                    NewSS.DSOption = 'Use this data set independently';
+                    NewSS.ExecutionCondition = 'Run on success of the previous step';
+                    NewSS.HierarchyLevels = 0;
+                    NewSS.NotPopulatedLookups = [];
+                    NewSS.ListFields = param.ListFields;
+                    NewSS.ParentIdField = '';
+                    NewSS.Lookups2 = '';
+                    NewSS.ParentSteps = [];
+                    NewSS.Sequence = Sec;
+                    NewSS.StepNumber;
+                    NewSS.APIName = param.APIName;
+                    NewSS.Error = '';
+
+
+                    $scope.DATA.SequenceSteps.push(NewSS);
+                    $scope.updateSequence();
+
+                    //reset checkboxies
+                    $scope.DSSelect = undefined;
+                } else {
+                    $scope.Error = true;
+                    $scope.ErrorM = 'Please select the Data Set or enter the name of Sequence'
+                }
+            }
+
+            $scope.Save = function () {
+                clearMsg();
+                if ($scope.stepsToDeleteQueue != undefined && $scope.stepsToDeleteQueue.length > 0) {// delete records first
+                    dataManager.deleteSS(JSON.stringify($scope.stepsToDeleteQueue)).then(
+                        function (data) {
+                            if (data == undefined || data != 'OK') {
+                                $scope.Error = true;
+                                $scope.ErrorM = 'Error  while deleting a step';
+                            } else {
+                                $scope.Update();
+                            }
+                        },
+                        function (error) {
+                            $scope.Error = true;
+                            $scope.errorMessage = error.message;
+                        }
+                    );
+                } else {// go directly to update
+                    $scope.Update();
+                }
+            }
+
+            $scope.Update = function () {
+                var dsDescriptors = [];
+                var stepsMap = {};
+                for (var x = 0; x < $scope.DATA.SequenceSteps.length; x++) {
+                    var step = $scope.DATA.SequenceSteps[x];
+                    var excludedFields = [];
+                    dsDescriptors.push({'Id': step.DSId, 'Name': step.DSName, 'objectName': step.APIName, 'operation': step.Operation, 'excludedFields': excludedFields});
+                    stepsMap[step.DSName] = $scope.DATA.SequenceSteps[x];
+                }
+                dataManager.SaveDataSet(JSON.stringify(dsDescriptors)).then(
+                    function (data) {
+                        if (data == undefined) {
+                            $scope.Error = true;
+                            $scope.ErrorM = 'Error  while saving a Data sets';
+                        } else {
+                            for (var key in data) {
+                                if (data.hasOwnProperty(key)) {
+                                    stepsMap[key].DSId = data[key];
+                                }
+
+                            }
+                            $scope.UpdateFinish();
+                        }
+                    },
+                    function (error) {
+                        $scope.Error = true;
+                        $scope.errorMessage = error.message;
+                    }
+                );
+            }
+
+
+            $scope.UpdateFinish = function () {
+                $scope.Error = false;
+                $scope.generateSecondStageLookups();
+                var ClonSS = angular.copy($scope.DATA.SequenceSteps);
+                for (var x = 0; x < ClonSS.length; x++) {
+                    var SS = ClonSS[x];
+                    //NotPopulatedLookups
+                    if (SS.NotPopulatedLookups != null && SS.NotPopulatedLookups.length > 0) {
+                        SS.NotPopulatedLookups = SS.NotPopulatedLookups.join(';') + ';';
+                    } else {
+                        SS.NotPopulatedLookups = '';
+                    }
+                    //ParentSteps
+                    if (SS.ParentSteps != null && SS.ParentSteps.length > 0) {
+                        SS.ParentSteps = SS.ParentSteps.join(';') + ';';
+                        SS.DSOption = 'Overlay this data set by parent records';
+                    } else {
+                        SS.ParentSteps = '';
+                        SS.DSOption = 'Use this data set independently';
+                    }
+
+                    if (SS.ChildSteps != null && SS.ChildSteps.length > 0) {
+                        SS.ChildSteps = SS.ChildSteps.join(';') + ';';
+                    }else{
+                        SS.ChildSteps = '';
+                    }
+                    var selfLookups = getKeysByFilter(SS.selfLookups, true);
+                    if (selfLookups != undefined && selfLookups.length > 0) {
+                        SS.ParentIdField = selfLookups.join(';') + ';';
+                    }
+                    var secondStageLookups = getKeysByFilter(SS.lookups2, true);
+                    if (secondStageLookups != undefined && secondStageLookups.length > 0) {
+                        SS.Lookups2 = secondStageLookups.join(';') + ';';
+                    }
+
+
+                    delete SS.ListFields;
+                    delete SS.fieldsMap;// nullify excessive structures for sequence
+                    delete SS.selfLookupsMap;
+                    delete SS.selfLookups;
+                    delete SS.lookupsMap;
+                    delete SS.lookups;
+                    delete SS.lookups2Map;
+                    delete SS.lookups2;
+                    delete SS.details;
+                }
+
+
+                if ($scope.DATA.Sequence.Name == null || $scope.DATA.Sequence.Name == '') {
+                    $scope.Error = true;
+                    $scope.ErrorM = 'Please select the Data Set or enter the name of Sequence'
+                } else {
+                    dataManager.Save($scope.DATA.Sequence.SId == null ? '' : $scope.DATA.Sequence.SId, $scope.DATA.Sequence.Name, angular.toJson(ClonSS)).then(
+                        function (data) {
+                            if (data == undefined || data.Message != 'OK') {
+                                $scope.Error = true;
+                                $scope.ErrorM = data.Message;
+                            } else {
+                                //redirect
+                                $scope.Redirect(data.SId);
+                            }
+                        },
+                        function (error) {
+                            $scope.errorMessage = error.message;
+
+                        }
+                    );
+                }
+
+
+            }
+
+            $scope.Redirect = function (param) {
+                if (getretUrl() != null && getretUrl() != '') {
+                    window.open(getretUrl(), '_self');
+                } else if (param == null) {
+                    window.open('/' + $scope.DATA.Sequence.SId, '_self');
+                } else {
+                    window.open('/' + param, '_self');
+                }
+            }
+
+
+        });
+
+        function updateSelStyles() {
+            var elem = document.getElementById('selectedFields');
+            for (var x = 0; x < elem.length; x++) {
+                elem.options[x].className = 'wide';
+            }
+        }
+
+        function updateExStyles() {
+            var elem = document.getElementById('existingFields');
+            for (var x = 0; x < elem.length; x++) {
+                elem.options[x].className = 'wide';
+            }
+        }
+
+        function setLoaderText(txt) {
+            var elem = $("#progressbarwrapper");
+            var prev = $("#loaderText");
+            if (prev != undefined) {
+                prev.remove();
+            }
+            if (txt != undefined && txt != '') {
+                elem.append("<span id = 'loaderText' style='text-align: center;'>" + txt + "</span>");
+            }
+        }
+
+
+    </script>
+    <style>
+
+        .table-header {
+            background-color: #f7f9fb !important;
+            height: 30px !important;
+        }
+
+        .requiredBlock {
+            background-color: #c00;
+            position: absolute;
+            border-radius: 35%;
+            left: 33%;
+            width: 3px;
+            height: 31px;
+        }
+
+        .wide {
+            width: 1000px;
+        }
+
+        .progress span {
+            position: absolute;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .msgIcon {
+            display: none !important
+        }
+
+        .customMessage * {
+            color: #fff !important
+        }
+
+        .customMessage {
+            margin: 5px 0 !important;
+            max-width: 100%;
+            opacity: 1 !important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+
+        .message {
+            opacity: 1;
+        }
+
+        .loader {
+            width: 99%;
+            background: #ededed;
+            position: absolute;
+            opacity: .4;
+            z-index: 10;
+        }
+    </style>
+    <div class="sf-inner-container" style="margin : 3px; font-family: 'Salesforce Sans', Arial, sans-serif">
+        <div ng-app="DefineSequenceApp">
+            <div ng-controller="DefineSequenceCtrl" id="mainBlock">
+                <div id="modalProgressBar"
+                     role="dialog" aria-hidden="true" data-backdrop="static">
+                    <div class="slds-col slds-size--12-of-12" style="">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info  progress-bar-striped active" style="width: 0%; background-color: #2aabd2; padding-bottom: 50px" id="progressBar">
+                            </div>
+                        </div>
+                        <div class="loader" id='loader'></div>
+                    </div>
+                </div>
+                <div ng-show="Error" style="text-align: left" class="message slds-notify slds-notify--alert slds-theme--error customMessage ">
+                    <table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">
+                        <tbody>
+                        <tr valign="top">
+                            <td><img alt="ERROR" class="msgIcon" src="/s.gif" title="ERROR"/></td>
+                            <td class="messageCell">
+                                <div id="dataSetPage:msg:j_id6:j_id7:0:j_id8:j_id9:j_id11" class="messageText">
+                                    <span id="dataSetPage:msg:j_id6:j_id7:0:j_id8:j_id9:j_id12" style="color:#cc0000">
+                                        <h4>Error:</h4></span>{{ErrorM}}<br/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+                    <div class="slds-media__body">
+                        <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product_required')}"/>
+							</svg>
+						</span>
+                            <span style="font-weight: bolder;" class="slds-m-left--small">Sequence</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="slds-box slds-m-top--medium">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size--4-of-12">
+                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                                <apex:outputLabel styleClass="slds-form-element__label" for="DataSetName" value="Name: "/>
+                                <div class="slds-form-element__control">
+                                    <apex:outputPanel styleClass="requiredBlock"/>
+                                    <input class="slds-input" id="DataSetName" ng-model="DATA.Sequence.Name" placeholder="Enter Sequence name"/>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-size--10-of-12">
+                                <apex:outputLabel styleClass="slds-form-element__label" for="selectDataSet" value="Selected Data Set: "/>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-select_container">
+                                        <select id="selectDataSet" class="slds-select" ng-model="DSSelect" ng-options="DS.NamePickList for DS in DATA.DataSet">
+                                        </select>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </div>
+                        <div class="slds-col slds-size--4-of-12">
+                            <div ng-show="DSSelect != null">
+                                <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-size--10-of-12">
+                                    <apex:outputLabel styleClass="slds-form-element__label" for="definedOperation" value="Defined operation: "/>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <select id="definedOperation" class="slds-select" ng-model="DSSelect.Operation"
+                                                    ng-options="type.id as type.name for type in opTypes">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size--4-of-12">
+                            <apex:outputPanel layout="block" styleClass="slds-float--right">
+                                <button type="submit" class="slds-button slds-button_neutral" ng-click="AddSS(DSSelect)">Add</button>
+                                <button type="submit" class="slds-button slds-button_neutral slds-m-left--small" ng-click="Redirect()">Cancel</button>
+                                <button type="submit" class="slds-button slds-button--brand slds-m-left--small" ng-click="Save()">Save</button>
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                    <div ng-show="DSSelect.Operation == 'UPSERT'" >
+                        <form>
+                            <div class="slds-m-top--medium slds-m-bottom--medium slds-border--bottom"></div>
+                            <fieldset class="slds-form-element">
+                                <legend class="slds-form-element__legend slds-form-element__label">{{questionCompositeKey.questionText}}</legend>
+                                <div class="slds-form-element__control" ng-init="questionCompositeKey.selected = 1">
+                                    <label data-ng-repeat="choice in questionCompositeKey.choices">
+                                        <span class="slds-radio">
+                                            <input type="radio" name="response" id="{{choice.id}}" data-ng-model="questionCompositeKey.selected" data-ng-value="{{choice.id}}"/>
+                                            <label class="slds-radio__label" for="{{choice.id}}">
+                                                <span class="slds-radio_faux"></span>
+                                                <span class="slds-form-element__label">{{choice.text}}</span>
+                                            </label>
+                                            <br/>
+                                        </span>
+                                    </label>`
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div ng-show="DSSelect.Operation == 'UPSERT'" >
+                        <form>
+                            <div class="slds-m-top--medium slds-m-bottom--medium slds-border--bottom"></div>
+                            <fieldset class="slds-form-element">
+                                <legend class="slds-form-element__legend slds-form-element__label">{{questionIsUseFilterOnTargetOrg.questionText}}</legend>
+                                <div class="slds-form-element__control" ng-init="questionIsUseFilterOnTargetOrg.selected = 3">
+                                    <label data-ng-repeat="choice in questionIsUseFilterOnTargetOrg.choices">
+										                <span class="slds-radio">
+										                    <input type="radio" name="response" id="{{choice.id}}" data-ng-model="questionIsUseFilterOnTargetOrg.selected" data-ng-value="{{choice.id}}"/>
+											                  <label class="slds-radio__label" for="{{choice.id}}">
+                                            <span class="slds-radio_faux"></span>
+                                            <span class="slds-form-element__label">{{choice.text}}</span>
+      										              </label>
+										                    <br/>
+											              </span>
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+                <div id="progressbarwrapper">
+                    <div id="progressbar1"></div>
+                </div>
+                <div class="slds-box slds-m-top--medium" >
+                    <table class="slds-table slds-table_cell-buffer slds-table--fixed-layout slds-table_bordered slds-no-row-hover" style="border-top: snow;">
+                        <thead>
+                        <tr style="background-color: #f7f9fb !important; padding: 15px 0; height: 30px !important;">
+                            <th class="table-header" style="width: 3%;"></th>
+                            <th class="table-header" style="width: 3%;">Step</th>
+                            <th class="table-header" style="width: 20%;">Data Set</th>
+                            <th class="table-header" style="width: 27%;">SObject</th>
+                            <th class="table-header" style="width: 27%;">Operation</th>
+                            <th class="table-header" style="width: 10%;">Action</th>
+                            <th class="table-header" style="width: 3%;">Info</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="Step in DATA.SequenceSteps track by $index" ng-class="{selected: Step.selected}" class="slds-hint-parent">
+                            <td>
+                                <div class="slds-truncate">
+                                    <button type="submit" class="slds-button slds-button_icon" ng-click="DeleteStep(Step)">
+                                        <svg class="slds-button__icon slds-icon-text-error" aria-hidden="true">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                            <td style="padding-top: 8px; padding-bottom: 8px;">
+                                <div class="slds-truncate">{{Step.Sequence}}</div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate"><a ng-show="Step.DSId != '0'" href="/{{Step.DSId}}" target="_blank">{{Step.DSName}}</a>
+                                    <div ng-show="Step.DSId == '0'" target="_blank">{{Step.DSName}}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate">{{Step.label}} ({{Step.APIName}})</div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate">{{Step.Operation}}</div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate">
+                                    <!--<button  type="submit" class="btn btn-info" ng-click="EditDS(Step)">Edit Data Set</button>-->
+                                    <div class="slds-button-group" role="group">
+                                        <div class="slds-hint-parent">
+                                            <button type="submit" class="slds-button slds-button_icon" title="Child objects" ng-show="Step.isDetailObjects" ng-click="getChilds(Step)">
+                                             <span class="slds-icon_container slds-icon-standard-account" title="Child objects">
+ 							                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product_request')}"/>
+							                    </svg>
+						                    </span>
+                                            </button>
+                                        </div>
+
+                                        <div class="slds-hint-parent">
+                                            <button ng-show="Step.isMasterObjects" type="submit" class="slds-button slds-button_icon" ng-click="getParents(Step)">
+                                             <span class="slds-icon_container slds-icon-standard-agent-session" title="Parent objects">
+ 							                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product_request_line_item')}"/>
+							                    </svg>
+						                    </span>
+                                            </button>
+                                        </div>
+
+
+                                        <div class="slds-hint-parent">
+                                            <button ng-show="Step.Overlay" type="submit" class="slds-button slds-button_icon" ng-click="OverlayF(Step)">
+                                             <span class="slds-icon_container slds-icon-standard-call" title="Overlay Steps">
+ 							                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#social')}"/>
+							                    </svg>
+						                    </span>
+                                            </button>
+                                        </div>
+                                        <div class="slds-hint-parent">
+                                            <button ng-show="Step.isChildOverlay" type="submit" class="slds-button slds-button_icon" ng-click="OverlayChildF(Step)">
+                                             <span class="slds-icon_container slds-icon-standard-thanks-loading" title="Child Overlay Steps">
+ 							                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#shipment')}"/>
+							                    </svg>
+						                    </span>
+                                            </button>
+                                        </div>
+
+                                        <div class="slds-hint-parent">
+                                            <button ng-show="Step.Recursive" type="submit" class="slds-button slds-button_icon" ng-click="RecursiveF(Step)">
+                                             <span class="slds-icon_container slds-icon-standard-address" title="Recursive Setup">
+ 							                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product_transfer')}"/>
+							                    </svg>
+						                    </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="Step.Error != ''">
+                                    <div class="mouseOverInfoOuter" id="searchInvoiceHelper" onfocus="addMouseOver(this)" onmouseover="addMouseOver(this)" tabindex="0">
+                                        <svg class="slds-icon slds-icon-text-error slds-icon_x-small" aria-hidden="true">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"/>
+                                        </svg>
+                                        <div class="mouseOverInfo" id="searchInvoiceHelperText" style="width: 500px !important; background: #f7f9fb; display: none; opacity: -0.19999999999999996;">
+                                            <div class="body">
+                                                <pre style="background: #f7f9fb !important; border: none !important; padding: 0 !important; margin: 0 !important;">{{Step.Error}}</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <script type="text/ng-template" id="AutocompleteId">
+                    <h1>Edit Lookups Autocomplete</h1>
+                    <p>
+                    <div>
+                        <table class="table slds">
+                            <thead>
+                            <tr style="font-size: 12px;">
+                                <th style="width: 70%;">Field Name</th>
+                                <th style="width: 25%;">Use Local Id</th>
+
+                            </tr>
+                            </thead>
+                            <tbody class="uploadDATA">
+                            <tr ng-repeat="Field in ObjectAutocomplete">
+                                <td>{{Field.Name}}</td>
+                                <td><input type="checkbox" ng-model="Field.Check"/></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </p>
+                </script>
+                <script type="text/ng-template" id="RecursiveId">
+                    <div class="slds-scope">
+                        <div class="slds-page-header slds-header" style="background: #f7f9fb !important ;">
+                            <div class="slds-media__body">
+                                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#multi_select_checkbox')}"/>
+							</svg>
+						</span>
+                                    <span class="slds-m-left--small">Recursive Settings</span>
+                                </h1>
+                            </div>
+                        </div>
+                        <p>
+                        <div class="slds-box slds-m-top--medium" style="background: #ffffff !important;">
+                            <table class="slds-table slds-table_cell-buffer slds-no-row-hover">
+                                <thead>
+                                <tr style="font-size: 12px;">
+                                    <th class="table-header" style="width: 70%;">Field Name</th>
+                                    <th class="table-header" style="width: 25%;">Copy</th>
+
+                                </tr>
+                                </thead>
+                                <tbody class="uploadDATA">
+                                <tr ng-repeat="Field in ObjectRecursive">
+                                    <td>{{Field.Name}}</td>
+                                    <td>
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-checkbox">
+                                                    <input type="checkbox" id="{{Field.Name}}" ng-model="Field.Check"/>
+                                                    <label class="slds-checkbox__label" for="{{Field.Name}}">
+                                                        <span class="slds-checkbox_faux"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </p>
+                    </div>
+                </script>
+                <script type="text/ng-template" id="OverlayId">
+                    <div class="slds-scope">
+                        <div class="slds-page-header slds-header" style="background: #f7f9fb !important ;">
+                            <div class="slds-media__body">
+                                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product_item_transaction')}"/>
+							</svg>
+						</span>
+                                    <span class="slds-m-left--small">Overlay Steps</span>
+                                </h1>
+                            </div>
+                        </div>
+                        <p>
+                        <div class="slds-box slds-m-top--medium">
+                            <table cellspacing="1" cellpadding="1" class="slds-m-top--small">
+                                <tbody>
+                                <tr>
+                                    <th scope="col">Available Steps</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">Selected Steps</th>
+                                </tr>
+                                <tr>
+                                    <td height="330" rowspan="1">
+                                        <select size="15" id="existingFields" class="slds-select" multiple="true" style="width:300px;   overflow: auto;">
+                                            <option ng-repeat="Step in Overlay.listNotSelect" value="{{Step.SSId}}" style="width: 1000px;">{{Step.Name}}</option>
+                                        </select>
+                                    </td>
+                                    <td style="vertical-align:middle; text-align: center;" width="140">
+                                        <div>
+                                            <button type="button" title="" class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                                    onclick="javascript: moveSelectElement3(document.getElementById('existingFields'), document.getElementById('selectedFields'));updateSelStyles();return(false);">
+                                                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#right')}"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-m-top--medium"
+                                                    onclick="javascript: moveSelectElement3(document.getElementById('selectedFields'), document.getElementById('existingFields'));updateExStyles();return(false);">
+                                                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#left')}"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td height="330">
+                                        <select size="15" id="selectedFields" multiple="true" class="slds-select" style="width:300px;  overflow: auto;">
+                                            <option ng-repeat="Step in Overlay.listSelect" value="{{Step.SSId}}" style="width: 1000px; font-family: 'Salesforce Sans' !important; font-size: small">{{Step.Name}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </p>
+                    </div>
+                </script>
+
+                <script type="text/ng-template" id="OverlayChildId">
+                    <div class="slds-scope">
+                        <div class="slds-page-header slds-header" style="background: #f7f9fb !important ;">
+                            <div class="slds-media__body">
+                                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product_item_transaction')}"/>
+							</svg>
+						</span>
+                                    <span class="slds-m-left--small">Child Overlay Steps</span>
+                                </h1>
+                            </div>
+                        </div>
+                        <p>
+                        <div class="slds-box slds-m-top--medium">
+                            <table cellspacing="1" cellpadding="1" class="slds-m-top--small">
+                                <tbody>
+                                <tr>
+                                    <th scope="col">Available Steps</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">Selected Steps</th>
+                                </tr>
+                                <tr>
+                                    <td height="330" rowspan="1">
+                                        <select size="15" id="existingFields" class="slds-select" multiple="true" style="width:300px;   overflow: auto;">
+                                            <option ng-repeat="Step in OverlayChild.listNotSelect" value="{{Step.SSId}}" style="width: 1000px;">{{Step.Name}}</option>
+                                        </select>
+                                    </td>
+                                    <td style="vertical-align:middle; text-align: center;" width="140">
+                                        <div>
+                                            <button type="button" title="" class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                                    onclick="javascript: moveSelectElement3(document.getElementById('existingFields'), document.getElementById('selectedFields'));updateSelStyles();return(false);">
+                                                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#right')}"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-m-top--medium"
+                                                    onclick="javascript: moveSelectElement3(document.getElementById('selectedFields'), document.getElementById('existingFields'));updateExStyles();return(false);">
+                                                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#left')}"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td height="330">
+                                        <select size="15" id="selectedFields" multiple="true" class="slds-select" style="width:300px;  overflow: auto;">
+                                            <option ng-repeat="Step in OverlayChild.listSelect" value="{{Step.SSId}}" style="width: 1000px; font-family: 'Salesforce Sans' !important; font-size: small">{{Step.Name}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </p>
+                    </div>
+                </script>
+                <script type="text/ng-template" id="ParentsId">
+                    <div class="slds-scope">
+                        <div class="slds-page-header slds-header slds" style="background: #f7f9fb !important ;">
+                            <div class="slds-media__body">
+                                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#work_type_group')}"/>
+							</svg>
+						</span>
+                                    <span class="slds-m-left--small">Parent Objects</span>
+                                </h1>
+                            </div>
+                        </div>
+                        <p>
+                        <div class="slds-box slds-m-top--medium">
+                            <table cellspacing="1" cellpadding="1" class="slds-m-top--small">
+                                <tbody>
+                                <tr>
+                                    <th scope="col">Not in sequence</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">In sequence</th>
+                                </tr>
+                                <tr>
+                                    <td height="330" rowspan="1">
+                                        <select size="15" id="notInSeq" multiple="true" class="slds-select" style="width:300px;   overflow: auto;">
+                                            <option ng-repeat="obj in MasterObjects.notInSeq" value="{{obj.name}}" style="width: 300px;">{{obj.label+' ('+obj.name+')'}}</option>
+                                        </select>
+                                    </td>
+                                    <td style="vertical-align:middle; text-align: center;" width="140">
+                                        <div>
+                                            <button type="button" title="" class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                                    onclick="javascript: moveSelectElement3(document.getElementById('notInSeq'), document.getElementById('inSeq'));return(false);">
+                                                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#right')}"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-m-top--medium"
+                                                    onclick="javascript: moveSelectElement3(document.getElementById('inSeq'), document.getElementById('notInSeq'));return(false);">
+                                                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#left')}"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td height="330" rowspan="1">
+                                        <select height="330" size="15" id="inSeq" multiple="true" class="slds-select" style="width:300px;   overflow: auto;">
+                                            <option ng-repeat="obj in MasterObjects.inSeq" value="{{obj.name}}" style="width: 300px;" disabled="true">{{obj.label+' ('+obj.name+')'}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </p>
+                    </div>
+                </script>
+                <script type="text/ng-template" id="ChildsId" class="slds-scope">
+                    <div class="slds-scope">
+                        <div class="slds-page-header slds-header" style="background: #f7f9fb !important ;">
+                            <div class="slds-media__body">
+                                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#flow')}"/>
+							</svg>
+						</span>
+                                    <span class="slds-m-left--small">Child Objects</span>
+                                </h1>
+                            </div>
+                        </div>
+                        <p>
+                        <div class="slds-box slds-m-top--medium">
+                            <table cellspacing="1" cellpadding="1" class="slds-m-top--small">
+                                <tbody>
+                                <tr>
+                                    <th scope="col">Not in sequence</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">In sequence</th>
+                                </tr>
+                                <tr>
+                                    <td height="330" rowspan="1">
+                                        <select size="15" id="notInSeqC" class="slds-select" multiple="true" style="width:300px;   overflow: auto;">
+                                            <option ng-repeat="obj in DetailObjects.notInSeq" value="{{obj.name}}" style="width: 300px;">{{obj.label+' ('+obj.name+')'}}</option>
+                                        </select>
+                                    </td>
+                                    <td style="vertical-align:middle; text-align: center;" width="140">
+
+                                        <div>
+                                            <button type="button" title="" class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                                    onclick="javascript: moveSelectElement3(document.getElementById('notInSeqC'), document.getElementById('inSeqC'));return(false);">
+                                                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#right')}"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-m-top--medium"
+                                                    onclick="javascript: moveSelectElement3(document.getElementById('inSeqC'), document.getElementById('notInSeqC'));return(false);">
+                                                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#left')}"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td height="330">
+                                        <select size="15" id="inSeqC" class="slds-select" multiple="true" style="width:300px;   overflow: auto;">
+                                            <option ng-repeat="obj in DetailObjects.inSeq" value="{{obj.name}}" style="width: 300px;" disabled="true">{{obj.label+' ('+obj.name+')'}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </p>
+                    </div>
+                </script>
+            </div>
+        </div>
+    </div>
+</apex:page>

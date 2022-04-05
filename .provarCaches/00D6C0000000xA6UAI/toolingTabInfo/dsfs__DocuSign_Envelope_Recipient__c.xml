@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="0KDd00000015DPyGAM" IsAvailableInAloha="true" IsAvailableInLightning="true" IsCustom="true" Label="DocuSign Envelope Recipient" Name="dsfs__DocuSign_Envelope_Recipient__c" SobjectName="dsfs__DocuSign_Envelope_Recipient__c" Url="https://arc-phss--test.my.salesforce.com/a1X/o"/>
+</toolingTabInfo>

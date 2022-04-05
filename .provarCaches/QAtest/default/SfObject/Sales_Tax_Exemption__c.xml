@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="Sales_Tax_Exemption__c.SYSTEM" defaultFlexipageId="Sales_Tax_Exemption_Record_Page" deleteable="true" keyPrefix="aA4" label="Sales Tax Exemption" labelPlural="Sales Tax Exemptions" layoutable="true" metadataLabel="Sales Tax Exemption" n="Sales_Tax_Exemption__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Sales Tax Exemption (aA4)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/aA4/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Sales Tax Exemption ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="Sales Tax Exemption Name" updateable="false"/>
+    <sfField length="18" n="RecordTypeId" relationshipName="RecordType" t="Record Type" type="reference">
+      <referenceTos>
+        <string>RecordType</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account__r.Name" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Account_Name__c" readPermission="false" t="Account Name" updateable="false"/>
+    <sfField editPermission="false" length="18" n="Account__c" readPermission="false" relationshipLabel="Sales Tax Exemption" relationshipName="Account__r" t="Account" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" n="Active_Date__c" readPermission="false" t="Active Date" type="date"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="AND(ISPICKVAL(Status__c, &quot;Approved&quot;),\nOR(\n  Expiration_Date__c &gt;=  TODAY(),\n  ISBLANK(Expiration_Date__c)  \n))" n="Active__c" readPermission="false" t="Active" type="_boolean" updateable="false"/>
+    <sfField length="50" n="Certificate_Number_ID__c" required="true" t="Certificate Number/ID"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="If(ISBLANK( Web_First_Name__c ),  CreatedBy.FirstName + ' ' + CreatedBy.LastName  , Web_First_Name__c + ' ' + Web_Last_Name__c)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Contact_Name__c" readPermission="false" t="Contact Name" updateable="false"/>
+    <sfField editPermission="false" n="Created_From_Button_on_Account__c" readPermission="false" t="Created From Button on Account" type="_boolean"/>
+    <sfField editPermission="false" length="100" n="Exemption_Category_Other__c" readPermission="false" t="Exemption Category Other"/>
+    <sfField length="255" n="Exemption_Category__c" required="true" restrictedPicklist="true" t="Exemption Category" type="picklist">
+      <picklistEntryIds>1,2,3,4</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Non-profit" s=""/>
+        <sfPLE id="2" n="U.S./State/Local/Tribal Government" s=""/>
+        <sfPLE id="3" n="Resale" s=""/>
+        <sfPLE id="4" n="Other: please specify" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="Expiration_Date__c" readPermission="false" t="Expiration Date (optional)" type="date"/>
+    <sfField editPermission="false" length="18" n="Parent_STE__c" readPermission="false" relationshipLabel="Sales Tax Exemptions" relationshipName="Parent_STE__r" t="Parent STE" type="reference">
+      <referenceTos>
+        <string>Sales_Tax_Exemption__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Rejection_Reason__c" readPermission="false" restrictedPicklist="true" t="Rejection Reason" type="picklist">
+      <picklistEntryIds>5,6,7,8,9</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="5" n="No tax exempt certificate was uploaded" s=""/>
+        <sfPLE id="6" n="An invalid or expired tax exempt certificate was uploaded" s=""/>
+        <sfPLE id="7" n="No tax exemption ID was entered" s=""/>
+        <sfPLE id="8" n="Invalid organization or contact information was entered" s=""/>
+        <sfPLE id="9" n="Other: please specify" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Account__r.SF_Account_Number_Text__c" length="1300" n="SF_Tax_ID__c" readPermission="false" t="SF Tax ID" updateable="false"/>
+    <sfField editPermission="false" length="80" n="Send_Notifications_To__c" readPermission="false" t="Send Notifications To" type="email"/>
+    <sfField globalPickListName="States" length="255" n="State__c" required="true" restrictedPicklist="true" t="State" type="picklist">
+      <picklistEntryIds>10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="10" n="AK" s=""/>
+        <sfPLE id="11" n="AL" s=""/>
+        <sfPLE id="12" n="AR" s=""/>
+        <sfPLE id="13" n="AZ" s=""/>
+        <sfPLE id="14" n="CA" s=""/>
+        <sfPLE id="15" n="CO" s=""/>
+        <sfPLE id="16" n="CT" s=""/>
+        <sfPLE id="17" n="DE" s=""/>
+        <sfPLE id="18" n="FL" s=""/>
+        <sfPLE id="19" n="GA" s=""/>
+        <sfPLE id="20" n="HI" s=""/>
+        <sfPLE id="21" n="IA" s=""/>
+        <sfPLE id="22" n="ID" s=""/>
+        <sfPLE id="23" n="IL" s=""/>
+        <sfPLE id="24" n="IN" s=""/>
+        <sfPLE id="25" n="KS" s=""/>
+        <sfPLE id="26" n="KY" s=""/>
+        <sfPLE id="27" n="LA" s=""/>
+        <sfPLE id="28" n="MA" s=""/>
+        <sfPLE id="29" n="MD" s=""/>
+        <sfPLE id="30" n="ME" s=""/>
+        <sfPLE id="31" n="MI" s=""/>
+        <sfPLE id="32" n="MN" s=""/>
+        <sfPLE id="33" n="MO" s=""/>
+        <sfPLE id="34" n="MS" s=""/>
+        <sfPLE id="35" n="MT" s=""/>
+        <sfPLE id="36" n="NC" s=""/>
+        <sfPLE id="37" n="ND" s=""/>
+        <sfPLE id="38" n="NE" s=""/>
+        <sfPLE id="39" n="NH" s=""/>
+        <sfPLE id="40" n="NJ" s=""/>
+        <sfPLE id="41" n="NM" s=""/>
+        <sfPLE id="42" n="NV" s=""/>
+        <sfPLE id="43" n="NY" s=""/>
+        <sfPLE id="44" n="OH" s=""/>
+        <sfPLE id="45" n="OK" s=""/>
+        <sfPLE id="46" n="OR" s=""/>
+        <sfPLE id="47" n="PA" s=""/>
+        <sfPLE id="48" n="RI" s=""/>
+        <sfPLE id="49" n="SC" s=""/>
+        <sfPLE id="50" n="SD" s=""/>
+        <sfPLE id="51" n="TN" s=""/>
+        <sfPLE id="52" n="TX" s=""/>
+        <sfPLE id="53" n="UT" s=""/>
+        <sfPLE id="54" n="VA" s=""/>
+        <sfPLE id="55" n="VT" s=""/>
+        <sfPLE id="56" n="WA" s=""/>
+        <sfPLE id="57" n="WI" s=""/>
+        <sfPLE id="58" n="WV" s=""/>
+        <sfPLE id="59" n="WY" s=""/>
+        <sfPLE id="60" n="DC" s=""/>
+        <sfPLE id="61" n="PR" s=""/>
+        <sfPLE id="62" n="VI" s=""/>
+        <sfPLE id="63" n="AA" s=""/>
+        <sfPLE id="64" n="AE" s=""/>
+        <sfPLE id="65" n="AP" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Status__c" readPermission="false" restrictedPicklist="true" t="Status" type="picklist">
+      <picklistEntryIds>66,67,68,69,70,71,72</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="66" n="New" s=""/>
+        <sfPLE id="67" n="Pending" s=""/>
+        <sfPLE id="68" n="Approved" s=""/>
+        <sfPLE id="69" n="Denied" s=""/>
+        <sfPLE id="70" n="Revoked" s=""/>
+        <sfPLE id="71" n="Expired" s=""/>
+        <sfPLE id="72" n="Canceled" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Web_Company_City__c" readPermission="false" t="Web Company City"/>
+    <sfField editPermission="false" length="255" n="Web_Company_Name__c" readPermission="false" t="Web Company Name"/>
+    <sfField editPermission="false" length="255" n="Web_Company_State__c" readPermission="false" t="Web Company State"/>
+    <sfField editPermission="false" length="255" n="Web_Company_Street__c" readPermission="false" t="Web Company Street"/>
+    <sfField editPermission="false" length="255" n="Web_Company_Zip__c" readPermission="false" t="Web Company Zip"/>
+    <sfField editPermission="false" length="255" n="Web_Customer_Type__c" readPermission="false" restrictedPicklist="true" t="Web Customer Type" type="picklist">
+      <picklistEntryIds>73,74,75</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="73" n="My organization orders products from www.redcross.org/store." s=""/>
+        <sfPLE id="74" n="My organization purchases Red Cross training courses and/or services." s=""/>
+        <sfPLE id="75" n="Both" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Web_End_Date__c" readPermission="false" t="Web End Date"/>
+    <sfField editPermission="false" length="255" n="Web_First_Name__c" readPermission="false" t="Web First Name"/>
+    <sfField editPermission="false" length="255" n="Web_Last_Name__c" readPermission="false" t="Web Last Name"/>
+    <sfField editPermission="false" length="80" n="Web_RCS_Email__c" readPermission="false" t="Web RCS Email" type="email"/>
+    <sfField editPermission="false" length="255" n="Web_SF_Account_Number__c" readPermission="false" t="Web SF Account Number"/>
+    <sfField editPermission="false" length="255" n="Web_Start_Date__c" readPermission="false" t="Web Start Date"/>
+    <sfField editPermission="false" length="80" n="Web_Submitter_s_Email__c" readPermission="false" t="Web Submitter's Email" type="email"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="Sales_Tax_Exemption__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I6C0000004znL.History"/>
+    <sfObjectRelationship childName="Sales_Tax_Exemption__c" field="Parent_STE__c" n="Sales_Tax_Exemptions__r" relationshipName="Sales_Tax_Exemptions__r" s="2-" t="01I6C0000004znL"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType available="false" defaultRecordType="false" fromToolingApi="true" fullName="Child_Account_STE" layoutsLoaded="false" n="Child Account STE" recordTypeId="0126C00000095ymQAA" s="3-"/>
+    <sfRecordType available="false" defaultRecordType="false" fromToolingApi="true" fullName="Standard_STE" layoutsLoaded="false" n="Standard STE" recordTypeId="0126C00000095ynQAA" s="3-"/>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome Sales_Tax_Exemption__r List Sales_Tax_Exemptions__r" n="New"/>
+    <sfActionLink modes="View Sales_Tax_Exemption__r Sales_Tax_Exemptions__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Sales_Tax_Exemption__r Sales_Tax_Exemptions__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Sales_Tax_Exemption__r Sales_Tax_Exemptions__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Sales_Tax_Exemption__r Sales_Tax_Exemptions__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="Sales Tax Exemptions Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>SALES_TAX_EXEMPTION__C.NAME</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>SALES_TAX_EXEMPTION__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>SALES_TAX_EXEMPTION__C.NAME</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="ProcessInstanceWorkitem" IsAvailableInLightning="true" Label="Approval Requests" Name="standard-ProcessInstanceWorkitem" SobjectName="ProcessInstanceWorkitem" Url="https://arc-phss--test.my.salesforce.com/04i/o"/>
+</toolingTabInfo>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="Voucher__c.0AH0V0000010xCS" deleteable="true" keyPrefix="a7a" label="Voucher" labelPlural="Voucher" layoutable="true" metadataLabel="Voucher" n="Voucher__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="Voucher (a7a)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a7a/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Voucher ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="Voucher Number" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField length="18" n="Account__c" relationshipLabel="Voucher" relationshipName="Account__r" t="Account" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="CC_Cart_Item__c" relationshipLabel="Voucher" relationshipName="CC_Cart_Item__r" t="CC Cart Item" type="reference">
+      <referenceTos>
+        <string>ccrz__E_CartItem__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="CC_Order_Item__c" relationshipLabel="Voucher" relationshipName="CC_Order_Item__r" t="CC Order Item" type="reference">
+      <referenceTos>
+        <string>ccrz__E_OrderItem__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="CC_Order__c" relationshipLabel="Voucher" relationshipName="CC_Order__r" t="CC Order" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Order__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="CC_Product__c" relationshipLabel="Voucher" relationshipName="CC_Product__r" t="CC Product" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Product__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ILT_Class__r.redwing__Location__r.Skedulo_Address__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Class_Location__c" t="Class Location" updateable="false"/>
+    <sfField length="18" n="ILT_Class__c" relationshipLabel="Voucher" relationshipName="ILT_Class__r" t="ILT Class" type="reference">
+      <referenceTos>
+        <string>redwing__ILT_Class__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Learning_Plan__c" relationshipLabel="Voucher" relationshipName="Learning_Plan__r" t="Learning Plan" type="reference">
+      <referenceTos>
+        <string>redwing__Training_Plan__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Online_Class__c" relationshipLabel="Voucher" relationshipName="Online_Class__r" t="Online Class" type="reference">
+      <referenceTos>
+        <string>redwing__Learning__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Opportunity__c" relationshipLabel="Voucher" relationshipName="Opportunity__r" t="Opportunity" type="reference">
+      <referenceTos>
+        <string>Opportunity</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="/*IF(ILT_Class__c != null, IF(CONTAINS($Api.Partner_Server_URL_260, 'TransDev1'), 'https://transdev1-americanredcross.cs52.force.com/learner/s/ClaimVoucher?voucherid=' + Id,\n(If (CONTAINS($Api.Partner_Server_URL_260, 'Partial'), 'https://partial-americanredcross.cs78.force.com/learner/s/ClaimVoucher?voucherid=' + Id,\n'https://transuat-americanredcross.cs26.force.com/learner/s/ClaimVoucher?voucherid=' +Id))), '')*/\nIF(OR(ILT_Class__c != null, Online_Class__c !=null), $Label.Learner_Community_URL + '/s/ClaimVoucher?voucherid=' + Id, '')" formulaTreatBlanksAs="BlankAsZero" length="1300" n="QR_Code_Web_Address__c" t="QR Code Web Address" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(OR(ILT_Class__c != null, Online_Class__c !=null) , \nHYPERLINK(Id , IMAGE(&quot;http://chart.apis.google.com/chart?cht=qr&amp;chs=150x150&amp;chl=&quot; &amp;QR_Code_Web_Address__c  , QR_Code_Web_Address__c )), '')" formulaTreatBlanksAs="BlankAsZero" length="1300" n="QR_Code__c" t="QR Code" updateable="false"/>
+    <sfField length="30" n="RCO_Order_Id__c" t="RCO Order_Id"/>
+    <sfField n="RCO_Reservation_Timestamp__c" t="RCO Reservation Timestamp" type="datetime"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(MONTH(ILT_Class__r.redwing__Start_Date__c))+&quot;/&quot; +\nTEXT(DAY(ILT_Class__r.redwing__Start_Date__c))+&quot;/&quot; +\nTEXT(YEAR(ILT_Class__r.redwing__Start_Date__c))+ \n&quot; - &quot; + \nILT_Class__r.ltui__Start_Time_Formatted__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Start_Date_of_Class__c" t="Start Date of Class" updateable="false"/>
+    <sfField length="255" n="Status__c" restrictedPicklist="true" t="Status" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6,7</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="1" n="Issued" s=""/>
+        <sfPLE id="2" n="Temp Hold" s=""/>
+        <sfPLE id="3" n="Reserved" s=""/>
+        <sfPLE id="4" n="Claimed" s=""/>
+        <sfPLE id="5" n="Blocked" s=""/>
+        <sfPLE id="6" n="Void" s=""/>
+        <sfPLE id="7" n="Pending Cancellation" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="Training_Event__c" relationshipLabel="Voucher" relationshipName="Training_Event__r" t="Training Event" type="reference">
+      <referenceTos>
+        <string>Training_Events__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="User__c" relationshipName="User__r" t="User" type="reference">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Id" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Voucher_Claim__c" t="Voucher Claim #" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="CC_Order_Item__r.Related_Contact_1__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Related_Order_Contact_1__c" t="Related Order Contact 1" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="CC_Order_Item__r.Related_Contact_2__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Related_Order_Contact_2__c" t="Related Order Contact 2" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF( User__c =  $User.Id, TRUE, FALSE)" formulaTreatBlanksAs="BlankAsZero" n="Is_My_Voucher__c" t="Is My Voucher" type="_boolean" updateable="false"/>
+    <sfField editPermission="false" n="Is_Assigned__c" readPermission="false" t="Is Assigned" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="HYPERLINK($Label.Learner_Community_URL+'/s/login?startURL=%2Flearner%2Fs%2Flearning-plan-detail-standard%3Fltui__urlRecordId%3D'+Learning_Plan__c, 'Red Cross Learning Center')" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Learner_Community_Class_URL__c" t="Learner Community Class URL" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="User__r.Username" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Username__c" t="Username" updateable="false"/>
+    <sfField editPermission="false" n="Remove_Available_Seat__c" readPermission="false" t="Remove Available Seat" type="_boolean"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="Voucher__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002Ef5r.History"/>
+    <sfObjectRelationship childName="redwing__ILT_Roster__c" field="Voucher_Id__c" n="ILT_Rosters__r" relationshipName="ILT_Rosters__r" s="2-" t="01I0V000002N5PV"/>
+    <sfObjectRelationship childName="Student_Bulk_Upload__c" field="Voucher__c" n="Student_Bulk_Uploads__r" relationshipName="Student_Bulk_Uploads__r" s="2-" t="01I3o000002dqWP"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome Voucher__r List" n="New"/>
+    <sfActionLink modes="View Voucher__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Voucher__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Voucher__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Voucher__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="Voucher Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink buttonName="Send_Voucher_Page" n="Send_Voucher_Page" s="" t="Send Voucher"/>
+    <sfActionLink buttonName="Send_Voucher" massAction="true" n="Send_Voucher" s="" t="Send Voucher"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>VOUCHER__C.NAME</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>VOUCHER__C.NAME</string>
+    <string>Status__c</string>
+    <string>QR_Code_Web_Address__c</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>VOUCHER__C.NAME</string>
+    <string>Voucher_Claim__c</string>
+    <string>Status__c</string>
+    <string>QR_Code_Web_Address__c</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+    <string>ILT_Class__c</string>
+    <string>Start_Date_of_Class__c</string>
+    <string>Class_Location__c</string>
+    <string>Status__c</string>
+  </compactLayoutFields>
+  <listViewActions>
+    <string>Send_Voucher</string>
+  </listViewActions>
+</sfObject>

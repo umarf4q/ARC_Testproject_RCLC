@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="ccrz__E_OrderItem__c.SYSTEM" defaultFlexipageId="PHSS_CC_Order_Item_Record_Page" deleteable="true" keyPrefix="a4J" label="CC Order Item" labelPlural="CC Order Items" layoutable="true" metadataLabel="CC Order Item" n="ccrz__E_OrderItem__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="CC Order Item (a4J)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a4J/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="CC Order Item ID" type="id" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField autoNumberField="true" createable="false" editPermission="false" length="80" n="Name" nameField="true" t="OrderItemAutoNumber" updateable="false"/>
+    <sfField length="18" n="RecordTypeId" relationshipName="RecordType" t="Record Type" type="reference">
+      <referenceTos>
+        <string>RecordType</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField isMasterDetail="true" length="18" n="ccrz__Order__c" relationshipLabel="Order Items" relationshipName="ccrz__Order__r" required="true" t="Order" type="reference" updateable="false">
+      <referenceTos>
+        <string>ccrz__E_Order__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="ccrz__AbsoluteDiscount__c" precision="18" scale="2" t="Absolute Discount" type="currency"/>
+    <sfField n="ccrz__AdjustmentAmount__c" precision="18" scale="2" t="Adjustment Amount" type="currency"/>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="ccrz__AvailabilityMessage__c" t="Availability Message" type="textarea"/>
+    <sfField length="18" n="ccrz__Category__c" relationshipLabel="Order Items" relationshipName="ccrz__Category__r" t="Category" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Category__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="ccrz__Comments__c" t="Comments" type="textarea"/>
+    <sfField length="18" n="ccrz__Coupon__c" relationshipLabel="Order Items" relationshipName="ccrz__Coupon__r" t="Coupon" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Coupon__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="ccrz__DisplayProduct__c" relationshipLabel="CC Order Items (Display Product)" relationshipName="ccrz__DisplayProduct__r" t="Display Product" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Product__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="255" n="ccrz__ExtName__c" t="External Name"/>
+    <sfField length="255" n="ccrz__ExtSKU__c" t="External SKU"/>
+    <sfField n="ccrz__Is_Subscription__c" t="Is Subscription" type="_boolean"/>
+    <sfField length="80" n="ccrz__ItemLabel__c" t="Item Label"/>
+    <sfField length="255" n="ccrz__ItemStatus__c" t="Item Status" type="picklist">
+      <picklistEntryIds>1,2</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="1" n="Available" s=""/>
+        <sfPLE id="2" n="Pre-Order" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__AdjustmentAmount__c  +  ccrz__SubAmount__c" formulaTreatBlanksAs="BlankAsZero" n="ccrz__ItemTotal__c" precision="18" scale="2" t="Item Total" type="currency" updateable="false"/>
+    <sfField n="ccrz__Next_Subscription_Date__c" t="Next Subscription Date" type="date"/>
+    <sfField length="18" n="ccrz__OrderItemGroup__c" relationshipLabel="Order Items" relationshipName="ccrz__OrderItemGroup__r" t="Order Item Group" type="reference">
+      <referenceTos>
+        <string>ccrz__E_OrderItemGroup__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="128" n="ccrz__OrderItemId__c" t="Order Item Id"/>
+    <sfField length="255" n="ccrz__OrderItemStatus__c" t="Order Item Status" type="picklist">
+      <picklistEntryIds>3,4,5,6,7,8,9,10,11,12,13</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="3" n="Order Submitted" s=""/>
+        <sfPLE id="4" n="Cancel Submitted" s=""/>
+        <sfPLE id="5" n="Cancelled" s=""/>
+        <sfPLE id="6" n="Shipped" s=""/>
+        <sfPLE id="7" n="Return Submitted" s=""/>
+        <sfPLE id="8" n="Returned" s=""/>
+        <sfPLE id="9" n="In Process" s=""/>
+        <sfPLE id="10" n="Partial Shipped" s=""/>
+        <sfPLE id="11" n="On Hold" s=""/>
+        <sfPLE id="12" n="Reservation" s=""/>
+        <sfPLE id="13" n="Partial Returned" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="ccrz__OrderLineType__c" t="Order Line Type" type="picklist">
+      <picklistEntryIds>14,15</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="14" n="Major" s=""/>
+        <sfPLE id="15" n="Minor" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="ccrz__OriginalItemPrice__c" precision="18" scale="2" t="Original Item Price" type="currency"/>
+    <sfField n="ccrz__OriginalQuantity__c" precision="18" scale="2" t="Original Quantity" type="_double"/>
+    <sfField length="18" n="ccrz__ParentOrderItem__c" relationshipLabel="Order Items" relationshipName="ccrz__ParentOrderItem__r" t="Parent Order Item" type="reference">
+      <referenceTos>
+        <string>ccrz__E_OrderItem__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="ccrz__ParentProduct__c" relationshipLabel="Order Items (ParentProductID)" relationshipName="ccrz__ParentProduct__r" t="Parent Product" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Product__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="ccrz__PercentDiscount__c" precision="7" scale="4" t="Percent Discount" type="percent"/>
+    <sfField n="ccrz__Price__c" precision="18" required="true" scale="2" t="Price" type="currency"/>
+    <sfField length="255" n="ccrz__PricingModifierTypes__c" t="Pricing Modifier Types"/>
+    <sfField length="255" n="ccrz__PricingType__c" t="Pricing Type"/>
+    <sfField length="18" n="ccrz__PrimaryAttr__c" relationshipLabel="CC Order Items" relationshipName="ccrz__PrimaryAttr__r" t="Primary Attribute" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Attribute__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="20" n="ccrz__ProductType__c" t="ProductType"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Product__r.Name" formulaTreatBlanksAs="BlankAsZero" length="1300" n="ccrz__Product_Name__c" t="Product Name" updateable="false"/>
+    <sfField length="18" n="ccrz__Product__c" relationshipLabel="Order Items (ProductID)" relationshipName="ccrz__Product__r" t="Product" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Product__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="ccrz__Quantity__c" precision="18" required="true" t="Quantity" type="_double"/>
+    <sfField n="ccrz__RecurringPriceSubAmt__c" precision="18" scale="2" t="Recurring Price Sub Amount" type="currency"/>
+    <sfField n="ccrz__RecurringPrice__c" precision="18" scale="2" t="Recurring Price" type="currency"/>
+    <sfField n="ccrz__RequestDate__c" t="Request Date" type="date"/>
+    <sfField length="18" n="ccrz__SecondaryAttr__c" relationshipLabel="CC Order Items (Secondary Attribute)" relationshipName="ccrz__SecondaryAttr__r" t="Secondary Attribute" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Attribute__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" filterable="false" length="1000" n="ccrz__SelectedAttr__c" t="Selected Attributes" type="textarea"/>
+    <sfField length="18" n="ccrz__Seller__c" relationshipLabel="CC Order Items" relationshipName="ccrz__Seller__r" t="Seller" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Seller__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="18" n="ccrz__SplitSource__c" relationshipLabel="Split Items" relationshipName="ccrz__SplitSource__r" t="Split Source" type="reference">
+      <referenceTos>
+        <string>ccrz__E_OrderItem__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="128" n="ccrz__StoreId__c" t="Store Id"/>
+    <sfField n="ccrz__SubAmount__c" precision="18" required="true" scale="2" t="Sub Amount" type="currency"/>
+    <sfField length="18" n="ccrz__SubProdTerm__c" relationshipLabel="CC Order Items" relationshipName="ccrz__SubProdTerm__r" t="CC SubProdTerm" type="reference">
+      <referenceTos>
+        <string>ccrz__E_SubProdTerm__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF( ccrz__Is_Subscription__c , &quot;S-&quot;&amp; Name , &quot;&quot;)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="ccrz__SubscriptionId__c" readPermission="false" t="SubscriptionId" updateable="false"/>
+    <sfField editPermission="false" n="ccrz__Subscription_Auto_Renewal__c" readPermission="false" t="Subscription Auto Renewal" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__Subscription_Duration__c" precision="18" readPermission="false" t="Subscription Duration" type="_double"/>
+    <sfField editPermission="false" n="ccrz__Subscription_End_Date__c" readPermission="false" t="Subscription End Date" type="date"/>
+    <sfField editPermission="false" n="ccrz__Subscription_Frequency__c" precision="4" readPermission="false" t="Subscription Frequency" type="_double"/>
+    <sfField editPermission="false" n="ccrz__Subscription_Start_Date__c" readPermission="false" t="Subscription Start Date" type="date"/>
+    <sfField editPermission="false" length="255" n="ccrz__Subscription_Status__c" readPermission="false" t="Subscription Status" type="picklist">
+      <picklistEntryIds>16,17,18,19,20</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="16" n="Active" s=""/>
+        <sfPLE id="17" n="Cancelled" s=""/>
+        <sfPLE id="18" n="Error" s=""/>
+        <sfPLE id="19" n="Lapsed" s=""/>
+        <sfPLE id="20" n="Reordered" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="ccrz__TertiaryAttr__c" relationshipLabel="CC Order Items (Tertiary Attribute)" relationshipName="ccrz__TertiaryAttr__r" t="Tertiary Attribute" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Attribute__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="32" n="ccrz__UnitOfMeasure__c" t="Unit Of Measure"/>
+    <sfField length="255" n="Adjustment_Types__c" restrictedPicklist="true" t="Order Adjustment Type" type="picklist">
+      <picklistEntryIds>21,22,23</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="21" n="Course Cancelation" s=""/>
+        <sfPLE id="22" n="Course Credit Adjustment" s=""/>
+        <sfPLE id="23" n="Product Credit Adjustment" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField extraTypeInfo="plaintextarea" length="255" n="Error_Message__c" t="Error Message" type="textarea"/>
+    <sfField length="100" n="Explanation__c" t="Explanation"/>
+    <sfField length="18" n="ILT_Class__c" relationshipLabel="CC Order Items" relationshipName="ILT_Class__r" t="ILT Class" type="reference">
+      <referenceTos>
+        <string>redwing__ILT_Class__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="255" n="Inventory_Type__c" restrictedPicklist="true" t="Inventory Type" type="picklist">
+      <picklistEntryIds>24,25,26,27,28</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="24" n="COURSE" s=""/>
+        <sfPLE id="25" n="COMMUNITY" s=""/>
+        <sfPLE id="26" n="STANDARD" s=""/>
+        <sfPLE id="27" n="FEE" s=""/>
+        <sfPLE id="28" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Order__r.Opportunity__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Opportunity__c" t="Opportunity" updateable="false"/>
+    <sfField length="255" n="Payment_Category__c" t="Payment Category" type="picklist">
+      <picklistEntryIds>29,30,31,32,33</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="29" n="48000" s=""/>
+        <sfPLE id="30" n="48130" s=""/>
+        <sfPLE id="31" n="48150" s=""/>
+        <sfPLE id="32" n="48160" s=""/>
+        <sfPLE id="33" n="48530" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField controllerName="01I0V000002N5NY.00N0V000009GabQ" dependentPicklist="true" length="255" n="Reason_Codes__c" restrictedPicklist="true" t="Reason Codes" type="picklist">
+      <picklistEntryIds>34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="34" n="2020 Price Increase" s=""/>
+        <sfPLE id="35" n="2021 Price Increase" s=""/>
+        <sfPLE id="36" n="Bad Weather" s=""/>
+        <sfPLE id="37" n="Class Canceled by Red Cross" s=""/>
+        <sfPLE id="38" n="Coupon or Discount Not Applied" s=""/>
+        <sfPLE id="39" n="COVID-19" s=""/>
+        <sfPLE id="40" n="Customer Dissatisfaction" s=""/>
+        <sfPLE id="41" n="Customer Service/Quality" s=""/>
+        <sfPLE id="42" n="Customer Service Error" s=""/>
+        <sfPLE id="43" n="Customer Service QA" s=""/>
+        <sfPLE id="44" n="Damaged in Shipping" s=""/>
+        <sfPLE id="45" n="Delivered to Incorrect Address" s=""/>
+        <sfPLE id="46" n="Did Not Complete Pre-Req Material" s=""/>
+        <sfPLE id="47" n="Duplicate" s=""/>
+        <sfPLE id="48" n="Facility Closure" s=""/>
+        <sfPLE id="49" n="Incorrect Class" s=""/>
+        <sfPLE id="50" n="Instructor No Show" s=""/>
+        <sfPLE id="51" n="Late Delivery" s=""/>
+        <sfPLE id="52" n="Lost Shipment" s=""/>
+        <sfPLE id="53" n="No Longer Applicable" s=""/>
+        <sfPLE id="54" n="Other" s=""/>
+        <sfPLE id="55" n="Packaging Issue" s=""/>
+        <sfPLE id="56" n="Personal Emergency" s=""/>
+        <sfPLE id="57" n="PO not Followed" s=""/>
+        <sfPLE id="58" n="Product Quality Issue" s=""/>
+        <sfPLE id="59" n="Received Wrong Items" s=""/>
+        <sfPLE id="60" n="Received Wrong Order" s=""/>
+        <sfPLE id="61" n="Received Wrong Quantity" s=""/>
+        <sfPLE id="62" n="Returned Product/Freight" s=""/>
+        <sfPLE id="63" n="Service Delivery Fee Not Accurate" s=""/>
+        <sfPLE id="64" n="Shipping Price was Wrong" s=""/>
+        <sfPLE id="65" n="Student Dropped" s=""/>
+        <sfPLE id="66" n="Student Failed" s="" t="Student Failed (NAT Only)"/>
+        <sfPLE id="67" n="Wrong # of Students" s=""/>
+        <sfPLE id="68" n="Wrong Course" s=""/>
+        <sfPLE id="69" n="Wrong Date Selected for Class" s=""/>
+        <sfPLE id="70" n="Wrong Organization" s=""/>
+        <sfPLE id="71" n="Wrong Price Per Student" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="4" n="TS_LOC__c" t="TS LOC"/>
+    <sfField length="5" n="Unit_Code__c" t="Unit Code"/>
+    <sfField n="Is_Return__c" t="Is Return" type="_boolean"/>
+    <sfField length="18" n="Related_Contact_1__c" relationshipLabel="CC Order Items" relationshipName="Related_Contact_1__r" t="Related Contact 1" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Related_Contact_2__c" relationshipLabel="CC Order Items (Related Contact 2)" relationshipName="Related_Contact_2__r" t="Related Contact 2" type="reference">
+      <referenceTos>
+        <string>Contact</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Coupon_Used__c" t="Coupon Used" type="_boolean"/>
+    <sfField length="18" n="Coupon__c" relationshipLabel="CC Order Items" relationshipName="Coupon__r" t="Coupon" type="reference">
+      <referenceTos>
+        <string>Coupon__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="50" n="Supplemental_Information__c" t="Supplemental Information"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="/*Text(ccrz__Product__r.AP_Code__c)*/\n\n\nIF\n(\n   TEXT(ccrz__ParentOrderItem__r.ccrz__Product__r.ccrz__ProductType__c) = &quot;Kit&quot; &amp;&amp; ISPICKVAL(ccrz__OrderLineType__c, &quot;Minor&quot;),\n   TEXT(ccrz__ParentOrderItem__r.ccrz__Product__r.AP_Code__c),\n   TEXT(ccrz__Product__r.AP_Code__c)\n)" length="1300" n="AP_Code__c" t="AP Code" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Order__r.ccrz__Account__r.Name" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Account_Formula__c" t="Account" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(ccrz__Product__r.LMS_Learning_Plan__r.Classroom_Setting__c)" length="1300" n="Class_Setting__c" t="Class Setting" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Coupon__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Coupon_Formula__c" t="Coupon" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Product__r.ccrz__SKU__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Course_Id__c" t="Course Id" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ILT_Class__r.Skedulo_Account__r.SABA_LMS_Code__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Customer_ID__c" t="Customer ID" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Order__r.ccrz__OrderDate__c" formulaTreatBlanksAs="BlankAsZero" n="Date_Order__c" t="Date Order" type="date" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Order__r.FOCIS_Category__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="FOCIS_Category__c" t="FOCIS Category" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(MONTH( ILT_Class__r.redwing__End_Date__c ))+&quot;/&quot; +\nTEXT(DAY(ILT_Class__r.redwing__End_Date__c ))+&quot;/&quot; +\nTEXT(YEAR(ILT_Class__r.redwing__End_Date__c ))+\n&quot; - &quot; +\nILT_Class__r.ltui__End_Time_Formatted__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="ILT_Class_End_Date__c" t="ILT Class End Date" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ILT_Class__r.Offering_Id__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Offering_Id__c" t="Offering Id" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Order__r.ccrz__OrderId__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Order_Id__c" t="Order Id" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="if(!ISBLANK(ILT_Class__r.Location_ZIP_Code__c),ILT_Class__r.Location_ZIP_Code__c,if(!ISBLANK (ILT_Class__r.Skedulo_Account__r.BillingPostalCode),ILT_Class__r.Skedulo_Account__r.BillingPostalCode,'0000'))" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Order_Unit_Code_Formula__c" t="Unit Code" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Text(Coupon__r.Type__c)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Coupon_Type__c" t="Coupon Type" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Coupon__r.Value__c" formulaTreatBlanksAs="BlankAsZero" n="Coupon_Value__c" precision="18" scale="2" t="Coupon Value" type="_double" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="Coupon__r.Display_Name__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Coupon_display_name__c" t="Coupon display name" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ILT_Class__r.Offering_Id__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="ILT_Class_Id__c" t="ILT Class Id" updateable="false"/>
+    <sfField editPermission="false" n="Is_Partial_Return_OI__c" readPermission="false" t="Is Partial Return OI" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Order__r.Coupon_Codes__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Order_Coupon__c" t="Coupon Name (Order)" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Order__r.CreatedBy.FirstName +' '+ ccrz__Order__r.CreatedBy.LastName" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Order_Created_By__c" t="Order Created By" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ccrz__Order__r.ccrz__PaymentMethod__c" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Payment_Method__c" t="Payment Method" updateable="false"/>
+    <sfField length="18" n="Online_Class__c" relationshipLabel="CC Order Items" relationshipName="Online_Class__r" t="Online Class" type="reference">
+      <referenceTos>
+        <string>redwing__Learning__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField length="18" n="Invoicing_Case_Number__c" relationshipLabel="CC Order Items" relationshipName="Invoicing_Case_Number__r" t="Invoicing Case Number" type="reference">
+      <referenceTos>
+        <string>Case</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="Manually_Billed_for_this_Order_Item__c" t="Manual Transaction Occurred" type="_boolean"/>
+    <sfField n="Process_Fee_Waiver__c" t="Process Fee Waiver" type="_boolean"/>
+    <sfField n="Adjustment_Applied__c" t="Adjustment Applied" type="_boolean"/>
+    <sfField n="Has_Fulfilment_Item__c" t="Has Fulfilment Item" type="_boolean"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(ILT_Class__r.Skedulo_Job_Status__c)" formulaTreatBlanksAs="BlankAsZero" length="1300" n="Skedulo_Job_Status__c" t="Skedulo Job Status" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ILT_Class__r.Class_Closed_Date__c" formulaTreatBlanksAs="BlankAsZero" n="Class_Closed_Date__c" t="Class Closed Date" type="datetime" updateable="false"/>
+    <sfField length="255" n="Manual_Transaction_Type__c" t="Manual Transaction Type" type="picklist">
+      <picklistEntryIds>72,73,74,75</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="72" n="Manual Billing" s=""/>
+        <sfPLE id="73" n="Manual Refund" s=""/>
+        <sfPLE id="74" n="Managed in CFS" s=""/>
+        <sfPLE id="75" n="Credit Card Chargeback" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="Proposed_Refund_Amount__c" precision="18" scale="2" t="Proposed Refund Amount" type="currency"/>
+    <sfField length="255" n="Refund_Type__c" restrictedPicklist="true" t="Refund Type" type="picklist">
+      <picklistEntryIds>76,77</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="76" n="Credit or Refund" s=""/>
+        <sfPLE id="77" n="Transfer or Cancel" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="TEXT(ccrz__Product__r.Tax_Class__c)" length="1300" n="Tax_Class__c" readPermission="false" t="Tax Class" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ILT_Class__r.Class_State_Formula__c" length="1300" n="Class_State__c" t="Class State" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" formula="ILT_Class__r.Class_Zip_Formula__c" length="1300" n="Class_Zip__c" t="Class Zip" updateable="false"/>
+    <sfField n="Tax_Amount__c" precision="18" scale="2" t="Tax Amount" type="currency"/>
+    <sfField n="Tax_Calculated__c" t="Tax Calculated" type="_boolean"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" length="255" n="Notes__c" t="Notes" type="textarea"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="ccrz__E_OrderItem__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002N5NY.History"/>
+    <sfObjectRelationship childName="Fulfillment_Item__c" field="Order_Item__c" n="Fulfillment_Items__r" relationshipName="Fulfillment_Items__r" s="2-" t="01I0V000002Ef5d"/>
+    <sfObjectRelationship childName="Voucher__c" field="CC_Order_Item__c" n="Voucher__r" relationshipName="Voucher__r" s="2-" t="01I0V000002Ef5r"/>
+    <sfObjectRelationship childName="SDOC__SDRelationship__c" field="CC_Order_Item__c" n="S_Docs_Relationships__r" relationshipName="S_Docs_Relationships__r" s="2-" t="01I0V000002N5Mh"/>
+    <sfObjectRelationship childName="ccrz__E_InvoiceItem__c" field="ccrz__CCOrderItem__c" n="ccrz__CCInvoiceItems__r" relationshipName="ccrz__CCInvoiceItems__r" s="2-" t="01I0V000002N5NN"/>
+    <sfObjectRelationship childName="ccrz__E_OrderItemPricingTier__c" field="ccrz__OrderItem__c" n="ccrz__CC_Order_Item_Pricing_Tiers__r" relationshipName="ccrz__CC_Order_Item_Pricing_Tiers__r" s="2-" t="01I0V000002N5NX"/>
+    <sfObjectRelationship childName="ccrz__E_OrderItem__c" field="ccrz__ParentOrderItem__c" n="ccrz__Order_Items__r" relationshipName="ccrz__Order_Items__r" s="2-" t="01I0V000002N5NY"/>
+    <sfObjectRelationship childName="ccrz__E_OrderItem__c" field="ccrz__SplitSource__c" n="ccrz__ItemSplits__r" relationshipName="ccrz__ItemSplits__r" s="2-" t="01I0V000002N5NY"/>
+    <sfObjectRelationship childName="ccrz__E_OrderShipmentItem__c" field="Order_Item__c" n="CC_Order_Shipment_Items__r" relationshipName="CC_Order_Shipment_Items__r" s="2-" t="01I0V000002N5NZ"/>
+    <sfObjectRelationship childName="ccrz__E_Subscription__c" field="ccrz__CCOrderItem__c" n="ccrz__CCSubscriptions__r" relationshipName="ccrz__CCSubscriptions__r" s="2-" t="01I0V000002N5Od"/>
+    <sfObjectRelationship childName="redwing__ILT_Class__c" field="CPS_Order_Item__c" n="CPS_Class_Item__r" relationshipName="CPS_Class_Item__r" s="2-" t="01I0V000002N5PQ"/>
+    <sfObjectRelationship childName="LTS_Facility__c" field="CC_Order_Item__c" n="LTS_Facilities__r" relationshipName="LTS_Facilities__r" s="2-" t="01I3o000002ValO"/>
+    <sfObjectRelationship childName="Training_Events__c" field="CC_Order_Item__c" n="Training_Event__r" relationshipName="Training_Event__r" s="2-" t="01Id00000005m3o"/>
+    <sfObjectRelationship childName="Case" field="CC_Order_Item__c" n="Cases__r" relationshipName="Cases__r" s="2-" t="Case"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType defaultRecordType="false" fromToolingApi="true" fullName="CC_Order_Item" layoutsLoaded="false" n="CC Order Item" recordTypeId="0120V000001xnZgQAI" s="3-"/>
+    <sfRecordType available="false" defaultRecordType="false" fromToolingApi="true" fullName="Course_Credit_Adt_Customer_Service_QA" layoutsLoaded="false" n="Course Credit Adt Customer Service QA" recordTypeId="0120V000001xnZhQAI" s="3-"/>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome CC_Order_Items_Contact_1__r CC_Order_Items_Contact_2__r ccrz__E_OrderItems__r CC_Order_Items__r List ccrz__Order_Items__r ccrz__ItemSplits__r ccrz__CC_Order_Items__r ccrz__E_OrderItems1__r" n="New"/>
+    <sfActionLink modes="View CC_Order_Items_Contact_1__r CC_Order_Items_Contact_2__r ccrz__E_OrderItems__r CC_Order_Items__r ccrz__Order_Items__r ccrz__ItemSplits__r ccrz__CC_Order_Items__r ccrz__E_OrderItems1__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View CC_Order_Items_Contact_1__r CC_Order_Items_Contact_2__r ccrz__E_OrderItems__r CC_Order_Items__r ccrz__Order_Items__r ccrz__ItemSplits__r ccrz__CC_Order_Items__r ccrz__E_OrderItems1__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View CC_Order_Items_Contact_1__r CC_Order_Items_Contact_2__r ccrz__E_OrderItems__r CC_Order_Items__r ccrz__Order_Items__r ccrz__ItemSplits__r ccrz__CC_Order_Items__r ccrz__E_OrderItems1__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View CC_Order_Items_Contact_1__r CC_Order_Items_Contact_2__r ccrz__E_OrderItems__r CC_Order_Items__r ccrz__Order_Items__r ccrz__ItemSplits__r ccrz__CC_Order_Items__r ccrz__E_OrderItems1__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="CC Order Items Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink buttonName="Print_Voucher_List" n="Print_Voucher_List" s="" t="Print Voucher List"/>
+    <sfActionLink buttonName="Add_Supplemental_Info" n="Add_Supplemental_Info" s="" t="Add Supplemental Info"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>CCRZ__E_ORDERITEM__C.NAME</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CCRZ__E_ORDERITEM__C.NAME</string>
+    <string>ccrz__Quantity__c</string>
+    <string>ccrz__Price__c</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>CCRZ__E_ORDERITEM__C.NAME</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

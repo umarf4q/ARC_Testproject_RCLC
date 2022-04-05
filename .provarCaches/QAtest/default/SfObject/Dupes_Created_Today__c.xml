@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" keyPrefix="a0P" label="Dupes Created Today" labelPlural="Dupes Created Today" layoutable="true" n="Dupes_Created_Today__c" queryable="true" readPermission="false" retrieveable="true" s="" t="Dupes Created Today (a0P)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome Dupes_Created_Today__r Dupes_Created_Today1__r Dupes_Created_Today3__r" n="New"/>
+    <sfActionLink modes="View Dupes_Created_Today__r Dupes_Created_Today1__r Dupes_Created_Today3__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Dupes_Created_Today__r Dupes_Created_Today1__r Dupes_Created_Today3__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Dupes_Created_Today__r Dupes_Created_Today1__r Dupes_Created_Today3__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Dupes_Created_Today__r Dupes_Created_Today1__r Dupes_Created_Today3__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

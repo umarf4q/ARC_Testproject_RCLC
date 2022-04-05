@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingAppInfo>
+  <appDefinition DeveloperName="SD_Dispatch" Label="SD Dispatch" NavType="Standard">
+    <Metadata>&lt;CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata"   &gt;    &lt;defaultLandingTab&gt;standard-home&lt;/defaultLandingTab&gt;  &lt;formFactors&gt;Large&lt;/formFactors&gt; &lt;isNavAutoTempTabsDisabled&gt;false&lt;/isNavAutoTempTabsDisabled&gt; &lt;isNavPersonalizationDisabled&gt;false&lt;/isNavPersonalizationDisabled&gt; &lt;isServiceCloudConsole&gt;false&lt;/isServiceCloudConsole&gt; &lt;label&gt;SD Dispatch&lt;/label&gt;      &lt;tabs&gt;standard-Account&lt;/tabs&gt; &lt;tabs&gt;standard-Contact&lt;/tabs&gt; &lt;tabs&gt;standard-Opportunity&lt;/tabs&gt; &lt;tabs&gt;standard-Contract&lt;/tabs&gt; &lt;tabs&gt;standard-report&lt;/tabs&gt; &lt;tabs&gt;standard-Dashboard&lt;/tabs&gt; &lt;tabs&gt;dsfs__DocuSign_Admin&lt;/tabs&gt; &lt;tabs&gt;dsfs__DocuSign_Status__c&lt;/tabs&gt; &lt;tabs&gt;Training_Events__c&lt;/tabs&gt; &lt;tabs&gt;standard-Workspace&lt;/tabs&gt; &lt;tabs&gt;Job_Attendee__c&lt;/tabs&gt; &lt;tabs&gt;sked__Availability__c&lt;/tabs&gt; &lt;tabs&gt;Resource_Activity_Report&lt;/tabs&gt;   &lt;/CustomApplication&gt;</Metadata>
+  </appDefinition>
+</toolingAppInfo>

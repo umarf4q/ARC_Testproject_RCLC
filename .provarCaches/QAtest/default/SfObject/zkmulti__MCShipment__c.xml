@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" keyPrefix="a9k" label="Shipment" labelPlural="Shipments" layoutable="true" n="zkmulti__MCShipment__c" queryable="true" readPermission="false" retrieveable="true" s="" t="Shipment (a9k)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome zkmulti__Shipments__r" n="New"/>
+    <sfActionLink modes="View zkmulti__Shipments__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View zkmulti__Shipments__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View zkmulti__Shipments__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View zkmulti__Shipments__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

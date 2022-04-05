@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject columnNameAlias="Task" label="Open Activity" labelPlural="Open Activities" n="OpenActivity" s="" standardLabel="Open Activity" t="Open Activity">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="Activity ID" type="id" updateable="false"/>
+    <sfField createable="false" length="18" n="AccountId" relationshipName="Account" t="Account" type="reference" updateable="false">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" length="18" n="WhoId" relationshipName="Who" t="Name" type="reference" updateable="false">
+      <referenceTos>
+        <string>Contact</string>
+        <string>Lead</string>
+      </referenceTos>
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">OpenActivity.WhoId</key>
+          <value valueClass="string">Name</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField createable="false" length="18" n="WhatId" relationshipName="What" t="Related To" type="reference" updateable="false">
+      <referenceTos>
+        <string>Account</string>
+        <string>Account_Plan__c</string>
+        <string>Agreement__c</string>
+        <string>Asset</string>
+        <string>AssetRelationship</string>
+        <string>Associated_Orders__c</string>
+        <string>B2CCommerceCloud_Internal_SF_Helpdesk__c</string>
+        <string>BuyerAccount</string>
+        <string>BuyerGroupPricebook</string>
+        <string>CRMfusionDBR101__Duplicate_Warning__c</string>
+        <string>Campaign</string>
+        <string>Case</string>
+        <string>Centennial_Campaign__c</string>
+        <string>ChannelProgram</string>
+        <string>ChannelProgramLevel</string>
+        <string>Class_Instructor__c</string>
+        <string>CommSubscriptionConsent</string>
+        <string>ContactRequest</string>
+        <string>Contract</string>
+        <string>ContractLineItem</string>
+        <string>Course_Catalog__c</string>
+        <string>Dedicated_Internal_Salesforce_Helpdesk__c</string>
+        <string>DelegatedAccount</string>
+        <string>Entitlement</string>
+        <string>Facility__c</string>
+        <string>Free_Class__c</string>
+        <string>IBP__Ifbyphone_Call__c</string>
+        <string>Image</string>
+        <string>Integration_Log__c</string>
+        <string>LTS_Facility__c</string>
+        <string>Lead__c</string>
+        <string>ListEmail</string>
+        <string>LiveAgentSession</string>
+        <string>LiveChatTranscript</string>
+        <string>Location</string>
+        <string>Offering__c</string>
+        <string>Opportunity</string>
+        <string>Order</string>
+        <string>PHSS_Instructor_Certification__c</string>
+        <string>PHSS_Material__c</string>
+        <string>PHSS_Program__c</string>
+        <string>PartnerFundAllocation</string>
+        <string>PartnerFundClaim</string>
+        <string>PartnerFundRequest</string>
+        <string>PartnerMarketingBudget</string>
+        <string>PartyConsent</string>
+        <string>ProcessException</string>
+        <string>Product2</string>
+        <string>ProductCatalog</string>
+        <string>Promotion</string>
+        <string>PromotionMarketSegment</string>
+        <string>PromotionQualifier</string>
+        <string>PromotionSegment</string>
+        <string>PromotionSegmentBuyerGroup</string>
+        <string>PromotionSegmentSalesStore</string>
+        <string>PromotionTarget</string>
+        <string>PurchaseQuantityRule</string>
+        <string>Quote</string>
+        <string>ReportCard__c</string>
+        <string>SFDC_Budget__c</string>
+        <string>SFDC_MDF_Claim__c</string>
+        <string>SFDC_MDF__c</string>
+        <string>SFSSDupeCatcher__Duplicate_Warning__c</string>
+        <string>SFSSDupeCatcher__Potential_Duplicate__c</string>
+        <string>SFSSDupeCatcher__Scenario__c</string>
+        <string>Sales_Tax_Exemption__c</string>
+        <string>ServiceContract</string>
+        <string>Shipment</string>
+        <string>ShipmentItem</string>
+        <string>Skills_Achievement__c</string>
+        <string>Solution</string>
+        <string>SurveyQuestion</string>
+        <string>Training_Events__c</string>
+        <string>Virtual_Training_Student_Contact__c</string>
+        <string>Voucher__c</string>
+        <string>WebStorePricebook</string>
+        <string>ccpgcs__E_PaymentType__c</string>
+        <string>ccrz__E_AccountGroupPriceList__c</string>
+        <string>ccrz__E_AccountGroup__c</string>
+        <string>ccrz__E_AccountSetting__c</string>
+        <string>ccrz__E_AddressBook__c</string>
+        <string>ccrz__E_CartItem__c</string>
+        <string>ccrz__E_Cart__c</string>
+        <string>ccrz__E_Category__c</string>
+        <string>ccrz__E_CompositeProduct__c</string>
+        <string>ccrz__E_ContactAddr__c</string>
+        <string>ccrz__E_Coupon__c</string>
+        <string>ccrz__E_Invoice__c</string>
+        <string>ccrz__E_OrderItem__c</string>
+        <string>ccrz__E_OrderShipmentItem__c</string>
+        <string>ccrz__E_OrderShipment__c</string>
+        <string>ccrz__E_Order__c</string>
+        <string>ccrz__E_PageSection__c</string>
+        <string>ccrz__E_PriceGroupAccount__c</string>
+        <string>ccrz__E_PriceGroupItem__c</string>
+        <string>ccrz__E_PriceGroupPricelist__c</string>
+        <string>ccrz__E_PriceGroup__c</string>
+        <string>ccrz__E_PriceListItem__c</string>
+        <string>ccrz__E_PriceList__c</string>
+        <string>ccrz__E_PriceModifier__c</string>
+        <string>ccrz__E_ProductInventoryItem__c</string>
+        <string>ccrz__E_ProductMedia__c</string>
+        <string>ccrz__E_ProductTab__c</string>
+        <string>ccrz__E_Product__c</string>
+        <string>ccrz__E_Promo__c</string>
+        <string>ccrz__E_RecentItem__c</string>
+        <string>ccrz__E_RelatedProduct__c</string>
+        <string>ccrz__E_Review__c</string>
+        <string>ccrz__E_RulePricingModifier__c</string>
+        <string>ccrz__E_RuleTargetSKU__c</string>
+        <string>ccrz__E_Rule__c</string>
+        <string>ccrz__E_Spec__c</string>
+        <string>ccrz__E_StorefrontConfigSettings__c</string>
+        <string>ccrz__E_SubProdTerm__c</string>
+        <string>ccrz__E_Subscription__c</string>
+        <string>ccrz__E_TaxRate__c</string>
+        <string>cwbtool__AnalysisSummary__c</string>
+        <string>cwbtool__Component__c</string>
+        <string>cwbtool__FieldTrack__c</string>
+        <string>dsfs__DocuSign_Recipient_Status__c</string>
+        <string>dsfs__DocuSign_Status__c</string>
+        <string>jurisdiction__c</string>
+        <string>redwing__Achievement_Category__c</string>
+        <string>redwing__Achievement__c</string>
+        <string>redwing__Answer_Sequence_Item__c</string>
+        <string>redwing__Answer_Sequence__c</string>
+        <string>redwing__CheckIn__c</string>
+        <string>redwing__ILT_Roster__c</string>
+        <string>redwing__Instructor__c</string>
+        <string>redwing__LMS_Permission_Rule_PermSet__c</string>
+        <string>redwing__LMS_Permission_Rule__c</string>
+        <string>redwing__LMS_Plugin__c</string>
+        <string>redwing__Learning_Assignment__c</string>
+        <string>redwing__Learning_Category_Account__c</string>
+        <string>redwing__Learning_Category_Profile__c</string>
+        <string>redwing__Learning_Category__c</string>
+        <string>redwing__Learning_Search_Category_Item__c</string>
+        <string>redwing__Learning_Search_Category__c</string>
+        <string>redwing__Learning_Version__c</string>
+        <string>redwing__Learning__c</string>
+        <string>redwing__Question_Bank_Question__c</string>
+        <string>redwing__Question_Bank__c</string>
+        <string>redwing__Question_Line__c</string>
+        <string>redwing__Question_Topic__c</string>
+        <string>redwing__Question__c</string>
+        <string>redwing__Quiz__c</string>
+        <string>redwing__Response__c</string>
+        <string>redwing__RichText_Content__c</string>
+        <string>redwing__RichText__c</string>
+        <string>redwing__Shared_Learning_Assignment__c</string>
+        <string>redwing__Task_Approver__c</string>
+        <string>redwing__Task__c</string>
+        <string>redwing__Training_Activity_Account__c</string>
+        <string>redwing__Training_Activity_Category__c</string>
+        <string>redwing__Training_Activity_Search_Category_Item__c</string>
+        <string>redwing__Training_Activity__c</string>
+        <string>redwing__Training_Plan_Access_Request__c</string>
+        <string>redwing__Training_Plan_Account__c</string>
+        <string>redwing__Training_Plan_Achievement__c</string>
+        <string>redwing__Training_Plan_Assignment__c</string>
+        <string>redwing__Training_Plan_Batch_Operation__c</string>
+        <string>redwing__Training_Plan_Category__c</string>
+        <string>redwing__Training_Plan_Feedback__c</string>
+        <string>redwing__Training_Plan_Instructor__c</string>
+        <string>redwing__Training_Plan_Search_Category_Item__c</string>
+        <string>redwing__Training_Plan_Section_Assignment__c</string>
+        <string>redwing__Training_Plan_Section_Item__c</string>
+        <string>redwing__Training_Plan_Section__c</string>
+        <string>redwing__Training_Plan__c</string>
+        <string>redwing__Training_Resource__c</string>
+        <string>redwing__Training_Track_Account__c</string>
+        <string>redwing__Training_Track_Assignment__c</string>
+        <string>redwing__Training_Track_Category__c</string>
+        <string>redwing__Training_Track_Level_Item__c</string>
+        <string>redwing__Training_Track_Level__c</string>
+        <string>redwing__Training_Track_Search_Category_Item__c</string>
+        <string>redwing__Training_Track__c</string>
+        <string>redwing__User_Certification__c</string>
+        <string>scormanywhere__Course__c</string>
+        <string>sked__Job__c</string>
+        <string>sked__Location__c</string>
+        <string>sked__Resource__c</string>
+        <string>sked__Schedule_Template__c</string>
+        <string>sked__Templated_Activity_Resource__c</string>
+        <string>sked__Templated_Activity__c</string>
+        <string>sked__Templated_Attendee__c</string>
+        <string>sked__Templated_Job_Allocation__c</string>
+        <string>sked__Templated_Job_Product__c</string>
+        <string>sked__Templated_Job_Tag__c</string>
+        <string>sked__Templated_Job_Task__c</string>
+        <string>sked__Templated_Job_Time_Constraint__c</string>
+        <string>sked__Templated_Job__c</string>
+        <string>sked__Templated_Resource_Requirement_Tag__c</string>
+        <string>sked__Templated_Resource_Requirement__c</string>
+        <string>sked__Templated_Resource_Shift__c</string>
+        <string>sked__Templated_Shift_Tag__c</string>
+        <string>sked__Templated_Shift__c</string>
+        <string>zkmulti__EEIForm__c</string>
+        <string>zkmulti__MCBulk_Shipment__c</string>
+        <string>zkmulti__MCPickup__c</string>
+        <string>zkmulti__MCShipment__c</string>
+      </referenceTos>
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">OpenActivity.WhatId</key>
+          <value valueClass="string">Related To</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField createable="false" length="80" n="Subject" nameField="true" type="combobox" updateable="false">
+      <picklistEntryIds>1,2,3,4,5,6,7,8</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Call" s=""/>
+        <sfPLE id="2" n="Send Letter" s=""/>
+        <sfPLE id="3" n="Send Quote" s=""/>
+        <sfPLE id="4" n="Other" s=""/>
+        <sfPLE id="5" n="Ghost Call" s=""/>
+        <sfPLE id="6" n="Referral Request" s=""/>
+        <sfPLE id="7" n="Documentation" s=""/>
+        <sfPLE id="8" n="Payment Reminder" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsTask" t="Task" type="_boolean" updateable="false"/>
+    <sfField createable="false" n="ActivityDate" t="Date" type="date" updateable="false"/>
+    <sfField createable="false" n="ActivityDateTime" t="Time" type="datetime" updateable="false"/>
+    <sfField createable="false" length="18" n="OwnerId" relationshipName="Owner" t="Assigned To" type="reference" updateable="false">
+      <referenceTos>
+        <string>Calendar</string>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+      <relatedListTranslationLabels/>
+      <otherRelatedListTranslationLabels>
+        <entry>
+          <key valueClass="string">OpenActivity.Owner</key>
+          <value valueClass="string">Assigned To</value>
+        </entry>
+      </otherRelatedListTranslationLabels>
+    </sfField>
+    <sfField createable="false" length="255" n="Status" type="picklist" updateable="false">
+      <picklistEntryIds>9,10,11,12,13</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="9" n="Not Started" s=""/>
+        <sfPLE id="10" n="In Progress" s=""/>
+        <sfPLE id="11" n="Completed" s=""/>
+        <sfPLE id="12" n="Waiting on someone else" s=""/>
+        <sfPLE id="13" n="Deferred" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" length="20" n="Priority" type="picklist" updateable="false">
+      <picklistEntryIds>14,15,16</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="14" n="High" s=""/>
+        <sfPLE defaultValue="true" id="15" n="Normal" s=""/>
+        <sfPLE id="16" n="Low" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsHighPriority" t="High Priority" type="_boolean" updateable="false"/>
+    <sfField createable="false" length="40" n="ActivityType" t="Type" type="picklist" updateable="false">
+      <picklistEntryIds>1,1,17,18,19,20,20,4,4</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="Call" s=""/>
+        <sfPLE id="1" n="Call" s=""/>
+        <sfPLE id="17" n="Email" s=""/>
+        <sfPLE id="18" n="Face-to-Face" s=""/>
+        <sfPLE id="19" n="face-to-facer-ers" s=""/>
+        <sfPLE id="20" n="Meeting" s=""/>
+        <sfPLE id="20" n="Meeting" s=""/>
+        <sfPLE id="4" n="Other" s=""/>
+        <sfPLE id="4" n="Other" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsClosed" t="Closed" type="_boolean" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsAllDayEvent" t="All-Day Event" type="_boolean" updateable="false"/>
+    <sfField createable="false" digits="9" n="DurationInMinutes" t="Duration" type="_int" updateable="false"/>
+    <sfField createable="false" length="80" n="Location" updateable="false"/>
+    <sfField createable="false" extraTypeInfo="plaintextarea" filterable="false" length="32000" n="Description" t="Comments" type="textarea" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" digits="8" n="CallDurationInSeconds" t="Call Duration" type="_int" updateable="false"/>
+    <sfField createable="false" length="40" n="CallType" restrictedPicklist="true" t="Call Type" type="picklist" updateable="false">
+      <picklistEntryIds>21,22,23</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="21" n="Internal" s=""/>
+        <sfPLE id="22" n="Inbound" s=""/>
+        <sfPLE id="23" n="Outbound" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" length="255" n="CallDisposition" t="Call Result" updateable="false"/>
+    <sfField createable="false" length="255" n="CallObject" t="Call Object Identifier" updateable="false"/>
+    <sfField createable="false" n="ReminderDateTime" t="Reminder Date/Time" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="IsReminderSet" t="Reminder Set" type="_boolean" updateable="false"/>
+    <sfField createable="false" n="EndDateTime" t="End" type="datetime" updateable="false"/>
+    <sfField createable="false" n="StartDateTime" t="Start" type="datetime" updateable="false"/>
+    <sfField createable="false" length="40" n="ActivitySubtype" restrictedPicklist="true" t="Activity Subtype" type="picklist" updateable="false">
+      <picklistEntryIds>24,25,26,27,1,28</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="24" n="Task" s=""/>
+        <sfPLE id="25" n="Email" s=""/>
+        <sfPLE id="26" n="ListEmail" s="" t="List Email"/>
+        <sfPLE id="27" n="Cadence" s=""/>
+        <sfPLE id="1" n="Call" s=""/>
+        <sfPLE id="28" n="Event" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField createable="false" length="18" n="AlternateDetailId" relationshipName="AlternateDetail" t="Email Message" type="reference" updateable="false">
+      <referenceTos>
+        <string>EmailMessage</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="Delta_Data_Migration__c" summary="If Checked, this record was migrated as part of the Delta Data migration project" t="Delta Data Migration" type="_boolean" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="40" n="DM_External_ID__c" t="DM External ID" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="150" n="Source_System__c" t="Source System" updateable="false"/>
+  </fields>
+  <childRelationships/>
+  <recordTypes/>
+  <standardActions>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View OpenActivities" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View OpenActivities" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+    <sfActionLink lightningActionName="NewTask" modes="Lead OpenActivities" n="task" t="New Task" target="sf:ui:target?object=Task&amp;action=New"/>
+    <sfActionLink lightningActionName="NewEvent" modes="Lead OpenActivities" n="event" t="New Event" target="sf:ui:target?object=OpenActivity&amp;action=new&amp;mapping=screenmappings/OpenActivityEvent.screenmapping"/>
+    <sfActionLink modes="Lead OpenActivities" n="newproposemeeting" t="New Meeting Request"/>
+    <sfActionLink modes="ObjectHome List" n="new" t="New"/>
+    <sfActionLink locator="td[contains(@class, 'actionColumn')]/a[contains(@href, '/e?retURL=') or contains(@href, '%2Fe%3FretURL%3D')]" modes="OpenActivities" n="Edit" requiresRow="true"/>
+    <sfActionLink locator="td[contains(@class, 'actionColumn')]/a[contains(@href, '/e?close=1') or contains(@href, '%2Fe%3Fclose%3D1')]" modes="OpenActivities" n="cls" requiresRow="true" t="Close"/>
+    <sfActionLink lightningLabel="Delete" locator="td[contains(@class, 'actionColumn')]/a[contains(@href, 'deleteredirect.jsp')]" modes="OpenActivities" n="Delete" requiresRow="true" t="Del"/>
+    <sfActionLink locator="td[contains(@class, 'actionColumn')]/a[contains(@href, '%27%2Fui%2Fcore%2Factivity%2FActivityVisibilityEdit')]" modes="OpenActivities" n="MakePublic" requiresRow="true" t="Make Public"/>
+    <sfActionLink locator="td[contains(@class, 'actionColumn')]/a[contains(@href, '%27%2Fui%2Fcore%2Factivity%2FActivityVisibilityEdit')]" modes="OpenActivities" n="MakePrivate" requiresRow="true" t="Make Private"/>
+  </standardActions>
+  <weblinks/>
+</sfObject>

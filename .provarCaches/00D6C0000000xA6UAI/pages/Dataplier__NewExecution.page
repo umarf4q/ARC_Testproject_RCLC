@@ -1,0 +1,132 @@
+<apex:page standardController="Dataplier__Execution__c" extensions="Dataplier.NewExecutionController" id="newExecutionPage" sideBar="false">
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-1.10.2.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__execution, 'js/utilities5.js')}"/>
+    <apex:slds />
+    <style>
+        .requiredBlock {
+            background-color: #c00;
+            position: absolute;
+            border-radius: 35%;
+            left: 33%;
+            width: 3px;
+            height: 31px;
+        }
+    </style>
+    <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+        <div class="slds-media__body">
+            <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#display_text')}"/>
+							</svg>
+						</span>
+                <span style="font-weight: bolder;" class="slds-m-left--small">New Execution</span>
+            </h1>
+        </div>
+    </div>
+    <apex:form id="pageForm">
+        <apex:pagemessages id="msg"/>
+        <apex:outputPanel styleClass="slds-box slds-m-top--medium" layout="block" id="pageBlock">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size--4-of-12">
+                    <apex:outputPanel id="ExecutionSection" layout="block">
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="ExName" value="Execution Name: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <apex:inputField id="ExName" styleClass="slds-input" value="{!ex.Name}" required="true"/>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="SequenceName" value="Execution Sequence: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <apex:inputField styleClass="slds-input" id="SequenceName" value="{!ex.Dataplier__Execution_Sequence__c}" required="true"/>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="chooseOption" value="Deploy option: "/>
+                            <div class="slds-form-element__control">
+                                <apex:selectList id="chooseOption" value="{!cacheParam}" styleClass="slds-select" label="Deploy option" size="1">
+                                    <apex:selectOptions value="{!options}"/>
+                                </apex:selectList>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                            <div class="slds-form-element">
+                                <label class="slds-checkbox_toggle slds-grid">
+                                    <span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Use Data Obfuscation:</span>
+                                    <apex:inputCheckbox value="{!bDataObfuscation}"/>
+                                    <span id="checkbox-toggle-16" class="slds-checkbox_faux_container" aria-live="assertive">
+      								<span class="slds-checkbox_faux"></span>
+   									</span>
+                                </label>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                            <div class="slds-form-element">
+                                <label class="slds-checkbox_toggle slds-grid">
+                                    <span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Use Bulk API:</span>
+                                    <apex:inputCheckbox value="{!isBulkApiUsed}"/>
+                                    <span id="checkbox-toggle-16" class="slds-checkbox_faux_container" aria-live="assertive">
+      								<span class="slds-checkbox_faux"></span>
+   									</span>
+                                </label>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                            <div class="slds-form-element">
+                                <label class="slds-checkbox_toggle slds-grid">
+                                    <span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Enable advanced logs:</span>
+                                    <apex:inputCheckbox value="{!isAdvancedLogs}" />
+                                    <span id="checkbox-toggle-16" class="slds-checkbox_faux_container" aria-live="assertive">
+                                        <span class="slds-checkbox_faux"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    <!-- <apex:pageBlockSection title="Connection Information" columns="1" id="Connection">
+				<apex:selectList value="{!conn.Environment}" required="true" size="1" style="width:173px;" id="Environment" label="Environment" styleClass="env">
+					<apex:selectOption itemValue="https://login.salesforce.com" itemLabel="Production/Developer"/>
+					<apex:selectOption itemValue="https://test.salesforce.com" itemLabel="Sandbox"/>
+				</apex:selectList>
+				<apex:inputText id="UserName" value="{!conn.UserName}" required="true" label="UserName" styleClass="uname"/>
+				//inputSecret issue for security scanner
+				// '/</apex/:/inputSecret id/=/"UserPass" /value/="/{/!/conn.Password/}/"/ /required/=/"/true/" label="Password" styleClass="upass"/>'
+			</apex:pageBlockSection>-->
+                </div>
+                <div class="slds-col slds-size--6-of-12"></div>
+                <div class="slds-col slds-size--2-of-12">
+                    <apex:outputPanel layout="block" styleClass="slds-float--right">
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!cancel}" value="Cancel"
+                                            onclick="return confirmCancel()" immediate="true"/>
+                        <apex:commandButton styleClass="slds-button slds-button--brand" action="{!save}" value="Create"/>
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+	<script id="html-1" type="text/template">
+        <svg class="slds-button__icon slds-button__icon_small" aria-hidden="true">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#layers')}"/>
+        </svg>
+	</script>
+
+    <script type="text/javascript">
+		window.onload = function () {
+			let element = document.getElementById('newExecutionPage:pageForm:SequenceName_lkwgt');
+            let as = document.getElementById("html-1").innerHTML;
+			element.classList.remove("slds-input");
+			element.removeChild(element.firstChild);
+			element.innerHTML = as;
+		}
+				
+		
+        function confirmCancel() {
+            var isCancel = confirm("Are you sure you wish to cancel?");
+            if (isCancel) return true;
+            return false;
+        }
+    </script>
+</apex:page>

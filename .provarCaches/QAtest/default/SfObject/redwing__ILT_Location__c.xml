@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="redwing__ILT_Location__c.SYSTEM" deleteable="true" keyPrefix="a69" label="ILT Location" labelPlural="ILT Locations" layoutable="true" metadataLabel="ILT Location" n="redwing__ILT_Location__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="ILT Location (a69)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a69/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="ILT Location ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField length="80" n="Name" nameField="true" t="ILT Location Name"/>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField length="255" n="redwing__Address_1__c" t="Address 1"/>
+    <sfField length="255" n="redwing__Address_2__c" t="Address 2"/>
+    <sfField length="255" n="redwing__City__c" t="City"/>
+    <sfField length="255" n="redwing__Country__c" t="Country" type="picklist">
+      <picklistEntryIds>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="AD" s=""/>
+        <sfPLE id="2" n="AE" s=""/>
+        <sfPLE id="3" n="AF" s=""/>
+        <sfPLE id="4" n="AG" s=""/>
+        <sfPLE id="5" n="AI" s=""/>
+        <sfPLE id="6" n="AL" s=""/>
+        <sfPLE id="7" n="AM" s=""/>
+        <sfPLE id="8" n="AO" s=""/>
+        <sfPLE id="9" n="AQ" s=""/>
+        <sfPLE id="10" n="AR" s=""/>
+        <sfPLE id="11" n="AS" s=""/>
+        <sfPLE id="12" n="AT" s=""/>
+        <sfPLE id="13" n="AU" s=""/>
+        <sfPLE id="14" n="AW" s=""/>
+        <sfPLE id="15" n="AZ" s=""/>
+        <sfPLE id="16" n="BA" s=""/>
+        <sfPLE id="17" n="BB" s=""/>
+        <sfPLE id="18" n="BD" s=""/>
+        <sfPLE id="19" n="BE" s=""/>
+        <sfPLE id="20" n="BF" s=""/>
+        <sfPLE id="21" n="BG" s=""/>
+        <sfPLE id="22" n="BH" s=""/>
+        <sfPLE id="23" n="BI" s=""/>
+        <sfPLE id="24" n="BJ" s=""/>
+        <sfPLE id="25" n="BL" s=""/>
+        <sfPLE id="26" n="BM" s=""/>
+        <sfPLE id="27" n="BN" s=""/>
+        <sfPLE id="28" n="BO" s=""/>
+        <sfPLE id="29" n="BR" s=""/>
+        <sfPLE id="30" n="BS" s=""/>
+        <sfPLE id="31" n="BT" s=""/>
+        <sfPLE id="32" n="BV" s=""/>
+        <sfPLE id="33" n="BW" s=""/>
+        <sfPLE id="34" n="BY" s=""/>
+        <sfPLE id="35" n="BZ" s=""/>
+        <sfPLE id="36" n="CA" s=""/>
+        <sfPLE id="37" n="CC" s=""/>
+        <sfPLE id="38" n="CD" s=""/>
+        <sfPLE id="39" n="CF" s=""/>
+        <sfPLE id="40" n="CG" s=""/>
+        <sfPLE id="41" n="CH" s=""/>
+        <sfPLE id="42" n="CI" s=""/>
+        <sfPLE id="43" n="CK" s=""/>
+        <sfPLE id="44" n="CL" s=""/>
+        <sfPLE id="45" n="CM" s=""/>
+        <sfPLE id="46" n="CN" s=""/>
+        <sfPLE id="47" n="CO" s=""/>
+        <sfPLE id="48" n="CR" s=""/>
+        <sfPLE id="49" n="CU" s=""/>
+        <sfPLE id="50" n="CV" s=""/>
+        <sfPLE id="51" n="CW" s=""/>
+        <sfPLE id="52" n="CX" s=""/>
+        <sfPLE id="53" n="CY" s=""/>
+        <sfPLE id="54" n="CZ" s=""/>
+        <sfPLE id="55" n="DE" s=""/>
+        <sfPLE id="56" n="DJ" s=""/>
+        <sfPLE id="57" n="DK" s=""/>
+        <sfPLE id="58" n="DM" s=""/>
+        <sfPLE id="59" n="DO" s=""/>
+        <sfPLE id="60" n="DZ" s=""/>
+        <sfPLE id="61" n="EC" s=""/>
+        <sfPLE id="62" n="EE" s=""/>
+        <sfPLE id="63" n="EG" s=""/>
+        <sfPLE id="64" n="EH" s=""/>
+        <sfPLE id="65" n="ER" s=""/>
+        <sfPLE id="66" n="ES" s=""/>
+        <sfPLE id="67" n="ET" s=""/>
+        <sfPLE id="68" n="FI" s=""/>
+        <sfPLE id="69" n="FJ" s=""/>
+        <sfPLE id="70" n="FK" s=""/>
+        <sfPLE id="71" n="FM" s=""/>
+        <sfPLE id="72" n="FO" s=""/>
+        <sfPLE id="73" n="FR" s=""/>
+        <sfPLE id="74" n="FX" s=""/>
+        <sfPLE id="75" n="GA" s=""/>
+        <sfPLE id="76" n="GB" s=""/>
+        <sfPLE id="77" n="GD" s=""/>
+        <sfPLE id="78" n="GE" s=""/>
+        <sfPLE id="79" n="GF" s=""/>
+        <sfPLE id="80" n="GG" s=""/>
+        <sfPLE id="81" n="GH" s=""/>
+        <sfPLE id="82" n="GI" s=""/>
+        <sfPLE id="83" n="GL" s=""/>
+        <sfPLE id="84" n="GM" s=""/>
+        <sfPLE id="85" n="GN" s=""/>
+        <sfPLE id="86" n="GP" s=""/>
+        <sfPLE id="87" n="GQ" s=""/>
+        <sfPLE id="88" n="GR" s=""/>
+        <sfPLE id="89" n="GS" s=""/>
+        <sfPLE id="90" n="GT" s=""/>
+        <sfPLE id="91" n="GU" s=""/>
+        <sfPLE id="92" n="GW" s=""/>
+        <sfPLE id="93" n="GY" s=""/>
+        <sfPLE id="94" n="HK" s=""/>
+        <sfPLE id="95" n="HM" s=""/>
+        <sfPLE id="96" n="HN" s=""/>
+        <sfPLE id="97" n="HR" s=""/>
+        <sfPLE id="98" n="HT" s=""/>
+        <sfPLE id="99" n="HU" s=""/>
+        <sfPLE id="100" n="ID" s=""/>
+        <sfPLE id="101" n="IE" s=""/>
+        <sfPLE id="102" n="IL" s=""/>
+        <sfPLE id="103" n="IM" s=""/>
+        <sfPLE id="104" n="IN" s=""/>
+        <sfPLE id="105" n="IO" s=""/>
+        <sfPLE id="106" n="IQ" s=""/>
+        <sfPLE id="107" n="IR" s=""/>
+        <sfPLE id="108" n="IS" s=""/>
+        <sfPLE id="109" n="IT" s=""/>
+        <sfPLE id="110" n="JE" s=""/>
+        <sfPLE id="111" n="JM" s=""/>
+        <sfPLE id="112" n="JO" s=""/>
+        <sfPLE id="113" n="JP" s=""/>
+        <sfPLE id="114" n="KE" s=""/>
+        <sfPLE id="115" n="KG" s=""/>
+        <sfPLE id="116" n="KH" s=""/>
+        <sfPLE id="117" n="KI" s=""/>
+        <sfPLE id="118" n="KM" s=""/>
+        <sfPLE id="119" n="KN" s=""/>
+        <sfPLE id="120" n="KP" s=""/>
+        <sfPLE id="121" n="KR" s=""/>
+        <sfPLE id="122" n="KW" s=""/>
+        <sfPLE id="123" n="KY" s=""/>
+        <sfPLE id="124" n="KZ" s=""/>
+        <sfPLE id="125" n="LA" s=""/>
+        <sfPLE id="126" n="LB" s=""/>
+        <sfPLE id="127" n="LC" s=""/>
+        <sfPLE id="128" n="LI" s=""/>
+        <sfPLE id="129" n="LK" s=""/>
+        <sfPLE id="130" n="LR" s=""/>
+        <sfPLE id="131" n="LS" s=""/>
+        <sfPLE id="132" n="LT" s=""/>
+        <sfPLE id="133" n="LU" s=""/>
+        <sfPLE id="134" n="LV" s=""/>
+        <sfPLE id="135" n="LY" s=""/>
+        <sfPLE id="136" n="MA" s=""/>
+        <sfPLE id="137" n="MC" s=""/>
+        <sfPLE id="138" n="MD" s=""/>
+        <sfPLE id="139" n="ME" s=""/>
+        <sfPLE id="140" n="MF" s=""/>
+        <sfPLE id="141" n="MG" s=""/>
+        <sfPLE id="142" n="MH" s=""/>
+        <sfPLE id="143" n="MK" s=""/>
+        <sfPLE id="144" n="ML" s=""/>
+        <sfPLE id="145" n="MM" s=""/>
+        <sfPLE id="146" n="MN" s=""/>
+        <sfPLE id="147" n="MO" s=""/>
+        <sfPLE id="148" n="MP" s=""/>
+        <sfPLE id="149" n="MQ" s=""/>
+        <sfPLE id="150" n="MR" s=""/>
+        <sfPLE id="151" n="MS" s=""/>
+        <sfPLE id="152" n="MT" s=""/>
+        <sfPLE id="153" n="MU" s=""/>
+        <sfPLE id="154" n="MV" s=""/>
+        <sfPLE id="155" n="MW" s=""/>
+        <sfPLE id="156" n="MX" s=""/>
+        <sfPLE id="157" n="MY" s=""/>
+        <sfPLE id="158" n="MZ" s=""/>
+        <sfPLE id="159" n="NA" s=""/>
+        <sfPLE id="160" n="NC" s=""/>
+        <sfPLE id="161" n="NE" s=""/>
+        <sfPLE id="162" n="NF" s=""/>
+        <sfPLE id="163" n="NG" s=""/>
+        <sfPLE id="164" n="NI" s=""/>
+        <sfPLE id="165" n="NL" s=""/>
+        <sfPLE id="166" n="NO" s=""/>
+        <sfPLE id="167" n="NP" s=""/>
+        <sfPLE id="168" n="NR" s=""/>
+        <sfPLE id="169" n="NU" s=""/>
+        <sfPLE id="170" n="NZ" s=""/>
+        <sfPLE id="171" n="OM" s=""/>
+        <sfPLE id="172" n="PA" s=""/>
+        <sfPLE id="173" n="PE" s=""/>
+        <sfPLE id="174" n="PF" s=""/>
+        <sfPLE id="175" n="PG" s=""/>
+        <sfPLE id="176" n="PH" s=""/>
+        <sfPLE id="177" n="PK" s=""/>
+        <sfPLE id="178" n="PL" s=""/>
+        <sfPLE id="179" n="PM" s=""/>
+        <sfPLE id="180" n="PN" s=""/>
+        <sfPLE id="181" n="PR" s=""/>
+        <sfPLE id="182" n="PSG" s=""/>
+        <sfPLE id="183" n="PSW" s=""/>
+        <sfPLE id="184" n="PT" s=""/>
+        <sfPLE id="185" n="PW" s=""/>
+        <sfPLE id="186" n="PY" s=""/>
+        <sfPLE id="187" n="QA" s=""/>
+        <sfPLE id="188" n="RE" s=""/>
+        <sfPLE id="189" n="RO" s=""/>
+        <sfPLE id="190" n="RS" s=""/>
+        <sfPLE id="191" n="RU" s=""/>
+        <sfPLE id="192" n="RW" s=""/>
+        <sfPLE id="193" n="SA" s=""/>
+        <sfPLE id="194" n="SB" s=""/>
+        <sfPLE id="195" n="SC" s=""/>
+        <sfPLE id="196" n="SD" s=""/>
+        <sfPLE id="197" n="SE" s=""/>
+        <sfPLE id="198" n="SG" s=""/>
+        <sfPLE id="199" n="SH" s=""/>
+        <sfPLE id="200" n="SI" s=""/>
+        <sfPLE id="201" n="SJ" s=""/>
+        <sfPLE id="202" n="SK" s=""/>
+        <sfPLE id="203" n="SL" s=""/>
+        <sfPLE id="204" n="SM" s=""/>
+        <sfPLE id="205" n="SN" s=""/>
+        <sfPLE id="206" n="SO" s=""/>
+        <sfPLE id="207" n="SR" s=""/>
+        <sfPLE id="208" n="SS" s=""/>
+        <sfPLE id="209" n="ST" s=""/>
+        <sfPLE id="210" n="SV" s=""/>
+        <sfPLE id="211" n="SX" s=""/>
+        <sfPLE id="212" n="SY" s=""/>
+        <sfPLE id="213" n="SZ" s=""/>
+        <sfPLE id="214" n="TC" s=""/>
+        <sfPLE id="215" n="TD" s=""/>
+        <sfPLE id="216" n="TF" s=""/>
+        <sfPLE id="217" n="TG" s=""/>
+        <sfPLE id="218" n="TH" s=""/>
+        <sfPLE id="219" n="TJ" s=""/>
+        <sfPLE id="220" n="TK" s=""/>
+        <sfPLE id="221" n="TL" s=""/>
+        <sfPLE id="222" n="TM" s=""/>
+        <sfPLE id="223" n="TN" s=""/>
+        <sfPLE id="224" n="TO" s=""/>
+        <sfPLE id="225" n="TR" s=""/>
+        <sfPLE id="226" n="TT" s=""/>
+        <sfPLE id="227" n="TV" s=""/>
+        <sfPLE id="228" n="TW" s=""/>
+        <sfPLE id="229" n="TZ" s=""/>
+        <sfPLE id="230" n="UA" s=""/>
+        <sfPLE id="231" n="UG" s=""/>
+        <sfPLE id="232" n="UM" s=""/>
+        <sfPLE id="233" n="US" s=""/>
+        <sfPLE id="234" n="UY" s=""/>
+        <sfPLE id="235" n="UZ" s=""/>
+        <sfPLE id="236" n="VA" s=""/>
+        <sfPLE id="237" n="VC" s=""/>
+        <sfPLE id="238" n="VE" s=""/>
+        <sfPLE id="239" n="VG" s=""/>
+        <sfPLE id="240" n="VI" s=""/>
+        <sfPLE id="241" n="VN" s=""/>
+        <sfPLE id="242" n="VU" s=""/>
+        <sfPLE id="243" n="WF" s=""/>
+        <sfPLE id="244" n="WS" s=""/>
+        <sfPLE id="245" n="XK" s=""/>
+        <sfPLE id="246" n="YE" s=""/>
+        <sfPLE id="247" n="YT" s=""/>
+        <sfPLE id="248" n="ZA" s=""/>
+        <sfPLE id="249" n="ZM" s=""/>
+        <sfPLE id="250" n="ZW" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField extraTypeInfo="richtextarea" filterable="false" length="32768" n="redwing__Description__c" t="Description" type="textarea"/>
+    <sfField extraTypeInfo="richtextarea" filterable="false" length="32768" n="redwing__Directions__c" t="Directions" type="textarea"/>
+    <sfField n="redwing__Max_Seats__c" precision="18" t="Max Seats" type="_double"/>
+    <sfField length="20" n="redwing__Postal_Code__c" t="Postal Code"/>
+    <sfField controllerName="01I0V000002N5PU.00N0V000009CTTE" dependentPicklist="true" length="255" n="redwing__State__c" t="State" type="picklist">
+      <picklistEntryIds>251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="251" n="AL" s=""/>
+        <sfPLE id="252" n="AK" s=""/>
+        <sfPLE id="253" n="AZ" s=""/>
+        <sfPLE id="254" n="AR" s=""/>
+        <sfPLE id="255" n="CA" s=""/>
+        <sfPLE id="256" n="CO" s=""/>
+        <sfPLE id="257" n="CT" s=""/>
+        <sfPLE id="258" n="DE" s=""/>
+        <sfPLE id="259" n="DC" s=""/>
+        <sfPLE id="260" n="FL" s=""/>
+        <sfPLE id="261" n="GA" s=""/>
+        <sfPLE id="262" n="HI" s=""/>
+        <sfPLE id="263" n="ID" s=""/>
+        <sfPLE id="264" n="IL" s=""/>
+        <sfPLE id="265" n="IN" s=""/>
+        <sfPLE id="266" n="IA" s=""/>
+        <sfPLE id="267" n="KS" s=""/>
+        <sfPLE id="268" n="KY" s=""/>
+        <sfPLE id="269" n="LA" s=""/>
+        <sfPLE id="270" n="ME" s=""/>
+        <sfPLE id="271" n="MD" s=""/>
+        <sfPLE id="272" n="MA" s=""/>
+        <sfPLE id="273" n="MI" s=""/>
+        <sfPLE id="274" n="MN" s=""/>
+        <sfPLE id="275" n="MS" s=""/>
+        <sfPLE id="276" n="MO" s=""/>
+        <sfPLE id="277" n="MT" s=""/>
+        <sfPLE id="278" n="NE" s=""/>
+        <sfPLE id="279" n="NV" s=""/>
+        <sfPLE id="280" n="NH" s=""/>
+        <sfPLE id="281" n="NJ" s=""/>
+        <sfPLE id="282" n="NM" s=""/>
+        <sfPLE id="283" n="NY" s=""/>
+        <sfPLE id="284" n="NC" s=""/>
+        <sfPLE id="285" n="ND" s=""/>
+        <sfPLE id="286" n="OH" s=""/>
+        <sfPLE id="287" n="OK" s=""/>
+        <sfPLE id="288" n="OR" s=""/>
+        <sfPLE id="289" n="PA" s=""/>
+        <sfPLE id="290" n="RI" s=""/>
+        <sfPLE id="291" n="SC" s=""/>
+        <sfPLE id="292" n="SD" s=""/>
+        <sfPLE id="293" n="TN" s=""/>
+        <sfPLE id="294" n="TX" s=""/>
+        <sfPLE id="295" n="UT" s=""/>
+        <sfPLE id="296" n="VT" s=""/>
+        <sfPLE id="297" n="VA" s=""/>
+        <sfPLE id="298" n="WV" s=""/>
+        <sfPLE id="299" n="WI" s=""/>
+        <sfPLE id="300" n="WY" s=""/>
+        <sfPLE id="301" n="WA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="redwing__Street__c" t="Street"/>
+    <sfField editPermission="false" length="18" n="Dev_External_ID__c" t="Dev External ID"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" length="255" n="Skedulo_Address__c" t="Address" type="textarea"/>
+    <sfField editPermission="false" n="Skedulo_Is_Active__c" t="Skedulo Is Active" type="_boolean"/>
+    <sfField editPermission="false" length="18" n="Skedulo_Location_External__c" t="Skedulo Location"/>
+    <sfField editPermission="false" length="18" n="Skedulo_Location__c" relationshipLabel="ILT Locations" relationshipName="Skedulo_Location__r" t="Skedulo Location" type="reference">
+      <referenceTos>
+        <string>sked__Location__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="18" n="Skedulo_Region__c" relationshipLabel="ILT Locations" relationshipName="Skedulo_Region__r" t="Skedulo Region" type="reference">
+      <referenceTos>
+        <string>sked__Region__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Skedulo_Type__c" t="Type" type="picklist">
+      <picklistEntryIds>302,303,304,305,306,307</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="302" n="Community" s=""/>
+        <sfPLE id="303" n="Nurse Asistant Testing" s=""/>
+        <sfPLE id="304" n="Nurse Assistant Training" s=""/>
+        <sfPLE id="305" n="NAT and CEP" s=""/>
+        <sfPLE id="306" n="NAT and Community" s=""/>
+        <sfPLE id="307" n="Internal" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="18" n="Account__c" relationshipLabel="ILT Locations" relationshipName="Account__r" t="Account" type="reference">
+      <referenceTos>
+        <string>Account</string>
+      </referenceTos>
+    </sfField>
+    <sfField n="GeoLocation__Latitude__s" precision="9" scale="6" t="GeoLocation (Latitude)" type="_double"/>
+    <sfField n="GeoLocation__Longitude__s" precision="9" scale="6" t="GeoLocation (Longitude)" type="_double"/>
+    <sfField filterable="false" n="GeoLocation__c" t="GeoLocation" type="location"/>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship childName="redwing__ILT_Location__Share" field="ParentId" n="Shares" relationshipName="Shares" s="2-" t="01I0V000002N5PU.Share"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="redwing__ILT_Location__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002N5PU.History"/>
+    <sfObjectRelationship childName="ccrz__E_CartItem__c" field="CPS_Location__c" n="CC_Cart_Items__r" relationshipName="CC_Cart_Items__r" s="2-" t="01I0V000002N5N4"/>
+    <sfObjectRelationship childName="redwing__ILT_Class__c" field="redwing__Location__c" n="redwing__ILT_Classes__r" relationshipName="redwing__ILT_Classes__r" s="2-" t="01I0V000002N5PQ"/>
+    <sfObjectRelationship childName="redwing__ILT_Session__c" field="redwing__Location__c" n="redwing__ILT_Sessions__r" relationshipName="redwing__ILT_Sessions__r" s="2-" t="01I0V000002N5PW"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink modes="ObjectHome ILT_Locations__r List" n="New" target="sf:ui:target?object=redwing__ILT_Location__c&amp;page=ILTLocation"/>
+    <sfActionLink modes="View ILT_Locations__r" n="Edit" requiresRow="true" s="2" target="sf:ui:target?object=redwing__ILT_Location__c&amp;page=ILTLocation"/>
+    <sfActionLink modes="View ILT_Locations__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View ILT_Locations__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ILT_Locations__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+    <sfActionLink n="Tab" s="" t="ILT Locations Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+  </standardActions>
+  <homeListColumns>
+    <string>REDWING__ILT_LOCATION__C.NAME</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>REDWING__ILT_LOCATION__C.NAME</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>REDWING__ILT_LOCATION__C.NAME</string>
+    <string>0BC0V000001UK8B</string>
+    <string>0BC0V000001UK8C</string>
+    <string>redwing__Postal_Code__c</string>
+    <string>Skedulo_Type__c</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

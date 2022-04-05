@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="Quote" IsAvailableInAloha="true" IsAvailableInLightning="true" Label="Quotes and Addendums" Name="standard-Quote" SobjectName="Quote" Url="https://arc-phss--test.my.salesforce.com/0Q0/o"/>
+</toolingTabInfo>

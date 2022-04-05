@@ -1,0 +1,299 @@
+<apex:page controller="SSign.SSCreateRequestController" action="{!init}" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false">
+  <html>
+    <!-- START: Code shared by SSCreateRequest[1|2|3|4].page -->
+    <head>
+      <c:SSCreateRequestHead wizardStepNumber="2" />
+    </head>
+    <body>
+      <div class="loading-div background-white">
+        <div class="loading-div-content">
+          <img width="80" id="loading-div-spinner" src="{!URLFOR($Resource.SSign_Images,'lightning_spinner.gif')}" class="undraggable" unselectable="on" />
+        </div>
+      </div>
+      <c:SSCreateRequestWizard wizardStepNumber="2" />
+      <!-- END: Code shared by SSCreateRequest[1|2|3|4].page -->
+
+      <script type="text/javascript">
+        HeadUtils.Init.documentReadyFunction = function() {
+          var recipients = HeadUtils.Database.state.recipients;
+          if (recipients.length == 0) {
+            addRecipient();
+          } else {
+            for (var i = 0; i < recipients.length; i++) {
+              addRecipient(recipients[i]);
+            }
+          }
+
+          j$('#recipient-boxes-container').sortable({
+            axis : "y",
+            cursor: "move",
+            handle: ".recipient-box-handle",
+            items: "> .recipient-box",
+            tolerance: "intersect"
+          });
+          j$('#recipient-boxes-container').disableSelection();
+
+          j$( "#sortable" ).sortable();
+          j$( "#sortable" ).disableSelection();
+        };
+
+        var numRecipients = 0;
+        function addRecipient() {
+          addRecipient(false);
+        }
+
+        function addUserAsRecipient() {
+          addRecipient(null, true);
+        }
+
+        function addRecipient(dataStruct=null, isUser=false) {
+          numRecipients++;
+
+          if (dataStruct == null) {
+            var dataStruct = {
+              name : "",
+              email : "",
+              role : 'signs_via_email',
+              requirePIN : true
+            };
+          }
+          if (isUser) {
+            userInfo = getUserInfo();
+            dataStruct.name = userInfo.name;
+            dataStruct.email = userInfo.email;
+          }
+
+          var $recipientBox = HeadUtils.DataUtils.getHTMLFromDataStruct('#recipient-box--prototype', dataStruct);
+          $recipientBox.appendTo('#recipient-boxes-container');
+          
+          var $recipientNumber = HeadUtils.Prototypes.cloneFromPrototype('#recipient-number-box-container--prototype');
+          $recipientNumber.appendTo('#recipient-numbers-container');
+          HeadUtils.JQuery.findAndSetChildText($recipientNumber, '.recipient-number-text', numRecipients);
+        }
+
+        function getUserInfo() {
+          return {
+            name : "{!userName}",
+            email : "{!userEmail}"
+          }
+        }
+
+        function removeRecipient(trashImg) {
+          j$(trashImg).closest('.recipient-box').remove();
+          j$('#recipient-numbers-container').children().last().remove();
+          numRecipients--;
+        }
+      </script>
+
+      <!-- START [container]: Page 2 main contents container -->
+      <div class="container-fluid mt-5" style="width: 63%;">
+
+        <!-- START [row]: "Who will receive these documents?" row  -->
+        <div class="row">
+          <div class="col-12 pl-0 pb-4">
+            <h1 class="font-weight-bolder">Who will receive these documents?</h1>
+          </div>
+        </div>
+        <!-- END [row]: "Who will receive these documents?" row  -->
+
+        <!-- START [row]: Global settings row  -->
+        <style type="text/css">
+          .gs-clickable-box { /* gs == "Global Settings" */
+            cursor: pointer;
+            text-align: right;
+          }
+          .gs-clickable-box-icon {
+            height: 0.8em;
+            padding-bottom: 0.15em;
+          }
+        </style>
+        <div class="row">
+          <div class="col-1 text-center my-auto">
+            <input class="checkbox" type="checkbox" checked="true" disabled="true" />
+          </div>
+          <div class="col-2 pl-0">
+            <div style="margin-left:-2em;">Set signing order</div>
+          </div>
+
+          <!-- Empty spacing column -->
+          <div class="col-3"></div>
+
+          <div class="col-3">
+            <!-- Hidden for Alpha Release -->
+            <!--
+            <div class="gs-clickable-box">
+              <img class="gs-clickable-box-icon" src="{!URLFOR($Resource.SSign_Images,'icons/person.png')}" />
+              Manage Profile Assignments
+            </div>
+            -->
+          </div>
+
+          <div class="col-3">
+            <div class="gs-clickable-box" onclick="addUserAsRecipient();">
+              <img class="gs-clickable-box-icon" src="{!URLFOR($Resource.SSign_Images,'icons/plus.png')}" />
+              Add myself as a recipient
+            </div>
+          </div>
+        </div>
+        <!-- END [row]: Global settings row  -->
+
+
+        <!-- START [row]: Signer Profile row  -->
+        <style type="text/css">
+          .recipient-number-box-container {
+            height: 5em;
+            margin-bottom: 1em;
+            margin-top: 1em;
+            position: relative; /* Used for centering .recipient-number-box */
+          }
+          .recipient-number-box {
+            border-radius: 0.2em;
+            color: grey;
+            height: 1.75em;
+            text-align: center;
+            width: 1.75em;
+            /* Used for centering .recipient-number-box */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+          #recipient-box--prototype {
+            display: none;
+          }
+          #recipient-number-box-container--prototype {
+            display: none;
+          }
+          .recipient-box {
+            border-radius: 0.25em;
+            height: 5em;
+            margin-bottom: 1em;
+            margin-top: 1em;
+            width: 100%;
+          }
+          .recipient-box-div {
+            float: left;
+            position: relative;
+            height: 100%;
+          }
+          /*@media screen and (max-width: 601px) {
+            .recipient-box-div {
+              float: none;
+              position: relative;
+              height: 100%;
+            }
+          }*/
+          .recipient-box-handle {
+            cursor: move;
+          }
+          .field-input-text {
+            width: 90%;
+          }
+          .trash-icon {
+            cursor: pointer;
+            height: 1.25em;
+          }
+
+          /* Note, this is also in SSCreateRequest1.page. Add this to SSCreateRequestHead.component
+          so all pages can use it. Also add a comment explaining its usage
+          <div class="center-parent"><div class="my-main-class center-xy">Center Me</div></div>
+
+          Assume parent is 5em and my-main-class has no specified height. Then the div with class my-main-class will be as tall as its text (Center Me) and be centered within the parent div.
+          [once this is in Confluence, show image here with different background colors on divs illustrating this]
+
+          Note that sometimes you can get away with not specifying position: relative; in the parent. For example, in Bootstrap, you can just do:
+
+          <div class="col"><div class="my-main-class center-xy">Center Me</div></div> */
+          .center-parent {
+            position: relative;
+          }
+          .center-xy {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+          .center-x {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0%);
+          }
+          .center-y {
+            position: absolute;
+            top: 50%;
+            transform: translate(0%, -50%);
+          }
+        </style>
+        <div class="row">
+          <div class="col-1">
+            <div id="recipient-numbers-container">
+
+            </div>
+          </div>
+          <div class="col-11">
+            <div id="recipient-boxes-container">
+
+            </div>
+          </div>
+        </div>
+        <!-- END [row]: Signer Profile row  -->
+
+        <!-- START: Recipient Number Prototype (hidden via display:none;)  -->
+        <div id="recipient-number-box-container--prototype" class="recipient-number-box-container">
+          <div class="recipient-number-box center-xy white-block">
+            <div class="recipient-number-text"></div>
+          </div>
+        </div>
+        <!-- END: Recipient Number Prototype (hidden via display:none;)  -->
+
+        <!-- START: Recipient Box Prototype (hidden via display:none;)  -->
+        <div id="recipient-box--prototype" class="white-block py-2 px-0" listName="HeadUtils.Database.state.recipients">
+          <div class="recipient-box-div recipient-box-handle text-center py-4" style="width: 7%;">
+            <img src="{!URLFOR($Resource.SSign_Images,'icons/drag.png')}" width="16" />
+          </div>
+          <div class="recipient-box-div" style="width: 24%;">
+            <div class="field-label">Name</div>
+            <input variableName="name" class="field-input-text" type="text" />
+          </div>
+          <div class="recipient-box-div" style="width: 24%;">
+            <div class="field-label">Email</div>
+            <input variableName="email" class="field-input-text" type="text" />
+          </div>
+          <div class="recipient-box-div" style="width: 24%;">
+            <div class="field-label">Role</div>
+            <select variableName="role" class="field-input-text">
+              <option value="signs_via_email">Signs via Email</option>
+              <option value="signs_in_person">Signs in Person</option>
+            </select>
+          </div>
+          <div class="recipient-box-div" style="width: 12%;">
+            <div class="field-label">Require PIN</div>
+            <input variableName="requirePIN" variableType="boolean" class="checkbox mt-1" type="checkbox" checked="true" />
+          </div>
+          <div class="recipient-box-div py-4" style="width: 9%;">
+            <img class="trash-icon center-xy" onclick="removeRecipient(this);" src="{!URLFOR($Resource.SSign_Images,'icons/trash.png')}" />
+          </div>
+        </div>
+        <!-- END: Recipient Box Prototype (hidden via display:none;)  -->
+
+
+        <!-- START [row]: Add Recipient row  -->
+        <div class="row">
+
+          <!-- Empty spacing column -->
+          <div class="col-1"></div>
+
+          <div class="col-11">
+            <button id="add-recipient-btn" onclick="addRecipient();" class="bg-secondary text-white text-center py-2 w-100" style="cursor: pointer;">
+              Add a recipient
+            </button>
+          </div>
+
+        </div>
+        <!-- END [row]: Add Recipient row  -->
+
+      </div>
+      <!-- END [container]: Page 2 main contents container -->
+    </body>
+  </html>
+</apex:page>

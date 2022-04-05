@@ -1,0 +1,46 @@
+<!--
+//
+//  Created by CloudCraze, LLC.
+//  Copyright 2017 CloudCraze, LLC. All rights reserved.
+//
+//  Redistribution and use in source or binary forms, with or without
+//  modification is PROHIBITED.
+//
+//
+-->
+<apex:page contentType="text/xml" id="CCCatSiteMap" controller="ccrz.cc_ctrl_CatSiteMap" readOnly="true">
+	<!-- @escapefalse-->
+	<!-- We escape false here because this merge field must generate XML declaration -->
+	<!-- Note that those script tags are not created from any user input but are constructed via the code        -->
+	<apex:outputText escape="false" value="{!declarationXml}"/>
+	<urlset
+			xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+			http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+		<url>
+			<apex:outputText rendered="{!(useFurls)}">
+				<loc>{!baseURL}{!catData.friendlyUrl} </loc>
+			</apex:outputText>
+			<apex:outputText rendered="{!AND(NOT(useFurls), useNewProductListPage)}">
+				<loc>{!baseURL}{!$Page.ccrz__ProductList}?categoryId={!HTMLENCODE(catData.categoryId)} </loc>
+			</apex:outputText>
+			<apex:outputText rendered="{!AND(NOT(useFurls), NOT(useNewProductListPage))}">
+				<loc>{!baseURL}{!$Page.ccrz__Products}?categoryId={!HTMLENCODE(catData.categoryId)} </loc>
+			</apex:outputText>
+			<lastmod>{!catData.lastModDate}</lastmod>
+		</url>
+		<apex:repeat var="prod" value="{!prodData}" >
+			<url>
+				<apex:outputText rendered="{!(useFurls)}">
+					<loc>{!baseURL}{!prod.friendlyUrl} </loc>
+				</apex:outputText>
+				<apex:outputText rendered="{!NOT(useFurls)}">
+					<loc>{!baseURL}{!$Page.ccrz__ProductDetails}?sku={!HTMLENCODE(prod.sku)} </loc>
+				</apex:outputText>
+				<lastmod>{!prod.lastModDate}</lastmod>
+			</url>
+		</apex:repeat>
+	</urlset>
+
+</apex:page>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="WebCart" IsAvailableInAloha="true" IsAvailableInLightning="true" Label="Carts" Name="standard-WebCart" SobjectName="WebCart" Url="https://arc-phss--test.my.salesforce.com/0a6/o"/>
+</toolingTabInfo>

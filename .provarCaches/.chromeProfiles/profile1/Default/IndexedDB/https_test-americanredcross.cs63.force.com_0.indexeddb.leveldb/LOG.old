@@ -1,0 +1,6 @@
+2021/12/29-19:59:51.732 2388 Reusing MANIFEST C:\Users\Administrator\Provar\Workspace1\Testproject\.provarCaches\.chromeProfiles\profile1\Default\IndexedDB\https_test-americanredcross.cs63.force.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/12/29-19:59:51.732 2388 Recovering log #40
+2021/12/29-19:59:51.741 2388 Reusing old log C:\Users\Administrator\Provar\Workspace1\Testproject\.provarCaches\.chromeProfiles\profile1\Default\IndexedDB\https_test-americanredcross.cs63.force.com_0.indexeddb.leveldb/000040.log 
+2021/12/29-19:59:53.355 15b0 Level-0 table #46: started
+2021/12/29-19:59:53.379 15b0 Level-0 table #46: 3051217 bytes OK
+2021/12/29-19:59:53.382 15b0 Delete type=0 #40

@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" defaultCompactLayoutId="ccrz__E_Product__c.SYSTEM" defaultFlexipageId="PHSS_CC_Product_Record_Page" deleteable="true" keyPrefix="a4o" label="CC Product" labelPlural="CC Products" layoutable="true" metadataLabel="CC Product" n="ccrz__E_Product__c" queryable="true" retrieveable="true" s="" searchLayoutable="true" t="CC Product (a4o)" updatable="true" urlDetail="/{ID}" urlEdit="/{ID}/e" urlNew="/a4o/e">
+  <fields>
+    <sfField createable="false" editPermission="false" length="18" n="Id" t="CC Product ID" type="id" updateable="false"/>
+    <sfField internalLabel="Owner ID" length="18" n="OwnerId" relationshipName="Owner" t="Owner" type="reference">
+      <referenceTos>
+        <string>Group</string>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="IsDeleted" t="Deleted" type="_boolean" updateable="false"/>
+    <sfField length="80" n="Name" nameField="true" t="Product Name"/>
+    <sfField length="18" n="RecordTypeId" relationshipName="RecordType" t="Record Type" type="reference">
+      <referenceTos>
+        <string>RecordType</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="CreatedDate" t="Created Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="CreatedById" relationshipName="CreatedBy" t="Created By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="LastModifiedDate" t="Last Modified Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" length="18" n="LastModifiedById" relationshipName="LastModifiedBy" t="Last Modified By" type="reference" updateable="false">
+      <referenceTos>
+        <string>User</string>
+      </referenceTos>
+    </sfField>
+    <sfField createable="false" editPermission="false" n="SystemModstamp" t="System Modstamp" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastActivityDate" t="Last Activity" type="date" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastViewedDate" t="Last Viewed Date" type="datetime" updateable="false"/>
+    <sfField createable="false" editPermission="false" n="LastReferencedDate" t="Last Referenced Date" type="datetime" updateable="false"/>
+    <sfField editPermission="false" length="255" n="ccrz__AlternateName__c" t="Alternate Name"/>
+    <sfField editPermission="false" extraTypeInfo="richtextarea" filterable="false" length="256" n="ccrz__AvailabilityMessageRT__c" t="Availability Message RT" type="textarea"/>
+    <sfField editPermission="false" length="85" n="ccrz__AvailabilityMessage__c" t="Availability Message"/>
+    <sfField editPermission="false" length="4099" n="ccrz__Available_Subscription_Frequencies__c" precision="10" readPermission="false" t="Available Subscription Frequencies" type="multipicklist">
+      <picklistEntryIds>1,2,3,4,5,6,7,8</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="1" n="0" s=""/>
+        <sfPLE id="2" n="7" s=""/>
+        <sfPLE id="3" n="14" s=""/>
+        <sfPLE id="4" n="30" s=""/>
+        <sfPLE id="5" n="60" s=""/>
+        <sfPLE id="6" n="90" s=""/>
+        <sfPLE id="7" n="180" s=""/>
+        <sfPLE id="8" n="365" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="IF(ccrz__NumberOfReviews__c &gt; 0, ccrz__TotalRating__c / ccrz__NumberOfReviews__c, 0)" formulaTreatBlanksAs="BlankAsZero" n="ccrz__AverageRating__c" precision="18" readPermission="false" scale="2" t="Average Rating" type="_double" updateable="false"/>
+    <sfField editPermission="false" n="ccrz__CoolerpakFlag__c" t="Coolerpak Flag" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__DryiceFlag__c" t="Dryice Flag" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__DryiceWeight__c" precision="12" scale="2" t="Dryice Weight" type="_double"/>
+    <sfField editPermission="false" length="255" n="ccrz__Employment_Level__c" t="Employment Level" type="picklist">
+      <picklistEntryIds>9,10,11,12,13,14</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="9" n="Staff/Union Member" s=""/>
+        <sfPLE id="10" n="Foreman" s=""/>
+        <sfPLE id="11" n="Manager" s=""/>
+        <sfPLE id="12" n="Director" s=""/>
+        <sfPLE id="13" n="Executive" s=""/>
+        <sfPLE id="14" n="Owner" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="ccrz__EndDate__c" readPermission="false" t="End Date" type="date"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="32768" n="ccrz__FilterData__c" t="Filter Data" type="textarea"/>
+    <sfField editPermission="false" n="ccrz__GroundFlag__c" t="Ground Flag" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__HazardousFlag__c" t="Hazardous Flag" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__HazardousOutside48Flag__c" t="Hazardous Outside48 Flag" type="_boolean"/>
+    <sfField editPermission="false" length="255" n="ccrz__Industry__c" t="Industry" type="picklist">
+      <picklistEntryIds>15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="15" n="Aerospace" s=""/>
+        <sfPLE id="16" n="Aquatics" s=""/>
+        <sfPLE id="17" n="Chemical" s=""/>
+        <sfPLE id="18" n="Construction" s=""/>
+        <sfPLE id="19" n="DOD" s=""/>
+        <sfPLE id="20" n="DOE" s=""/>
+        <sfPLE id="21" n="Electric Utility" s=""/>
+        <sfPLE id="22" n="Energy" s=""/>
+        <sfPLE id="23" n="Engineering" s=""/>
+        <sfPLE id="24" n="Fitness" s=""/>
+        <sfPLE id="25" n="Government" s=""/>
+        <sfPLE id="26" n="Health Services / Health Care" s=""/>
+        <sfPLE id="27" n="Hydro Energy" s=""/>
+        <sfPLE id="28" n="Manufacturing" s=""/>
+        <sfPLE id="29" n="Maritime" s=""/>
+        <sfPLE id="30" n="Mining" s=""/>
+        <sfPLE id="31" n="Nuclear Energy" s=""/>
+        <sfPLE id="32" n="Oil &amp; Gas" s=""/>
+        <sfPLE id="33" n="Other" s=""/>
+        <sfPLE id="34" n="Pulp &amp; Paper" s=""/>
+        <sfPLE id="35" n="Railroad" s=""/>
+        <sfPLE id="36" n="Recreation" s=""/>
+        <sfPLE id="37" n="Shipbuilding" s=""/>
+        <sfPLE id="38" n="Telecommunication" s=""/>
+        <sfPLE id="39" n="Transportation" s=""/>
+        <sfPLE id="40" n="Utilities" s=""/>
+        <sfPLE id="41" n="Wind Energy" s=""/>
+        <sfPLE id="42" n="Workplace" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="ccrz__InventoryType__c" t="InventoryType" type="picklist">
+      <picklistEntryIds>43,44,45,46,47</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="43" n="COURSE" s=""/>
+        <sfPLE id="44" n="COMMUNITY" s=""/>
+        <sfPLE defaultValue="true" id="45" n="STANDARD" s=""/>
+        <sfPLE id="46" n="FEE" s=""/>
+        <sfPLE id="47" n="NA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="ccrz__Is_Subscription_Auto_Renewal__c" t="Is Subscription Auto Renewal" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__Is_Subscription_Available__c" t="Is Subscription Available" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__Is_Subscription_Only__c" t="Is Subscription Only" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__LeadTime__c" precision="18" t="Lead Time" type="_double"/>
+    <sfField editPermission="false" extraTypeInfo="richtextarea" filterable="false" length="5000" n="ccrz__LongDescRT__c" t="LongDescRT" type="textarea"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="5000" n="ccrz__LongDesc__c" t="LongDesc" type="textarea"/>
+    <sfField editPermission="false" n="ccrz__OvernightFlag__c" t="Overnight Flag" type="_boolean"/>
+    <sfField editPermission="false" length="18" n="ccrz__ParentProduct__c" relationshipName="ccrz__ParentProduct__r" t="Parent Product" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Product__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" formula="HYPERLINK(&quot;/apex/ccrz__ProductDetails?viewState=DetailView&amp;prev=errdlog&amp;sku=&quot; + ccrz__SKU__c, &quot;Product Detail View&quot;)" length="1300" n="ccrz__PortalSiteURL__c" t="View In Portal Site" updateable="false"/>
+    <sfField editPermission="false" length="18" n="ccrz__PrimaryAttr__c" relationshipLabel="CC Products" relationshipName="ccrz__PrimaryAttr__r" t="Primary Attribute" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Attribute__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="128" n="ccrz__ProductId__c" t="Product Id"/>
+    <sfField editPermission="false" length="255" n="ccrz__ProductStatus__c" t="Product Status" type="picklist">
+      <picklistEntryIds>48,49,50,51</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="48" n="Blocked" s=""/>
+        <sfPLE id="49" n="Not Orderable" s=""/>
+        <sfPLE id="50" n="Released" s=""/>
+        <sfPLE defaultValue="true" id="51" n="In Creation" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="ccrz__ProductType__c" t="Product Type" type="picklist">
+      <picklistEntryIds>52,53,54,55,56,57,58,59,60,61,62,63</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="52" n="Coupon" s=""/>
+        <sfPLE defaultValue="true" id="53" n="Product" s=""/>
+        <sfPLE id="54" n="Plan" s=""/>
+        <sfPLE id="55" n="PlanOptions" s=""/>
+        <sfPLE id="56" n="Accessories" s=""/>
+        <sfPLE id="57" n="Bundle" s=""/>
+        <sfPLE id="58" n="Kit" s=""/>
+        <sfPLE id="59" n="Aggregated" s=""/>
+        <sfPLE id="60" n="Assembly" s=""/>
+        <sfPLE id="61" n="Training" s=""/>
+        <sfPLE id="62" n="Configurable" s=""/>
+        <sfPLE id="63" n="Dynamic Kit" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="ccrz__ProductWeight__c" precision="12" scale="2" t="Product Weight" type="_double"/>
+    <sfField editPermission="false" n="ccrz__Quantityperunit__c" precision="18" readPermission="false" scale="6" t="Quantityperunit" type="_double"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="2000" n="ccrz__RequiredItemDialogText__c" t="Required Item Dialog Text" type="textarea"/>
+    <sfField editPermission="false" n="ccrz__ReviewFlag__c" t="Review Flag" type="_boolean"/>
+    <sfField editPermission="false" length="200" n="ccrz__SEODescription__c" t="SEO Description"/>
+    <sfField editPermission="false" length="255" n="ccrz__SEOId__c" t="SEO Id"/>
+    <sfField editPermission="false" length="150" n="ccrz__SEOKeywords__c" t="SEO Keywords"/>
+    <sfField editPermission="false" length="100" n="ccrz__SEOTitle__c" t="SEO Title"/>
+    <sfField length="100" n="ccrz__SKU__c" required="true" t="SKU"/>
+    <sfField editPermission="false" length="18" n="ccrz__SecondaryAttr__c" relationshipLabel="CC Products (Secondary Attribute)" relationshipName="ccrz__SecondaryAttr__r" t="Secondary Attribute" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Attribute__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" n="ccrz__Sequence__c" precision="8" readPermission="false" t="Sequence" type="_double"/>
+    <sfField editPermission="false" n="ccrz__ServiceFlag__c" t="Service Flag" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__ShipSeparately__c" t="Ship Separately" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__ShippedIndividually__c" t="Shipped Individually" type="_boolean"/>
+    <sfField editPermission="false" n="ccrz__ShippingWeight__c" precision="12" scale="2" t="Shipping Weight(lbs)" type="_double"/>
+    <sfField editPermission="false" extraTypeInfo="richtextarea" filterable="false" length="2000" n="ccrz__ShortDescRT__c" t="ShortDescRT" type="textarea"/>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="2000" n="ccrz__ShortDesc__c" t="ShortDesc" type="textarea"/>
+    <sfField editPermission="false" n="ccrz__StartDate__c" readPermission="false" t="Start Date" type="date"/>
+    <sfField editPermission="false" length="4099" n="ccrz__Storefront__c" precision="3" t="Storefront" type="multipicklist">
+      <picklistEntryIds>64,65,66,67</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="64" n="DefaultStore" s=""/>
+        <sfPLE defaultValue="true" id="65" n="GeneralStore" s=""/>
+        <sfPLE id="66" n="CREStore" s=""/>
+        <sfPLE id="67" n="CPS" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" extraTypeInfo="plaintextarea" filterable="false" length="32768" n="ccrz__Subscription_Disclaimer__c" readPermission="false" t="Subscription Disclaimer" type="textarea"/>
+    <sfField editPermission="false" n="ccrz__Subscription_Duration__c" precision="18" readPermission="false" t="Subscription Duration" type="_double"/>
+    <sfField editPermission="false" n="ccrz__Subscription_Frequency__c" precision="4" readPermission="false" t="Subscription Frequency" type="_double"/>
+    <sfField editPermission="false" length="18" n="ccrz__SupersedeProduct__c" readPermission="false" relationshipName="ccrz__SupersedeProduct__r" t="Supersede Product" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Product__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="128" n="ccrz__TaxRateId__c" t="Tax Rate Id"/>
+    <sfField editPermission="false" n="ccrz__Taxable__c" t="Taxable" type="_boolean"/>
+    <sfField editPermission="false" length="18" n="ccrz__TertiaryAttr__c" readPermission="false" relationshipLabel="CC Products (Tertiary Attribute)" relationshipName="ccrz__TertiaryAttr__r" t="Tertiary Attribute" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Attribute__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="255" n="ccrz__UnitOfMeasureLabel__c" t="Unit Of Measure Label"/>
+    <sfField editPermission="false" length="255" n="ccrz__UnitOfMeasure__c" t="Unit of Measure" type="picklist">
+      <picklistEntryIds>68,69,70,71</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="68" n="Each" s=""/>
+        <sfPLE id="69" n="Student" s=""/>
+        <sfPLE id="70" n="Class" s=""/>
+        <sfPLE id="71" n="Instructor" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField calculated="true" createable="false" editPermission="false" n="ccrz__NumberOfReviews__c" precision="18" summaryForeignKey="ccrz__E_Review__c.ccrz__Product__c" summaryOperation="count" t="Number Of Reviews" type="_double" updateable="false"/>
+    <sfField calculated="true" createable="false" editPermission="false" n="ccrz__TotalRating__c" precision="18" scale="2" summarizedField="ccrz__E_Review__c.ccrz__Rating__c" summaryForeignKey="ccrz__E_Review__c.ccrz__Product__c" summaryOperation="sum" t="Total Rating" type="_double" updateable="false"/>
+    <sfField editPermission="false" length="255" n="ccrz__ProductIndexStatus__c" t="Product Index Status"/>
+    <sfField editPermission="false" length="255" n="AP_Code__c" t="AP Code" type="picklist">
+      <picklistEntryIds>72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="72" n="6126" s=""/>
+        <sfPLE id="73" n="6200" s=""/>
+        <sfPLE id="74" n="6210" s=""/>
+        <sfPLE id="75" n="6220" s=""/>
+        <sfPLE id="76" n="6225" s=""/>
+        <sfPLE id="77" n="6230" s=""/>
+        <sfPLE id="78" n="6231" s=""/>
+        <sfPLE id="79" n="6232" s=""/>
+        <sfPLE id="80" n="6233" s=""/>
+        <sfPLE id="81" n="6234" s=""/>
+        <sfPLE id="82" n="6235" s=""/>
+        <sfPLE id="83" n="6240" s=""/>
+        <sfPLE id="84" n="6242" s=""/>
+        <sfPLE id="85" n="6243" s=""/>
+        <sfPLE id="86" n="6244" s=""/>
+        <sfPLE id="87" n="6251" s=""/>
+        <sfPLE id="88" n="6901" s=""/>
+        <sfPLE id="89" n="6903" s=""/>
+        <sfPLE id="90" n="6904" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="AvailabilityOutofStock__c" precision="10" t="AvailabilityOutofStock" type="_double"/>
+    <sfField editPermission="false" length="255" n="BackOrderable__c" restrictedPicklist="true" t="BackOrderable" type="picklist">
+      <picklistEntryIds>91,92</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="91" n="Yes" s=""/>
+        <sfPLE id="92" n="No" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="Bulk_Order_Threshold__c" precision="5" readPermission="false" t="Bulk Order Threshold" type="_double"/>
+    <sfField editPermission="false" length="18" n="CC_Category__c" relationshipLabel="CC Products" relationshipName="CC_Category__r" t="CC Category" type="reference">
+      <referenceTos>
+        <string>ccrz__E_Category__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="18" n="Course_Catalog__c" relationshipLabel="CC Products" relationshipName="Course_Catalog__r" t="Scheduling Details" type="reference">
+      <referenceTos>
+        <string>Course_Catalog__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Distributor_Only_Product__c" restrictedPicklist="true" t="Distributor Only Product" type="picklist">
+      <picklistEntryIds>93,94,95</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="93" n="Yes" s=""/>
+        <sfPLE defaultValue="true" id="94" n="No" s=""/>
+        <sfPLE id="95" n="None" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Drop_Ship_Vendor__c" restrictedPicklist="true" t="Drop Ship Vendor" type="picklist">
+      <picklistEntryIds>96,97,98,99,100,101,102,103,104,105,106,107</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="96" n="Acme" s=""/>
+        <sfPLE id="97" n="Inkwell" s=""/>
+        <sfPLE id="98" n="Tender" s=""/>
+        <sfPLE id="99" n="Phillips" s=""/>
+        <sfPLE id="100" n="Heartsine" s=""/>
+        <sfPLE id="101" n="Zoll" s=""/>
+        <sfPLE id="102" n="acme (ACME)" s=""/>
+        <sfPLE id="103" n="heartsine (HEARTSINE)" s=""/>
+        <sfPLE id="104" n="inkwell (INKWELL)" s=""/>
+        <sfPLE id="105" n="philips (PHILIPS)" s=""/>
+        <sfPLE id="106" n="tender (TENDER)" s=""/>
+        <sfPLE id="107" n="zoll (ZOLL)" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="FCC__c" restrictedPicklist="true" t="FCC" type="picklist">
+      <picklistEntryIds>108,109,110</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="108" n="32620" s=""/>
+        <sfPLE id="109" n="32750" s=""/>
+        <sfPLE id="110" n="32050" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Is_Digital__c" restrictedPicklist="true" t="Is Digital" type="picklist">
+      <picklistEntryIds>111,112</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="111" n="Yes" s=""/>
+        <sfPLE id="112" n="No" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="18" n="LMS_Learning_Plan__c" relationshipLabel="CC Products" relationshipName="LMS_Learning_Plan__r" t="LMS Learning Plan" type="reference">
+      <referenceTos>
+        <string>redwing__Training_Plan__c</string>
+      </referenceTos>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Lot_Process__c" t="Lot Process" type="picklist">
+      <picklistEntryIds>113,114</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="113" n="No" s=""/>
+        <sfPLE id="114" n="Yes" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="18" n="Manufacturer_Product_ID__c" t="Manufacturer Product ID"/>
+    <sfField editPermission="false" n="MaxOrderQuantity__c" precision="10" t="Max Order Quantity" type="_double"/>
+    <sfField editPermission="false" length="255" n="OMSProductName__c" t="OMSProductName"/>
+    <sfField editPermission="false" length="255" n="OMS_Grouping_Category__c" t="OMS Grouping Category"/>
+    <sfField editPermission="false" length="255" n="Product_1__c" restrictedPicklist="true" t="Product 1" type="picklist">
+      <picklistEntryIds>115,116,117,118,119,120,121,122</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="115" n="Aquatics" s=""/>
+        <sfPLE id="116" n="BST" s=""/>
+        <sfPLE id="117" n="Healthcare Programs" s=""/>
+        <sfPLE id="118" n="NAT" s=""/>
+        <sfPLE id="119" n="Workplace Safety" s=""/>
+        <sfPLE id="120" n="Other" s=""/>
+        <sfPLE id="121" n="CEP" s=""/>
+        <sfPLE id="122" n="Caregiving" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Product_2__c" restrictedPicklist="true" t="Product 2" type="picklist">
+      <picklistEntryIds>123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="123" n="Aquatics-Other" s=""/>
+        <sfPLE id="124" n="BST" s=""/>
+        <sfPLE id="125" n="Caregiving-Other" s=""/>
+        <sfPLE id="126" n="CPro Aquatics" s=""/>
+        <sfPLE id="127" n="Healthcare &amp; Public Safety" s=""/>
+        <sfPLE id="128" n="LG" s=""/>
+        <sfPLE id="129" n="LTS" s=""/>
+        <sfPLE id="130" n="NAT" s=""/>
+        <sfPLE id="131" n="Other" s=""/>
+        <sfPLE id="132" n="Workplace Safety" s=""/>
+        <sfPLE id="133" n="Accelerated" s=""/>
+        <sfPLE id="134" n="BL" s=""/>
+        <sfPLE id="135" n="BLS" s=""/>
+        <sfPLE id="136" n="BLS BL" s=""/>
+        <sfPLE id="137" n="CEU" s=""/>
+        <sfPLE id="138" n="FA/CPR/AED" s=""/>
+        <sfPLE id="139" n="Fees" s=""/>
+        <sfPLE id="140" n="Grant" s=""/>
+        <sfPLE id="141" n="Information" s=""/>
+        <sfPLE id="142" n="Instructor" s=""/>
+        <sfPLE id="143" n="PCT" s=""/>
+        <sfPLE id="144" n="Retest-Oral" s=""/>
+        <sfPLE id="145" n="Retest-Skills" s=""/>
+        <sfPLE id="146" n="Retest-Written" s=""/>
+        <sfPLE id="147" n="Test Prep" s=""/>
+        <sfPLE id="148" n="Test-Skills and Oral" s=""/>
+        <sfPLE id="149" n="Test-Skills and Written" s=""/>
+        <sfPLE id="150" n="AEO" s=""/>
+        <sfPLE id="151" n="AES" s=""/>
+        <sfPLE id="152" n="ALS" s=""/>
+        <sfPLE id="153" n="BBP" s=""/>
+        <sfPLE id="154" n="CEP" s=""/>
+        <sfPLE id="155" n="EMR" s=""/>
+        <sfPLE id="156" n="PALS" s=""/>
+        <sfPLE id="157" n="RTE" s=""/>
+        <sfPLE id="158" n="Spanish FA/CPR/AED" s=""/>
+        <sfPLE id="159" n="WP Other" s=""/>
+        <sfPLE id="160" n="WRFA" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Product_3__c" restrictedPicklist="true" t="Product 3" type="picklist">
+      <picklistEntryIds>161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="161" n="AEO" s=""/>
+        <sfPLE id="162" n="AQ Other" s=""/>
+        <sfPLE id="163" n="BBP" s=""/>
+        <sfPLE id="164" n="BLS" s=""/>
+        <sfPLE id="165" n="BST" s=""/>
+        <sfPLE id="166" n="CG Other" s=""/>
+        <sfPLE id="167" n="CPRO" s=""/>
+        <sfPLE id="168" n="EMR" s=""/>
+        <sfPLE id="169" n="FA/CPR/AED" s=""/>
+        <sfPLE id="170" n="LG" s=""/>
+        <sfPLE id="171" n="LTS" s=""/>
+        <sfPLE id="172" n="NAT" s=""/>
+        <sfPLE id="173" n="Other" s=""/>
+        <sfPLE id="174" n="RTE" s=""/>
+        <sfPLE id="175" n="Spanish FA/CPR/AED" s=""/>
+        <sfPLE id="176" n="WP Other" s=""/>
+        <sfPLE id="177" n="WRFA" s=""/>
+        <sfPLE id="178" n="FA/CPR - Lay Classic" s=""/>
+        <sfPLE id="179" n="FA/CPR - Lay Other" s=""/>
+        <sfPLE id="180" n="Aquatic Examiner Service" s=""/>
+        <sfPLE id="181" n="AES" s=""/>
+        <sfPLE id="182" n="ALS" s=""/>
+        <sfPLE id="183" n="AP/LTP" s=""/>
+        <sfPLE id="184" n="Application" s=""/>
+        <sfPLE id="185" n="BWR" s=""/>
+        <sfPLE id="186" n="Cancellation" s=""/>
+        <sfPLE id="187" n="Caregiving-Other" s=""/>
+        <sfPLE id="188" n="Certificate" s=""/>
+        <sfPLE id="189" n="Com" s=""/>
+        <sfPLE id="190" n="Course Licensing" s=""/>
+        <sfPLE id="191" n="CPS" s=""/>
+        <sfPLE id="192" n="Delivery" s=""/>
+        <sfPLE id="193" n="FAPSP" s=""/>
+        <sfPLE id="194" n="FS" s=""/>
+        <sfPLE id="195" n="Grant" s=""/>
+        <sfPLE id="196" n="Minimum" s=""/>
+        <sfPLE id="197" n="Online" s=""/>
+        <sfPLE id="198" n="Reschedule" s=""/>
+        <sfPLE id="199" n="Student" s=""/>
+        <sfPLE id="200" n="Support" s=""/>
+        <sfPLE id="201" n="WSI" s=""/>
+        <sfPLE id="202" n="Fee" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" n="Product_Cost__c" precision="18" scale="2" t="Product Cost" type="currency"/>
+    <sfField editPermission="false" length="255" n="Ratio_to_Instructor__c" t="Instructor:Student Ratio"/>
+    <sfField editPermission="false" length="255" n="Shelf_Life__c" t="Shelf Life"/>
+    <sfField editPermission="false" length="255" n="Shipping_Condition__c" t="Shipping Condition" type="picklist">
+      <picklistEntryIds>203,204,205</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="203" n="ORMD" s=""/>
+        <sfPLE id="204" n="Hazmat" s=""/>
+        <sfPLE id="205" n="Fragile" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="255" n="Stocking_Code__c" restrictedPicklist="true" t="Stocking Code" type="picklist">
+      <picklistEntryIds>206,207,208,209,210,211,212</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="206" n="None" s=""/>
+        <sfPLE id="207" n="Stock" s=""/>
+        <sfPLE id="208" n="UseUP" s=""/>
+        <sfPLE id="209" n="Obsolete" s=""/>
+        <sfPLE id="210" n="obsolete (Obsolete)" s=""/>
+        <sfPLE id="211" n="stock (Stock)" s=""/>
+        <sfPLE id="212" n="useup (UseUP)" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="12" n="Tariff_Code__c" t="Tariff Code"/>
+    <sfField editPermission="false" length="255" n="Tax_Class__c" restrictedPicklist="true" t="Tax Class" type="picklist">
+      <picklistEntryIds>213,214,215,216,217,218,219,220,221,222,223,224,225</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE defaultValue="true" id="213" n="undefined" s=""/>
+        <sfPLE id="214" n="E" s=""/>
+        <sfPLE id="215" n="baseTax" s=""/>
+        <sfPLE id="216" n="CANCELLED" s=""/>
+        <sfPLE id="217" n="CONTINUING ED" s=""/>
+        <sfPLE id="218" n="COURSE POSTING" s=""/>
+        <sfPLE id="219" n="COURSE W PRODUCT" s=""/>
+        <sfPLE id="220" n="DELIVERY" s=""/>
+        <sfPLE id="221" n="FULL SERVICE" s=""/>
+        <sfPLE id="222" n="NONTAXABLE" s=""/>
+        <sfPLE id="223" n="ONLINE" s=""/>
+        <sfPLE id="224" n="SHIPPING" s=""/>
+        <sfPLE id="225" n="CONSULTING" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField editPermission="false" length="18" n="Tdev1id__c" readPermission="false" t="Tdev1id"/>
+    <sfField editPermission="false" length="255" n="WareHousePkgInstructions__c" restrictedPicklist="true" t="WareHousePkgInstructions" type="picklist">
+      <picklistEntryIds>226,227</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="226" n="001" s=""/>
+        <sfPLE id="227" n="002" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField n="Non_Fee__c" t="Non-Fee" type="_boolean"/>
+    <sfField editPermission="false" n="Retail_Price__c" precision="18" scale="2" t="Retail Price" type="currency"/>
+    <sfField n="Online_For_BL__c" t="Online For BL" type="_boolean"/>
+    <sfField n="cancellation_fee_flag__c" t="Cancellation Fee Flag" type="_boolean"/>
+    <sfField length="255" n="channel__c" t="Channel" type="picklist">
+      <picklistEntryIds>228,229,230,231,232</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="228" n="AP" s=""/>
+        <sfPLE id="229" n="COM" s=""/>
+        <sfPLE id="230" n="CPS" s=""/>
+        <sfPLE id="231" n="FS" s=""/>
+        <sfPLE id="232" n="General" s=""/>
+      </picklistEntries>
+    </sfField>
+    <sfField length="255" n="psc__c" t="PSC" type="picklist">
+      <picklistEntryIds>233,234,235,236,237</picklistEntryIds>
+      <picklistEntries>
+        <sfPLE id="233" n="40" s=""/>
+        <sfPLE id="234" n="42" s=""/>
+        <sfPLE id="235" n="43" s=""/>
+        <sfPLE id="236" n="45" s=""/>
+        <sfPLE id="237" n="46" s=""/>
+      </picklistEntries>
+    </sfField>
+  </fields>
+  <childRelationships>
+    <sfObjectRelationship alias="RelatedActivityAttachmentList" childName="Attachment" field="ParentId" n="Attachments" relationshipName="Attachments" s="2-" t="Attachment"/>
+    <sfObjectRelationship childName="ContentDocumentLink" field="LinkedEntityId" n="ContentDocumentLinks" relationshipName="ContentDocumentLinks" s="2-" t="ContentDocumentLink"/>
+    <sfObjectRelationship alias="RelatedFileList" childName="AttachedContentDocument" field="LinkedEntityId" n="AttachedContentDocuments" relationshipName="AttachedContentDocuments" s="2-" t="AttachedContentDocument"/>
+    <sfObjectRelationship alias="RelatedNoteList" childName="CombinedAttachment" field="ParentId" n="CombinedAttachments" relationshipName="CombinedAttachments" s="2-" t="CombinedAttachment"/>
+    <sfObjectRelationship childName="Note" field="ParentId" n="Notes" relationshipName="Notes" s="2-" t="Note"/>
+    <sfObjectRelationship childName="NoteAndAttachment" field="ParentId" n="NotesAndAttachments" relationshipName="NotesAndAttachments" s="2-" t="NoteAndAttachment"/>
+    <sfObjectRelationship childName="EntitySubscription" field="ParentId" n="FeedSubscriptionsForEntity" relationshipName="FeedSubscriptionsForEntity" s="2-" t="EntitySubscription"/>
+    <sfObjectRelationship alias="RelatedProcessInstanceHistory" childName="ProcessInstance" field="TargetObjectId" n="ProcessInstances" relationshipName="ProcessInstances" s="2-" t="ProcessInstance"/>
+    <sfObjectRelationship alias="RelatedProcessHistoryList" childName="ProcessInstanceHistory" field="TargetObjectId" n="ProcessSteps" relationshipName="ProcessSteps" s="2-" t="ProcessInstanceHistory"/>
+    <sfObjectRelationship childName="Task" field="WhatId" n="Tasks" relationshipName="Tasks" s="2-" t="Task"/>
+    <sfObjectRelationship childName="Event" field="WhatId" n="Events" relationshipName="Events" s="2-" t="Event"/>
+    <sfObjectRelationship childName="TaskRelation" field="RelationId" n="TaskRelations" relationshipName="TaskRelations" s="2-" t="TaskRelation"/>
+    <sfObjectRelationship alias="RelatedActivityList" childName="OpenActivity" field="WhatId" n="OpenActivities" relationshipName="OpenActivities" s="2-" t="OpenActivity"/>
+    <sfObjectRelationship alias="RelatedHistoryList" childName="ActivityHistory" field="WhatId" n="ActivityHistories" relationshipName="ActivityHistories" s="2-" t="ActivityHistory"/>
+    <sfObjectRelationship childName="TopicAssignment" field="EntityId" n="TopicAssignments" relationshipName="TopicAssignments" s="2-" t="TopicAssignment"/>
+    <sfObjectRelationship alias="RelatedContentNoteList" childName="AttachedContentNote" field="LinkedEntityId" n="AttachedContentNotes" relationshipName="AttachedContentNotes" s="2-" t="AttachedContentNote"/>
+    <sfObjectRelationship childName="EmailMessage" field="RelatedToId" n="Emails" relationshipName="Emails" s="2-" t="EmailMessage"/>
+    <sfObjectRelationship alias="RelatedGroupsListOnRecord" childName="CollaborationGroupRecord" field="RecordId" n="RecordAssociatedGroups" relationshipName="RecordAssociatedGroups" s="2-" t="CollaborationGroupRecord"/>
+    <sfObjectRelationship childName="NetworkActivityAudit" field="ParentEntityId" n="ParentEntities" relationshipName="ParentEntities" s="2-" t="NetworkActivityAudit"/>
+    <sfObjectRelationship childName="DuplicateRecordItem" field="RecordId" n="DuplicateRecordItems" relationshipName="DuplicateRecordItems" s="2-" t="DuplicateRecordItem"/>
+    <sfObjectRelationship childName="NetworkUserHistoryRecent" field="RecordId" n="NetworkUserHistoryRecentToRecord" relationshipName="NetworkUserHistoryRecentToRecord" s="2-" t="NetworkUserHistoryRecent"/>
+    <sfObjectRelationship childName="RecordAction" field="RecordId" n="RecordActions" relationshipName="RecordActions" s="2-" t="RecordAction"/>
+    <sfObjectRelationship childName="ContactRequest" field="WhatId" n="ContactRequests" relationshipName="ContactRequests" s="2-" t="ContactRequest"/>
+    <sfObjectRelationship childName="RecordActionHistory" field="ParentRecordId" n="RecordActionHistories" relationshipName="RecordActionHistories" s="2-" t="RecordActionHistory"/>
+    <sfObjectRelationship childName="SurveySubject" field="SubjectId" n="SurveySubjectEntities" relationshipName="SurveySubjectEntities" s="2-" t="SurveySubject"/>
+    <sfObjectRelationship childName="ProcessException" field="AttachedToId" n="ProcessExceptions" relationshipName="ProcessExceptions" s="2-" t="ProcessException"/>
+    <sfObjectRelationship alias="RelatedEntityHistoryList" childName="ccrz__E_Product__History" field="ParentId" n="Histories" relationshipName="Histories" s="2-" t="01I0V000002N5O3.History"/>
+    <sfObjectRelationship childName="Fulfillment_Item__c" field="CC_Product__c" n="Fulfillment_Items__r" relationshipName="Fulfillment_Items__r" s="2-" t="01I0V000002Ef5d"/>
+    <sfObjectRelationship childName="SFDC_MDF__c" field="CC_Product__c" n="Grant_Requests__r" relationshipName="Grant_Requests__r" s="2-" t="01I0V000002Ef5o"/>
+    <sfObjectRelationship childName="Voucher__c" field="CC_Product__c" n="Voucher__r" relationshipName="Voucher__r" s="2-" t="01I0V000002Ef5r"/>
+    <sfObjectRelationship childName="ccrz__E_CartItem__c" field="ccrz__DisplayProduct__c" n="ccrz__CC_Cart_Items__r" relationshipName="ccrz__CC_Cart_Items__r" s="2-" t="01I0V000002N5N4"/>
+    <sfObjectRelationship childName="ccrz__E_CartItem__c" field="ccrz__ParentProduct__c" n="ccrz__E_CartItems__r" relationshipName="ccrz__E_CartItems__r" s="2-" t="01I0V000002N5N4"/>
+    <sfObjectRelationship childName="ccrz__E_CartItem__c" field="ccrz__Product__c" n="ccrz__E_CartItem2__r" relationshipName="ccrz__E_CartItem2__r" s="2-" t="01I0V000002N5N4"/>
+    <sfObjectRelationship childName="ccrz__E_CompositeProduct__c" field="ccrz__Component__c" n="ccrz__Composite_Products__r" relationshipName="ccrz__Composite_Products__r" s="2-" t="01I0V000002N5NA"/>
+    <sfObjectRelationship childName="ccrz__E_CompositeProduct__c" field="ccrz__Composite__c" n="ccrz__CompositeProducts__r" relationshipName="ccrz__CompositeProducts__r" s="2-" t="01I0V000002N5NA"/>
+    <sfObjectRelationship childName="ccrz__E_Coupon__c" field="ccrz__TargetProduct__c" n="ccrz__E_Coupons__r" relationshipName="ccrz__E_Coupons__r" s="2-" t="01I0V000002N5NG"/>
+    <sfObjectRelationship childName="ccrz__E_Coupon__c" field="ccrz__SourceProduct__c" n="ccrz__E_Coupons1__r" relationshipName="ccrz__E_Coupons1__r" s="2-" t="01I0V000002N5NG"/>
+    <sfObjectRelationship childName="ccrz__E_FeaturedProduct__c" field="ccrz__Product__c" n="ccrz__Featured_Products__r" relationshipName="ccrz__Featured_Products__r" s="2-" t="01I0V000002N5NK"/>
+    <sfObjectRelationship childName="ccrz__E_MenuItem__c" field="ccrz__Product__c" n="ccrz__CC_Menu_Items__r" relationshipName="ccrz__CC_Menu_Items__r" s="2-" t="01I0V000002N5NU"/>
+    <sfObjectRelationship childName="ccrz__E_Menu__c" field="ccrz__Product__c" n="ccrz__CC_Product_Menu_Items__r" relationshipName="ccrz__CC_Product_Menu_Items__r" s="2-" t="01I0V000002N5NV"/>
+    <sfObjectRelationship childName="ccrz__E_OrderItem__c" field="ccrz__DisplayProduct__c" n="ccrz__CC_Order_Items__r" relationshipName="ccrz__CC_Order_Items__r" s="2-" t="01I0V000002N5NY"/>
+    <sfObjectRelationship childName="ccrz__E_OrderItem__c" field="ccrz__ParentProduct__c" n="ccrz__E_OrderItems1__r" relationshipName="ccrz__E_OrderItems1__r" s="2-" t="01I0V000002N5NY"/>
+    <sfObjectRelationship childName="ccrz__E_OrderItem__c" field="ccrz__Product__c" n="ccrz__E_OrderItems__r" relationshipName="ccrz__E_OrderItems__r" s="2-" t="01I0V000002N5NY"/>
+    <sfObjectRelationship childName="ccrz__E_PriceGroupItem__c" field="ccrz__Product__c" n="ccrz__PriceGroupItems__r" relationshipName="ccrz__PriceGroupItems__r" s="2-" t="01I0V000002N5Nm"/>
+    <sfObjectRelationship childName="ccrz__E_PriceListItem__c" field="ccrz__Product__c" n="ccrz__E_PriceListItems__r" relationshipName="ccrz__E_PriceListItems__r" s="2-" t="01I0V000002N5Np"/>
+    <sfObjectRelationship childName="ccrz__E_ProductCategory__c" field="ccrz__Product__c" n="ccrz__Product_Categories__r" relationshipName="ccrz__Product_Categories__r" s="2-" t="01I0V000002N5Nu"/>
+    <sfObjectRelationship childName="ccrz__E_ProductGuide__c" field="ccrz__Product__c" n="ccrz__E_ProductGuides__r" relationshipName="ccrz__E_ProductGuides__r" s="2-" t="01I0V000002N5Nv"/>
+    <sfObjectRelationship childName="ccrz__E_ProductInventoryItem__c" field="ccrz__ProductItem__c" n="ccrz__Product_Inventory_Items__r" relationshipName="ccrz__Product_Inventory_Items__r" s="2-" t="01I0V000002N5Nw"/>
+    <sfObjectRelationship childName="ccrz__E_ProductItemI18N__c" field="ccrz__Product__c" n="ccrz__Product_Item_I18Ns__r" relationshipName="ccrz__Product_Item_I18Ns__r" s="2-" t="01I0V000002N5Nx"/>
+    <sfObjectRelationship childName="ccrz__E_ProductMedia__c" field="ccrz__Product__c" n="ccrz__E_ProductMedias__r" relationshipName="ccrz__E_ProductMedias__r" s="2-" t="01I0V000002N5Ny"/>
+    <sfObjectRelationship childName="ccrz__E_ProductSpecIndex__c" field="ccrz__Product__c" n="ccrz__Product_Spec_Indicies__r" relationshipName="ccrz__Product_Spec_Indicies__r" s="2-" t="01I0V000002N5Nz"/>
+    <sfObjectRelationship childName="ccrz__E_ProductSpec__c" field="ccrz__Product__c" n="ccrz__Product_Specs__r" relationshipName="ccrz__Product_Specs__r" s="2-" t="01I0V000002N5O0"/>
+    <sfObjectRelationship childName="ccrz__E_ProductStorefront__c" field="ccrz__Product__c" n="ccrz__CC_Product_Storefronts__r" relationshipName="ccrz__CC_Product_Storefronts__r" s="2-" t="01I0V000002N5O1"/>
+    <sfObjectRelationship childName="ccrz__E_ProductTab__c" field="ccrz__Product__c" n="ccrz__E_ProductTabs__r" relationshipName="ccrz__E_ProductTabs__r" s="2-" t="01I0V000002N5O2"/>
+    <sfObjectRelationship childName="ccrz__E_Product__c" field="ccrz__ParentProduct__c" n="ccrz__E_Products__r" relationshipName="ccrz__E_Products__r" s="2-" t="01I0V000002N5O3"/>
+    <sfObjectRelationship childName="ccrz__E_Product__c" field="ccrz__SupersedeProduct__c" n="ccrz__E_Products1__r" relationshipName="ccrz__E_Products1__r" s="2-" t="01I0V000002N5O3"/>
+    <sfObjectRelationship childName="ccrz__E_Promo__c" field="ccrz__Product__c" n="ccrz__Promotions__r" relationshipName="ccrz__Promotions__r" s="2-" t="01I0V000002N5O5"/>
+    <sfObjectRelationship childName="ccrz__E_RecentItem__c" field="ccrz__Product__c" n="ccrz__E_RECENT_ITEMS__r" relationshipName="ccrz__E_RECENT_ITEMS__r" s="2-" t="01I0V000002N5O9"/>
+    <sfObjectRelationship childName="ccrz__E_RelatedProduct__c" field="ccrz__RelatedProduct__c" n="ccrz__E_RelatedProducts1__r" relationshipName="ccrz__E_RelatedProducts1__r" s="2-" t="01I0V000002N5OC"/>
+    <sfObjectRelationship childName="ccrz__E_RelatedProduct__c" field="ccrz__Product__c" n="ccrz__E_RelatedProducts__r" relationshipName="ccrz__E_RelatedProducts__r" s="2-" t="01I0V000002N5OC"/>
+    <sfObjectRelationship childName="ccrz__E_Review__c" field="ccrz__Product__c" n="ccrz__E_Reviews__r" relationshipName="ccrz__E_Reviews__r" s="2-" t="01I0V000002N5OF"/>
+    <sfObjectRelationship childName="ccrz__E_RuleSourceSKU__c" field="ccrz__Product__c" n="ccrz__RuleSourceSKUs__r" relationshipName="ccrz__RuleSourceSKUs__r" s="2-" t="01I0V000002N5OJ"/>
+    <sfObjectRelationship childName="ccrz__E_RuleTargetSKU__c" field="ccrz__Product__c" n="ccrz__E_RuleTargetSKUs__r" relationshipName="ccrz__E_RuleTargetSKUs__r" s="2-" t="01I0V000002N5OM"/>
+    <sfObjectRelationship childName="ccrz__E_SubProdTerm__c" field="ccrz__CCProduct__c" n="ccrz__SubProdTerms__r" relationshipName="ccrz__SubProdTerms__r" s="2-" t="01I0V000002N5Ob"/>
+    <sfObjectRelationship childName="ccrz__E_Subscription__c" field="ccrz__SubscriptionProduct__c" n="ccrz__CCSubscriptions__r" relationshipName="ccrz__CCSubscriptions__r" s="2-" t="01I0V000002N5Od"/>
+    <sfObjectRelationship childName="redwing__ILT_Class__c" field="Cloud_Craze_Product__c" n="ILT_Classes__r" relationshipName="ILT_Classes__r" s="2-" t="01I0V000002N5PQ"/>
+    <sfObjectRelationship childName="redwing__Training_Plan__c" field="CC_Product__c" n="Learning_Plans__r" relationshipName="Learning_Plans__r" s="2-" t="01I0V000002N5QM"/>
+    <sfObjectRelationship childName="ccrz__E_ProductIndex__c" field="ccrz__Product__c" n="ccrz__CCProductIndices__r" relationshipName="ccrz__CCProductIndices__r" s="2-" t="01I0V000002N5R1"/>
+    <sfObjectRelationship childName="LTS_Facility__c" field="CC_Product__c" n="LTS_Facilities__r" relationshipName="LTS_Facilities__r" s="2-" t="01I3o000002ValO"/>
+  </childRelationships>
+  <recordTypes>
+    <sfRecordType available="false" defaultRecordType="false" fromToolingApi="true" fullName="ProductType_Assembly" layoutsLoaded="false" n="ProductType_Assembly" namespacePrefix="ccrz" recordTypeId="0120V000001YcvIQAS" s="3-"/>
+    <sfRecordType available="false" defaultRecordType="false" fromToolingApi="true" fullName="ProductType_Config" layoutsLoaded="false" n="ProductType_Config" namespacePrefix="ccrz" recordTypeId="0120V000001YcvJQAS" s="3-"/>
+    <sfRecordType available="false" defaultRecordType="false" fromToolingApi="true" fullName="ProductType_Normal" layoutsLoaded="false" n="ProductType_Normal" namespacePrefix="ccrz" recordTypeId="0120V000001YcvKQAS" s="3-"/>
+    <sfRecordType layoutsLoaded="false" n="&lt;default&gt;" t="Web Record Type Mapping"/>
+  </recordTypes>
+  <standardActions>
+    <sfActionLink n="Tab" s="" t="CC Products Tab"/>
+    <sfActionLink modes="ObjectHome" n="List" requiresRow="true"/>
+    <sfActionLink modes="View ccrz__E_Products__r ccrz__E_Products1__r CC_Products__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View ccrz__E_Products__r ccrz__E_Products1__r CC_Products__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink modes="View" n="Clone" requiresRow="true"/>
+    <sfActionLink modes="ObjectHome List ccrz__E_Products__r ccrz__E_Products1__r CC_Products__r" n="New"/>
+    <sfActionLink n="Accept" s=""/>
+    <sfActionLink modes="ObjectHome" n="View" requiresRow="true"/>
+    <sfActionLink modes="View Submit" n="Submit" requiresRow="true"/>
+    <sfActionLink modes="View Remove" n="Remove"/>
+    <sfActionLink modes="View Unlock" n="Unlock" t="Unlock Record"/>
+    <sfActionLink modes="Edit New Clone" n="save" requiresRow="true" t="Save"/>
+    <sfActionLink modes="Edit New Clone" n="save_new" requiresRow="true" t="Save and New"/>
+    <sfActionLink modes="Edit New Clone" n="cancel" requiresRow="true" t="Cancel"/>
+    <sfActionLink afterWaitUrl="ui:wait:timed?seconds=10" modes="View" n="SaveEdit" t="Save"/>
+    <sfActionLink modes="View" n="CancelEdit" t="Cancel"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink massAction="true" modes="View List" n="ChangeRecordType" t="Change Record Type"/>
+    <sfActionLink modes="View" n="email" t="Send an Email"/>
+    <sfActionLink modes="View" n="Share"/>
+    <sfActionLink modes="QuickAction" n="publishersharebutton" t="Create"/>
+    <sfActionLink modes="ObjectHome List" n="Sort"/>
+    <sfActionLink modes="ObjectHome List" n="Filter"/>
+    <sfActionLink modes="ObjectHome View" n="Search"/>
+    <sfActionLink modes="ObjectHome List" n="Import"/>
+    <sfActionLink modes="View" n="PrintableView" t="Printable View"/>
+    <sfActionLink n="ObjectHome" requiresRow="true" t="Home"/>
+    <sfActionLink modes="View ccrz__E_Products__r ccrz__E_Products1__r CC_Products__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View ccrz__E_Products__r ccrz__E_Products1__r CC_Products__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+  <homeListColumns>
+    <string>CCRZ__E_PRODUCT__C.NAME</string>
+    <string>ccrz__SKU__c</string>
+    <string>ccrz__ProductType__c</string>
+    <string>CREATED_DATE</string>
+  </homeListColumns>
+  <lookupColumns>
+    <string>CCRZ__E_PRODUCT__C.NAME</string>
+    <string>ccrz__SKU__c</string>
+  </lookupColumns>
+  <weblinks/>
+  <searchResultColumns>
+    <string>CCRZ__E_PRODUCT__C.NAME</string>
+    <string>ccrz__SKU__c</string>
+  </searchResultColumns>
+  <compactLayoutFields>
+    <string>Name</string>
+  </compactLayoutFields>
+  <listViewActions/>
+</sfObject>

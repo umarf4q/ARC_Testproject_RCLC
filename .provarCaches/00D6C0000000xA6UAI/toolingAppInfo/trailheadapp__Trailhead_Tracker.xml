@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingAppInfo>
+  <appDefinition DeveloperName="Trailhead_Tracker" Label="Trail Tracker" NamespacePrefix="trailheadapp" NavType="Standard">
+    <Metadata>&lt;CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata"   &gt;    &lt;defaultLandingTab&gt;trailheadapp__Badge__c&lt;/defaultLandingTab&gt; &lt;description&gt;The fast, fun, easy way to learn Salesforce.&lt;/description&gt; &lt;formFactors&gt;Large&lt;/formFactors&gt; &lt;isNavAutoTempTabsDisabled&gt;false&lt;/isNavAutoTempTabsDisabled&gt; &lt;isNavPersonalizationDisabled&gt;false&lt;/isNavPersonalizationDisabled&gt; &lt;isServiceCloudConsole&gt;false&lt;/isServiceCloudConsole&gt; &lt;label&gt;Trail Tracker&lt;/label&gt; &lt;logo&gt;trailheadapp__Trailhead/trailheadapp__trailheadLogo_png.png&lt;/logo&gt;     &lt;tabs&gt;trailheadapp__User_Badge__c&lt;/tabs&gt; &lt;tabs&gt;trailheadapp__Badge__c&lt;/tabs&gt; &lt;tabs&gt;trailheadapp__Trailmix__c&lt;/tabs&gt; &lt;tabs&gt;trailheadapp__Trail__c&lt;/tabs&gt; &lt;tabs&gt;standard-report&lt;/tabs&gt; &lt;tabs&gt;standard-Dashboard&lt;/tabs&gt; &lt;tabs&gt;trailheadapp__TrailheadSetup&lt;/tabs&gt;   &lt;/CustomApplication&gt;</Metadata>
+  </appDefinition>
+</toolingAppInfo>

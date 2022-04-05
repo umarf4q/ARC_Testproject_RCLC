@@ -1,0 +1,1460 @@
+<apex:page controller="SSign.SSCreateRequestController" action="{!init}" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false">
+  <html>
+    <!-- START: Code shared by SSCreateRequest[1|2|3|4].page -->
+    <head>
+      <c:SSCreateRequestHead wizardStepNumber="3" />
+    </head>
+    <body>
+      <div class="loading-div background-white">
+        <div class="loading-div-content">
+          <img width="80" id="loading-div-spinner" src="{!URLFOR($Resource.SSign_Images,'lightning_spinner.gif')}" class="undraggable" unselectable="on" />
+        </div>
+      </div>
+      <c:SSCreateRequestWizard wizardStepNumber="3" />
+      <!-- END: Code shared by SSCreateRequest[1|2|3|4].page -->
+
+      <style>
+        /* ---- START: Resizable styling ---- */
+        .ui-resizable { position: relative;}
+        .ui-resizable-handle { position: absolute;font-size: 0.1px; display: block; }
+        .ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+        .ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
+        .ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
+        .ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0; height: 100%; }
+        .ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0; height: 100%; }
+        .ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+        .ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+        .ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+        .ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
+        /* ---- END: Resizable styling ---- */
+
+        /* ---- START: Left sidebar styling ---- */
+        .left-sidebar-label {
+          font-weight: bold;
+          text-transform: uppercase;
+          font-size: 0.9em;
+        }
+
+        .left-sidebar-spacer {
+          height: 0.75em;
+        }
+        /* ---- END: Left sidebar styling ---- */
+
+        /* ---- START: Choose recipient dropdown ---- */
+        .recipient-select-container {
+          height: 2.75em;
+
+          /* Centers content within div */
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+        }
+
+        .recipient-select-color-indicator {
+          border-radius: 50%;
+          height: 1em;
+          width: 1em;
+          margin-left: 0.6em;
+          margin-right: 0.5em;
+        }
+
+        .recipient-select {
+          border: 0;
+          flex: 1;
+          height: 100%;
+          padding-bottom: 0.125em;
+        }
+        /* ---- END: Choose recipient dropdown ---- */
+
+        .edit-field-select-container {
+          display: flex;
+          align-items: center;
+        }
+
+        .edit-field-select-label {
+          width: 40%;
+        }
+
+        .edit-field-select {
+          height: 2em;
+          padding-bottom: 0.075em;
+          padding-left: 0.5em;
+          border: 1px solid #ced6e0;
+          width: 60%;
+        }
+
+        /* ---- START: Left sidebar fields ---- */
+        .draggable-predrop {
+          /* Do not add "top", "margin-top", "left", "margin-left", etc.
+          attributes to .draggable-predrop, or else it will cause there to be
+          a difference between the position of the field while dragging,
+          and the position of the field after being dropped. */
+          cursor: move;
+          height: 2.75em;
+          border-left-width: 4px;
+          border-left-style: solid;
+          user-select: none;
+        }
+        .draggable-predrop-icon {
+          height: 1.5em;
+          width: 1.25em;
+          background-color: grey;
+          float: left;
+          margin-top: 0.6em;
+          margin-right: 0.5em;
+          margin-left: 0.35em;
+        }
+        .draggable-predrop-text {
+          margin-top: 0.46em;
+        }
+        /* ---- END: Left sidebar fields ---- */
+
+        /* ---- START: Field after being dropped onto page ---- */
+        .draggable-dropped--signature, .draggable-dropped--initials {
+          height: 64px;
+          width: 160px;
+        }
+        .draggable-dropped--date {
+          /* Use the height and width of a standard HTML date input element */
+          height: 24px;
+          width: 142.2px;
+        }
+        .draggable-dropped--text {
+          /* Use the height and width of a standard HTML text input element */
+          height: 21px;
+          width: 170.33px;
+        }
+        .draggable-dropped--checkbox {
+          /* Use the height and width of a standard HTML checkbox input element */
+          height: 13px;
+          width: 13px;
+        }
+        .draggable-dropped {
+          border-style: dashed;
+          border-width: 1px;
+          cursor: move;
+          user-select: none;
+          /* Ensures consistency between SSCreateRequest3.page and SSCreateSig.page,
+          by ensuring that the width/height of the box does not vary depending on
+          whether the border width/height is added to the overall elements width/height
+          or not (border-box makes it so that the box is always 64px including border,
+          regardless of border-width) */
+          box-sizing: border-box;
+
+          /* Centers content within div */
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          flex-direction: row;
+        }
+        .draggable-dropped-edit-active {
+          border-style: solid;
+          border-width: 2px;
+        }
+        .required-text {
+          color: red;
+        }
+        /* ---- END: Field after being dropped onto page ---- */
+
+        /* ---- START: Hide prototypes ---- */
+        #draggable-dropped--signature--prototype {
+          display: none;
+        }
+        #draggable-dropped--initials--prototype {
+          display: none;
+        }
+        #draggable-dropped--date--prototype {
+          display: none;
+        }
+        #draggable-dropped--text--prototype {
+          display: none;
+        }
+        #draggable-dropped--checkbox--prototype {
+          display: none;
+        }
+        #main-document-page--prototype {
+          display: none;
+        }
+        #main-document--prototype {
+          display: none;
+        }
+        #sidebar-document--prototype {
+          display: none;
+        }
+        #sidebar-document-page-row--prototype {
+          display: none;
+        }
+        /* ---- END: Hide prototypes ---- */
+      </style>
+
+      <script type="text/javascript">
+        /* Use the list for operations where document order is important, and dict when you need
+        to grab a pdfDocumentData by its documentId (documentData.uniqueId). Note that in JS
+        these hold references so these data structures do not contain copies of pdfDocumentData objects,
+        but rather point to the same objects. If you modify a pdfDocumentData in pdfDocumentDataList,
+        it will be modified in pdfDocumentDataDict as well (and vice versa).*/
+        var pdfDocumentDataList = [];
+        var pdfDocumentDataDict = {};
+
+        var recipientDataDict;
+        var activeRecipient;
+        var editFieldActiveFieldId;
+
+        HeadUtils.autoHideLoadingDiv = false;
+        HeadUtils.Init.documentReadyFunction = function() {
+          HeadUtils.DataUtils.initUniqueIds();
+          initRecipientDataDict();
+          //pdfDocumentDataList = getTestPDFDocumentDataList();
+          getPDFs(oncomplete=documentReady);
+        };
+
+        function documentReady() {
+          var recipientDataList = HeadUtils.Database.state.recipients;
+          addColorsToRecipientData(recipientDataList);
+          setRecipientSelects(recipientDataList);
+          setRecipientOnchangeMain();
+          setRecipientOnchangeEditField();
+          setActiveRecipientMainFromDropdown();
+
+          hideFieldSettings();
+
+          initPDFPageImages();
+          /* Note, initPDFPageImages involves async functions. To avoid race conditions, any code 
+          that depends on the PDF pages and document/page containers being initialized needs to be 
+          put into its oncomplete function finishInitPDFPageImages() */
+        }
+
+        function initFields() {
+          /* Init fields on page */
+          var fields = HeadUtils.Database.state.fields;
+          for (var i = 0; i < fields.length; i++) {
+            initField(fields[i]);
+          }
+        }
+
+        function initField(fieldData) {
+          var $field = getDroppedFieldHTML('#draggable-dropped--' + fieldData.type + '--prototype');
+          initNewDroppedField($field);
+          $field.attr('recipientId', fieldData.recipientId);
+          setFieldRecipient($field, recipientDataDict[fieldData.recipientId], writeJSON=false);
+          writeFieldDataToJSON($field, fieldData);
+          $field.css('position', 'absolute');
+          $field.css('top', fieldData.top);
+          $field.css('left', fieldData.left);
+          $field.css('width', fieldData.width);
+          $field.css('height', fieldData.height);
+          setDraggableCursorAt($field);
+          var $page = getElementByCDP('.main-document-page', fieldData.documentId, fieldData.pageIndex);
+          $field.appendTo($page);
+        }
+
+        function initRecipientDataDict() {
+          var recipientDataList = HeadUtils.Database.state.recipients;
+          recipientDataDict = {};
+          for (var i = 0; i < recipientDataList.length; i++) {
+            var recipientData = recipientDataList[i];
+            recipientDataDict[recipientData.uniqueId] = recipientData;
+          }
+        }
+
+        var numFilesToQuery;
+        var numFilesQueried = 0;
+        function getPDFs(oncomplete) {
+          var documents = HeadUtils.Database.state.documents;
+          numFilesToQuery = documents.length;
+          for (var i = 0; i < documents.length; i++) {
+            getPDF(documents[i], oncomplete);
+          }
+        }
+
+        function getPDF(documentData, getPDFsOncomplete) {
+          Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.SSCreateRequestController.getFileBodyBase64}',
+            documentData.databaseId,
+            function(result, event) {
+              if (event.status) {
+                var pdfDocumentData = {
+                  uniqueId : documentData.uniqueId, // for convenience
+                  documentData : documentData,
+                  pdfBase64 : 'data:application/pdf;base64,' + result,
+                  profiles : []
+                };
+                pdfDocumentDataList.push(pdfDocumentData);
+                pdfDocumentDataDict[documentData.uniqueId] = pdfDocumentData;
+                numFilesQueried++;
+                if (numFilesQueried === numFilesToQuery) {
+                  getPDFsOncomplete();
+                }
+              } else {
+                alert('Error in RemoteAction: ' + event.message);
+              } 
+              //Sfdc.canvas.publisher.publish({name:"publisher.close",payload:{refresh:"true"}});
+            },{escape: false}
+          );
+        }
+
+        /* Colors obtained from the following Flat UI Color Palette:
+        https://flatuicolors.com/palette/us */
+        var colors = [
+          '#0984e3', // blue
+          '#fd79a8', // pink
+          '#00b894', // green
+          '#d63031' // red
+        ];
+
+        function addColorsToRecipientData(recipientDataList) {
+          for (var i = 0; i < recipientDataList.length; i++) {
+            var recipientData = recipientDataList[i];
+            recipientData.color = colors[i];
+          }
+        }
+
+        function setRecipientSelects(recipientDataList) {
+          for (var i = 0; i < recipientDataList.length; i++) {
+            var recipientData = recipientDataList[i];
+            j$('.recipient-select').append(
+              '<option value="' + recipientData.uniqueId + '">'
+              + recipientData.name
+              + '</option>'
+            );
+          }
+        }
+
+        function setRecipientOnchangeMain() {
+          j$('#recipient-select-main').find('.recipient-select').change(function() {
+            setActiveRecipientMainFromDropdown();
+          });
+        }
+
+        function setRecipientOnchangeEditField() {
+          j$('#recipient-select-edit-field').find('.recipient-select').change(function() {
+            var recipientId = getRecipientIdFromDropdown('#recipient-select-edit-field');
+            var $field = getActiveEditFieldDiv();
+            var recipient = recipientDataDict[recipientId];
+            setFieldRecipient($field, recipient);
+            setRecipientSelectHTML(
+              '#recipient-select-edit-field',
+              recipientDataDict[recipientId],
+              setViaDropdown=true
+            );
+          });
+        }
+
+        function getFieldDiv(fieldId) {
+          return j$('.draggable-dropped[fieldId="' + fieldId + '"]');
+        }
+
+        function getActiveEditFieldDiv() {
+          return getFieldDiv(editFieldActiveFieldId);
+        }
+
+        function setActiveRecipientMainFromDropdown() {
+          setActiveRecipientMain(
+            getRecipientIdFromDropdown('#recipient-select-main'),
+            setViaDropdown=true
+          );
+        }
+
+        function getRecipientIdFromDropdown(containerSelector) {
+          return j$(containerSelector).find('.recipient-select').val();
+        }
+
+        function setActiveRecipientMain(recipientId, setViaDropdown=false) {
+          activeRecipient = recipientDataDict[recipientId];
+          setRecipientSelectHTML('#recipient-select-main', activeRecipient, setViaDropdown);
+          setRecipientColorDraggablePredrop(activeRecipient);
+        }
+
+        function setRecipientSelectHTML(containerSelector, recipient, setViaDropdown=false) {
+          if (!setViaDropdown) {
+            j$(containerSelector).find('.recipient-select').val(recipient.uniqueId);
+          }
+          setRecipientColorIndicator(containerSelector, recipient);
+        }
+
+        function setRecipientColorIndicator(containerSelector, recipient) {
+          j$(containerSelector).find('.recipient-select-color-indicator').css('background-color', recipient.color);
+        }
+
+        function setRecipientColorDraggablePredrop(recipient) {
+          j$('.draggable-predrop').css('border-left-color', recipient.color);
+        }
+
+        function setDraggable() {
+          var fieldTypes = [
+            'signature',
+            'initials',
+            'date',
+            'text',
+            'checkbox'
+          ];
+          for (var i = 0; i < fieldTypes.length; i++) {
+            var fieldType = fieldTypes[i];
+            j$('#draggable-predrop--' + fieldType).draggable(
+              getDraggableParams('#draggable-dropped--' + fieldType + '--prototype')
+            );
+          }
+        }
+
+        function setDroppable() {
+          j$(".main-document-page").droppable({
+            tolerance: "fit",
+            accept: ".draggable-predrop,.draggable-dropped",
+            activeClass: "ui-state-default",
+            greedy : true,
+            hoverClass: "ui-state-hover",
+            drop: function(event, ui) {
+              var $draggable = j$(ui.draggable);
+              var $helper = j$(ui.helper);
+              var $droppedField;
+              var isNewField = !$draggable.hasClass('draggable-dropped');
+              if (isNewField) {
+                $droppedField = $helper.clone();
+              } else {
+                $droppedField = $draggable;
+              }
+              $droppedField.appendTo(this);
+              $droppedField.position({ of: event });
+              
+              if (isNewField) {
+                initNewDroppedField($droppedField);
+              }
+            }
+          });
+        }
+
+        function getFieldDataFromJSON($field) {
+          return JSON.parse($field.data('json'));
+        }
+
+        function writeFieldDataToJSON($field, fieldData) {
+          $field.data('json', JSON.stringify(fieldData));
+        }
+
+        function updateJSONAfterDrag($field) {
+          var $parentDocument = $field.closest('.main-document-page');
+          var fieldData = getFieldDataFromJSON($field);
+          fieldData.pageIndex = $parentDocument.attr('pageIndex');
+          fieldData.top = $field.css('top');
+          fieldData.left = $field.css('left');
+          writeFieldDataToJSON($field, fieldData);
+        }
+
+        function updateJSONAfterResize($field) {
+          var fieldData = getFieldDataFromJSON($field);
+          fieldData.width = $field.css('width');
+          fieldData.height = $field.css('height');
+          writeFieldDataToJSON($field, fieldData);
+        }
+
+        function getNewFieldData($field, $parentDocument) {
+          return {
+            type : $field.attr('fieldType'),
+            recipientId : $field.attr('recipientId'),
+            documentId : $parentDocument.attr('documentId'),
+            required : true,
+            disabled : false
+          };
+        }
+
+        function initFieldDataJSON($field) {
+          var $parentDocument = $field.closest('.main-document-page');
+          var newFieldData = getNewFieldData($field, $parentDocument);
+          writeFieldDataToJSON($field, newFieldData);
+        }
+
+        function initNewDroppedField($droppedField) {
+          initFieldDataJSON($droppedField);
+          updateJSONAfterDrag($droppedField);
+
+          var fieldType = $droppedField.attr('fieldType');
+          var droppedFieldPrototypeSelector = 
+            '#draggable-dropped--' + fieldType + '--prototype';
+
+          $droppedField.draggable(
+            {
+              appendTo: "body",
+              cursor: "move",
+              cursorAt : getDraggableCursorAtValues(droppedFieldPrototypeSelector),
+              connectToSortable: "",
+              helper: "original",
+              revert: "invalid",
+              start : function() {
+                var $field = j$(this);
+                var recipientId = $field.attr('recipientId');
+                if (recipientId != activeRecipient.uniqueId) {
+                  setActiveRecipientMain(recipientId);
+                }
+              },
+              stop : function() {
+                var $field = j$(this);
+                updateJSONAfterDrag($field);
+              }
+            }
+          );
+
+          if (fieldType == 'signature' || fieldType == 'initials') { // resizing is only supported for signature and initials as of 7/12/21
+            var fontToHeightRatio = 0.45;
+            if (fieldType == 'initials') {
+              fontToHeightRatio = 0.35;
+            }
+            $droppedField.resizable(
+              { 
+                handles: "n, e, s, w, ne, se, sw, nw",
+                minHeight: 16,
+                maxHeight: 132,
+                aspectRatio: 2.5, // 2.5 for signature and initials. Will need to be dynamically determined when resizing support is eventually added for other input types (text, date, etc.)
+                resize : function() {
+                  var $field = j$(this);
+                  resizeTextToFitField($field, fontToHeightRatio);
+                },
+                stop : function() { 
+                  var $field = j$(this);
+                  setDraggableCursorAt($field);
+                  updateJSONAfterResize($field);
+                }
+              }
+            );
+          }
+
+          $droppedField.click(function() {
+            var $this = j$(this);
+            j$('#sidebar-document-container').hide();
+            j$('.draggable-dropped').removeClass('draggable-dropped-edit-active');
+            $this.addClass('draggable-dropped-edit-active');
+            var recipientId = $this.attr('recipientId');
+            editFieldActiveFieldId = $this.attr('fieldId');
+            setRecipientSelectHTML('#recipient-select-edit-field', recipientDataDict[recipientId]);
+            var $fieldSettings = j$('#edit-field-container');
+            var fieldData = HeadUtils.DataUtils.getDataStructFromHTML($this, true, false);
+            HeadUtils.DataUtils.writeDataToHTML($fieldSettings, fieldData, false, true);
+            $fieldSettings.find('[renderIfType]').each(function() {
+              var $renderElement = j$(this);
+              if ($renderElement.attr('renderIfType') === fieldData.type) {
+                $renderElement.show();
+              } else {
+                $renderElement.hide();
+              }
+            });
+            $fieldSettings.show();
+          });
+        }
+
+        function resizeTextToFitField($field, fontToHeightRatio) {
+          var height = parseFloat($field.css('height').replace('px', ''));
+          var fontSize = height * fontToHeightRatio;
+          if (fontSize > 16) fontSize = 16;
+          $field.css('font-size', fontSize + 'px');
+        }
+
+        function setDraggableCursorAt($field) {
+          // Adapted from getDraggableCursorAtVal()
+          // After resize, ensures cursor still goes to center of div upon drag
+          var height = parseFloat($field.css('height').replace('px', ''));
+          var width = parseFloat($field.css('width').replace('px', ''));
+          $field.draggable( "option", "cursorAt", { top : height / 2, left : width / 2 } );
+        }
+
+        function getDraggableParams(droppedFieldPrototypeSelector) {
+          return {
+            appendTo: "body",
+            cursor: "move",
+            cursorAt : getDraggableCursorAtValues(droppedFieldPrototypeSelector),
+            connectToSortable: "",
+            helper: function() { 
+              return getDroppedFieldHTML(droppedFieldPrototypeSelector)
+            },
+            revert: "invalid"
+          }
+        }
+
+        var newFieldId = 200;
+        var fieldDataDict = {};
+        function getDroppedFieldHTML(droppedFieldPrototypeSelector) {
+          newFieldId++;
+          var $field = HeadUtils.Prototypes.cloneFromPrototype(droppedFieldPrototypeSelector);
+          $field.attr('fieldId', newFieldId);
+          fieldDataDict[newFieldId] = {
+            required : true,
+            font : "Arial",
+            alignment : "left",
+            size : "Auto",
+            color : "Auto"
+          };
+          setFieldRecipient($field, activeRecipient, writeJSON=false);
+          return $field;
+        }
+
+        function setFieldRecipient($field, recipient, writeJSON=true) {
+          if (writeJSON) {
+            var fieldData = getFieldDataFromJSON($field);
+            fieldData.recipientId = recipient.uniqueId;
+            writeFieldDataToJSON($field, fieldData);
+          }
+          $field.attr('recipientId', recipient.uniqueId);
+          $field.css('border-color', recipient.color);
+          var backgroundColorOpacity = 0.1;
+          $field.css(
+            'background-color',
+            hexToHSLA(recipient.color, backgroundColorOpacity)
+          );
+        }
+
+        function hexToHSLA(H, opacity) {
+          // Convert hex to RGB first
+          let r = 0, g = 0, b = 0;
+          if (H.length == 4) {
+            r = "0x" + H[1] + H[1];
+            g = "0x" + H[2] + H[2];
+            b = "0x" + H[3] + H[3];
+          } else if (H.length == 7) {
+            r = "0x" + H[1] + H[2];
+            g = "0x" + H[3] + H[4];
+            b = "0x" + H[5] + H[6];
+          }
+          // Then to HSL
+          r /= 255;
+          g /= 255;
+          b /= 255;
+          let cmin = Math.min(r,g,b),
+              cmax = Math.max(r,g,b),
+              delta = cmax - cmin,
+              h = 0,
+              s = 0,
+              l = 0;
+
+          if (delta == 0)
+            h = 0;
+          else if (cmax == r)
+            h = ((g - b) / delta) % 6;
+          else if (cmax == g)
+            h = (b - r) / delta + 2;
+          else
+            h = (r - g) / delta + 4;
+
+          h = Math.round(h * 60);
+
+          if (h < 0)
+            h += 360;
+
+          l = (cmax + cmin) / 2;
+          s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+          s = +(s * 100).toFixed(1);
+          l = +(l * 100).toFixed(1);
+
+          return "hsla(" + h + "," + s + "%," + l + "%, " + opacity + ")";
+        }
+
+        function getDraggableCursorAtValues(droppedFieldPrototypeSelector) {
+          var $prototype = HeadUtils.Prototypes.cloneFromPrototype(droppedFieldPrototypeSelector);
+          $prototype.hide();
+          j$('body').append($prototype);
+          var height = parseFloat($prototype.css('height').replace('px', ''));
+          var width = parseFloat($prototype.css('width').replace('px', ''));
+          $prototype.remove();
+          return {
+            top : height / 2,
+            left : width / 2
+          };
+        }
+      </script>
+
+      <!-- START: Prototype: Signature Field -->
+      <div fieldType="signature" id="draggable-dropped--signature--prototype" class="draggable-dropped" listName="HeadUtils.Database.state.fields" recipientId="SAMPLE" fieldId="SAMPLE">
+        Sign Here <span class="required-text">*</span>
+      </div>
+      <div fieldType="initials" id="draggable-dropped--initials--prototype" class="draggable-dropped" listName="HeadUtils.Database.state.fields" recipientId="SAMPLE" fieldId="SAMPLE">
+        Initial Here <span class="required-text">*</span>
+      </div>
+      <div fieldType="date" id="draggable-dropped--date--prototype" class="draggable-dropped" listName="HeadUtils.Database.state.fields" recipientId="SAMPLE" fieldId="SAMPLE">
+        YYYY-MM-DD <span class="required-text">*</span>
+      </div>
+      <div fieldType="text" id="draggable-dropped--text--prototype" class="draggable-dropped" listName="HeadUtils.Database.state.fields" recipientId="SAMPLE" fieldId="SAMPLE">
+        Text Here
+      </div>
+      <div fieldType="checkbox" id="draggable-dropped--checkbox--prototype" class="draggable-dropped" listName="HeadUtils.Database.state.fields" recipientId="SAMPLE" fieldId="SAMPLE">
+        
+      </div>
+      <!-- END: Prototype: Signature Field -->
+
+      <div class="container-fluid w-75 mt-5">
+        <div class="row">
+          <div class="col-2">
+            <div class="left-sidebar-label">Recipient</div>
+            <div class="left-sidebar-spacer"></div>
+            <div id="recipient-select-main" class="recipient-select-container white-block">
+              <div class="recipient-select-color-indicator"></div>
+              <select class="recipient-select"></select>
+            </div>
+            <div style="height: 2.25em;"></div>
+            <div class="left-sidebar-label">Fields</div>
+            <div class="left-sidebar-spacer"></div>
+            <div id="draggable-predrop-container">
+              <div id="draggable-predrop--signature" class="draggable-predrop white-block">
+                <div class="draggable-predrop-icon"></div>
+                <div class="draggable-predrop-text">Signature</div>
+              </div>
+              <div class="left-sidebar-spacer"></div>
+              <div id="draggable-predrop--initials" class="draggable-predrop white-block">
+                <div class="draggable-predrop-icon"></div>
+                <div class="draggable-predrop-text">Initials</div>
+              </div>
+              <div class="left-sidebar-spacer"></div>
+              <div id="draggable-predrop--date" class="draggable-predrop white-block">
+                <div class="draggable-predrop-icon"></div>
+                <div class="draggable-predrop-text">Date</div>
+              </div>
+              <div class="left-sidebar-spacer"></div>
+              <div id="draggable-predrop--text" class="draggable-predrop white-block">
+                <div class="draggable-predrop-icon"></div>
+                <div class="draggable-predrop-text">Text</div>
+              </div>
+              <div class="left-sidebar-spacer"></div>
+              <div id="draggable-predrop--checkbox" class="draggable-predrop white-block">
+                <div class="draggable-predrop-icon"></div>
+                <div class="draggable-predrop-text">Checkbox</div>
+              </div>
+            </div>
+          </div>
+
+
+          <style>
+            .main-document-page {
+              height: 11in;
+              width: 8.5in;
+              margin-bottom: 1.25em;
+              /* position: relative; is required for the droppable field HTML to be positioned relative to the
+              top of the page it was dropped on rather than relative to the top of the page's 
+              closest relative-positioned parent container */
+              position: relative;
+            }
+            .main-document-page-image {
+              height: 11in;
+              width: 8.5in;
+            }
+          </style>
+          <script>
+            //pdfDocumentData
+            function initMainDocumentPages() {
+              for (var i = 0; i < pdfDocumentDataList.length; i++) {
+                addMainDocument(pdfDocumentDataList[i]);
+              }
+            }
+
+            function setActiveDocumentPageImages(documentId) {
+              var pageCount = pdfDocumentDataDict[documentId].numPages;
+              for (var pageIndex = 0; pageIndex < pageCount; pageIndex++) {
+                var $sidebarDocumentPageRow = getElementByCDP('.sidebar-document-page-row', documentId, pageIndex);
+                var pageImageBase64 = $sidebarDocumentPageRow.find('.sidebar-document-page-image').attr('src');
+                var $mainDocumentPage = getElementByCDP('.main-document-page', documentId, pageIndex);
+                $mainDocumentPage.find('.main-document-page-image').attr('src', pageImageBase64);
+              }
+            }
+
+            function addMainDocument(pdfDocumentData) {
+              var $mainDocument = HeadUtils.Prototypes.cloneFromPrototype('#main-document--prototype');
+              var documentId = pdfDocumentData.uniqueId;
+              $mainDocument.attr('documentId', documentId);
+              addMainDocumentPages($mainDocument, pdfDocumentData, documentId);
+              j$('#main-document-container').append($mainDocument);
+            }
+
+            function addMainDocumentPages($mainDocument, pdfDocumentData, documentId) {
+              for (var i = 0; i < pdfDocumentData.numPages; i++) {
+                var $page = HeadUtils.Prototypes.cloneFromPrototype('#main-document-page--prototype');
+                $page.attr('documentId', documentId);
+                $page.attr('pageIndex', i);
+                $mainDocument.append($page);
+              }
+            }
+
+            function hideFieldSettings() {
+              j$('.draggable-dropped-edit-active').removeClass('draggable-dropped-edit-active');
+              j$('#edit-field-container').hide();
+              j$('#sidebar-document-container').show();
+            }
+
+            function setDebugCDP() {
+              debugCDP = true;
+              console.log('Setting debugCDP to true');
+            }
+
+            // CDP == Class, Document & Page Number
+            var debugCDP = false;
+            function getElementByCDP(classSelector, documentId, pageIndex=null) {
+              var jString = classSelector + '[documentId="' + documentId + '"]';
+              if (pageIndex != null) {
+                jString += '[pageIndex="' + pageIndex + '"]';
+              }
+              if (debugCDP) {
+                console.log(jString);
+              }
+              return j$(jString);
+            }
+
+            var activedocumentId;
+            function displayActiveDocument(documentId, pageIndex, scrollToTop) {
+              var lastActivedocumentId = activedocumentId
+              activedocumentId = documentId;
+              var activeDocumentChanged = lastActivedocumentId != documentId;
+              var $activeDocument = getElementByCDP('.main-document', documentId);
+              removeAllDocumentPageImages();
+              setActiveDocumentPageImages(documentId);
+              j$('.main-document').hide();
+              $activeDocument.show();
+              var $activePage = getElementByCDP('.main-document-page', documentId, pageIndex);
+              var $activeSidebarPageRow = getElementByCDP('.sidebar-document-page-row', documentId, pageIndex);;
+              if (scrollToTop) {
+                var $container = j$('#main-document-container');
+                var position = $activePage.position().top + $container.scrollTop();
+                if (activeDocumentChanged) {
+                  $container.scrollTop(position);
+                } else {
+                  $container.animate({
+                    duration : 400,
+                    scrollTop : position
+                  });
+                }
+              }
+            }
+
+            function removeAllDocumentPageImages() {
+              j$('.main-document-page-image').attr('src', '');
+            }
+          </script>
+          
+          <style>
+            .fixed-container-parent {
+              position: relative;
+            }
+            .fixed-container {
+              position: fixed;
+              overflow-y: scroll;
+              height: 100%;
+            }
+            .fixed-container::-webkit-scrollbar {
+                width: 0px;
+                background: transparent; /* make scrollbar transparent */
+            }
+          </style>
+          <div class="col-8 fixed-container-parent">
+            <div id="main-document-container" class="fixed-container"></div>
+          </div>
+
+          <div class="col-2">
+            <div id="sidebar-document-container" class="fixed-container"></div>
+
+            <style>
+              #edit-field-container {
+                border-left: 4px solid #ced6e0;
+                height: 100%;
+              }
+              .edit-field-section-header {
+                border-top: 1px solid #ced6e0;
+                padding-top: 1em;
+                margin-top: 1em;
+              }
+              .edit-field-section-title {
+                font-weight: bold;
+                font-size: 0.8em;
+                text-transform: uppercase;
+              }
+              .edit-field-collapse-controls {
+                cursor: pointer;
+              }
+              #hide-field-settings-btn {
+                cursor: pointer;
+              }
+            </style>
+            <script>
+              function updateActiveEditField() {
+                var $fieldDiv = getActiveEditFieldDiv();
+                var fieldData = HeadUtils.DataUtils.getDataStructFromHTML($fieldDiv, true, false);
+                var fieldSettings = HeadUtils.DataUtils.getDataStructFromHTML('#edit-field-container', false, true);
+                for (var key in fieldSettings) {
+                  if (fieldSettings.hasOwnProperty(key)) {     
+                    if (fieldData[key] === undefined) {
+                      alert('Error: fieldData object missing key named "' + key + '". Please ensure this key is included in the struct returned by getNewFieldData().');
+                    }    
+                    fieldData[key] = fieldSettings[key];
+                  }
+                }
+                HeadUtils.DataUtils.writeDataToHTML($fieldDiv, fieldData, true, false);
+              }
+            </script>
+            <div id="edit-field-container" class="container-fluid">
+              <div class="row">
+                <div class="col-10 font-weight-bold">
+                  Field Settings
+                </div>
+                <div class="col-2 text-muted font-weight-bold pr-0">
+                  <img id="hide-field-settings-btn" width="12" src="{!URLFOR($Resource.SSign_Images,'icons/x.png')}" onclick="hideFieldSettings();" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  Assigned to recipient:
+                  <div id="recipient-select-edit-field" class="recipient-select-container white-block">
+                    <div class="recipient-select-color-indicator"></div>
+                    <select class="recipient-select"></select>
+                  </div>
+                  <div class="checkbox-label-pair-div">
+                    <input fieldSettingsVariable="true" variableName="required" variableType="boolean" class="checkbox d-inline-block" type="checkbox" checked="true" onclick="updateActiveEditField();" />
+                    <div class="checkbox-label d-inline-block text-muted text-nowrap">Require response</div>
+                  </div>
+                  <div class="checkbox-label-pair-div" renderIfType="date">
+                    <input fieldSettingsVariable="true" variableName="disabled" variableType="boolean" class="checkbox d-inline-block" type="checkbox" checked="true" onclick="updateActiveEditField();" />
+                    <div class="checkbox-label d-inline-block text-muted text-nowrap">Fill when signer submits document</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hidden for Alpha Release -->
+              <!--
+              <div class="row edit-field-section-header">
+                <div class="col-10">
+                  <div class="edit-field-section-title">Formatting</div>
+                </div>
+                <div class="col-2 pr-0">
+                  <div class="edit-field-collapse-controls" data-toggle="collapse" data-target="#edit-field-section--formatting" role="button" aria-expanded="false" aria-controls="edit-field-section--formatting">
+                    ^
+                  </div>
+                </div>
+              </div>
+              <div id="edit-field-section--formatting" class="collapse show row">
+                <div class="col-12">
+                  <div class="edit-field-select-container">
+                    <div class="edit-field-select-label">Font</div>
+                    <select class="edit-field-select">
+                      <option value="Arial">Arial</option>
+                      <option value="Times New Roman">Times New Roman</option>
+                    </select>
+                  </div>
+                  <div class="edit-field-select-container">
+                    <div class="edit-field-select-label">Size</div>
+                    <select class="edit-field-select">
+                      <option value="Auto">Auto</option>
+                      <option value="8">8</option>
+                    </select>
+                  </div>
+                  <div class="edit-field-select-container">
+                    <div class="edit-field-select-label">Alignment</div>
+                    [Left] [Center] [Right]
+                  </div>
+                  <div class="edit-field-select-container">
+                    <div class="edit-field-select-label">Color</div>
+                    [Color] [Hex]
+                  </div>
+                </div>
+              </div>
+
+              <div class="row edit-field-section-header">
+                <div class="col-10">
+                  <div class="edit-field-section-title">Advanced</div>
+                </div>
+                <div class="col-2 pr-0">
+                  <div class="edit-field-collapse-controls" data-toggle="collapse" data-target="#edit-field-section--advanced" role="button" aria-expanded="false" aria-controls="edit-field-section--advanced">
+                    v
+                  </div>
+                </div>
+              </div>
+              <div id="edit-field-section--advanced" class="collapse row">
+                <div class="col-12">
+                    [to-do]
+                </div>
+              </div>
+
+              <div class="row edit-field-section-header">
+                <div class="col-10">
+                  <div class="edit-field-section-title">Merge Fields</div>
+                </div>
+                <div class="col-2 pr-0">
+                  <div class="edit-field-collapse-controls" data-toggle="collapse" data-target="#edit-field-section--merge-fields" role="button" aria-expanded="false" aria-controls="edit-field-section--merge-fields">
+                    v
+                  </div>
+                </div>
+              </div>
+              <div id="edit-field-section--merge-fields" class="collapse row">
+                <div class="col-12">
+                    [to-do]
+                </div>
+              </div>
+              -->
+
+              <style>
+                #delete-field-container {
+                  cursor: pointer;
+                }
+                .edit-field-end-icon-container {
+                  display: flex;
+                  align-items: center;
+                  flex-direction: row;
+                  margin-bottom: 0.75em;
+                }
+                .edit-field-end-icon {
+                  height: 1em;
+                }
+                .edit-field-end-label {
+                  color: grey;
+                  padding-left: 1em;
+                }
+              </style>
+              <script>
+                function deleteField() {
+                  getActiveEditFieldDiv().remove();
+                  hideFieldSettings();
+                }
+              </script>
+              <div class="row edit-field-section-header">
+                <div class="col-12">
+                  <div id="delete-field-container" class="edit-field-end-icon-container" onclick="deleteField();">
+                    <img class="edit-field-end-icon" src="{!URLFOR($Resource.SSign_Images,'icons/trash.png')}" />
+                    <div class="edit-field-end-label">Delete field</div>
+                  </div>
+                  <!-- Hidden for Alpha Release -->
+                  <!--
+                  <div class="edit-field-end-icon-container">
+                    <img class="edit-field-end-icon" src="{!URLFOR($Resource.SSign_Images,'icons/copy.png')}" />
+                    <div class="edit-field-end-label">Copy field</div>
+                  </div>
+                  -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- START: Prototype: Main Document Page -->
+      <div id="main-document--prototype" documentId="SAMPLE">
+      </div>
+      <!-- END: Prototype: Main Document Page -->
+
+      <!-- START: Prototype: Main Document Page -->
+      <div id="main-document-page--prototype" class="white-block" documentId="SAMPLE" pageIndex="SAMPLE">
+        <img class="main-document-page-image" src="http://cdn.britannica.com/26/116526-050-76C37BBC/Cathedral-of-St-Basil-the-Blessed-Moscow.jpg" />
+      </div>
+      <!-- END: Prototype: Main Document Page -->
+
+      <style>
+        .sidebar-document {
+          border-top: 1px solid #ced6e0;
+          padding-bottom: 1.5em;
+        }
+        .sidebar-header-row {
+          padding-top: 1em;
+        }
+        .sidebar-document-title {
+          font-weight: bold;
+          font-size: 0.9em;
+        }
+        .sidebar-document-profile-info {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+        }
+        .sidebar-document-profile-icon {
+          opacity: 0.6; /* Make it grey */
+        }
+        .sidebar-document-profile-text {
+          padding-left: 0.5em;
+        }
+        .sidebar-document-profile-text {
+          font-size: 0.75em;
+          color: grey;
+        }
+        .sidebar-document-collapse-controls {
+          text-align: right;
+          cursor: pointer;
+          user-select: none;
+        }
+        .sidebar-document-page-row {
+          padding-top: 1em;
+        }
+        .sidebar-document-page {
+          width: 9.3em;
+          height: 12em;
+          background-color: white;
+          cursor: pointer;
+        }
+        .sidebar-document-page-image {
+          height: 100%;
+          width: 100%;
+        }
+        .sidebar-document-page-active {
+          border: 4px solid #ced6e0;
+          border-radius: 4px;
+        }
+        .sidebar-document-page-inactive {
+          border: 1px solid #ced6e0;
+        }
+        .sidebar-document-page-number {
+          text-align: right;
+          font-size: 0.75em;
+          color: grey;
+        }
+      </style>
+      <script>
+        function initSidebarCollapseControls() {
+          j$('.sidebar-document-collapse-controls,.edit-field-collapse-controls').click(function() {
+            if (j$(this).text().includes('^')) {
+              j$(this).text('v');
+            } else {
+              j$(this).text('^');
+            }
+          });
+        }
+
+        function getTestPDFDocumentDataList() {
+          return [
+            {
+              title : "Document 1",
+              pages : [ 1, 2 ],
+              pdfBase64 : getTestPDFBase64(2),
+              profiles : [],
+            },
+            {
+              title : "Document 2",
+              pages : [ 1 ],
+              pdfBase64 : getTestPDFBase64(1),
+              profiles : [ 
+                /* Not the same as recipients.
+                All recipients defined on Page 2
+                are available on all documents on this page.
+                Profiles involve mapping a recipient to a 
+                pre-defined profile (need to confirm this
+                with Chris G & Deni) */
+                1, 2
+              ]
+            },
+            {
+              title : "Document 3",
+              pages : [ 1, 2, 3 ],
+              pdfBase64 : getTestPDFBase64(3),
+              profiles : []
+            },
+          ];
+        }
+
+        function initSidebarDocuments() {
+          populateSidebarDocuments();
+          setSidebarDocumentPageOnclick();
+          initSidebarCollapseControls();
+          setActiveSidebarDocumentPageClasses(j$('.sidebar-document-page').first());
+        }
+
+        function populateSidebarDocuments() {
+          for (var i = 0; i < pdfDocumentDataList.length; i++) {
+            addSidebarDocument(pdfDocumentDataList[i]);
+          }
+        }
+
+        function setSidebarDocumentPageOnclick() {
+          j$('.sidebar-document-page').click(function() {
+            var $page = j$(this);
+            var $pageRow = $page.closest('.sidebar-document-page-row');
+            var documentId = $pageRow.attr('documentId');
+            var pageIndex = $pageRow.attr('pageIndex');
+            setActiveSidebarDocumentPageClasses($page);
+            displayActiveDocument(documentId, pageIndex, true);
+          });
+        }
+
+        function setActiveSidebarDocumentPageClasses($page) {
+          var $allPages = j$('.sidebar-document-page');
+          $allPages.removeClass('sidebar-document-page-active');
+          $allPages.addClass('sidebar-document-page-inactive');
+          $page.removeClass('sidebar-document-page-inactive');
+          $page.addClass('sidebar-document-page-active');
+        }
+
+        function addSidebarDocument(pdfDocumentData) {
+          var documentId = pdfDocumentData.uniqueId;
+          var $sidebarDocument = HeadUtils.Prototypes.cloneFromPrototype('#sidebar-document--prototype');
+          $sidebarDocument.attr('documentId', documentId);
+
+          HeadUtils.JQuery.findAndSetChildText($sidebarDocument, '.sidebar-document-title', pdfDocumentData.documentData.title);
+
+          var pageRowContainerId = 'collapsible-block-document-' + documentId;
+          var $pageRowContainer = $sidebarDocument.find('.sidebar-document-page-row-container');
+          $pageRowContainer.attr('id', pageRowContainerId);
+
+          var $collapseControls = $sidebarDocument.find('.sidebar-document-collapse-controls');
+          $collapseControls.attr('id', 'collapse-controls-document-' + documentId);
+          $collapseControls.attr('data-target', '#' + pageRowContainerId);
+
+          var $profileInfo = $sidebarDocument.find('.sidebar-document-profile-info');
+          var numProfiles = pdfDocumentData.profiles.length;
+          if (numProfiles == 0) {
+            $profileInfo.hide();
+          } else {
+            var profileText = HeadUtils.getProfileText(numProfiles);
+            $profileInfo.find('.sidebar-document-profile-text').text(profileText);
+          }
+      
+          addPageRowsToSidebarDocument(pdfDocumentData, $sidebarDocument, $pageRowContainer, documentId);
+
+          j$('#sidebar-document-container').append($sidebarDocument);
+        }
+
+        function addPageRowsToSidebarDocument(pdfDocumentData, $sidebarDocument, $pageRowContainer, documentId) {
+          for (var i = 0; i < pdfDocumentData.numPages; i++) {
+            var $pageRow = HeadUtils.Prototypes.cloneFromPrototype('#sidebar-document-page-row--prototype');
+            HeadUtils.JQuery.findAndSetChildText($pageRow, '.sidebar-document-page-number', i + 1);
+            $pageRow.attr('documentId', documentId);
+            $pageRow.attr('pageIndex', i);
+            $pageRowContainer.append($pageRow);
+          }
+        }
+      </script>
+      <!-- START: Prototype: Sidebar Document -->
+      <div id="sidebar-document--prototype" class="container-fluid" documentId="SAMPLE">
+        <div class="row sidebar-header-row">
+          <div class="col-10">
+            <div class="sidebar-document-title">Sample Title</div>
+            <div class="sidebar-document-profile-info">
+              <img class="sidebar-document-profile-icon profile-icon profile-icon-sm" src="{!URLFOR($Resource.SSign_Images,'icons/person.png')}" />
+              <div class="sidebar-document-profile-text">0 profiles</div>
+            </div>
+          </div>
+          <div class="col-2 pr-0">
+            <div class="sidebar-document-collapse-controls" data-toggle="collapse" data-target="#collapsible-block-document-SAMPLE" role="button" aria-expanded="false" aria-controls="document-1">
+              ^
+            </div>
+          </div>
+        </div>
+        <div id="collapsible-block-document-SAMPLE" class="sidebar-document-page-row-container collapse show">
+        </div>
+      </div>
+      <!-- END: Prototype: Sidebar Document -->
+
+      <!-- START: Prototype: Sidebar Document Page Row -->
+      <div id="sidebar-document-page-row--prototype" documentId="SAMPLE" pageIndex="SAMPLE">
+        <div class="row">
+          <div class="col-10">
+            <div class="sidebar-document-page sidebar-document-page-inactive">
+              <img class="sidebar-document-page-image" src="http://cdn.britannica.com/26/116526-050-76C37BBC/Cathedral-of-St-Basil-the-Blessed-Moscow.jpg" />
+            </div>
+          </div>
+          <div class="col-2 pr-0">
+            <div class="sidebar-document-page-number">0</div>
+          </div>
+        </div>
+      </div>
+      <!-- END: Prototype: Sidebar Document Page Row -->
+
+      <apex:includeScript value="{!URLFOR($Resource.SSign__SSign,'/resources/js/pdf.js')}" />
+      <apex:includeScript value="{!URLFOR($Resource.SSign__SSign,'/resources/js/pdf.worker.js')}" />
+      <script>
+        function initPDFPageImages() {
+          for (var i = 0; i < pdfDocumentDataList.length; i++) {
+            processPDF(pdfDocumentDataList[i]);
+          }
+        }
+
+        function processPDF(pdfDocumentData) {
+          var file = dataURItoBlob(pdfDocumentData.pdfBase64);
+          var fileReader = new FileReader();
+          fileReader.readAsArrayBuffer(file);
+          fileReader.onload = function(ev) {
+            var pdf = PDFJS.getDocument(fileReader.result);
+
+            // do a promise all on PDF then a promise all inside that on iterate page promises
+            pdf.then(
+              function getPdf(pdf) {
+                processPDFPages(pdf, pdfDocumentData);
+              }, function(error){
+                console.log(error);
+              }
+            );
+          };
+        }
+        
+        var numPDFsProcessed = 0;
+        function processPDFPages(pdf, pdfDocumentData) {
+          pdfDocumentData.numPages = pdf.pdfInfo.numPages;
+          var pdfPagePromises = [];
+          for (var i = 1; i <= pdf.pdfInfo.numPages; i++) {
+            var page = pdf.getPage(i);
+            pdfPagePromises.push(
+              page.then(function(page) {
+                return processPDFPageCanvas(pdfDocumentData, page);
+              })
+            );
+          }
+          Promise.all(pdfPagePromises).then(function() {
+            // Javascript is async but not multi-threaded so this is a safe operation
+            numPDFsProcessed++;
+            if (numPDFsProcessed === pdfDocumentDataList.length) {
+              finishInitPDFPageImages();
+            }
+          });
+        }
+
+        function finishInitPDFPageImages() {
+          initSidebarDocuments();
+          initMainDocumentPages();
+          addPageImagesToHTML();
+
+          setDraggable();
+          setDroppable();
+
+          initFields();
+
+          displayActiveDocument(pdfDocumentDataList[0].documentData.uniqueId, 0, false);
+          HeadUtils.hideLoadingDiv();
+          HeadUtils.setLoadingDivTransparent();
+        }
+
+        function addPageImagesToHTML() {
+          for (var i = 0; i < addPDFPageImagesFunctions.length; i++) {
+            addPDFPageImagesFunctions[i]();
+          }
+          HeadUtils.DataUtils.clearArray(addPDFPageImagesFunctions);
+        }
+
+        var addPDFPageImagesFunctions = [];
+        function processPDFPageCanvas(pdfDocumentData, page) {
+          // Increase this to increase the resolution of the PDF page images
+          var scale = 2.5;
+          var viewport = page.getViewport(scale);
+
+          // Prepare canvas using PDF page dimensions
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+
+          // Later on maybe create canvas elements via JS and set their width's based
+          // on the document's actual page width
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          // Render PDF page into canvas context
+          var task = page.render({canvasContext: context, viewport: viewport});
+          return task.promise.then(function(){
+            var pageImageDataURL = canvas.toDataURL('image/png');
+            addPDFPageImagesFunctions.push(function() {
+              $pageRow = getElementByCDP('.sidebar-document-page-row', pdfDocumentData.uniqueId, page.pageIndex);
+              $pageRow.find('.sidebar-document-page-image').attr('src', pageImageDataURL);
+              savePageImageToDatabase(pdfDocumentData, page.pageIndex, pageImageDataURL);
+            });
+          });
+        }
+
+        var numPagesForDatabase = 0;
+        var numPagesAddedToDatabase = 0;
+
+        /* This function adds the pages images to the database as Attachments and then adds a new pageData object
+        to pdfDocumentData.documentData.pages. Once the user clicks "Previous" or "Next", the documentData.pages
+        will be committed to the State_JSON__c field in the database. If the user does a page refresh before this commit,
+        the documentData.pages list will still be blank. However, any Attachment that has been created will still exist,
+        and insertUniqueAttachment will return the Attachment ID instead of creating a new one, and then that Id will be
+        written to the documentData.pages[i].databaseId variable as usual.
+
+        The remote action in this function will run asynchronously as to reduce load time and allow the user to begin
+        adding fields as soon as possible. If the user clicks "Previous" or "Next before all of the insertUniqueAttachment
+        VF remote action calls have completed, they will see a "Processing documents... please wait..." message.
+
+        Note, all savePageImageToDatabase() calls will complete before the initial loading div is removed,
+        so numPagesForDatabase will be the correct number by the time the user has access to the "Previous" or "Next" buttons
+        (though the async VF remoting portion of the function will probably still be running at that time).  */
+        function savePageImageToDatabase(pdfDocumentData, pageIndex, pageImageDataURL) {
+          var pageData = pdfDocumentData.documentData.pages[pageIndex];
+          if (pageData != null && pageData.databaseId != null) {
+            return; // exit function if image was already added to database on a previous page load 
+          }
+          console.log('start page upload');
+
+          numPagesForDatabase++;
+          var errorKey = 'pdfPageUpload';
+          WizardUtils.addRedirectError(errorKey, 'Processing documents, please wait a moment and try again.');
+
+          const zeroPad = (num, places) => String(num).padStart(places, '0');
+          var title = '[' + pdfDocumentData.documentData.title + '] uploaded_page_' + zeroPad(pageIndex + 1, 5) + '.png';
+          var uniqueDescription = 'Page Image { documentId : ' + pdfDocumentData.uniqueId + ', pageIndex : ' + pageIndex + '}';
+          Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.SSCreateRequestController.insertUniqueAttachment}',
+            HeadUtils.Database.stateId,
+            title,
+            pageImageDataURL.split(',')[1],
+            uniqueDescription,
+            function(result, event) {
+              if (event.status) {
+                /* Note, pdfDocumentData[i].documentData points to the same object as
+                HeadUtils.Database.state.documents[i], so we can modify pdfDocumentData[i].documentData
+                here and then HeadUtils.Database.saveState() will capture these changes when accessing
+                HeadUtils.Database.state.documents[i] */
+                pageData = {
+                  pageIndex : pageIndex,
+                  databaseId : result,
+                  fields : [] // Leave empty; populated by backend only in SSCreateRequestController.populatePageFields()
+                };
+                pdfDocumentData.documentData.pages[pageIndex] = pageData; // async, don't use .push() or else pages will be out of order
+                console.log('finished page upload');
+                numPagesAddedToDatabase++;
+                if (numPagesAddedToDatabase === numPagesForDatabase) {
+                  WizardUtils.removeRedirectError(errorKey);
+                  console.log('finished all page uploads: ' + numPagesAddedToDatabase + '/' + numPagesForDatabase);
+                }
+              } else {
+                alert('Error in RemoteAction: ' + event.message);
+              } 
+              //Sfdc.canvas.publisher.publish({name:"publisher.close",payload:{refresh:"true"}});
+            },
+            {
+              buffer: false, 
+              escape: true, 
+              timeout: 120000 
+            }
+          );
+        }
+
+        // COPIED FROM SSCREATESIG
+        // Originally returned a File. However the File() constructor is not supported in 
+        // IE or Edge. Now returns a Blob which seems to work in all browsers.
+        // Source: https://stackoverflow.com/questions/12168909/blob-from-dataurl
+        function dataURItoBlob(dataURI) {
+          // convert base64 to raw binary data held in a string
+          // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+          var byteString = atob(dataURI.split(',')[1]);
+
+          // separate out the mime component
+          var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+          // write the bytes of the string to an ArrayBuffer
+          var ab = new ArrayBuffer(byteString.length);
+
+          // create a view into the buffer
+          var ia = new Uint8Array(ab);
+
+          // set the bytes of the buffer to the correct values
+          for (var i = 0; i < byteString.length; i++) {
+              ia[i] = byteString.charCodeAt(i);
+          }
+
+          // write the ArrayBuffer to a blob, and you're done
+          var blob = new Blob([ab], {type: mimeString});
+          return blob;
+        }
+
+
+        function getTestPDFBase64(numPages) {
+          if (numPages == 1) {
+            return 'data:application/pdf;base64,JVBERi0xLjQKJeLjz9MKNCAwIG9iaiA8PC9GaWx0ZXIvRmxhdGVEZWNvZGUvTGVuZ3RoIDU2OT4+c3RyZWFtCniclZbNbtUwEIX38xReAgvjnyROtkiwQEKiUiQWiAVSaauqg1Q2vA6PiuPMdTyexDdX3WSaM2e+Hk8Vv8KHGYwKk1PzPXyc4Q5ewWjjQ6/+glOf48tnsEZ9ge8/jLqH4FRwRiH0nUlPL/SkTRef0+vicXn/BN/gd/RZfv48Lr8fJqdDt5h4owd/qaOVm/Q4xtrqaUoeOoLk8gke3rH+6v1aOpvL9Oy6SyvZkwBbeiKr+hkuClzuf2DCmBG8sdrbzcMbo/sh1akneN1v1Z4DV6SqDxToKu1DGSBNIA22OwivdiiZUTDzCSdN9sK0vjSNizVUUUgSLqK6TUKTciDXmohUmmz4KPD5kAMTFj6KwTlXftZyN7IDV6Sq69lJd/3ObpAG2x2EVzuUzCiY+YSTJnVYOcz6mHd2oyDhIqrbJDQpB3KtiUilyYaPAp8POTBh4aMYnHPlZy13IztwRaq8Zyft/c5ukAbbHYRXO5TMKJj5hJMmdVg5zPqYd3ajIOEiqtskNCkHcq2JSKXJho8Cnw85MGHhoxicc+VnLXcjO3BFqpxlJ50/cuVukAbbHYRXO5TMKJj5hJMmdVg5zPqYd3ajIOEiqtskNCkHcq2pvjqUu8H+nBKfDzkwiRe895+ssvGG9wA23cJiZc2CE8yoR69mhDfq7fy8XACT3FXy5S63Sb/+fPylbKmv7dcriQt66lLHv5b48s0+KV8/aeYm77Pyde3Hm7zPytd/ieEm7x35ckG/g/9M6U+LCmVuZHN0cmVhbQplbmRvYmoKMSAwIG9iajw8L0NvbnRlbnRzIDQgMCBSL1R5cGUvUGFnZS9SZXNvdXJjZXM8PC9Qcm9jU2V0IFsvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJXS9Gb250PDwvRjEgMiAwIFIvRjIgMyAwIFI+Pj4+L1BhcmVudCA1IDAgUi9NZWRpYUJveFswIDAgNjEyIDc5Ml0+PgplbmRvYmoKMyAwIG9iajw8L1N1YnR5cGUvVHlwZTEvVHlwZS9Gb250L0Jhc2VGb250L0hlbHZldGljYS9FbmNvZGluZy9XaW5BbnNpRW5jb2Rpbmc+PgplbmRvYmoKMiAwIG9iajw8L1N1YnR5cGUvVHlwZTEvVHlwZS9Gb250L0Jhc2VGb250L1RpbWVzLVJvbWFuL0VuY29kaW5nL1dpbkFuc2lFbmNvZGluZz4+CmVuZG9iago1IDAgb2JqPDwvS2lkc1sxIDAgUl0vVHlwZS9QYWdlcy9Db3VudCAxPj4KZW5kb2JqCjYgMCBvYmo8PC9UeXBlL0NhdGFsb2cvUGFnZXMgNSAwIFI+PgplbmRvYmoKNyAwIG9iajw8L01vZERhdGUoRDoyMDIxMDIyNjE3MjEyNFopL0NyZWF0aW9uRGF0ZShEOjIwMjEwMjI2MTcyMTI0WikvUHJvZHVjZXIoaVRleHQgMi4wLjggXChieSBsb3dhZ2llLmNvbVwpKT4+CmVuZG9iagp4cmVmCjAgOAowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDA2NTEgMDAwMDAgbiAKMDAwMDAwMDkwMyAwMDAwMCBuIAowMDAwMDAwODE2IDAwMDAwIG4gCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMDk5MiAwMDAwMCBuIAowMDAwMDAxMDQyIDAwMDAwIG4gCjAwMDAwMDEwODYgMDAwMDAgbiAKdHJhaWxlcgo8PC9JbmZvIDcgMCBSL0lEIFs8YzFmYTEyYzhmZWFhOTY1NjRhYmI2ZWNhY2RlNWJjNzU+PDg2MDJkYWJhNDFkNWIyZDI4MjA4NGFkNjhmMGY2ZWJjPl0vUm9vdCA2IDAgUi9TaXplIDg+PgpzdGFydHhyZWYKMTIwNQolJUVPRgo=';
+          } 
+          else if (numPages == 2) {
+            return 'data:application/pdf;base64,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PDwvS2lkc1sxIDAgUiA3IDAgUl0vVHlwZS9QYWdlcy9Db3VudCAyPj4KZW5kb2JqCjggMCBvYmo8PC9UeXBlL0NhdGFsb2cvUGFnZXMgNSAwIFI+PgplbmRvYmoKOSAwIG9iajw8L01vZERhdGUoRDoyMDIxMDIyNjE3MjIxMlopL0NyZWF0aW9uRGF0ZShEOjIwMjEwMjI2MTcyMjEyWikvUHJvZHVjZXIoaVRleHQgMi4wLjggXChieSBsb3dhZ2llLmNvbVwpKT4+CmVuZG9iagp4cmVmCjAgMTAKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwNjUxIDAwMDAwIG4gCjAwMDAwMDE2MTcgMDAwMDAgbiAKMDAwMDAwMTcwNiAwMDAwMCBuIAowMDAwMDAwMDE1IDAwMDAwIG4gCjAwMDAwMDE3OTMgMDAwMDAgbiAKMDAwMDAwMDgxNiAwMDAwMCBuIAowMDAwMDAxNDUyIDAwMDAwIG4gCjAwMDAwMDE4NDkgMDAwMDAgbiAKMDAwMDAwMTg5MyAwMDAwMCBuIAp0cmFpbGVyCjw8L0luZm8gOSAwIFIvSUQgWzxlMjZhMmI3OTM1NTVjODllOGZlZGI3MjVhN2M0ODk4NT48M2YyOTFlYjlmNWVlNDcxMmIwNGZjZWM0ODIzZDAzOTI+XS9Sb290IDggMCBSL1NpemUgMTA+PgpzdGFydHhyZWYKMjAxMgolJUVPRgo=';
+          }
+          else if (numPages == 3) {
+            return 'data:application/pdf;base64,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CjExIDAgb2JqPDwvTW9kRGF0ZShEOjIwMjEwMjI2MTcyMjQ0WikvQ3JlYXRpb25EYXRlKEQ6MjAyMTAyMjYxNzIyNDRaKS9Qcm9kdWNlcihpVGV4dCAyLjAuOCBcKGJ5IGxvd2FnaWUuY29tXCkpPj4KZW5kb2JqCnhyZWYKMCAxMgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDA2NTEgMDAwMDAgbiAKMDAwMDAwMjQxOCAwMDAwMCBuIAowMDAwMDAyNTA3IDAwMDAwIG4gCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMjU5NCAwMDAwMCBuIAowMDAwMDAwODE2IDAwMDAwIG4gCjAwMDAwMDE0NTIgMDAwMDAgbiAKMDAwMDAwMTYxNyAwMDAwMCBuIAowMDAwMDAyMjUzIDAwMDAwIG4gCjAwMDAwMDI2NTYgMDAwMDAgbiAKMDAwMDAwMjcwMSAwMDAwMCBuIAp0cmFpbGVyCjw8L0luZm8gMTEgMCBSL0lEIFs8MDI3NmJmZTJlM2IzN2UzY2QyMzc4Y2U5ZWIwMTRmYzc+PDM0MzZmOTJkZTg3MTAzYTdiMzVlYzc1MjZiNTUwM2Y2Pl0vUm9vdCAxMCAwIFIvU2l6ZSAxMj4+CnN0YXJ0eHJlZgoyODIxCiUlRU9GCg==';
+          }
+          else {
+            alert('Invalid numPages for getTestPDFBase64(): ' + numPages);
+          }
+        }
+      </script>
+      
+    </body>
+  </html>
+</apex:page>

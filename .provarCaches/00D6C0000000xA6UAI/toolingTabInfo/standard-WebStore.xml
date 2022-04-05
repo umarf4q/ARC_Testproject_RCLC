@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingTabInfo>
+  <tabDefinition DurableId="WebStore" IsAvailableInAloha="true" IsAvailableInLightning="true" Label="Stores" Name="standard-WebStore" SobjectName="WebStore" Url="https://arc-phss--test.my.salesforce.com/0ZE/o"/>
+</toolingTabInfo>

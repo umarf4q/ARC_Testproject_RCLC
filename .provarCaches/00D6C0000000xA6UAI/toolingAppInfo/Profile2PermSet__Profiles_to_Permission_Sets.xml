@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolingAppInfo>
+  <appDefinition DeveloperName="Profiles_to_Permission_Sets" Label="Permission Set Helper" NamespacePrefix="Profile2PermSet" NavType="Standard" UiType="Lightning"/>
+</toolingAppInfo>

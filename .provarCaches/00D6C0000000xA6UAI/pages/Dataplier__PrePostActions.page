@@ -1,0 +1,1437 @@
+<apex:page standardController="Dataplier__Execution_Sequence__c" extensions="Dataplier.PrePostActionsController" id="prePostActionsPage" sideBar="false" docType="html-5.0">
+    <c:TrackPanel />
+    <link rel="stylesheet" href="{!URLFOR($Resource.migration, 'css/jquery-ui.css')}"/>
+    <style>
+
+        .ui-accordion .ui-accordion-content {
+            height: 100%;
+            padding: 0 0;
+        }
+
+
+        .table-header {
+            background-color: #f7f9fb !important;
+            height: 30px !important;
+        }
+
+
+        .customMessage * {
+            color: #fff !important
+        }
+
+        .customMessage {
+            margin: 5px 0 !important;
+            max-width: 100%;
+            opacity: 1 !important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+
+        .message {
+            opacity: 1;
+        }
+    </style>
+    <apex:slds />
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-1.10.2.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-ui.js')}"/>
+    <!--
+        <apex:includescript value="{!URLFOR($Resource.migration, 'js/jsforce-1.7.0.min.js')}" />
+    -->
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jsforce.js')}"/>
+<!--    <apex:includescript value="{!URLFOR($Resource.postinstall, 'js/jszip.min.js')}"/>-->
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__postinstall, 'js/jszipnew.min.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/X2JS.js')}"/>
+    <apex:form id="pageForm">
+        <apex:pagemessages id="msg"/>
+        <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+            <div class="slds-media__body">
+                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#custom')}"/>
+							</svg>
+						</span>
+                    <span style="font-weight: bolder;" class="slds-m-left--small">Applying pre- and post-actions
+					</span>
+                </h1>
+            </div>
+        </div>
+        <apex:outputPanel id="pageBlock">
+            <div class="slds-box slds-m-top--medium">
+                <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				<span class="slds-icon_container slds-icon-standard-account">
+ 							            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#connected_apps')}"/>
+							            </svg>
+						                </span>
+                    <span class="slds-truncate slds-m-left--small">Choose backup record to restore previous settings (use Default action option to enable all components)</span>
+                </div>
+                <div class="slds-grid slds-gutters slds-m-top--medium">
+                    <div class="slds-col slds-size--8-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-size--7-of-12" id="backup">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="list1" value="Backup record: "/>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <apex:selectList size="1" styleClass="slds-select" value="{!selectedBkup}" style="padding:0.2em;" multiselect="false" id="list1">
+                                        <apex:selectOptions value="{!bkupOptions}"/>
+                                    </apex:selectList>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+
+                    </div>
+                    <div class="slds-col slds-size--4-of-12">
+                        <apex:outputPanel id="delall" styleClass="slds-float--right">
+                            <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!cancel}" value="Cancel"/>
+                            <apex:commandButton styleClass="slds-button slds-button_neutral" onclick="start(2)" value="Restore" rerender="none"/>
+                            <apex:commandButton action="{!deleteBkup}" styleClass="slds-button slds-button_neutral" value="Delete backup records" onComplete="overridePageMessages();" rerender="msg"/>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-box slds-m-top--medium">
+                <div class="" style="background-color: #f7f9fb; padding: 9px; margin : -16px -15px 0 -15px">
+				<span class="slds-icon_container slds-icon-standard-account">
+ 							            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#sort')}"/>
+							            </svg>
+						                </span>
+                    <span class="slds-truncate slds-m-left--small">Choose which components will be enabled/disabled</span>
+                </div>
+                <div class="slds-grid slds-gutters slds-m-top--medium">
+                    <div class="slds-col slds-size--5-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                            <div class="slds-form-element">
+                                <label class="slds-checkbox_toggle slds-grid">
+                                    <span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Triggers:</span>
+                                    <apex:inputCheckbox value="{!bTriggers}"/>
+                                    <span id="checkbox-toggle-16" class="slds-checkbox_faux_container" aria-live="assertive">
+      								<span class="slds-checkbox_faux"></span>
+   									</span>
+                                </label>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                            <div class="slds-form-element">
+                                <label class="slds-checkbox_toggle slds-grid">
+                                    <span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Validation Rules:</span>
+                                    <apex:inputCheckbox value="{!bValidationRules}"/>
+                                    <span id="checkbox-toggle-16" class="slds-checkbox_faux_container" aria-live="assertive">
+      								<span class="slds-checkbox_faux"></span>
+   									</span>
+                                </label>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-col slds-size--5-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-size--10-of-12">
+                            <div class="slds-form-element">
+                                <label class="slds-checkbox_toggle slds-grid">
+                                    <span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Workflow Rules:</span>
+                                    <apex:inputCheckbox value="{!bWorkflows}"/>
+                                    <span id="checkbox-toggle-17" class="slds-checkbox_faux_container" aria-live="assertive">
+      								<span class="slds-checkbox_faux"></span>
+   									</span>
+                                </label>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-size--10-of-12">
+                            <div class="slds-form-element">
+                                <label class="slds-checkbox_toggle slds-grid">
+                                    <span class="slds-form-element__label slds-m-bottom_none" style="margin-right: 20px">Flows:</span>
+                                    <apex:inputCheckbox value="{!bFlows}"/>
+                                    <span id="checkbox-toggle-18" class="slds-checkbox_faux_container" aria-live="assertive">
+      								<span class="slds-checkbox_faux"></span>
+   									</span>
+                                </label>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-col slds-size--2-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-float--right">
+                            <apex:commandButton styleClass="slds-button slds-button_neutral" onclick="start(1)" value="Disable" rerender="none"/>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+                <apex:dataTable headerClass="table-header" style="border-top: snow;" styleClass="slds-table slds-table_cell-buffer slds-table_bordered slds-no-row-hover slds-m-top--medium" value="{!objStateDescriptorList}" var="cc" id="pbtable"
+                                rendered="{!(objStateDescriptorList.size != 0)}">
+                    <apex:column id="selectCol" style="width:5%">
+                        <apex:facet name="header">
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <div class="slds-checkbox">
+                                        <input type="checkbox" name="options" id="select" onclick="return checkAll(this,'chkbox')"/>
+                                        <label class="slds-checkbox__label" for="select">
+                                            <span class="slds-checkbox_faux"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:facet>
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element">
+                                <label class="slds-checkbox">
+                                    <apex:inputcheckbox id="chkbox" styleclass="slds-input" value="{!cc.check}"/>
+                                    <span class="slds-checkbox--faux"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </apex:column>
+                    <div id="{!cc.id}">
+                        <apex:column id="namesCol" style="width:40%">
+                            <apex:facet name="header">Object's name</apex:facet>
+                            {!cc.objApiName}
+                        </apex:column>
+                    </div>
+                    <apex:column id="resultCol" style="width:40%; padding: 17px 0">
+                        <apex:facet name="header"> Info</apex:facet>
+                        <apex:outputText value="{!cc.actionResult}"/>
+                    </apex:column>
+                </apex:dataTable>
+                <div class="slds-m-top--medium">
+                    <apex:outputText rendered="{!(objStateDescriptorList.size = 0)}" value="There are no records to display." style="color:black; text-align:center;"/>
+                </div>
+            </div>
+        </apex:outputPanel>
+        <apex:actionfunction action="{!createDataToUpdate}" name="createDataToUpdate" rerender="msg,pbtable" oncomplete="overridePageMessages();startUpdating('{!jsonDataToUpdate}','{!bTriggers}', '{!bValidationRules}','{!bWorkflows}', '{!bFlows}');">
+            <apex:param name="orgId" assignTo="{!orgId}" value=""/>
+            <apex:param name="createBkUp" assignTo="{!createBkUp}" value=""/>
+        </apex:actionfunction>
+        <apex:actionfunction action="{!createBkupData}" name="createBkupData" onComplete="overridePageMessages();" rerender="msg,pbtable,backup,pageForm">
+            <apex:param name="bkupData" assignTo="{!bkupData}" value=""/>
+            <apex:param name="log" assignTo="{!log}" value=""/>
+        </apex:actionfunction>
+        <apex:actionfunction action="{!updatePage}" name="finalize" onComplete="overridePageMessages();" rerender="msg,pbtable,backup">
+            <apex:param name="msg" assignTo="{!msg}" value=""/>
+            <apex:param name="log" assignTo="{!log}" value=""/>
+        </apex:actionfunction>
+        <apex:actionfunction action="{!checkSettings}" name="checkSettings" oncomplete="overridePageMessages();continueProc('{!isValid}')" rerender="msg,pbtable,backup">
+        </apex:actionfunction>
+        <apex:actionfunction action="{!getBkupData}" name="getBkupData" rerender="msg,pbtable,backup" oncomplete="overridePageMessages();startUpdating('{!jsonDataToUpdate}','{!bTriggers}', '{!bValidationRules}','{!bWorkflows}','{!bFlows}','{!jsonBkupDataToUpdate}');">
+            <apex:param name="orgId" assignTo="{!orgId}" value=""/>
+        </apex:actionfunction>
+    </apex:form>
+    <div id="dialog-form" title="Connect">
+        <div class="slds-scope">
+            <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+                <div class="slds-media__body">
+                    <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#apex_plugin')}"/>
+							</svg>
+						</span>
+                        <span class="slds-m-left--small">Connect</span>
+                    </h1>
+                </div>
+            </div>
+            <div id="loadingMsg" style="display:none">
+                <p class="validateTips" style="color:yellow">Loading users, please wait</p>
+            </div>
+        </div>
+        <form style="font-size: 100%; !important;">
+            <div class="slds-scope">
+                <apex:outputPanel layout="block" styleClass="slds-box slds-m-top--medium">
+                    <fieldset>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-size--12-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="env" value="Environment: "/>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select name="env" id="env" class="slds-select" onchange="showCustomDomainInput(this);">
+                                        <option selected="selected" value="https://login.salesforce.com">Production/Developer</option>
+                                        <option value="https://test.salesforce.com">Sandbox</option>
+                                        <option value="">Custom Domain</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+
+                        <div id="customDomainContainer" style="display: none;">
+                            <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12">
+                                <apex:outputLabel styleClass="slds-form-element__label" for="customDomain" value="Custom Domain: "/>
+                                <div class="slds-form-element__control">
+                                    <apex:outputPanel styleClass="requiredBlock"/>
+                                    <output id="customDomainErr" style="display: none; color: red; margin: 2px 0 4px 0;">Domain should be like https://somethingcool.my.salesforce.com</output>
+                                    <output id="customDomainLightningErr" style="display: none; color: red; margin: 2px 0 4px 0;">URL should NOT be lightning domain like https://somethingcool.lightning.force.com</output>
+                                    <input type="text" name="customDomain" id="customDomain" class="slds-input" onchange="instanceOptionsValue(this);"/>
+                                </div>
+                            </apex:outputPanel>
+
+                        </div>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="userName" value="Username: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <input type="text" name="userName" id="userName" class="slds-input"/>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--12-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="password" value="Password: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <input type="password" name="password" id="password" class="slds-input"/>
+                            </div>
+                        </apex:outputPanel>
+                        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
+                    </fieldset>
+                </apex:outputPanel>
+            </div>
+        </form>
+    </div>
+    <div id="dialog-form-valid" title="Validated FLS" style="display:none">
+        <p class="validateTips" style="color:green">FLS validated completed successfully on target org.</p>
+        <p class="validateTips">Do you want to start deploy data?</p>
+    </div>
+    <div id="dialog-form-not-valid" title="Deploy failed" style="display:none">
+        <p class="validateTips" style="color:red">Following CRUD/FLS settings on target org are not valid:</p>
+        <div id="contAccord">
+        </div>
+    </div>
+    <div id="UserDeploys" style="display:none;">
+        <label for="profileId" style="display:none;" name="udeploy">ProfileId (Target Org)</label>
+        <input type="text" name="udeploy" id="profileId" class="text ui-widget-content ui-corner-all" style="display:none;"/>
+        <label for="usernamepref" style="display:none;" name="udeploy">UserName Prefix</label>
+        <input type="text" name="udeploy" id="usernamepref" class="text ui-widget-content ui-corner-all" style="display:none;"/>
+    </div>
+
+    <script type="text/javascript">
+        function confirmCancel() {
+          return confirm("Are you sure you wish to cancel?");
+        }
+
+        let flag;
+
+        function checkAll(cb, nCol) {
+            flag = cb.checked;
+            if (!flag) flag = false;
+            const inputElem = document.getElementsByTagName("input");
+            for (let i = 1; i < inputElem.length; i++) {
+                if (inputElem[i].name.indexOf(nCol) !== -1) {
+                    inputElem[i].checked = flag;
+                }
+            }
+        }
+
+        /**************         connecting page functionality        ******************/
+        var sessionId = "{!$Api.Session_Id}";
+        var sequenceId = "{!JSENCODE(es.Id)}";
+        var isStarted = "{!isStarted}";
+        var dataToUpdate = [];
+        var createWithBkup = 0;
+        var conn; // jsforce object to work with target org
+
+        var dialog, form, cdialog,
+            emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+            profIdRegex = /^[a-zA-Z0-9]*$/,
+            domain = $("#customDomain"),
+            username = $("#userName"),
+            password = $("#password"),
+            profileIdinput = $("#profileId"),
+            userprefixInput = $("#usernamepref"),
+
+            allFields = $([]).add(domain).add(username).add(password).add(profileIdinput).add(userprefixInput),
+            tips = $(".validateTips");
+
+        dialog = $("#dialog-form").dialog({
+            autoOpen: false,
+            width: 600,
+            modal: true,
+            buttons: {
+                "Log In": function () {
+                    connectToTarget();
+                },
+                Cancel: function () {
+                    dialog.dialog("close");
+                    if (sequenceId) window.location.href = "/" + sequenceId;
+                }
+            },
+            open: function () {
+                $('.ui-dialog-buttonset').addClass('slds-scope');
+                $('.ui-dialog-buttonpane').find('button:contains("Cancel")').removeAttr('class');
+                $('.ui-dialog-buttonpane').find('button:contains("Cancel")').addClass('slds-button slds-button_neutral');
+                $('.ui-dialog-buttonpane').find('button:contains("Log In")').removeAttr('class');
+                $('.ui-dialog-buttonpane').find('button:contains("Log In")').addClass('slds-button slds-button--brand');
+            },
+            close: function () {
+                form[0].reset();
+                allFields.removeClass("ui-state-error");
+            }
+        });
+        $(".ui-dialog-titlebar").hide();
+
+        form = dialog.find("form").on("submit", function (event) {
+            event.preventDefault();
+        });
+
+        function updateTips(t) {
+            tips.text(t).addClass("ui-state-highlight");
+            setTimeout(function () {
+                tips.removeClass("ui-state-highlight", 1500);
+            }, 500);
+        }
+
+        function validDomain(o, n, min) {
+            const container = $("#customDomainContainer")[0].style.display,
+              customDomainErr = $("#customDomainErr")[0].style.display,
+              customDomainLightningErr = $("#customDomainLightningErr")[0].style.display;
+
+            if (container === 'none') {
+                return true;
+            }
+            if (o.val().length < min || customDomainErr !== 'none' || customDomainLightningErr !== 'none') {
+                o.addClass("ui-state-error");
+                updateTips("Custom Domain field should be filled correctly");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkLength(o, n, min, max) {
+            if (o.val().length > max || o.val().length < min) {
+                o.addClass("ui-state-error");
+                updateTips("Length of " + n + " must be between " + min + " and " + max + ".");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkRegexp(o, regexp, n) {
+            if (!(regexp.test(o.val()))) {
+                o.addClass("ui-state-error");
+                updateTips(n);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function showCustomDomainInput(elem) {
+
+            if (elem.options[elem.selectedIndex].text === 'Custom Domain') {
+                document.getElementById('customDomainContainer').style.display = 'block';
+            } else {
+                document.getElementById('customDomainContainer').style.display = 'none';
+            }
+        }
+
+        function instanceOptionsValue(elem) {
+
+            let domain = elem.value;
+
+            domain = (domain.indexOf('https://') > -1 ? domain : 'https://' + domain);
+
+            if (domain.slice(-1) === '/') {
+                domain = domain.substr(0, domain.length - 1);
+            }
+
+            document.getElementById('customDomainErr').style.display = 'none';
+            const select = document.getElementById('env');
+            select.options[select.selectedIndex].value = domain;
+
+            if (domain.indexOf('.lightning.force') > -1) {
+                document.getElementById('customDomainLightningErr').style.display = 'block';
+            } else {
+                document.getElementById('customDomainLightningErr').style.display = 'none';
+            }
+        }
+
+        function start(type) {
+            createWithBkup = type;
+            checkSettings();
+        }
+
+        function continueProc(isValid) {
+            if (isValid === false || isValid === 'false') {
+                return;
+            }
+            dialog.dialog("open");
+        }
+
+        function connectToTarget() {
+//              checkFLStoTargetOrg(conn);
+            let valid = true;
+            bSuccess = true;
+            username.val(username.val().trim());
+            domain.val(domain.val().trim());
+            allFields.removeClass("ui-state-error");
+            profileId = profileIdinput.val();
+            userprefix = userprefixInput.val();
+            valid = valid && validDomain(domain, "Custom Domain", 1);
+            //alert('dfkd[sf');
+            valid = valid && checkLength(username, "Username", 1, 255);
+            valid = valid && checkLength(password, "Password", 1, 500);
+            valid = valid && checkRegexp(username, emailRegex, "Username : Incorrect format.");
+
+            if (valid) {
+                conn = new jsforce.Connection({
+                    loginUrl: $("#env").val(),
+                    proxyUrl: "/services/proxy"
+                });
+                conn.metadata.pollTimeout = 12000000;
+                conn.metadata.pollInterval = 4000;
+                //pas5w0rdzBJRkKCLNAPH3c824bdJb9BIa
+
+                conn.login(username.val(), password.val(), function (err, userInfo) {
+                    if (err) {
+                        updateTips(err);
+                    } else {
+                        UserTargetId = userInfo.id;
+                        dialog.dialog("close");
+                        if (createWithBkup !== 2) {
+                            showMessageJS('Updating target org...', 'INFO', 'green');
+                            overridePageMessages();
+                            createDataToUpdate(userInfo.organizationId, createWithBkup);
+                        } else {
+                            showMessageJS('Restoring settings at target org...', 'INFO', 'green');
+                            overridePageMessages();
+                            getBkupData(userInfo.organizationId);
+                        }
+                    }
+                });
+
+            }
+            return valid;
+        }
+
+
+        var bkDataToUpdate;
+        var enableAll;
+
+        /*************          update with new data            ************/
+        function startUpdating(data, t, v, w, f, bkUp) {
+            dataToUpdate = JSON.parse(data);
+
+            if (bkUp) {
+                bkDataToUpdate = JSON.parse(bkUp);
+
+            }
+          let bFlows = f === 'true' || t === true ? true : false;
+          let bTriggers = t == 'true' || t == true ? true : false;
+          let bValRules = (v == 'true' || v == true) ? true : false;
+          let bWorkflows = (w == 'true' || w == true) ? true : false;
+
+            dataToUpdateMap = {};
+            metadataMap = {};
+            totalTriggers = 0;
+            updIndex = 0;
+            updPhaseIndex = 0;
+
+            const objLi = {};
+            for (let x = 0; x < dataToUpdate.length; x++) {
+                const rec = dataToUpdate[x];
+                if (rec.check) {
+                    objLi[rec.objApiName] = true;
+                }
+            }
+            const typesLi = [],
+              packageObj = {};
+            if (bTriggers) {
+                typesLi.push('Triggers');
+            }
+            if (bValRules) {
+                typesLi.push('ValidationRules');
+                packageObj.CustomObject = Object.keys(objLi);
+            }
+            if (bWorkflows) {
+                typesLi.push('Workflows');
+                packageObj.Workflow = Object.keys(objLi);
+            }
+            packageObj.ApexTrigger = [];
+            if (bTriggers === true) {
+                let msg = 'Retrieving info about active triggers',
+                  filterForTriggers = 'Active';
+                if (bkUp) {
+                    msg = 'Retrieving info about triggers';
+                    filterForTriggers = 'All';
+                }
+                showMessageJS(msg, 'INFO', 'green');
+                overridePageMessages();
+
+                const restTemplate = new RestTemplate(conn);
+                restTemplate.getTriggers(objLi, filterForTriggers, function (response) {
+                    if (response && response.error) {
+                        showMessageJS('Error during apex triggers retrieving, response: ' + response.error, 'ERROR', 'red');
+                        overridePageMessages();
+                        return;
+                    }
+                    if (response && response.triggers.length > 0) {
+                        packageObj.ApexTrigger = response.triggers;
+                    }
+                    if (bFlows) {
+                        typesLi.push('Flows');
+                        getFlows(conn).then(result => {
+                            packageObj.FlowDefinition = result;
+                            updateAll(packageObj, typesLi);
+                        }).catch(error => {
+                        });
+                    } else {
+                        updateAll(packageObj, typesLi);
+                    }
+                });
+            } else {
+                if (bFlows) {
+                    typesLi.push('Flows');
+                    let fullNames = [];
+                    if (bkUp){
+                        fullNames = getFlowNamesFromBkUp(bkDataToUpdate);
+                        packageObj.FlowDefinition = fullNames;
+                        updateAll(packageObj, typesLi);
+                    } else {
+                        getFlows(conn, objLi).then(result => {
+                            let flowPromises = [];
+                            for(let i = 0; i < result.length; i++){
+                                flowPromises.push(getFlowMetadata(conn, result[i]));
+                            }
+                            return Promise.all(flowPromises)
+                        })  
+                        .then(flowDescribeResult => {
+                            fullNames = getFlowNamesFromMetadata(objLi, flowDescribeResult);
+                            packageObj.FlowDefinition = fullNames;
+                            updateAll(packageObj, typesLi);
+                        })
+                        .catch(error => {});
+                    }
+                } else {
+                    updateAll(packageObj, typesLi);
+                }
+            }
+        }
+
+        function getFlowNamesFromBkUp(bkDataToUpdate){
+            const fullNames = [];
+            for(let flowPath in bkDataToUpdate){
+                if(flowPath && flowPath.includes('.flowDefinition')){
+                    let flowDefinitionFullName = flowPath.substring(
+                        flowPath.lastIndexOf("flowDefinitions/") + 'flowDefinitions/'.length, 
+                        flowPath.indexOf(".flowDefinition")
+                    );
+                    fullNames.push(flowDefinitionFullName);
+                }
+            }
+            return fullNames;
+        }
+
+        function getFlowNamesFromMetadata(objLi, flowDescribeResult){
+            const fullNames = [];
+
+            const objApiNames = [];
+            for(let objApiName in objLi){
+                if(objLi[objApiName]){
+                    objApiNames.push(objApiName);
+                }
+            }
+
+            for(let i = 0; i < flowDescribeResult.length; i++){
+                let flowDefinition = flowDescribeResult[i];
+                if(flowDefinition.ActiveVersion && flowDefinition.ActiveVersion.Metadata && flowDefinition.ActiveVersion.Metadata.processMetadataValues && flowDefinition.ActiveVersion.Metadata.processMetadataValues.length){
+                    let objectApiName = flowDefinition.ActiveVersion.Metadata.processMetadataValues[0].value.stringValue;
+                    if(objApiNames.includes(objectApiName)){
+                        fullNames.push(flowDefinition.DeveloperName);
+                    }
+                }
+            }
+            return fullNames;
+        }
+
+        function getFlowMetadata(conn, flowDefinitionId) {
+            let queryString = "SELECT Id, DeveloperName, ActiveVersion.VersionNumber, ActiveVersion.Metadata FROM FlowDefinition WHERE Id = \'" + flowDefinitionId + "\'";
+            return new Promise((res, rej) => {
+                conn.tooling.query(queryString)
+                .execute(function(err, result) {
+                    if (err) {
+                        console.log('err: ' + err);
+                        rej(err);
+                        return;
+                    }
+                    res(result.records[0]);
+                });
+            })
+        }
+
+        function getFlows(conn, objLi) {
+            const queryString = 'SELECT Id, DeveloperName FROM FlowDefinition WHERE ActiveVersionId != null';
+            return new Promise((res, rej) => {
+                const result = [];
+                conn.tooling.query(queryString)
+                .execute(function(err, response) {
+                    if (err) { console.error(err); rej(err); return; }
+                    for(let i = 0; i < response.records.length; i++){
+                        let flowDefinition = response.records[i];
+                        result.push(flowDefinition.Id);
+                    }
+                    res(result);
+                });
+            })
+        }
+
+        function updateAll(packageObj, typesLi) {
+            showMessageJS('Retrieving metadata...', 'INFO', 'green');
+            overridePageMessages();
+
+            const pack = new Package(conn, packageObj);
+
+            pack.getMetadata(function (res) {
+                if (res !== 'Done') {
+                    showMessageJS('Error during metadata retrieving, response: ' + res, 'ERROR', 'red');
+                    overridePageMessages();
+                } else {
+                    const zipWrapper = new ZipWrapper(pack.zip64, bkDataToUpdate);
+
+                    zipWrapper.unpack();
+                    let isErrors = false;
+                    try {
+                        zipWrapper.update('turnOff');//NOTE:  argument is not used anymore
+                    } catch (e) {
+                        isErrors = true;
+                        showMessageJS('Error during zip creation: ' + e, 'ERROR', 'red');
+                        overridePageMessages();
+                    }
+                    if (!isErrors) {
+                        zipWrapper.pack();
+                        if (zipWrapper.errors.length > 0) {
+                            showMessageJS(zipWrapper.errors[0], 'INFO', 'green');
+                            overridePageMessages();
+                            return;
+                        }
+                        deploy(zipWrapper.base64, zipWrapper.oldValuesMap);
+                    }
+                }
+            });
+        }
+
+        function deploy(b64, bkUp) {
+            showMessageJS('Updating metadata...', 'INFO', 'green');
+            overridePageMessages();
+            const packageToDeploy = new Package(conn);
+            packageToDeploy.zip64 = b64;
+            packageToDeploy.deploy(function (result) {
+                const logger = new Logger();
+                if (result) {
+                    if (result.err) {
+                        showMessageJS('Error during update: ' + result.err, 'ERROR', 'red');
+                        overridePageMessages();
+                    } else if (result.list && result.list.success) {
+                        if (!bkDataToUpdate) {
+                            showMessageJS('Update was successful, saving backup...', 'INFO', 'green');
+                            overridePageMessages();
+                            logger.addInActResults(bkUp);
+                            createBkupData(JSON.stringify(bkUp), logger.log);
+                        } else {
+                            logger.addResults(result.list);
+                            finalize('Update was successful, for more details see the log in Attachment associated with sequence', logger.log);
+                        }
+                    } else if (result.list && !result.list.success) {
+                        logger.addErrors(result.list);
+                        finalize('Update was not successful, for more details see the log in Attachment associated with sequence', logger.log);
+                    } else {
+                        if (!bkDataToUpdate) {
+                            showMessageJS('Uknown result for update, check it manually on target org. Saving backup...', 'INFO', 'green');
+                            overridePageMessages();
+                            createBkupData(JSON.stringify(bkUp));
+                        } else {
+                            finalize('Uknown result for update, check it manually on target org.', '');
+                        }
+                    }
+                } else {
+                    showMessageJS('Error during update: server did not return anything', 'ERROR', 'red');
+                    overridePageMessages();
+                }
+
+            });
+        }
+
+        /**********             Logger class                 ********/
+        /*              used to process results                     */
+
+        var Logger = function () {
+            this.log = '';
+            this.total = 0;
+            this.closed = false;
+            this.typeMap = {'objects/': 'ValidationRule', 'workflows/': 'WorkflowRule', 'triggers/': 'Trigger'};
+
+        }
+
+        Logger.prototype.addErrors = function (results) {
+            this.log += '\n---------- Errors Log Begin ----------------\n';
+            this.addErrorsResults(results);
+            this.log += '\n---------- Errors Log End ----------------\n';
+
+        }
+
+        Logger.prototype.addResults = function (results) {
+            this.log += '\n---------- Success Log Begin ----------------\n';
+            this.addSuccessResults(results, 'Activated ');
+            this.log += '\n---------- Success Log End ----------------\n';
+
+        }
+
+        Logger.prototype.addInActResults = function (results) {
+            this.log += '\n---------- Success Log Begin ----------------\n';
+            this.addDeActResults(results, 'De-activated ');
+            this.log += '\n---------- Success Log End ----------------\n';
+
+        }
+
+        Logger.prototype.addErrorsResults = function (result) {
+            if (result.details.componentFailures) {
+                if (Array.isArray(result.details.componentFailures)) {
+                    for (const index in result.details.componentFailures) {
+                        if (index < result.details.componentFailures.length) {
+                            const failureComp = result.details.componentFailures[index];
+                            // var error = '\n File name: ' + failureComp.fileName +
+                            //     ', Component name: ' + failureComp.fullName +
+                            //     ' (Line: ' + failureComp.lineNumber + ': Column:' + failureComp.columnNumber + ') : ' +
+                            //     '\n Message: ' + failureComp.problem;
+                        }
+                    }
+                } else {
+                    // var failureComp = result.details.componentFailures;
+                    // var error = '\n File name: ' + failureComp.fileName +
+                    //     ', Component name: ' + failureComp.fullName +
+                    //     '\n Message: ' + failureComp.problem;
+                }
+            }
+        }
+
+        Logger.prototype.addDeActResults = function (result) {
+            if (result) {
+                for (const file in result) {
+                    this.addOneResult(file, result[file]);
+                }
+            } else {
+                this.addOneLine('\n No data ');
+            }
+        }
+
+        Logger.prototype.addOneResult = function (fileName, obj) {
+            for (const type in this.typeMap) {
+                if (fileName && fileName.indexOf(type) > -1) {
+                    const index1 = type.length,
+                      index2 = fileName.indexOf('.');
+                    if (index1 > -1 && index2 > -1) {
+                        const compName = fileName.substring(index1, index2),
+                          compType = this.typeMap[type];
+                        if (compType === 'Trigger') {
+                            this.addOneLine('\n Deactivate ' + compType + ' ' + compName);
+                        } else if (obj) {
+                            for (const name in obj) {
+                                const fullName = compName + '.' + name;
+                                this.addOneLine('\n Deactivate ' + compType + ' ' + fullName);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Logger.prototype.addSuccessResults = function (result, state) {
+            if (result.details.componentSuccesses && result.success) {
+                if (Array.isArray(result.details.componentSuccesses)) {
+                    for (const index in result.details.componentSuccesses) {
+                        if (index < result.details.componentSuccesses.length) {
+                            const successComp = result.details.componentSuccesses[index];
+                            this.addLine(successComp, state);
+                        }
+                    }
+                } else {
+                    const successComp = result.details.componentSuccesses;
+                    this.addLine(successComp, state);
+                }
+            }
+        }
+
+        Logger.prototype.addLine = function (successComp, state) {
+            if (successComp && successComp.fullName !== 'package.xml') {
+                const componentStatus = (successComp.created === 'true' ? 'CREATED ' : successComp.changed === 'true' ?
+                  'UPDATED ' : successComp.deleted === 'true' ? 'DELETED ' : ' N/A ');
+                if (componentStatus !== ' N/A ') {
+                    if (componentStatus === 'UPDATED ') {
+                        this.addOneLine('\n ' + state + ' ' + successComp.componentType + ' ' + successComp.fullName);
+                    }
+                } else {
+                    //                 this.addOneLine('\n ' + successComp.componentType+' '+successComp.fullName + '  NO CHANGE');
+                }
+            }
+        }
+
+        Logger.prototype.addOneLine = function (str) {
+            if (str) {
+                if (this.total + str.length > 200000) {
+                    if (!this.closed) {
+                        this.log += '\n Total size of Log file is limited to 200k';
+                    }
+                    this.closed = true;
+                } else {
+                    this.total += str.length;
+                    this.log += str;
+                }
+            }
+        }
+        /**********             Package class                ********/
+        /*      used to get all components from content map         */
+
+        var RestTemplate = function (conn) {
+            this.conn = conn;
+            this.callback;
+        }
+
+        RestTemplate.prototype.getTriggers = function (objLi, status, callback) {
+            conn.query("Select Id, TableEnumOrId, Name, Status From ApexTrigger", function (err, res) {
+                const response = {};
+                if (err) {
+                    response.error = err;
+                    callback(response);
+                }
+                response.triggers = [];
+                if (!res.records) {
+                    callback(response);
+                }
+                for (let x = 0; x < res.records.length; x++) {
+                    const record = res.records[x];
+                    if (objLi[record['TableEnumOrId']]) {
+                        if (status === 'All' || record['Status'] === status) {
+                            response.triggers.push(record['Name']);
+                        }
+                    }
+                }
+                callback(response);
+            });
+        }
+        /**********             Package class                ********/
+        /*      used to get all components from content map         */
+
+        var Package = function (conn, content) {
+            this.conn = conn;
+            this.content = content; // map: CustomObject:[],ApexTrigger:[]
+            this.details;
+            this.zip64;
+            this.callback;
+            this.callback2;
+            this.counter = 100;
+            this.dcounter = 30;
+        }
+
+        Package.prototype.getMetadata = function (callback) {
+            this.callback = callback;
+            const req = this.__getRetrieveRequest();
+            if (!this.content) {
+                this.callback('Request must not be empty: choose at least one type to activate/deactivate');
+                return;
+            }
+            this.__composeQuery(req);
+
+            const self = this;
+            this.conn.metadata.retrieve(req, function (err, result) {
+                if (err) {
+                    self.callback(err);
+                } else {
+                    if (result && result.id) {
+                        self.checkRetrieveStatus(result.id);
+                    } else {
+                        self.callback('Server does not return a valid id: ' + result.id);
+                    }
+                }
+            });
+
+        }
+
+        Package.prototype.checkRetrieveStatus = function (currentAsyncId) {
+            const self = this;
+            this.conn.metadata.checkRetrieveStatus(currentAsyncId, function (err, result) {
+                if (err) {
+                } else {
+                    if (result && result.id) {
+                        if (result.done === 'true') {
+                            if (result.success !== 'true') {
+                                self.callback(result.errorMessage);
+                            } else {
+                                self.zip64 = result.zipFile;
+                                self.callback('Done');
+                            }
+                        } else {
+                            self.counter--;
+                            if (self.counter < 0) {
+                                self.callback('Timeout in 500 seconds for retrieving has been exceeded');
+                            } else {
+                                setTimeout(function () {
+                                    self.checkRetrieveStatus(currentAsyncId);
+                                }, 4000);
+                            }
+                        }
+                    } else {
+                        self.callback('Server does not return a valid id');
+                    }
+                }
+            });
+        }
+
+        Package.prototype.deploy = function (callback) {
+            this.callback2 = callback;
+            const self = this;
+            this.conn.metadata.pollTimeout = 12000000;
+            this.conn.metadata.pollInterval = 8000;
+
+            const asyncResult = this.conn.metadata.deploy(this.zip64, getDeployOptions());
+            asyncResult.complete(function (err, r) {
+                const result = {};
+                if (err) {
+                    console.error(err);
+                    result.err = err;
+                    self.callback(result);
+                    return;
+                }
+                result.list = r;
+                if (r) {
+                    self.conn.metadata.checkDeployStatus(r.id, true, function (err, result) {
+                        self.checkDeployStatus(err, result);
+                    });
+                } else {
+                    result.err = 'Target org returned null instead asyncId. Reload the page and try once again.'
+                    self.callback(result);
+                }
+            });
+
+            function getDeployOptions() {
+                const deployOption = {}
+                deployOption.allowMissingFiles = true;
+                deployOption.autoUpdatePackage = false;
+                deployOption.checkOnly = false;
+                deployOption.ignoreWarnings = false;
+                deployOption.performRetrieve = false;
+                deployOption.purgeOnDelete = false;
+                deployOption.rollbackOnError = true;
+                deployOption.singlePackage = true;
+                return deployOption;
+            }
+        }
+
+        Package.prototype.checkDeployStatus = function (err, result) {
+            const self = this,
+              res = {};
+            this.dcounter--;
+            if (this.dcounter < 0) {
+                err = 'Timeout for deployment. Reload the page and try once again.';
+            }
+            if (err) {
+                res.err = err;
+                self.callback2(res);
+            } else {
+                if (result.done) {
+                    if (result.success) {
+                        res.list = result;
+                    } else {
+                        res.err = 'Settings on target org have not been changed. First error: ' + this.__extractError(result);
+                    }
+                    self.callback2(res);
+                } else {
+                    setTimeout(function () {
+                        self.conn.metadata.checkDeployStatus(result.id, true, function (err, result) {
+                            self.checkDeployStatus(err, result);
+                        });
+                    }, 6000);
+                }
+            }
+
+        }
+
+        Package.prototype.__extractError = function (result) {
+            let failureComp, error;
+            if (result.details.componentFailures) {
+                if (Array.isArray(result.details.componentFailures)) {
+                    failureComp = result.details.componentFailures[0];
+                } else {
+                    failureComp = result.details.componentFailures;
+                }
+                error = '\n File name: ' + failureComp.fileName +
+                    ', Component name: ' + failureComp.fullName +
+                    ' (Line: ' + failureComp.lineNumber + ': Column:' + failureComp.columnNumber + ') : ' +
+                    '\n Message: ' + failureComp.problem;
+
+            }
+            return (error) ? error : 'N/A';
+        }
+
+        Package.prototype.__composeQuery = function (query) {
+            for (const type in this.content) {
+                const members = this.content[type];
+                if (members.length > 0) {
+                    query.unpackaged.types.push(this.__getType(type, members));
+                }
+            }
+            return true;
+        }
+
+        Package.prototype.__getType = function (type, members) {
+            const oneType = {};
+            oneType.name = type;
+            oneType.members = members;
+            return oneType;
+        }
+
+        Package.prototype.__getRetrieveRequest = function () {
+            const retrieveRequest = {}
+            retrieveRequest.apiVersion = '51.0';
+            retrieveRequest.singlePackage = true;
+            retrieveRequest.unpackaged = {};
+            retrieveRequest.unpackaged.types = [];
+            return retrieveRequest;
+        }
+
+        /**********             Xml class                ********/
+        /*      used to parse and change components             */
+
+
+        var Xml = function (string, opt, changeMap) {
+            this.string = string;
+            this.x2js = new X2JS({useDoubleQuotes: true});
+            this.typesMap = {'ValidationRules': 'validationRules', 'Workflows': 'rules', 'Triggers': 'status', 'Flows': 'activeVersionNumber'};
+            this.fieldsMap = {'ValidationRules': 'active', 'Workflows': 'active', 'Triggers': 'status', 'Flows': 'activeVersionNumber'};
+            this.keyMap = {'ValidationRules': 'CustomObject', 'Workflows': 'Workflow', 'Triggers': 'ApexTrigger', 'Flows': 'FlowDefinition'};
+            this.options = opt;
+
+            this.changeMap = {};//fullName => origValue
+            this.restore;
+            if (changeMap) {
+                this.changeMap = changeMap;
+                this.restore = true;// use changeMap as source of values
+            }
+            if (this.options.restoreAll) {
+                this.restore = true;
+            }
+        }
+
+        Xml.prototype.parse = function (typesLi, val) {
+            const original = this.x2js.xml_str2json(this.string);
+            for (let x = 0; x < typesLi.length; x++) {
+                const type = typesLi[x];
+                if (this.typesMap[type]) {
+                    if (this.restore && type === 'Flows') {
+                        original[this.keyMap[type]][this.typesMap[type]] = 1;
+                    }
+                    const field = this.fieldsMap[type];
+                    const nodeName = this.typesMap[type];
+                    this.clean(original, type, nodeName);
+                    const root = original[this.keyMap[type]];
+                    if (!root[nodeName]) return;
+
+                    if (type === 'Triggers' || type === 'Flows') {
+                        this.setMappedVal(root, field, val, type);
+                    } else {
+                        this.setFlag(root[nodeName], field, val, type);
+                    }
+
+                }
+            }
+            return '<?xml version="1.0" encoding="UTF-8"?>' + this.x2js.json2xml_str(original);
+        }
+
+        Xml.prototype.clean = function (original, type, nodeName) {
+            if (type !== 'ValidationRules') return;// left original untouched
+            const obj = {},
+              content = {},
+              root = original[this.keyMap[type]];
+
+            if (root[nodeName]) {
+                content[nodeName] = root[nodeName];
+            }
+            obj['CustomObject'] = content;
+            return obj;
+        }
+
+        Xml.prototype.setFlag = function (node, field, val, type) {
+            if (!node) return;
+            if (isArray(node)) {
+                for (let x = 0; x < node.length; x++) {
+                    // var subNode = node[x];
+                    this.setMappedVal(node[x], field, val, type);
+                }
+            } else {
+                this.setMappedVal(node, field, val, type);
+            }
+
+            function isArray(arr) {
+                return arr instanceof Array;
+            }
+        }
+
+        Xml.prototype.setMappedVal = function (node, field, val, type) {
+            let key = node['fullName'];
+            if (field === 'status') {
+                key = 'triggerstatus';
+            }
+            if (this.restore) {
+                let storedVal = this.changeMap[key];
+                if (this.options.restoreAll) {
+                    if (type === 'Flows') {
+                        storedVal = 1;
+                    } else {
+                        storedVal = (field === 'status') ? 'Active' : true;
+                    }
+                }
+                if (storedVal) {
+                    node[field] = storedVal;
+                }//else do nothing
+            } else {
+                this.changeMap[key] = node[field];// save old value
+                node[field] = val;
+            }
+        }
+
+
+        /**********             Zip wrapper class                ********/
+
+
+        var ZipWrapper = function (base64, oldValuesMap) {
+            this.pathsMap = {'triggers': 'Triggers', 'objects': 'ValidationRules', 'workflows': 'Workflows', 'flowDefinitions': 'Flows'};
+            this.activeFlagsMap = {'Triggers': 'Active', 'ValidationRules': true, 'Workflows': true, 'Flows': 1};
+            this.inactiveFlagsMap = {'Triggers': 'Inactive', 'ValidationRules': false, 'Workflows': false, 'Flows': 0};
+            this.excluded = {'package.xml': true}
+            this.packageXml;
+
+            this.base64 = base64;
+            this.zip;
+            this.newzip;
+            this.errors = [];
+            this.options = {};
+
+            this.oldValuesMap = {};
+            this.restore;
+            if (oldValuesMap !== undefined) {
+                this.oldValuesMap = oldValuesMap;
+                if (oldValuesMap.options) {
+                    this.options = oldValuesMap.options;
+                }
+                this.restore = true;
+            }
+        }
+
+        ZipWrapper.prototype.unpack = function () {
+            // this.zip = new JSZip(this.base64, {base64: true});
+          this.newzip = new JSZip();
+          this.zip = new JSZip(this.base64, {base64: true});
+        }
+
+        // extract all, process, save back, val = 'turnOn'
+        ZipWrapper.prototype.update = function (val) {
+            this.packageXml = new PackageXml();
+            for (const fileName in this.zip.files) {
+                const slashPos = fileName.indexOf('/');
+                if (fileName && slashPos > -1 && slashPos < (fileName.length - 1) && !this.excluded[fileName]) {
+                    const dir = fileName.substring(0, fileName.indexOf('/'));
+                    if (this.pathsMap[dir]) {
+                        const type = this.pathsMap[dir];
+                        let body = this.zip.file(fileName).asBinary();
+                        if ((type === 'Triggers' && fileName.indexOf('-meta.xml') !== -1) ||
+                            type === 'ValidationRules' ||
+                            type === 'Workflows' || type === 'Flows') {
+                            const xml = new Xml(body, this.options, this.oldValuesMap[fileName]),
+                              typesLi = [];
+                            typesLi.push(type);
+
+                            let flag;
+                            if (val === 'turnOn') {
+                                flag = this.activeFlagsMap[type];
+                            } else {
+                                flag = this.inactiveFlagsMap[type];
+                            }
+
+                            body = xml.parse(typesLi, flag);
+                            this.oldValuesMap[fileName] = xml.changeMap;
+                        }
+                        if (body) {
+                            this.newzip.file(fileName, body, {binary: true});
+                            this.packageXml.add(type, fileName);
+                        }
+                    }
+                }
+            }
+        }
+
+        ZipWrapper.prototype.pack = function () {
+            const pXml = this.packageXml.generate();
+            if (pXml) {
+                this.newzip.file('package.xml', pXml, {binary: true});
+                this.base64 = this.newzip.generate({type: "base64", compression: "DEFLATE"});
+            } else {
+                this.errors.push('There are no active triggers/validation rules for selected objects');
+            }
+        }
+
+
+        var PackageXml = function () {
+            this.types = {};
+            this.typesMap = {'ValidationRules': 'CustomObject', 'Workflows': 'Workflow', 'Triggers': 'ApexTrigger', 'Flows': 'FlowDefinition'};
+            this.version = '51.0';
+        }
+
+        PackageXml.prototype.add = function (type, memberF) {
+            const member = this.extractName(memberF);
+            if (!member) return;
+            if (this.typesMap[type]) {
+                const name = this.typesMap[type];
+                if (!this.types[name]) {
+                    this.types[name] = {};
+                }
+                const members = this.types[name];
+                members[member] = true;
+            }
+        }
+
+        PackageXml.prototype.generate = function () {
+            let xml = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<Package xmlns="http://soap.sforce.com/2006/04/metadata">';
+            if (this.isEmpty()) return;
+            for (const name in this.types) {
+                xml += '<types>';
+                const members = Object.keys(this.types[name]);
+                for (let x = 0; x < members.length; x++) {
+                    xml += '<members>' + members[x] + '</members>';
+                }
+                xml += '<name>' + name + '</name>';
+                xml += '</types>';
+            }
+            xml += '<version>' + this.version + '</version>';
+            xml += '</Package>';
+            return xml;
+        }
+
+        PackageXml.prototype.isEmpty = function () {
+            for (const name in this.types) {
+                const keys = Object.keys(this.types[name]);
+                if (keys.length > 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        PackageXml.prototype.extractName = function (fName) {
+            if (!fName || fName.indexOf('-meta.xml') !== -1) return;
+            const start = fName.indexOf('/'),
+              end = fName.indexOf('.');
+            if (start > -1 && end > -1) {
+                return fName.substring(start + 1, end);
+            }
+        }
+
+        /*************              Updating functionality                  *************/
+        var dataToUpdateMap = {};
+        var metadataMap = {};//map uid => json_metadata, used for backup creation
+        var errMsg = '';
+        var restoreObjectsLi = [];
+
+        /*********              Utility methods             **********/
+
+        function updateUITable(id, res) {
+            const td = document.getElementById('prePostActionsPage:pageForm:pageBlock:pbtable:' + id + ':resultCol');
+            if (td != null) {
+                const result = res ? res : '';
+                if (result) {
+                    td.append(result);
+                }
+            }
+        }
+
+        function showMessageJS(Message_Str, Message_Type, fontColor) {
+            const parentVal = $("[id$='msg']");
+            if (parentVal) {
+                parentVal.html('');
+                if (Message_Str) {
+                    if (Message_Type === 'ERROR') {
+                        const childVal = '<span id="j_id0:msg:j_id19:j_id20:0:j_id21">' +
+                            '<div class="message errorM3" role="alert">' +
+                            '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                            '<tbody>' +
+                            '<tr valign="top">' +
+                            '<td><img alt="ERROR" class="msgIcon" src="/s.gif" title="ERROR"></td>' +
+                            '<td class="messageCell">' +
+                            '<div id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id24" class="messageText">' +
+                            '<span id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id25" style="color:#cc0000">' +
+                            '<h4>Error:</h4>' +
+                            '</span>' + Message_Str + '<br>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td></td>' +
+                            '<td></td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</span>';
+                        parentVal.append(childVal);
+                    } else if (Message_Type === 'INFO') {
+                        const childVal = '<span id="j_id0:msg:j_id19:j_id20:0:j_id21">' +
+                            '<div class="message infoM3" role="alert">' +
+                            '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                            '<tbody>' +
+                            '<tr valign="top">' +
+                            '<td><img alt="INFO" class="msgIcon" src="/s.gif" title="INFO"></td>' +
+                            '<td class="messageCell">' +
+                            '<div id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id24" class="messageText">' +
+                            '<span id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id25">' +
+                            '<h4></h4>' +
+                            '</span>' + Message_Str + '<br>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td></td>' +
+                            '<td></td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</span>';
+                        parentVal.append(childVal);
+                    } else if (Message_Type === 'CONFIRM') {
+                        const childVal = '<span id="j_id0:msg:j_id15:j_id16:0:j_id17">' +
+                            '<div class="message confirmM3" role="alert">' +
+                            '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                            '<tbody>' +
+                            '<tr valign="top">' +
+                            '<td><img alt="CONFIRM" class="msgIcon" src="/s.gif" title="CONFIRM"></td>' +
+                            '<td class="messageCell">' +
+                            '<div id="j_id0:msg:j_id15:j_id16:0:j_id17:j_id18:j_id20" class="messageText">' +
+                            '<span id="j_id0:msg:j_id15:j_id16:0:j_id17:j_id18:j_id21">' +
+                            '<h4>Success:</h4>' +
+                            '</span>' +
+                            '<font>' + Message_Str + '</font>' +
+                            '<br>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td></td>' +
+                            '<td></td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</span>';
+                        parentVal.append(childVal);
+                    }
+                }
+            }
+        }
+
+        function overridePageMessages() {
+            const textureEffect = '';
+            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage ' + textureEffect);
+            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage ' + textureEffect);
+            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage ' + textureEffect);
+            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage ' + textureEffect);
+
+            $('.errorM3').removeClass('errorM3');
+            $('.confirmM3').removeClass('confirmM3');
+            $('.infoM3').removeClass('infoM3');
+            $('.warningM3').removeClass('warningM3');
+        }
+    </script>
+
+</apex:page>

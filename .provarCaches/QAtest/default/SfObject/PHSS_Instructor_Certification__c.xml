@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" keyPrefix="a1l" label="PHSS Instructor Certification" labelPlural="PHSS Instructor Certifications" layoutable="true" n="PHSS_Instructor_Certification__c" queryable="true" readPermission="false" retrieveable="true" s="" t="PHSS Instructor Certification (a1l)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome PHSS_Instructor_Certifications__r" n="New"/>
+    <sfActionLink modes="View PHSS_Instructor_Certifications__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View PHSS_Instructor_Certifications__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View PHSS_Instructor_Certifications__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View PHSS_Instructor_Certifications__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

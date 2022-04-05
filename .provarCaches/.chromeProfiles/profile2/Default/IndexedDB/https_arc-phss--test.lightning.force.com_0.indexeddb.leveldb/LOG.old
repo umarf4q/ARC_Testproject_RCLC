@@ -1,0 +1,9 @@
+2021/12/23-19:30:03.839 144c Reusing MANIFEST C:\Users\Administrator\Provar\Workspace1\Testproject\.provarCaches\.chromeProfiles\profile2\Default\IndexedDB\https_arc-phss--test.lightning.force.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/12/23-19:30:03.840 144c Recovering log #7
+2021/12/23-19:30:03.849 144c Reusing old log C:\Users\Administrator\Provar\Workspace1\Testproject\.provarCaches\.chromeProfiles\profile2\Default\IndexedDB\https_arc-phss--test.lightning.force.com_0.indexeddb.leveldb/000007.log 
+2021/12/23-19:30:05.267 2738 Compacting 1@1 + 1@2 files
+2021/12/23-19:30:05.289 2738 Generated table #10@1: 417 keys, 1033210 bytes
+2021/12/23-19:30:05.289 2738 Compacted 1@1 + 1@2 files => 1033210 bytes
+2021/12/23-19:30:05.291 2738 compacted to: files[ 0 0 1 0 0 0 0 ]
+2021/12/23-19:30:05.292 2738 Delete type=2 #5
+2021/12/23-19:30:05.293 2738 Delete type=2 #8

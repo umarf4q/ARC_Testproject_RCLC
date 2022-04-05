@@ -1,0 +1,995 @@
+<apex:page cache="false" expires="0" standardController="Dataplier__Data_Set__c" extensions="Dataplier.DataSetController" id="dataSetPage" docType="html-5.0" sideBar="false">
+    <c:TrackPanel />
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-1.10.2.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__query_filter, 'res/js/ui-2.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__query_filter, 'res/js/filtereditor.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Dataplier__query_filter, 'res/css/ui-2.css')}"/>
+    <apex:slds />
+    <style>
+        .requiredBlock {
+            background-color: #c00;
+            position: absolute;
+            border-radius: 35%;
+            left: 33%;
+            width: 3px;
+            height: 31px;
+        }
+
+        option {
+            width: 20px;
+        }
+
+        .msgIcon {
+            display: none !important
+        }
+
+        .customMessage * {
+            color: #fff !important
+        }
+
+        .customMessage {
+            margin: 5px 0 !important;
+            max-width: 100%;
+            opacity: 1 !important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+
+        .message {
+            opacity: 1;
+        }
+    </style>
+
+    <apex:pagemessages id="msg"/>
+    <body id="pageBody">
+    <apex:form id="pageForm" style="margin : 3px">
+
+        <apex:actionfunction action="{!countRecords}" name="countRecords" onComplete="rerenderCounter('{!JSENCODE(numberOfRecords)}');" immediate="true"/>
+        <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+            <div class="slds-media__body">
+                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#drafts')}"/>
+							</svg>
+						</span>
+                    <span style="font-weight: bolder;" class="slds-m-left--small">Data Set</span>
+                </h1>
+            </div>
+        </div>
+        <apex:outputPanel title="Data Set Edit" id="infPanel">
+            <apex:outputPanel styleClass="slds-card slds-box slds-m-top--medium" layout="block">
+                <div class="slds-grid slds-gutters slds-m-top--medium slds-m-bottom--medium">
+                    <div class="slds-col slds-size--4-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="DataSetName" value="Name: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputPanel styleClass="requiredBlock"/>
+                                <apex:inputText styleClass="slds-input" id="DataSetName" value="{!ds.name}"/>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="objectName" value="Selected Object: "/>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="objectName" name="objectName" class="slds-select" onchange="selectObjectName();">
+                                    </select>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--10-of-12" id="DataSetSection">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="nRecs" value="Number of records: "/>
+                            <div class="slds-form-element__control">
+                                <apex:outputText id="nRecs" value="{!numberOfRecords}" styleClass="slds-m-left--small"/>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-col slds-size--4-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-size--10-of-12">
+                            <apex:outputLabel styleClass="slds-form-element__label" for="chunkLimit" value="Bulk Records Limit: ">
+                                <div class="mouseOverInfoOuter" id="searchInvoiceHelper" onfocus="addMouseOver(this)" onmouseover="addMouseOver(this)" tabindex="0">
+                                    <svg class="slds-icon slds-icon-text-error slds-icon_x-small" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"/>
+                                    </svg>
+                                    <div class="mouseOverInfo" id="searchInvoiceHelperText" style="width: 600px !important; background: #f7f9fb; display: none; opacity: -0.19999999999999996;">
+                                        <div class="body">
+                                            <pre> Reduce this value if you have many triggers on the target organization.</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </apex:outputLabel>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <apex:selectList id="chunkLimit" StyleClass="slds-select" value="{!chunkLimit}" size="1">
+                                        <apex:selectOptions value="{!chunkLimitOption}"/>
+                                    </apex:selectList>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-col slds-size--4-of-12">
+                        <apex:outputPanel layout="block" styleClass="slds-float--right">
+                            <input type="button" value="Count records" class="slds-button slds-button_neutral" id="countBtn saveBtn" onclick="countRecs()"/>
+                            <apex:commandButton action="{!cancel}" value="Cancel" styleClass="slds-button slds-button_neutral saveBtn slds-m-left--x-small" onclick="return confirmCancel()" immediate="true"/>
+                            <input type="button" value="Save" class="slds-button slds-button--brand" id="saveBtn" onclick="saveJs()"/>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </apex:outputPanel>
+            <div class="slds-card slds-m-top--medium">
+                <ul class="slds-accordion">
+                    <li class="slds-accordion__list-item">
+                        <section class="slds-accordion__section slds-is-open" style="padding-bottom: 0 !important;" id="dataSection">
+                            <div class="slds-accordion__summary" style="background-color: #f7f9fb; padding: 9px; margin : -12px -12px 0 -12px">
+                                <h3 class="slds-accordion__summary-heading">
+                                    <button aria-controls="accordion-details-01" type="button" onclick="hideShowObjectInf()" aria-expanded="true" class="slds-button slds-button_reset slds-accordion__summary-action">
+                                        <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                            <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}"/>
+                                            </svg>
+                                        </svg>
+                                        <span class="slds-icon_container slds-icon-standard-account">
+ 							            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#maintenance_plan')}"/>
+							            </svg>
+						                </span>
+                                        <span class="slds-truncate slds-m-left--small" title="Accordion summary">Data Set Object Information *Use System Fields only as a last resort.</span>
+                                    </button>
+                                </h3>
+                            </div>
+                            <div style="display: block" id="blockInf">
+                                <div class="slds-grid slds-m-top--large slds-gutters">
+                                    <div class="slds-col slds-size--2-of-12">
+                                        <apex:outputPanel layout="block" styleClass="slds-size--12-of-12">
+                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                                                <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#search')}"/>
+                                                </svg>
+                                                <apex:inputText styleClass="slds-input" id="searchField" value="{!SearchString1}" rendered="{!$ObjectType.Dataplier__Data_Set__c.Fields.Dataplier__Object_API_Name__c.createable}"/>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+
+                                </div>
+                                <apex:outputPanel id="FieldsPanel" styleClass="slds-m-top--large " layout="block">
+                                    <table class="multiPicklistTable" style="width:800px">
+                                        <tbody>
+                                        <tr>
+                                            <th scope="col">Available Fields</th>
+                                            <th scope="col">&nbsp;</th>
+                                            <th scope="col">Selected Fields</th>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="1" style="width:300px" height="370">
+                                                <select id="existingFields" class="slds-select" multiple="true">
+                                                </select>
+                                            </td>
+                                            <td style="vertical-align:middle; text-align: center;" width="150">
+
+                                                <div>
+                                                    <button type="button" title="" class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                                            onclick="javascript: moveSelectElement3(document.getElementById('existingFields'), document.getElementById('selectedFields'));checkSelected();return(false);">
+                                                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#right')}"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-m-top--medium"
+                                                            onclick="javascript: moveSelectElement3(document.getElementById('selectedFields'), document.getElementById('existingFields'));checkSelected();return(false);">
+                                                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#left')}"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td height="370" style="width: 300px">
+                                                <select id="selectedFields" class="slds-select" multiple="true">
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="block" styleClass="slds-m-top--small slds-m-bottom--small">
+                                    <apex:outputText > Double click on field's name to mask it (for data obfuscation)
+                                    </apex:outputText>
+                                </apex:outputPanel>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="slds-card slds-m-top--medium">
+                <ul class="slds-accordion">
+                    <li class="slds-accordion__list-item">
+                        <section class="slds-accordion__section" id="keySectionBlock" style="padding-bottom: 0 !important;">
+                            <div class="slds-accordion__summary" style="background-color: #f7f9fb; padding: 9px; margin : -12px -12px 0 -12px">
+                                <h3 class="slds-accordion__summary-heading">
+                                    <button aria-controls="accordion-details-01" type="button" aria-expanded="true" class="slds-button slds-button_reset slds-accordion__summary-action" onclick="hideShowKeyInformation()">
+                                        <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                            <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}"/>
+                                            </svg>
+                                        </svg>
+                                        <span class="slds-icon_container slds-icon-standard-account">
+ 							            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#custom')}"/>
+							            </svg>
+						                </span>
+                                        <span class="slds-truncate slds-m-left--small" title="Accordion summary">Key Set Information.</span>
+                                    </button>
+                                </h3>
+                            </div>
+                            <div id="blockKey" style="display: none">
+                                <div class="slds-grid slds-m-top--large slds-gutters">
+                                    <div class="slds-col slds-size--2-of-12">
+                                        <apex:outputPanel layout="block" styleClass="slds-size--12-of-12">
+                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                                                <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#search')}"/>
+                                                </svg>
+                                                <apex:inputText styleClass="slds-input" id="searchKeyField" value="{!SearchString2}" rendered="{!$ObjectType.Dataplier__Data_Set__c.Fields.Dataplier__Object_API_Name__c.createable}"/>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+
+                                </div>
+                                <apex:outputPanel id="keySection" styleClass="slds-m-top--large slds-m-bottom--medium" layout="block">
+                                    <table class="multiPicklistTable" style="width:800px">
+                                        <tbody>
+                                        <tr>
+                                            <th scope="col">Available Fields</th>
+                                            <th scope="col">&nbsp;</th>
+                                            <th scope="col">Selected Fields</th>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="1" style="width:300px" height="370">
+                                                <select id="existingKeyFields" class="slds-select" multiple="true">
+                                                </select>
+                                            </td>
+                                            <td style="vertical-align:middle; text-align: center;" width="150">
+
+                                                <div>
+                                                    <button type="button" title="" class="slds-button slds-button_icon slds-button_icon-border-filled"
+                                                            onclick="javascript: moveSelectElement3(document.getElementById('existingKeyFields'), document.getElementById('selectedKeyFields'));checkSelectedKeys();return(false);">
+                                                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#right')}"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-m-top--medium"
+                                                            onclick="javascript: moveSelectElement3(document.getElementById('selectedKeyFields'), document.getElementById('existingKeyFields'));checkSelectedKeys();return(false);">
+                                                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#left')}"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td height="370" style="width: 300px">
+                                                <select id="selectedKeyFields" class="slds-select" multiple="true">
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </apex:outputPanel>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+        </apex:outputPanel>
+
+        <script type="text/javascript">
+            Visualforce.remoting.timeout = 120000;
+            var initObjectList = false;
+            var existingFieldsLi = [];
+            var existingKeyFieldsLi = [];
+
+            //              if (!initObjectList){
+            //                  createObjectsOptionLi();
+            //              }
+
+
+            function hideShowKeyInformation() {
+                let cmp = document.getElementById('blockKey');
+                cmp.style.display = cmp.style.display === 'none' ? 'block' : 'none';
+                let sec = document.getElementById('keySectionBlock');
+                for (let i = 0; i < sec.classList.length; i++) {
+                    if (sec.classList[i] === 'slds-is-open') {
+                        sec.classList.remove('slds-is-open');
+                        return;
+                    }
+                }
+                sec.classList.add('slds-is-open');
+            }
+
+            function hideShowFilterCriteria() {
+                let cmp = document.getElementById('filterCriteriaBlock');
+                cmp.style.display = cmp.style.display === 'none' ? 'block' : 'none';
+                let sec = document.getElementById('filterCriteriaSection');
+                for (let i = 0; i < sec.classList.length; i++) {
+                    if (sec.classList[i] === 'slds-is-open') {
+                        sec.classList.remove('slds-is-open');
+                        return;
+                    }
+                }
+                sec.classList.add('slds-is-open');
+            }
+
+            function hideShowObjectInf() {
+                let cmp = document.getElementById('blockInf');
+                cmp.style.display = cmp.style.display === 'none' ? 'block' : 'none';
+                let sec = document.getElementById('dataSection');
+                for (let i = 0; i < sec.classList.length; i++) {
+                    if (sec.classList[i] === 'slds-is-open') {
+                        sec.classList.remove('slds-is-open');
+                        return;
+                    }
+                }
+                sec.classList.add('slds-is-open');
+            }
+
+            function updateDOM(objectFieldsListJSON, objectKeyFieldsJSON, selectedFieldsOptionsJSON, selectedKeyFieldsOptionsJSON) {
+
+                attachToDOM(jQuery("#existingFields"), objectFieldsListJSON, false);
+                attachToDOM(jQuery("#selectedFields"), selectedFieldsOptionsJSON, false);
+                attachToDOM(jQuery("#existingKeyFields"), objectKeyFieldsJSON, false);
+                attachToDOM(jQuery("#selectedKeyFields"), selectedKeyFieldsOptionsJSON, false);
+//                  attachMultiplyToDOM(filterFieldOptionsJSON);
+            }
+
+            let isStandardUser = null;
+
+            function onchangeOptionsUsers(value) {
+                isStandardUser = value;
+            }
+
+            function attachMultiplyToDOM(jsonStr) {
+
+                var objList = JSON.parse(jsonStr);
+
+                if (objList != undefined) {
+
+                    for (var n = 0; n < 10; n++) {
+                        attachOne(objList, n);
+                    }
+                }
+
+            }
+
+            function attachOne(objList, num) {
+                var mySelect = document.getElementById('dataSetPage:pageForm:pageBlock:FilterEditor:FilterLines:' + num + ':FieldControl');
+                if (mySelect != undefined) {
+                    for (var x = 0; x < objList.length; x++) {
+                        var newOption = document.createElement('option');
+                        newOption.value = objList[x].value;
+                        if (typeof newOption.textContent === 'undefined') {
+                            newOption.innerText = objList[x].label;
+                        } else {
+                            newOption.textContent = objList[x].label;
+                        }
+                        mySelect.appendChild(newOption);
+                    }
+                }
+            }
+
+            function attachToDOM(elem, jsonStr, doParse, selObjName) {
+                if (jsonStr != undefined && elem != undefined) {
+                    var objList = jsonStr;
+                    if (doParse == true) {
+                        var objList = JSON.parse(jsonStr);
+                    }
+                    if (objList != undefined) {
+                        for (var x = 0; x < objList.length; x++) {
+                            if (selObjName != undefined && objList[x].value == selObjName) {
+                                elem.append('<option style="width: 100%" selected="selected" value="' + objList[x].value + '">' + objList[x].label + '</option>');
+                            } else {
+                                if (objList[x].disabled == true) {
+                                    elem.append('<option style="width: 100%" disabled="disabled" value="' + objList[x].value + '">' + objList[x].label + '</option>');
+                                } else {
+                                    elem.append('<option style="width: 100%" value="' + objList[x].value + '">' + objList[x].label + '</option>');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            var selectedObj, firstSelectedObj;
+
+            function createObjectsOptionLi(selObj) {
+                initObjectList = true;
+                var jsonStr = '{!JSENCODE(allObjectsLiJSON)}';
+                attachToDOM(jQuery("#objectName"), jsonStr, true, selObj);
+            }
+
+            function dataDs() {
+                var fieldsSelect = document.getElementById('selectedFields');
+                var keyFieldsSelect = document.getElementById('selectedKeyFields');
+                var fieldsString = '';
+                var keyFieldsString = '';
+                var maskedFieldsString = '';
+                var selFieldsMap = {};// used to filter out selected
+                for (i = fieldsSelect.length - 1; -1 < i; i--) {
+                    if (fieldsSelect.options[i].value) {
+                        fieldsString += fieldsSelect.options[i].value + '; ';
+                        selFieldsMap[fieldsSelect.options[i].value] = true;
+                    }
+
+                }
+                if (fieldsString == '; ') {
+                    fieldsString = '';
+                }
+                if (keyFieldsSelect != undefined) {
+                    for (i = keyFieldsSelect.length - 1; -1 < i; i--) {
+                        if (keyFieldsSelect.options[i].value) {
+                            keyFieldsString += keyFieldsSelect.options[i].value + '; ';
+                        }
+                    }
+                    if (keyFieldsString == '; ') {
+                        keyFieldsString = '';
+                    }
+                }
+                var arrayList = Object.keys(maskedFieldsMap);
+                if (arrayList != undefined && arrayList.length > 0) {
+                    for (var x = 0; x < arrayList.length; x++) {
+                        if (selFieldsMap[arrayList[x]] != undefined)
+                            maskedFieldsString += arrayList[x] + '; ';
+                    }
+                }
+                return [fieldsString, keyFieldsString, maskedFieldsString];
+
+            }
+
+            function countRecs() {
+                var counter = document.getElementById('dataSetPage:pageForm:nRecs');
+                counter.innerHTML = 'Counting...';
+                var resultData = dataDs();
+                Count(resultData[0], resultData[1], resultData[2]);
+            }
+
+            function saveJs() {
+                var resultData = dataDs();
+                Save(resultData[0], resultData[1], resultData[2]);
+            }
+
+            function rerenderCounter(num) {
+                var counter = document.getElementById('dataSetPage:pageForm:nRecs');
+                counter.innerHTML = num;
+            }
+
+            function selectObjectName() {
+                var selectedObj = document.getElementById('objectName').value;
+                var oldSelectedObj = '{!JSENCODE(ds.Dataplier__Object_API_Name__c)}';
+                var toReset = firstSelectedObj != selectedObj;
+
+//                  if (oldSelectedObj != selectedObj){
+                selectObject(selectedObj, toReset);
+//                  }
+            }
+
+            function updateListsA(objName, selFields, selKFields) {
+                selectedObj = objName;
+                if (objName != firstSelectedObj) {
+                    selFields = '';
+                    selKFields = '';
+                }
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.DataSetController.updateFields}',
+                    objName,
+                    selFields,
+                    selKFields,
+                    function (result, event) {
+                        if (event.status) {
+                            updateListsB(result);
+                        } else {
+
+                        }
+                    });
+            }
+
+            function updateListsB(descr) {
+                updateDOM(descr.objectFieldsListJSON,
+                    descr.objectKeyFieldsJSON,
+                    descr.selectedFieldsOptionsJSON,
+                    descr.selectedKeyFieldsOptionsJSON);
+                createBkUp();
+                // if (selectedObj === 'User') {
+                //     document.getElementById('existingKeyFields').disabled = true;
+                //     document.getElementById('selectedKeyFields').disabled = true;
+                // } else {
+                //     document.getElementById('existingKeyFields').disabled = false;
+                //     document.getElementById('selectedKeyFields').disabled = false;
+                // }
+
+                document.getElementById('existingKeyFields').disabled = false;
+                document.getElementById('selectedKeyFields').disabled = false;
+
+            }
+
+
+            var tmpkeyFieldsSelect = document.getElementById('selectedKeyFields');
+
+            function confirmCancel() {
+                var isCancel = confirm("Are you sure you wish to cancel?");
+                if (isCancel) return true;
+                return false;
+            }
+
+
+            window.setInterval(checkChange, 100);
+            var previousSearchValue1 = '';
+            var previousSearchValue2 = '';
+
+            function checkChange() {
+                var newValue1Ref = document.getElementById('dataSetPage:pageForm:searchField');
+                var newValue2Ref = document.getElementById('dataSetPage:pageForm:searchKeyField');
+                if (!newValue1Ref || !newValue2Ref || !existingFieldsLi || !existingKeyFieldsLi) return;
+
+                var newValue1 = newValue1Ref.value.toLowerCase();
+                if (newValue1 !== previousSearchValue1) {
+                    searchFields(newValue1);
+                    previousSearchValue1 = newValue1;
+                }
+                var newValue2 = newValue2Ref.value.toLowerCase();
+                if (newValue2 !== previousSearchValue2) {
+                    searchKeyFields(newValue2);
+                    previousSearchValue2 = newValue2;
+                }
+            }
+
+            function searchFields(searchStr) {
+                var existingFields = document.getElementById('existingFields');
+                // clear options lists
+                for (var i = existingFields.length - 1; -1 < i; i--) {
+                    existingFields.remove(i);
+                }
+                // create a list of selected fields
+                var selectedFields = document.getElementById('selectedFields');
+                var selectedLi = [];
+                for (var x = 0; x < selectedFields.length; x++) {
+                    selectedLi.push(selectedFields.options[x].value);
+                }
+                //
+                for (var i = 0; i < existingFieldsLi.length; i++) {
+                    var name = existingFieldsLi[i].text.toLowerCase();
+                    if (name.indexOf(searchStr) !== -1 && jQuery.inArray(existingFieldsLi[i].value, selectedLi) === -1) {
+                        var option = document.createElement("option");
+                        option.text = existingFieldsLi[i].text;
+                        option.value = existingFieldsLi[i].value;
+                        existingFields.add(option);
+                    }
+                }
+
+            }
+
+            function searchKeyFields(searchStr) {
+                var existingKeyFields = document.getElementById('existingKeyFields');
+
+                for (var i = existingKeyFields.length - 1; -1 < i; i--) {
+                    existingKeyFields.remove(i);
+                }
+                // create a list of selected fields
+                var selectedKeyFields = document.getElementById('selectedKeyFields');
+                var selectedLi = [];
+                for (var x = 0; x < selectedKeyFields.length; x++) {
+                    selectedLi.push(selectedKeyFields.options[x].value);
+                }
+
+                for (var i = 0; i < existingKeyFieldsLi.length; i++) {
+                    var name = existingKeyFieldsLi[i].text.toLowerCase();
+                    if (name.indexOf(searchStr) != -1 && jQuery.inArray(existingKeyFieldsLi[i].value, selectedLi) == -1) {
+                        var option = document.createElement("option");
+                        option.text = existingKeyFieldsLi[i].text;
+                        option.value = existingKeyFieldsLi[i].value;
+                        existingKeyFields.add(option);
+                    }
+                }
+
+            }
+
+
+            function checkSelected() {
+                checkSelect('selectedFields', 'existingFields');
+            }
+
+            function checkSelectedKeys() {
+                checkSelect('selectedKeyFields', 'existingKeyFields');
+            }
+
+            function checkSelect(selectedFieldsId, existingFieldsId) {
+                var fieldsSelect = document.getElementById(selectedFieldsId);
+                var fieldsSelectCopy = fieldsSelect;
+                var existingFields = document.getElementById(existingFieldsId);
+                var existingFieldsCopy = existingFields;
+
+                for (var i = fieldsSelectCopy.length - 1; -1 < i; i--) {
+                    fieldsSelectCopy.options[i].style.width = '100%';
+                    if (!fieldsSelectCopy.options[i].value) {
+                        fieldsSelect.remove(i);
+                    }
+                }
+                for (var i = existingFieldsCopy.length - 1; -1 < i; i--) {
+                    existingFieldsCopy.options[i].style.width = '100%';
+                    if (!existingFieldsCopy.options[i].value) {
+                        existingFields.remove(i);
+                    }
+                }
+            }
+
+            function checkSyntaxQuery() {
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.DataSetController.checkQuery}',
+                    '{!JSENCODE(ds.Dataplier__Object_API_Name__c)}',
+                    document.getElementById('dataSetPage:pageForm:custom-where-clause').value,
+                    (result, event) => {
+                        if (event.status) {
+                            let messageElem = document.querySelector('#message-custom-query');
+                            if (result.type === 'success') {
+                                messageElem.style.color = '#32CD32';
+                            } else {
+                                messageElem.style.color = '#FF0000';
+                            }
+                            messageElem.innerHTML = result.message;
+                        }
+                    });
+            }
+
+            function changeFilterTab(node) {
+                const nodeId = node.id;
+                let automaticTab = document.querySelector('#automatic-tab');
+                let automaticTabContent = document.querySelector('#automatic-tab-content');
+                let manualTab = document.querySelector('#manual-tab');
+                let manualTabContent = document.querySelector('#manual-tab-content');
+                if (nodeId === 'manual-tab') {
+                    if (!manualTab.classList.contains('slds-is-active')) manualTab.classList.add('slds-is-active');
+                    if (automaticTab.classList.contains('slds-is-active')) automaticTab.classList.remove('slds-is-active');
+                    if (manualTabContent.classList.contains('slds-hide')) manualTabContent.classList.remove('slds-hide');
+                    if (!automaticTabContent.classList.contains('slds-hide')) automaticTabContent.classList.add('slds-hide');
+                } else {
+                    if (!automaticTab.classList.contains('slds-is-active')) automaticTab.classList.add('slds-is-active');
+                    if (manualTab.classList.contains('slds-is-active')) manualTab.classList.remove('slds-is-active');
+                    if (automaticTabContent.classList.contains('slds-hide')) automaticTabContent.classList.remove('slds-hide');
+                    if (!manualTabContent.classList.contains('slds-hide')) manualTabContent.classList.add('slds-hide');
+                }
+            }
+        </script>
+        <apex:outputPanel id="pageBlock" title="Data Set Edit">
+            <apex:outputPanel id="FilterEditor">
+                <div class="slds-card slds-m-top--medium">
+                    <ul class="slds-accordion">
+                        <li class="slds-accordion__list-item">
+                            <section class="slds-accordion__section slds-is-open" style="padding-bottom: 0 !important;" id="filterCriteriaSection">
+                                <div class="slds-accordion__summary" style="background-color: #f7f9fb; padding: 9px; margin : -12px -12px 0 -12px">
+                                    <h3 class="slds-accordion__summary-heading">
+                                        <button aria-controls="accordion-details-01" type="button" aria-expanded="true" class="slds-button slds-button_reset slds-accordion__summary-action" onclick="hideShowFilterCriteria()">
+                                            <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                                <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}"/>
+                                                </svg>
+                                            </svg>
+                                            <span class="slds-icon_container slds-icon-standard-account">
+ 							            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+    						                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#filter')}"/>
+							            </svg>
+						                </span>
+                                            <span class="slds-truncate slds-m-left--small" title="Accordion summary">Data Set Filter Criteria.</span>
+                                        </button>
+                                    </h3>
+                                </div>
+                                <div id="filterCriteriaBlock" class="slds-m-left_medium">
+                                    <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-m-top--medium slds-m-bottom--medium  slds-size--4-of-12" id="pbs4">
+                                        <apex:outputLabel styleClass="slds-form-element__label" for="mRecs" value="Max number of records: "/>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputText styleClass="slds-input slds-size--6-of-12" id="mRecs" value="{!limitFilter}"/>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <div class="demo-only">
+                                        <div class="slds-tabs_default">
+                                            <ul class="slds-tabs_default__nav slds-m-top_medium" role="tablist">
+                                                <li class="slds-tabs_default__item slds-is-active" title="Declarative filters" role="presentation" onclick="changeFilterTab(this)" id="automatic-tab">
+                                                    <a class="slds-tabs_default__link" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1">
+                                                        <span class="slds-tabs__left-icon">
+                                                            <svg class="slds-button__icon" aria-hidden="true">
+                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#filter')}"/>
+                                                            </svg>
+                                                        </span>Declarative filters</a>
+                                                </li>
+                                                <li class="slds-tabs_default__item" title="SOQL filter" role="presentation" onclick="changeFilterTab(this)" id="manual-tab">
+                                                    <a class="slds-tabs_default__link" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-2">
+                                                        <span class="slds-tabs__left-icon">
+                                                            <svg class="slds-button__icon" aria-hidden="true">
+                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#note')}"/>
+                                                            </svg>
+                                                        </span>SOQL filter</a>
+                                                </li>
+                                            </ul>
+                                            <div id="automatic-tab-content" class="slds-tabs_default__content" role="tabpanel" aria-labelledby="tab-default-1__item">
+                                                <div class="slds-grid slds-m-top--medium slds-m-bottom--medium">
+                                                    <apex:outputPanel layout="block" styleClass="slds-col slds-size--5-of-12">
+                                                        <apex:variable var="seq" value="{!1}"/>
+                                                        <apex:dataTable value="{!queryEditor.FilterLines}" var="line" id="FilterLines">
+                                                            <apex:column >
+                                                                <apex:outputPanel layout="block" style="margin: 7px 7px 1px 1px;">
+                                                                    <apex:outputText value="{!TEXT(seq)+'.'}"/>
+                                                                </apex:outputPanel>
+                                                                <apex:variable var="seq" value="{!seq+1}"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="{!$ObjectType.Dataplier__Filter_Line__c.Fields.Dataplier__Field__c.Label}" style="width:220px; padding:0 10px 0 0">
+                                                                <apex:selectList styleClass="slds-select" value="{!line.Field}" multiselect="false" size="1" style="margin  : 10px 0 10px 0" onchange="FilterEditor.UpdateOperator(this);FilterEditor.SelectNotNone(this);" id="FieldControl">
+                                                                    <apex:selectOptions value="{!queryEditor.FilterFieldOptions}"/>
+                                                                </apex:selectList>
+                                                            </apex:column>
+                                                            <!--                                        <apex:column  style="width:10px">-->
+                                                            <!--                                        </apex:column>-->
+                                                            <apex:column headerValue="{!$ObjectType.Dataplier__Filter_Line__c.Fields.Dataplier__Operator__c.Label}" style="width:120px; padding:0 10px 0 0">
+                                                                <apex:selectList styleClass="slds-select" value="{!line.Operator}" multiselect="false" size="1" style="width: 126px;" id="OperatorControl">
+                                                                    <apex:selectOption itemValue="" itemLabel="--None--"/>
+                                                                    <apex:selectOption itemValue="e" itemLabel="equals"/>
+                                                                    <apex:selectOption itemValue="n" itemLabel="not equal to"/>
+                                                                    <apex:selectOption itemValue="l" itemLabel="less than"/>
+                                                                    <apex:selectOption itemValue="g" itemLabel="greater than"/>
+                                                                    <apex:selectOption itemValue="m" itemLabel="less or equal"/>
+                                                                    <apex:selectOption itemValue="h" itemLabel="greater or equal"/>
+                                                                    <apex:selectOption itemValue="c" itemLabel="contains"/>
+                                                                    <apex:selectOption itemValue="k" itemLabel="does not contain"/>
+                                                                    <apex:selectOption itemValue="s" itemLabel="starts with"/>
+                                                                    <apex:selectOption itemValue="u" itemLabel="includes"/>
+                                                                    <apex:selectOption itemValue="x" itemLabel="excludes"/>
+                                                                    <apex:selectOption itemValue="w" itemLabel="within"/>
+                                                                    <apex:selectOption itemValue="i" itemLabel="in"/>
+                                                                    <apex:selectOption itemValue="j" itemLabel="does not in"/>
+                                                                </apex:selectList>
+                                                            </apex:column>
+                                                            <!--                                        <apex:column  style="width:10px">-->
+                                                            <!--                                        </apex:column>-->
+                                                            <apex:column headerValue="{!$ObjectType.Dataplier__Filter_Line__c.Fields.Dataplier__Value__c.Label}">
+                                                                <apex:inputText value="{!line.Value}" styleClass="slds-input" id="FilterValue"/>
+                                                                <span style="display: none;" id="FilterValueDate">
+                                                                    <apex:inputField styleClass="slds-input slds-size--6-of-12" value="{!line.ContactLine.Birthdate}" onchange="FilterEditor.UpdateDate(this);"/>
+                                                                </span>
+                                                                <span style="display: none;" id="FilterValueDateTime">
+                                                                    <apex:inputField styleClass="slds-input slds-size--6-of-12" value="{!line.ExecutionLine.Dataplier__Started__c}" onchange="FilterEditor.UpdateDate(this);"/>
+                                                                </span>
+                                                                <br/>
+                                                                <apex:outputPanel style="margin: 5px;" rendered="{!NOT(ISNULL(line.ErrorMessage))}">
+                                                                    <apex:outputText style="color:red; font-weight:bold;" value="Error:"/>&nbsp;<apex:outputText value="{!line.ErrorMessage}" style="color:red;"/>
+                                                                </apex:outputPanel>
+                                                            </apex:column>
+                                                            <apex:column style="vertical-align:baseline;">
+                                                                <apex:outputPanel id="LookupIcon" style="display: none">
+                                                                    <apex:outputLink value="javascript:void(0)" onclick="openPickerWindow(this, '{!JSENCODE(queryEditor.FilterObjectDescribe.Name)}')">
+                                                                        <!--                                                        <apex:image value="/s.gif" styleClass="lookupIcon" onmouseout="this.className='lookupIcon';" onmouseover="this.className='lookupIconOn';"/>-->
+                                                                        <svg class="slds-button__icon slds-button__icon_small slds-m-top--medium slds-m-left--medium" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#layers')}"/>
+                                                                        </svg>
+                                                                    </apex:outputLink>
+                                                                </apex:outputPanel>
+                                                            </apex:column>
+                                                            <apex:column style="padding-left: 15px;">
+                                                                <apex:outputPanel layout="block" id="boolean_operator" rendered="{!seq <= 5}">
+                                                                    <apex:outputText value="AND"/>
+                                                                </apex:outputPanel>
+                                                            </apex:column>
+                                                        </apex:dataTable>
+
+                                                        <apex:outputPanel layout="block" id="frowButtons" styleClass="addRemoveRowControl slds-m-top--small">
+                                                            <apex:outputLink value="javascript:FilterEditor.addRow()" id="fAddRowLink">
+                                                                <apex:outputText value="Add Row"/>
+                                                            </apex:outputLink>
+                                                            <apex:outputPanel id="fAddRowLinkGreyed" styleClass="greyedLink">
+                                                                <apex:outputText value="Add Row"/>
+                                                            </apex:outputPanel>&nbsp;|&nbsp;
+                                                            <apex:outputLink value="javascript:FilterEditor.removeRow()" id="fRemoveRowLink">
+                                                                <apex:outputText value="Remove Row"/>
+                                                            </apex:outputLink>
+                                                            <apex:outputPanel id="fRemoveRowLinkGreyed" styleClass="greyedLink">
+                                                                <apex:outputText value="Remove Row"/>
+                                                            </apex:outputPanel>
+                                                        </apex:outputPanel>
+
+
+                                                        <apex:outputPanel layout="block" styleClass="booleanLogicControl">
+                                                            <apex:outputPanel layout="block" style="margin-bottom: 6px;">
+                                                                <apex:outputLink value="javascript:FilterEditor.setBooleanMode(false)" id="bool_filter_clear">
+                                                                    <apex:outputText value="Clear Filter Logic"/>
+                                                                </apex:outputLink>
+                                                                <apex:outputLink value="javascript:FilterEditor.setBooleanMode(true)" id="bool_filter_add">
+                                                                    <apex:outputText value="Add Filter Logic"/>
+                                                                </apex:outputLink>
+                                                                <br/>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel id="boolean_filter_span" styleClass="slds-m-bottom--medium">
+                                                                <apex:outputLabel for="boolean_filter" value="Filter Logic: "/>
+                                                                <i>Example: (1 AND 2) OR 3</i><br/>
+                                                                <apex:inputField styleClass="slds-input" id="boolean_filter" value="{!queryEditor.Filter.Dataplier__Boolean_Logic__c}" style="width: 250px;"/>
+                                                                <br/>
+                                                                <!-- <apex:image value="/img/report_boolean_filter.gif" width="533" height="211" title="Boolean Filters Help" alt="Boolean Filters Help" /><br/> -->
+                                                            </apex:outputPanel>
+                                                        </apex:outputPanel>
+
+
+                                                    </apex:outputPanel>
+                                                    <div class="slds-col slds-size--1-of-12"></div>
+                                                </div>
+                                            </div>
+                                            <div id="manual-tab-content" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="textarea-id-01">WHERE</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputTextarea id="custom-where-clause" styleClass="slds-textarea" value="{!customWhereClause}"></apex:inputTextarea>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-grid">
+                                                    <div class="slds-col slds-size_2-of-12">
+                                                        <button type="button" class="slds-button slds-button_neutral" onclick="checkSyntaxQuery()">Check Syntax</button>
+                                                    </div>
+                                                    <div class="slds-col slds-size_10-of-12 slds-m-top_xx-small">
+                                                        <div class="slds-p-left_medium slds-float_right" id="message-custom-query">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </section>
+                        </li>
+                    </ul>
+                </div>
+                <script>
+                    const MASKED_FIELD = '(MASKED)';
+                    jQuery.noConflict();
+                    var Field2Type = {!queryEditor.FilterFieldTypeMapJSON};
+                    var FilterEditor = new FilterEditorInstance("FilterEditor");
+                    var displayStyle;
+                    var maskedFieldsMap = {};
+
+                    jQuery(document).ready(function () {
+                        gfxInit();
+                        createMaskedFieldsMap();
+                        // for test
+                        var curObj = '{!JSENCODE(ds.Object_API_Name__c)}';
+//                  createBkUp();
+                        if (initObjectList == false) {
+                            firstSelectedObj = curObj;
+                            createObjectsOptionLi(curObj);
+                            selectObject(curObj, false);
+                        }
+                    });
+
+                    function createMaskedFieldsMap() {
+                        var fields = '{!JSENCODE(ds.Masked_Fields__c)}';
+                        if (fields != null && fields != undefined) {
+                            var arrayLi = fields.split(';');
+                            for (var x = 0; x < arrayLi.length; x++) {
+                                var fieldName = arrayLi[x].trim();
+                                if (fieldName != '' && fieldName != undefined)
+                                    maskedFieldsMap[fieldName] = true;
+                            }
+                        }
+                    }
+
+
+                    function gfxInit() {
+                        a1 = new Image;
+                        a1.src = "{!URLFOR($Resource.query_filter, 'res/img/spinner.gif')}";
+                        a2 = new Image;
+                        a2.src = "/img/loading.gif";
+                        a3 = new Image;
+                        a3.src = "/img/func_icons/util/lookup20.gif";
+                    }
+
+                    function createBkUp() {
+                        var existingFields = document.getElementById('existingFields');
+                        var existingKeyFields = document.getElementById('existingKeyFields');
+                        existingFieldsLi = [];
+                        existingKeyFieldsLi = [];
+                        for (var x = 0; x < existingFields.length; x++) {
+                            var el = {};
+                            el.text = existingFields.options[x].text;
+                            el.value = existingFields.options[x].value;
+                            existingFieldsLi.push(el);
+                        }
+                        for (var x = 0; x < existingKeyFields.length; x++) {
+                            var el = {};
+                            el.text = existingKeyFields.options[x].text;
+                            el.value = existingKeyFields.options[x].value;
+                            existingKeyFieldsLi.push(el);
+                        }
+                        var selFields = document.getElementById('selectedFields');
+                        var selKeyFields = document.getElementById('selectedKeyFields');
+                        for (var x = 0; x < selFields.length; x++) {
+                            var el = {};
+                            el.text = selFields.options[x].text;
+                            el.value = selFields.options[x].value;
+                            if (maskedFieldsMap[el.value] != undefined) {
+                                el.text += ' ' + MASKED_FIELD;
+                                selFields.options[x].text = el.text;
+                            }
+                            existingFieldsLi.push(el);
+                        }
+                        for (var x = 0; x < selKeyFields.length; x++) {
+                            var el = {};
+                            el.text = selKeyFields.options[x].text;
+                            el.value = selKeyFields.options[x].value;
+                            existingKeyFieldsLi.push(el);
+                        }
+                        existingFieldsLi.sort();
+                        existingKeyFieldsLi.sort();
+
+                    }
+
+                    function openPickerWindow(sender, objectName) {
+                        var tr = jQuery(sender).parent().parent().parent();
+                        var fieldName = tr.find("select[id$=FieldControl] option:selected").attr("value");
+                        var valueElement = tr.find("input[id$=FilterValue]").get(0);
+                        var pageURL = "{!$Page.ObjectFieldValues}";
+                        pageURL = (typeof (pageURL) == 'string') ? pageURL : "/apex/ObjectFieldValues";
+                        var url = pageURL + "?o=" + objectName + "&f=" + fieldName + "&e=" + valueElement.id;
+                        var features = 'directories=no,menubar=no,titlebar=no,toolbar=no,scrollbars=yes,width=620,height=430';
+                        win = window.open(url, '', features);
+                    }
+
+                    function countDataSetResultRecords(ObjectName, query) {
+                    }
+
+                    function overridePageMessages() {
+                        var textureEffect = '';
+                        jQuery('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage ' + textureEffect);
+                        jQuery('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage ' + textureEffect);
+                        jQuery('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage ' + textureEffect);
+                        jQuery('.infoM3').addClass('slds-notify slds-notify--toast customMessage ' + textureEffect);
+
+                        jQuery('.errorM3').removeClass('errorM3');
+                        jQuery('.confirmM3').removeClass('confirmM3');
+                        jQuery('.infoM3').removeClass('infoM3');
+                        jQuery('.warningM3').removeClass('warningM3');
+                    }
+
+                    jQuery("#selectedFields").dblclick(function () {
+                        var sel1 = this.options[this.selectedIndex].value;
+                        var text1 = this.options[this.selectedIndex].text;
+                        if (text1 != undefined && text1.indexOf(MASKED_FIELD) < 0) {
+                            text1 = text1 + ' ' + MASKED_FIELD;
+                            maskedFieldsMap[sel1] = true;
+                        } else {
+                            text1 = text1.substr(0, text1.indexOf(MASKED_FIELD));
+                            delete maskedFieldsMap[sel1];
+                        }
+                        this.options[this.selectedIndex].text = text1;
+                    });
+
+                </script>
+            </apex:outputPanel>
+        </apex:outputPanel>
+
+        <apex:actionFunction name="Count" action="{!countRecords}" onComplete="overridePageMessages();" rerender="msg, DataSetSection">
+            <apex:param value="firstParam" name="firstParam" assignTo="{!ds.Object_Fields__c}"/>
+            <apex:param value="secondParam" name="secondParam" assignTo="{!ds.Key_Fields__c}"/>
+            <apex:param value="thirdParam" name="thirdParam" assignTo="{!ds.Masked_Fields__c}"/>
+        </apex:actionFunction>
+
+        <apex:actionFunction name="Save" action="{!Save}" onComplete="overridePageMessages()" rerender="msg, DataSetSection">
+            <apex:param value="firstParam" name="firstParam" assignTo="{!ds.Object_Fields__c}"/>
+            <apex:param value="secondParam" name="secondParam" assignTo="{!ds.Key_Fields__c}"/>
+            <apex:param value="thirdParam" name="thirdParam" assignTo="{!ds.Masked_Fields__c}"/>
+        </apex:actionFunction>
+        <apex:actionfunction action="{!selectObject}" name="selectObject"
+                             oncomplete="updateListsA('{!ds.Dataplier__Object_API_Name__c}','{!selectedFieldsListJSON}','{!selectedKeyFieldsListJSON}');overridePageMessages();"
+                             rerender="msg, FieldsPanel,keySection,KeyFieldsPanel, pbsi1,FilterEditor, DataSetSection">
+            <apex:param value="" name="name" assignTo="{!ds.Object_API_Name__c}"/>
+            <apex:param value="" name="resetFilter" assignTo="{!resetFilter}"/>
+        </apex:actionfunction>
+    </apex:form>
+    </body>
+
+</apex:page>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sfObject creatable="true" deleteable="true" detailsLoaded="false" editPermission="false" keyPrefix="a17" label="Training Revenue" labelPlural="Training Revenue" layoutable="true" n="Channel_Compensation__c" queryable="true" readPermission="false" retrieveable="true" s="" t="Training Revenue (a17)" updatable="true">
+  <standardActions>
+    <sfActionLink modes="ObjectHome Training_Revenue__r" n="New"/>
+    <sfActionLink modes="View Training_Revenue__r" n="Edit" requiresRow="true" s="2"/>
+    <sfActionLink modes="View Training_Revenue__r" n="Delete" requiresRow="true" s="3"/>
+    <sfActionLink lightningActionName="MassChangeOwner" massAction="true" modes="View List all_related_lists" n="ChangeOwnerOne" t="Change Owner"/>
+    <sfActionLink modes="View Training_Revenue__r" n="ShowMore" t="Show More"/>
+    <sfActionLink modes="View Training_Revenue__r" n="GoToList" t="Go To List"/>
+    <sfActionLink modes="RelatedList" n="PrevPage" t="Previous Page"/>
+    <sfActionLink modes="RelatedList" n="NextPage" t="Next Page"/>
+  </standardActions>
+</sfObject>

@@ -1,0 +1,387 @@
+<apex:page standardcontroller="Dataplier__Execution_Sequence__c" extensions="Dataplier.MigrationJobController" doctype="html-5.0" sidebar="false">
+    <apex:includeScript value="{!URLFOR($Resource.Dataplier__migration, 'js/jquery-2.1.4.min.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.Dataplier__migration, 'js/jsforce.js')}"/>
+    <c:TrackPanel />
+    <apex:slds />
+    <style>
+        .required {
+            background-color: #c00;
+            position: absolute;
+            border-radius: 35%;
+            left: 33%;
+            width: 3px;
+            height: 31px;
+        }
+
+        .msgIcon {
+            display: none !important
+        }
+
+        .customMessage * {
+            color: #fff !important
+        }
+
+        .customMessage {
+            margin: 5px 0 !important;
+            max-width: 100%;
+            opacity: 1 !important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+
+        .message {
+            opacity: 1;
+        }
+
+        .table-header {
+            background-color: #f7f9fb !important;
+            height: 30px !important;
+        }
+
+    </style>
+    <script>
+        let conn;
+        window.onload = function () {
+            overridePageMessages();
+        }
+
+        function overridePageMessages() {
+            document.getElementById('spinner').style.display = 'none';
+            var textureEffect = '';
+            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage ' + textureEffect);
+            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage ' + textureEffect);
+            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage ' + textureEffect);
+            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage ' + textureEffect);
+
+            $('.errorM3').removeClass('errorM3');
+            $('.confirmM3').removeClass('confirmM3');
+            $('.infoM3').removeClass('infoM3');
+            $('.warningM3').removeClass('warningM3');
+        }
+
+        function connectTargetOrg() {
+            let orgId = document.getElementById('j_id0:j_id7:target_org').value;
+            document.getElementById('spinner').style.display = 'block';
+            console.log(orgId);
+            if (orgId === null || orgId === ' ') {
+                showMessageJS('Select the destination org');
+            }
+            getAccessTarget(orgId)
+                .then(result => {
+                    conn = new jsforce.Connection(result);
+                    getObjects();
+                })
+                .catch(error => {
+                    showMessageJS(error);
+                })
+
+        }
+
+        function getObjects() {
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.MigrationJobController.getObjectsDescription}',
+                '{!JSENCODE(sequenceId)}',
+                function (result, event) {
+                    if (event.status) {
+                        let response = JSON.parse(result);
+                        console.log(response);
+                        getDescribeObjectTarget(response);
+                    } else {
+                        showMessageJS(event.message);
+                    }
+                },
+                {escape: false}
+            );
+        }
+
+        function getDescribeObjectTarget(objectsSource) {
+            let promisesAll = [];
+            let arrObjectsName = Object.keys(objectsSource);
+            for (let i = 0; i < arrObjectsName.length; i++) {
+                promisesAll.push(new Promise((res, rej) => {
+                    conn.sobject(arrObjectsName[i]).describe(function (err, meta) {
+                        if (err) {
+                            res({
+                                fields : [],
+                                name : arrObjectsName[i]
+                            });
+                        }
+                        res(meta);
+                    });
+                }))
+            }
+            Promise.all(promisesAll).then((result) => {
+                let objectsTarget = {}; 
+                for (let i = 0; i < result.length; i++) {
+                    let fieldsDescriptions = {};
+                    for (let x = 0; x < result[i].fields.length; x++) {
+
+                        fieldsDescriptions[result[i].fields[x].name] = result[i].fields[x].createable;
+                    }
+                    objectsTarget[result[i].name] = fieldsDescriptions;
+                }
+                checkFLStoTargetOrg(objectsSource, objectsTarget);
+            })
+        }
+
+        function checkFLStoTargetOrg(objectsSource, objectsTarget) {
+            let validationFields = {};
+            for (let objSourceName in objectsSource) {
+                for (let i = 0; i < objectsSource[objSourceName].length; i++) {
+                    if (objectsTarget[objSourceName].hasOwnProperty(objectsSource[objSourceName][i])) {
+                        if (!objectsTarget[objSourceName][objectsSource[objSourceName][i]]) {
+                            if (validationFields[objSourceName]) {
+                                validationFields[objSourceName].push(objectsSource[objSourceName][i]);
+                            } else {
+                                validationFields[objSourceName] = [];
+                                validationFields[objSourceName].push(objectsSource[objSourceName][i]);
+                            }
+                        }
+
+                    } else {
+                        if (validationFields[objSourceName]) {
+                            validationFields[objSourceName].push(objectsSource[objSourceName][i]);
+                        } else {
+                            validationFields[objSourceName] = [];
+                            validationFields[objSourceName].push(objectsSource[objSourceName][i]);
+                        }
+
+                    }
+                }
+            }
+            if (Object.keys(validationFields).length > 0) {
+                getLabel(validationFields);
+            } else {
+                startScheduler();
+            }
+        }
+
+        function getLabel(validationFields) {
+            return new Promise((res, rej) =>{
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.MigrationJobController.getLabel}',
+                    validationFields,
+                    function (result, event) {
+                        if (event.status) {
+                            let response = JSON.parse(result);
+                            validationNotSuccessful(response);
+                        } else {
+                            showMessageJS(event.message);
+                        }
+                    },
+                    {escape: false}
+                );
+
+            })
+
+        }
+
+        function validationNotSuccessful(validNotFields) {
+            document.getElementById('spinner').style.display = 'none';
+            let accordions = `
+                <ul class="slds-accordion">
+                    <li class="slds-accordion__list-item">`;
+            let isFirstAccordion = true;
+            for (let objName in validNotFields) {
+                if (isFirstAccordion) {
+                    accordions += `<section class="slds-accordion__section slds-is-open" id ="accordion_${objName}">`
+                } else {
+                    accordions += `<section class="slds-accordion__section" id ="accordion_${objName}">`
+                }
+                accordions += `<div class="slds-accordion__summary" style="background-color: #f7f9fb; padding: 9px; margin : -12px -12px 0 -12px">
+                    <h3 class="slds-accordion__summary-heading">
+                    <button type ="button" aria-controls="accordion-details-01" aria-expanded="true" class="slds-button slds-button_reset slds-accordion__summary-action" onclick ="changeAccordions(accordion_${objName})">
+                        <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}"/>
+                        </svg>
+                        <span class="slds-truncate" title="${objName}">${objName}</span>
+                    </button>
+                    </h3>
+                </div>
+                <div class="slds-accordion__content" id="accordion-details-${objName}">
+                <table style="" class="slds-table slds-m-top--medium slds-table_cell-buffer slds-no-row-hover"><thead><tr><th class ="table-header">Field Name</th><th class ="table-header" style ="text-align: center;">Createable</th></tr></thead>
+                <tbody>`;
+                for (let i = 0; i < validNotFields[objName].length; i++) {
+                    accordions +=
+                        `<tr><th width ="80%">${validNotFields[objName][i]}</th>
+                                <th width ="20%" style ="text-align: center;">
+                                    <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"/>
+                                    </svg>
+                                </th></tr>`;
+
+                }
+                accordions +=
+                    `</tbody></table></div></section>`;
+                isFirstAccordion = false;
+
+            }
+            accordions += `</li></ul>`;
+            let parentVal = $("[id$='modal-content']");
+            parentVal.html('');
+            parentVal.append(accordions);
+            document.getElementById('validation-not-successful-modal').style.display = 'block';
+
+        }
+
+        function changeAccordions(accordionId) {
+            if ($(accordionId).hasClass('slds-is-open')) {
+                $(accordionId).removeClass('slds-is-open');
+            } else {
+                if($('.slds-is-open')){
+                    $('.slds-is-open').removeClass('slds-is-open');
+                }
+                $(accordionId).addClass('slds-is-open');
+            }
+        }
+
+        function getAccessTarget(orgId) {
+            return new Promise((res, rej) => {
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.MigrationJobController.accessToTarget}',
+                    orgId,
+                    function (result, event) {
+                        if (event.status) {
+                            let response = JSON.parse(result);
+                            if (!response.isSuccess) {
+                                rej(response.errorMessage);
+                            } else {
+                                res({
+                                    instanceUrl: response.details.InstanceURL__c,
+                                    accessToken: response.details.AccessToken__c
+                                })
+                            }
+                        } else {
+                            rej(event.message);
+                        }
+                    },
+                    {escape: false}
+                );
+            });
+        }
+
+        function showMessageJS(message) {
+            document.getElementById('spinner').style.display = 'none';
+            let parentVal = $("[id$='msg']");
+            parentVal.html('');
+            if (message !== '') {
+                let childVal = '<span id="j_id0:msg:j_id19:j_id20:0:j_id21">' +
+                    '<div class="message errorM3" role="alert">' +
+                    '<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">' +
+                    '<tbody>' +
+                    '<tr valign="top">' +
+                    '<td><img alt="ERROR" class="msgIcon" src="/s.gif" title="ERROR"></td>' +
+                    '<td class="messageCell">' +
+                    '<div id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id24" class="messageText">' +
+                    '<span id="j_id0:msg:j_id19:j_id20:0:j_id21:j_id22:j_id25" style="color:#cc0000">' +
+                    '<h4>Error:</h4>' +
+                    '</span>' + message + '<br>' +
+                    '</div>' +
+                    '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td></td>' +
+                    '<td></td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</div>' +
+                    '</span>';
+                parentVal.append(childVal);
+            }
+            overridePageMessages();
+        }
+    </script>
+    <apex:form >
+        <apex:outputPanel layout="block" id="msg">
+            <apex:pagemessages />
+        </apex:outputPanel>
+        <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+            <div class="slds-media__body">
+                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#operating_hours')}"/>
+							</svg>
+						</span>
+                    <span style="font-weight: bolder;" class="slds-m-left--small">Schedule Migration</span>
+                </h1>
+            </div>
+        </div>
+        <div class="slds-box slds-m-top--medium">
+            <div class="slds-gutters slds-grid">
+                <div class="slds-coll slds-size--8-of-12">
+                    <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--5-of-12">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="sequence_name" value="Sequence: "/>
+                        <div class="slds-form-element__control">
+                            <apex:outputText id="sequence_name" value="{!seqName}" styleClass="slds-m-left--small"/>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal slds-m-top--small slds-size--5-of-12">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="target_org" value="Destination org: "/>
+                        <div class="slds-form-element__control">
+                            <apex:outputPanel styleClass="required"/>
+                            <apex:selectList id="target_org" value="{!destId}" styleClass="slds-select" size="1">
+                                <apex:selectOptions value="{!orgs}"/>
+                            </apex:selectList>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel layout="block" styleClass="slds-form-element slds-form-element_horizontal  slds-size--5-of-12">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="errors_handling" value="Errors handling: "/>
+                        <div class="slds-form-element__control">
+                            <apex:outputPanel styleClass="required"/>
+                            <apex:selectList id="errors_handling" value="{!depType}" styleClass="slds-select" size="1">
+                                <apex:selectOptions value="{!migrationType}"/>
+                            </apex:selectList>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+                <div class="slds-coll slds-size--4-of-12">
+                    <apex:outputPanel layout="block" styleClass="slds-float--right">
+                        <apex:commandButton action="{!cancel}" value="Back" styleClass="slds-button slds-button_neutral saveBtn slds-m-left--x-small"/>
+                        <apex:commandButton onclick="connectTargetOrg()" value="Schedule migration" disabled="{!isRunningJobs}" styleClass="slds-button slds-button_brand saveBtn slds-m-left--x-small" reRender="spinner"/>
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </div>
+        <div id="validation-not-successful-modal" style="display: none; height: 800px" >
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div class="slds-page-header slds-header" style="background-color: #f7f9fb !important ;">
+                            <div class="slds-media__body">
+                                <h1 class="slds-text-heading--medium">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+ 							 <svg class="slds-icon" aria-hidden="true">
+    						 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#custom')}"/>
+							</svg>
+						</span>
+                                    <span style="font-weight: bolder;" class="slds-m-left--small">Following CRUD/FLS settings on target org are not valid</span>
+                                </h1>
+                            </div>
+                        </div>
+                        <div id="modal-content" class="slds-box slds-m-top--medium">
+
+                        </div>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <apex:commandButton action="{!cancel}" value="Back" styleClass="slds-button slds-button_neutral saveBtn slds-m-left--x-small"/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+        <div class="demo-only" style="height:6rem; display: none" id="spinner">
+            <div class="slds-spinner_container">
+                <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </div>
+        <apex:actionFunction name="startScheduler" action="{!start}" reRender="msg" onComplete="overridePageMessages();"/>
+    </apex:form>
+</apex:page>
