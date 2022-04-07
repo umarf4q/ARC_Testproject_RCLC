@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testCase id="2">
+<testCase id="15">
   <summary/>
   <steps>
     <caseCall testCaseId="199b1433-ce05-44d7-8acd-cfd58c105348" testCasePath="tests/Callables/CreateCRE-PartnerUser-3Students.testcase" testItemId="358"/>
@@ -368,186 +368,6 @@
         </apiParam>
       </generatedParameters>
     </apiCall>
-    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="334" title="On SF Account (SB Organization Account) ILT Classes related list">
-      <tags>
-        <string>disabled</string>
-      </tags>
-      <arguments>
-        <argument id="uiConnectionName">
-          <value class="value" valueClass="string">QAtest</value>
-        </argument>
-        <argument id="target">
-          <value class="uiTarget" uri="sf:ui:target?object=Account&amp;relatedList=ILT_Classes1__r&amp;recordType=SB+Organization+Account"/>
-        </argument>
-        <argument id="navigate">
-          <value class="value" valueClass="string">Dont</value>
-        </argument>
-        <argument id="targetDescription">
-          <value class="value" valueClass="string">On SF Account (SB Organization Account) ILT Classes related list</value>
-        </argument>
-        <argument id="windowSelection">
-          <value class="value" valueClass="string">Default</value>
-        </argument>
-        <argument id="windowSize">
-          <value class="value" valueClass="string">Default</value>
-        </argument>
-        <argument id="closeWindow"/>
-        <argument id="captureBefore">
-          <value class="value" valueClass="string">false</value>
-        </argument>
-        <argument id="captureAfter">
-          <value class="value" valueClass="string">false</value>
-        </argument>
-        <argument id="sfUiTargetObjectId">
-          <value class="value" valueClass="string">0010V00002NuadLQAR</value>
-        </argument>
-      </arguments>
-      <clauses>
-        <clause name="substeps" testItemId="335">
-          <steps>
-            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="190" title="Set Values: row">
-              <arguments>
-                <argument id="values">
-                  <value class="valueList" mutable="Mutable">
-                    <namedValues mutable="Mutable">
-                      <namedValue name="valuePath">
-                        <value class="value" valueClass="string">row</value>
-                      </namedValue>
-                      <namedValue name="value">
-                        <value class="compound">
-                          <parts>
-                            <variable>
-                              <path element="ClassID"/>
-                              <path element="fields"/>
-                              <path element="classId"/>
-                              <path element="value"/>
-                            </variable>
-                            <value valueClass="string"> </value>
-                          </parts>
-                        </value>
-                      </namedValue>
-                      <namedValue name="valueScope">
-                        <value class="value" valueClass="string">Test</value>
-                      </namedValue>
-                    </namedValues>
-                  </value>
-                </argument>
-              </arguments>
-            </apiCall>
-            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithRow" name="UiWithRow" testItemId="336" title="With ILT_Classes1__r rows {Request_Type__c = $row}">
-              <arguments>
-                <argument id="uiConnectionName">
-                  <value class="value" valueClass="string">QAtest</value>
-                </argument>
-                <argument id="locator">
-                  <value class="uiLocator" uri="sf:ui:locator:row?table=ILT_Classes1__r%2FILT_Classes1__rTable"/>
-                </argument>
-                <argument id="uiRowLocator">
-                  <value class="eq">
-                    <lhs class="variable">
-                      <path element="Request_Type__c"/>
-                    </lhs>
-                    <rhs class="variable" topLevel="true">
-                      <path element="row"/>
-                    </rhs>
-                  </value>
-                </argument>
-                <argument id="locatorDescription">
-                  <value class="value" valueClass="string">With ILT_Classes1__r rows {Request_Type__c = $row}</value>
-                </argument>
-                <argument id="failIfNotFound">
-                  <value class="value" valueClass="boolean">true</value>
-                </argument>
-                <argument id="debugRowLocator"/>
-                <argument id="resultName">
-                  <value class="value" valueClass="string">Row</value>
-                </argument>
-                <argument id="resultScope">
-                  <value class="value" valueClass="string">Local</value>
-                </argument>
-                <argument id="autoPaginate">
-                  <value class="value" valueClass="boolean">false</value>
-                </argument>
-              </arguments>
-              <clauses>
-                <clause name="substeps" testItemId="337">
-                  <steps>
-                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="338" title="Click the ILT Class Name field">
-                      <arguments>
-                        <argument id="locator">
-                          <value class="uiLocator" uri="ui:locator?name=NAME&amp;rowLocator=NAME+%3D+%27First+Aid%2FCPR%2FAED+Instructor-BL%27&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3DAccount%26field%3DNAME%26relationship%3DILT_Classes1__r"/>
-                        </argument>
-                        <argument id="interaction">
-                          <value class="uiInteraction" uri="ui:interaction?name=action"/>
-                        </argument>
-                        <argument id="hover">
-                          <value class="value" valueClass="boolean">false</value>
-                        </argument>
-                        <argument id="captureBefore">
-                          <value class="value" valueClass="string">false</value>
-                        </argument>
-                        <argument id="captureAfter">
-                          <value class="value" valueClass="string">false</value>
-                        </argument>
-                        <argument id="beforeWait">
-                          <value class="uiWait" uri="default"/>
-                        </argument>
-                        <argument id="afterWait">
-                          <value class="uiWait" uri="default"/>
-                        </argument>
-                        <argument id="interactionDescription">
-                          <value class="value" valueClass="string">Click the ILT Class Name field</value>
-                        </argument>
-                        <argument id="autoRetry"/>
-                        <argument id="ieClickMethod">
-                          <value class="value" valueClass="string">Default</value>
-                        </argument>
-                      </arguments>
-                      <generatedParameters>
-                        <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
-                          <summary>Whether the mouse should hover over the field before it is clicked.</summary>
-                          <type>
-                            <booleanType/>
-                          </type>
-                        </apiParam>
-                        <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
-                          <summary>How the click should be executed for Internet Explorer.</summary>
-                          <type>
-                            <choiceType>
-                              <constraints>
-                                <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
-                                <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
-                              </constraints>
-                            </choiceType>
-                          </type>
-                        </apiParam>
-                      </generatedParameters>
-                    </apiCall>
-                  </steps>
-                </clause>
-              </clauses>
-              <generatedParameters>
-                <apiParam group="options" name="autoPaginate" title="Auto Paginate">
-                  <summary>Whether Show More/Next is clicked till the match condition succeeds.</summary>
-                  <defaultValue>false</defaultValue>
-                  <type>
-                    <booleanType/>
-                  </type>
-                </apiParam>
-              </generatedParameters>
-            </apiCall>
-          </steps>
-        </clause>
-      </clauses>
-      <generatedParameters>
-        <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
-          <summary>The Id of the SF Object to be Viewed or Edited.</summary>
-          <type>
-            <textType/>
-          </type>
-        </apiParam>
-      </generatedParameters>
-    </apiCall>
     <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="219" title="On SF Account (SB Organization Account) CC Orders related list">
       <tags/>
       <arguments>
@@ -583,7 +403,7 @@
       <clauses>
         <clause name="substeps" testItemId="220">
           <steps>
-            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithRow" name="UiWithRow" testItemId="345" title="With ccrz__E_Orders__r rows {1}">
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithRow" name="UiWithRow" testItemId="362" title="With ccrz__E_Orders__r rows {ccrz__OrderStatus__c = &quot;Shipped&quot; AND ccrz__TotalAmount__c = &quot;$62.10&quot;}">
               <arguments>
                 <argument id="uiConnectionName">
                   <value class="value" valueClass="string">QAtest</value>
@@ -592,10 +412,23 @@
                   <value class="uiLocator" uri="sf:ui:locator:row?table=ccrz__E_Orders__r%2Fccrz__E_Orders__rTable"/>
                 </argument>
                 <argument id="uiRowLocator">
-                  <value class="value" valueClass="decimal">1</value>
+                  <value class="and">
+                    <lhs class="eq">
+                      <lhs class="variable">
+                        <path element="ccrz__OrderStatus__c"/>
+                      </lhs>
+                      <rhs class="value" valueClass="string">Shipped</rhs>
+                    </lhs>
+                    <rhs class="eq">
+                      <lhs class="variable">
+                        <path element="ccrz__TotalAmount__c"/>
+                      </lhs>
+                      <rhs class="value" valueClass="string">$62.10</rhs>
+                    </rhs>
+                  </value>
                 </argument>
                 <argument id="locatorDescription">
-                  <value class="value" valueClass="string">With ccrz__E_Orders__r rows {1}</value>
+                  <value class="value" valueClass="string">With ccrz__E_Orders__r rows {ccrz__OrderStatus__c = "Shipped" AND ccrz__TotalAmount__c = "$62.10"}</value>
                 </argument>
                 <argument id="failIfNotFound">
                   <value class="value" valueClass="boolean">true</value>
@@ -612,12 +445,12 @@
                 </argument>
               </arguments>
               <clauses>
-                <clause name="substeps" testItemId="346">
+                <clause name="substeps" testItemId="363">
                   <steps>
-                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="347" title="Click the Name field">
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="364" title="Click the Name field">
                       <arguments>
                         <argument id="locator">
-                          <value class="uiLocator" uri="ui:locator?name=NAME&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3DAccount%26field%3DNAME%26relationship%3Dccrz__E_Orders__r&amp;rowLocator=1"/>
+                          <value class="uiLocator" uri="ui:locator?name=NAME&amp;rowLocator=ccrz__OrderStatus__c+%3D+%27Shipped%27+and+ccrz__TotalAmount__c+%3D+%27%2462.10%27&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3DAccount%26field%3DNAME%26relationship%3Dccrz__E_Orders__r"/>
                         </argument>
                         <argument id="interaction">
                           <value class="uiInteraction" uri="ui:interaction?name=action"/>
@@ -641,26 +474,12 @@
                           <value class="value" valueClass="string">Click the Name field</value>
                         </argument>
                         <argument id="autoRetry"/>
-                        <argument id="ieClickMethod">
-                          <value class="value" valueClass="string">Default</value>
-                        </argument>
                       </arguments>
                       <generatedParameters>
-                        <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
+                        <apiParam group="value" name="hover" title="Hover before Clicking">
                           <summary>Whether the mouse should hover over the field before it is clicked.</summary>
                           <type>
                             <booleanType/>
-                          </type>
-                        </apiParam>
-                        <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
-                          <summary>How the click should be executed for Internet Explorer.</summary>
-                          <type>
-                            <choiceType>
-                              <constraints>
-                                <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
-                                <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
-                              </constraints>
-                            </choiceType>
                           </type>
                         </apiParam>
                       </generatedParameters>
